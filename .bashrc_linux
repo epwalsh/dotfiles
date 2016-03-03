@@ -63,5 +63,3 @@ print_before_the_prompt() {
 
 PROMPT_COMMAND=print_before_the_prompt
 PS1='\[\e[1;30m\]->> \[\e[0m\]'
-
-

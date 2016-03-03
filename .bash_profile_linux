@@ -1,12 +1,13 @@
 # .bash_profile
-
-# Get the aliases and functions
 if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
-# User specific environment and startup programs
+set -o vi
+
+if [ -n "$TMUX" ]; then
+    kill -INT $$
+fi
 
 export EDITOR=vim
 export PATH=$HOME/.local/bin:$HOME/bin:$PATH
-
