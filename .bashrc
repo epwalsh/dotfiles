@@ -1,10 +1,23 @@
 set -o vi
 
+bldblk='\e[1;30m' # Black - Bold
+lightpink='\033[38;5;165m'
+lightblue='\033[38;5;033m'
+txtrst='\e[0m'    # Text Reset
+
+HOST_PREFIX=$(echo $HOSTNAME | sed 's/\..*$//')
+print_before_the_prompt() {
+    printf "\n$lightblue[%s:%s] $bldblk%s $lightpink%s$txtrst\n" "$HOST_PREFIX" "$USER" "$PWD" "$(vcprompt)"
+}
+
+PROMPT_COMMAND=print_before_the_prompt
+PS1='\[\e[1;30m\]->> \[\e[0m\]'
+
 alias la='ls -aFG'
 alias ls='ls -FG'
 
 if [ "$(uname)" == "Darwin" ]; then
-    # Aliases specific to Mac OS X
+    # Aliases and settings specific to Mac OS X
     alias iCloud='cd /Users/epwalsh/Library/Mobile\ Documents/com~apple~CloudDocs'
     alias tmux="TERM=screen-256color-bce tmux"
     alias linux10='ssh epwalsh@linux10.stat.iastate.edu'
@@ -25,17 +38,3 @@ if [ "$(uname)" == "Darwin" ]; then
     source /usr/local/bin/virtualenvwrapper.sh 
     workon py279
 fi
-
-# Command prompt
-bldblk='\e[1;30m' # Black - Bold
-lightpink='\033[38;5;165m'
-lightblue='\033[38;5;033m'
-txtrst='\e[0m'    # Text Reset
-
-HOST_PREFIX=$(echo $HOSTNAME | sed 's/\..*$//')
-print_before_the_prompt() {
-    printf "\n$lightblue[%s:%s] $bldblk%s $lightpink%s$txtrst\n" "$HOST_PREFIX" "$USER" "$PWD" "$(vcprompt)"
-}
-
-PROMPT_COMMAND=print_before_the_prompt
-PS1='\[\e[1;30m\]->> \[\e[0m\]'
