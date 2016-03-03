@@ -3,7 +3,7 @@
 " 'I always thought air was free until I bought a bag of chips.'
 " - Unknown
 "
-" Last Modified: Mon Feb 29 21:04:58 2016
+" Last Modified: Thu 03 Mar 2016 09:50:42 AM CST
 
 " Vundle package manager -------------------------------------------------- {{{
 set nocompatible             
@@ -286,11 +286,11 @@ augroup END
 augroup tex_settings
     autocmd!
     au bufread *.tex set tw=150
-    au filetype tex set tw=150
-    au filetype tex setlocal colorcolumn=150
-    au filetype tex setlocal shiftwidth=2 tabstop=2 expandtab 
-    au filetype tex nnoremap <leader>kk :!open %:p:r.pdf -a /Applications/Skim.app/<cr>
-    au filetype tex nnoremap <leader>lu :!lualatex %:p<cr>
+    au FileType tex set tw=150
+    au FileType tex setlocal colorcolumn=150
+    au FileType tex setlocal shiftwidth=2 tabstop=2 expandtab 
+    au FileType tex nnoremap <leader>kk :!open %:p:r.pdf -a /Applications/Skim.app/<cr>
+    au FileType tex nnoremap <leader>lu :!lualatex %:p<cr>
     au bufnewfile *.tex 0r ~/.vim/headers/tex_header.txt
 augroup END
 
@@ -299,11 +299,11 @@ let g:tex_flavor='latex'
 " ---------------------------------------------------------------------- }}}
 
 " C/Cpp settings --------------------------------------------------------- {{{
-au filetype c    setlocal shiftwidth=4 tabstop=4 expandtab
-au filetype cpp  setlocal shiftwidth=4 tabstop=4 expandtab
+au FileType c    setlocal shiftwidth=4 tabstop=4 expandtab
+au FileType cpp  setlocal shiftwidth=4 tabstop=4 expandtab
 au bufread *.h   setlocal shiftwidth=4 tabstop=4 expandtab
 au bufread *.hpp setlocal shiftwidth=4 tabstop=4 expandtab
-au filetype make setlocal noexpandtab shiftwidth=8 softtabstop=0
+au FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
 
 " Custom header for c/cpp files 
 augroup cpp_header
@@ -349,8 +349,8 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:pymode_virtualenv = 1
 let g:pymode_rope = 0
 set completeopt=menuone,longest,preview
-au filetype python setlocal shiftwidth=4 tabstop=4 expandtab
-au filetype python setlocal omnifunc=pythoncomplete#Complete
+au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
+au FileType python setlocal omnifunc=pythoncomplete#Complete
 
 " Custom header 
 augroup python_header
@@ -369,7 +369,7 @@ augroup python_header
 augroup END
 
 " Use slime to send python code to interpreter.
-autocmd filetype python call SetPythonOptions()
+autocmd FileType python call SetPythonOptions()
 if !exists("*SetPythonOptions")
     function SetPythonOptions()
         " Using ipython within tmux is the best way.
@@ -391,16 +391,16 @@ endif
 
 " HTML/CSS settings ---------------------------------------------------- {{{
 let g:user_emmet_leader_key='<C-Z>'
-au filetype html setlocal shiftwidth=2 tabstop=2 expandtab
-au filetype html setlocal nowrap
-au filetype css  setlocal shiftwidth=4 tabstop=4 expandtab 
-au filetype css  setlocal nowrap 
+au FileType html setlocal shiftwidth=2 tabstop=2 expandtab
+au FileType html setlocal nowrap
+au FileType css  setlocal shiftwidth=4 tabstop=4 expandtab 
+au FileType css  setlocal nowrap 
 " ---------------------------------------------------------------------- }}}
 
 " Bash settings -------------------------------------------------------- {{{
 augroup bash_settings
     autocmd!
-    au filetype sh setlocal shiftwidth=4 tabstop=4 expandtab
+    au FileType sh setlocal shiftwidth=4 tabstop=4 expandtab
     au bufnewfile *.sh 0r ~/.vim/headers/sh_header.txt 
 augroup END
 " ---------------------------------------------------------------------- }}}
