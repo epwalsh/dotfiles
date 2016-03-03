@@ -3,8 +3,6 @@ if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
-set -o vi
-
 if [ -n "$TMUX" ]; then
     kill -INT $$
 fi
