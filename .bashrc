@@ -13,10 +13,10 @@ print_before_the_prompt() {
 PROMPT_COMMAND=print_before_the_prompt
 PS1='\[\e[1;30m\]->> \[\e[0m\]'
 
-alias la='ls -aFG'
-alias ls='ls -FG'
 
-if [ "$(uname)" == "Darwin" ]; then
+case "${OSTYPE}" in
+    # Mac OS X
+    darwin*)
     # Aliases and settings specific to Mac OS X
     alias iCloud='cd /Users/epwalsh/Library/Mobile\ Documents/com~apple~CloudDocs'
     alias tmux="TERM=screen-256color-bce tmux"
@@ -34,7 +34,15 @@ if [ "$(uname)" == "Darwin" ]; then
     alias impact1='ssh epwalsh@impact1.stat.iastate.edu'
     alias aflex='ssh epwalsh@aflex.vrac.iastate.edu'
     alias julia="exec '/Applications/Julia-0.4.3.app/Contents/Resources/julia/bin/julia'"
+    alias ls='ls -FG'
+    alias la='ls -a'
 
     source /usr/local/bin/virtualenvwrapper.sh 
     workon py279
-fi
+    ;;
+    # Linux 
+    linux*)
+    alias ls='ls -FG --color'
+    alias la='ls -a'
+    ;;
+esac
