@@ -32,6 +32,8 @@
 \newenvironment{subclaimproof}[1]{\par\noindent\emph{Proof of subclaim \theClaimCounter.\theSubClaimCounter:}\space#1}{\hfill
 $\Diamond$ \emph{Subclaim \theClaimCounter.\theSubClaimCounter}}
 
+\allowdisplaybreaks
+
 \title{}
 \author{Evan P. Walsh}
 \makeatletter
