@@ -1,5 +1,14 @@
+# The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
+# 
+# Last Modified: Fri Mar  4 15:10:02 2016
+# 
+# This file is sourced for interactive non-login shells in a linux environment. 
+# This file also sources every time .bash_profile is sourced.
+
+# Vim-like keybindings 
 set -o vi
 
+# Command prompt --------------------------------------------------------- {{{
 bldblk='\e[1;30m' # Black - Bold
 lightpink='\033[38;5;165m'
 lightblue='\033[38;5;033m'
@@ -12,12 +21,12 @@ print_before_the_prompt() {
 
 PROMPT_COMMAND=print_before_the_prompt
 PS1='\[\e[1;30m\]->> \[\e[0m\]'
+# ------------------------------------------------------------------------ }}}
 
-
+# System-specific aliases and settings ----------------------------------- {{{
 case "${OSTYPE}" in
-    # Mac OS X
+    # Mac OS X ----------------------------------------------------- {{{
     darwin*)
-    # Aliases and settings specific to Mac OS X
     alias iCloud='cd /Users/epwalsh/Library/Mobile\ Documents/com~apple~CloudDocs'
     alias tmux="TERM=screen-256color-bce tmux"
     alias linux10='ssh epwalsh@linux10.stat.iastate.edu'
@@ -40,9 +49,12 @@ case "${OSTYPE}" in
     source /usr/local/bin/virtualenvwrapper.sh 
     workon py279
     ;;
-    # Linux 
+    # -------------------------------------------------------------- }}}
+    # Linux -------------------------------------------------------- {{{
     linux*)
     alias ls='ls -FG --color'
     alias la='ls -a'
     ;;
+    # -------------------------------------------------------------- }}}
 esac
+# ------------------------------------------------------------------------ }}}

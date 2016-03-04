@@ -3,7 +3,7 @@
 " 'I always thought air was free until I bought a bag of chips.'
 " - Unknown
 "
-" Last Modified: Thu 03 Mar 2016 09:50:42 AM CST
+" Last Modified: Fri Mar  4 15:02:58 2016
 
 " Vundle package manager -------------------------------------------------- {{{
 set nocompatible             
@@ -401,7 +401,36 @@ au FileType css  setlocal nowrap
 augroup bash_settings
     autocmd!
     au FileType sh setlocal shiftwidth=4 tabstop=4 expandtab
+    au FileType sh setlocal foldmethod=marker
     au bufnewfile *.sh 0r ~/.vim/headers/sh_header.txt 
+augroup END
+" ---------------------------------------------------------------------- }}}
+
+" .tmux.conf file settings -------------------------------------------- {{{
+augroup tmux_conf
+    autocmd!
+    au bufread *.tmux.conf setlocal foldmethod=marker
+    au Bufwritepre,filewritepre *.tmux.conf execute "normal ma"
+    au Bufwritepre,filewritepre *.tmux.conf execute "1," . 10 . 
+                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: " 
+                \.strftime("%c")
+    au bufwritepost,filewritepost *.tmux.conf execute "normal `a"
+augroup END
+" ---------------------------------------------------------------------- }}}
+
+" .bash_profile/.bashrc file settings ---------------------------------- {{{
+augroup bash_dotfiles
+    autocmd!
+     au Bufwritepre,filewritepre *.bash_profile execute "normal ma"
+     au Bufwritepre,filewritepre *.bash_profile execute "1," . 10 . 
+                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: " 
+                \.strftime("%c")
+    au bufwritepost,filewritepost *.bash_profile execute "normal `a"
+    au Bufwritepre,filewritepre *.bashrc execute "normal ma"
+    au Bufwritepre,filewritepre *.bashrc execute "1," . 10 . 
+                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: " 
+                \.strftime("%c")
+    au bufwritepost,filewritepost *.bashrc execute "normal `a"
 augroup END
 " ---------------------------------------------------------------------- }}}
 " ------------------------------------------------------------------------- }}}
