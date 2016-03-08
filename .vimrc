@@ -3,7 +3,7 @@
 " 'I always thought air was free until I bought a bag of chips.'
 " - Unknown
 "
-" Last Modified: Fri Mar  4 18:39:32 2016
+" Last Modified: Tue 08 Mar 2016 12:01:10 PM CST
 
 " Vundle package manager -------------------------------------------------- {{{
 set nocompatible             
@@ -229,11 +229,12 @@ augroup END
 " ---------------------------------------------------------------------- }}}
 
 " R settings ----------------------------------------------------------- {{{
-autocmd FileType R call SetROptions()
+autocmd FileType r call SetROptions()
 if !exists("*SetROptions")
     function SetROptions() 
         vmap <buffer> <Space> <Plug>RDSendSelection
         nmap <buffer> <Space> <Plug>RDSendLine
+        " nnoremap <buffer> <Space> :call SendLineToR('down')<CR>
         "nmap <buffer> <LocalLeader>cc <Plug>RToggleComment
         "vmap <buffer> <LocalLeader>cc <Plug>RToggleComment
         map <buffer> <LocalLeader>nr :call RAction("rownames")<CR>
