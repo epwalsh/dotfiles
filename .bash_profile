@@ -1,12 +1,10 @@
 # The bash_profile of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 # 
-# Last Modified: Tue Mar  8 20:22:23 2016
+# Last Modified: Tue Mar  8 21:07:20 2016
 # 
 # This file is sourced on login in a linux environment. On Mac OS X, this file 
 # sourced for both login and non-login scripts. We put exports and in this file,
 # and aliases and other settings in .bashrc, which we source below. 
-
-cd ~/dotfiles/; git pull; cd -
 
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
@@ -18,6 +16,8 @@ if [ -n "$TMUX" ]; then
     kill -INT $$
 fi
 # Everything below here will not be sourced again when tmux is started.
+
+cd ~/dotfiles/; git pull; cd -
 
 # Exports ---------------------------------------------------------------- {{{
 export EDITOR=vim
