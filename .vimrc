@@ -3,7 +3,7 @@
 " 'I always thought air was free until I bought a bag of chips.'
 " - Unknown
 "
-" Last Modified: Tue 08 Mar 2016 12:01:10 PM CST
+" Last Modified: Fri Mar 11 13:39:07 2016
 
 " Vundle package manager -------------------------------------------------- {{{
 set nocompatible             
@@ -15,9 +15,12 @@ call vundle#begin()
 
 " Plugins
 Bundle 'gmarik/Vundle.vim'
+Bundle 'tpope/vim-fugitive'
 Bundle 'vim-scripts/Vim-R-plugin'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
 Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'jalvesaq/R-Vim-runtime'
@@ -26,9 +29,7 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'ervandew/supertab'
 Bundle 'vim-scripts/AutoComplPop'
 Bundle 'mattn/emmet-vim'
-"Bundle 'ivanov/vim-ipython'
 Bundle 'jpalardy/vim-slime'
-Bundle 'imouzon/iliketowatch'
 Bundle 'scrooloose/nerdcommenter'
 
 call vundle#end()
@@ -201,10 +202,12 @@ nnoremap <leader>gc :! git commit -a -m 'updates'<cr>
 nnoremap <leader>gp :! git push<cr>
 " ------------------------------------------------------------------------- }}}
 
-" Powerline setup --------------------------------------------------------- {{{
+" Powerline / airline setup ----------------------------------------------- {{{
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
 set laststatus=2
-let g:Powerline_symbols = 'fancy'
+" let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
+let g:airline_theme='molokai'
 " ------------------------------------------------------------------------- }}}
 
 " Nerdtree ---------------------------------------------------------------- {{{
