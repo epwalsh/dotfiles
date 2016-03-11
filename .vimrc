@@ -3,7 +3,7 @@
 " 'I always thought air was free until I bought a bag of chips.'
 " - Unknown
 "
-" Last Modified: Fri Mar 11 13:54:30 2016
+" Last Modified: Fri Mar 11 16:05:10 2016
 
 " Vundle package manager -------------------------------------------------- {{{
 set nocompatible
@@ -207,7 +207,8 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
 set laststatus=2
 " let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='sol'
+let g:airline_theme='powerlineish'
+" Good themes: papercolor, murmur, powerlineish, solarized
 " ------------------------------------------------------------------------- }}}
 
 " Nerdtree ---------------------------------------------------------------- {{{
