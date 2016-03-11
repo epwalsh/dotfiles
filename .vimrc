@@ -1,13 +1,13 @@
-" The VIMRC of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com 
+" The VIMRC of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 "
 " 'I always thought air was free until I bought a bag of chips.'
 " - Unknown
 "
-" Last Modified: Fri Mar 11 13:39:07 2016
+" Last Modified: Fri Mar 11 13:54:30 2016
 
 " Vundle package manager -------------------------------------------------- {{{
-set nocompatible             
-filetype off                  
+set nocompatible
+filetype off
 
 " Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -60,13 +60,13 @@ set nohls
 " Enable syntax highlighting
 syntax enable
 
-" Theme settings 
+" Theme settings
 set background=dark
 let g:solarized_termcolors = 256
 colorscheme solarized
 
 " Line numbers
-set number 
+set number
 set relativenumber
 
 " Highlight text past 80 characters and add vertical bar
@@ -75,9 +75,9 @@ set relativenumber
 set colorcolumn=80
 
 " Don't wrap lines by default
-set nowrap 
+set nowrap
 
-" Toggle paste 
+" Toggle paste
 set pastetoggle=<F3>
 
 " Popup menu behavior -------------------------------------------------- {{{
@@ -92,7 +92,7 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 " ---------------------------------------------------------------------- }}}
 
 " Abbreviations
-iabbrev @@ epwalsh10@gmail.com 
+iabbrev @@ epwalsh10@gmail.com
 " ------------------------------------------------------------------------- }}}
 
 " Mappings ---------------------------------------------------------------- {{{
@@ -105,7 +105,7 @@ vnoremap ; :
 nmap / /\v
 vmap / /\v
 
-" Toggle relative line numbers 
+" Toggle relative line numbers
 nnoremap <F5> :setlocal relativenumber!<cr>
 inoremap <F5> <esc>:setlocal relativenumber!<cr>li
 vnoremap <F5> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal relativenumber!
@@ -114,7 +114,7 @@ nnoremap <leader><F5> :setlocal relativenumber!<cr>
 vnoremap <leader><F5> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal relativenumber!
             \<cr>:<c-u>normal! `rv`t<cr>
 
-" Toggle line wrap 
+" Toggle line wrap
 nnoremap <F8> :setlocal wrap!<cr>
 inoremap <F8> <esc>:setlocal wrap!<cr>li
 vnoremap <F8> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal wrap!
@@ -134,20 +134,20 @@ nnoremap <c-j> <nop>
 " map <c-l> <c-w>l
 " map <c-h> <c-w>h
 
-" Move lines up or down 
+" Move lines up or down
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
-vnoremap ∆ :m '>+1<CR>gv=gv 
+vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 
-" Change current word to uppercase 
+" Change current word to uppercase
 inoremap <leader>u <esc>bveUea
-nnoremap <leader>u bveUe 
+nnoremap <leader>u bveUe
 " Change current word to lowercase
 inoremap <leader>l <esc>bveuea
 nnoremap <leader>l <esc>bveue
 
-" Copy current line 
+" Copy current line
 nnoremap <leader>yl 0v$y
 
 " Global copying and pasting between files open in vim
@@ -161,20 +161,20 @@ nnoremap <leader><F7> "+p
 
 " Open vimrc in a split
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-" Source vimrc 
-nnoremap <leader>sv :source $MYVIMRC<cr> 
+" Source vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Put quotes around a word
 nnoremap <leader>" ea"<esc>hbi"<esc>lel
-nnoremap <leader>' ea'<esc>hbi'<esc>lel 
+nnoremap <leader>' ea'<esc>hbi'<esc>lel
 vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>`>ll
-vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>`>ll 
+vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>`>ll
 
 " Escape insert mode without having to press that stupid <esc> key
 inoremap jk <esc>
 vnoremap <leader>jk <esc>
 " Map <esc> to no operation in insert mode
-"inoremap <esc> <nop> 
+"inoremap <esc> <nop>
 
 " Quickly jump to beginning and end of lines
 nnoremap H 0
@@ -197,7 +197,7 @@ nnoremap <leader>o o<esc>
 " Insert line above and stay in normal mode
 nnoremap <leader>O O<esc>
 
-" Git 
+" Git
 nnoremap <leader>gc :! git commit -a -m 'updates'<cr>
 nnoremap <leader>gp :! git push<cr>
 " ------------------------------------------------------------------------- }}}
@@ -207,7 +207,7 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
 set laststatus=2
 " let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='molokai'
+let g:airline_theme='sol'
 " ------------------------------------------------------------------------- }}}
 
 " Nerdtree ---------------------------------------------------------------- {{{
@@ -224,8 +224,8 @@ augroup filetype_vim
     " Allow code folding (type 'za' to fold or unfold)
     au FileType vim setlocal foldmethod=marker
     au Bufwritepre,filewritepre *.vimrc execute "normal ma"
-    au Bufwritepre,filewritepre *.vimrc execute "1," . 10 . 
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: " 
+    au Bufwritepre,filewritepre *.vimrc execute "1," . 10 .
+                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
                 \.strftime("%c")
     au bufwritepost,filewritepost *.vimrc execute "normal `a"
 augroup END
@@ -234,7 +234,7 @@ augroup END
 " R settings ----------------------------------------------------------- {{{
 autocmd FileType r call SetROptions()
 if !exists("*SetROptions")
-    function SetROptions() 
+    function SetROptions()
         vmap <buffer> <Space> <Plug>RDSendSelection
         nmap <buffer> <Space> <Plug>RDSendLine
         " nnoremap <buffer> <Space> :call SendLineToR('down')<CR>
@@ -269,18 +269,18 @@ let vimrplugin_assign = 0
 let vimrplugin_applescript=0
 let vimrplugin_vsplit=1
 
-" Custom header for R files 
-augroup R_header 
+" Custom header for R files
+augroup R_header
     autocmd!
     au bufnewfile *.R 0r ~/.vim/headers/R_header.txt
-    au bufnewfile *.R execute "1," . 10 . "g/File Name:.*/s//File Name:     " 
+    au bufnewfile *.R execute "1," . 10 . "g/File Name:.*/s//File Name:     "
                 \.expand("%:t")
-    au bufnewfile *.R execute "1," . 10 . 
-                \"g/Creation Date:.*/s//Creation Date: " 
+    au bufnewfile *.R execute "1," . 10 .
+                \"g/Creation Date:.*/s//Creation Date: "
                 \.strftime("%d-%m-%Y")
     au bufwritepre,filewritepre *.R execute "normal ma"
-    au bufwritepre,filewritepre *.R execute "1," . 10 . 
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: " 
+    au bufwritepre,filewritepre *.R execute "1," . 10 .
+                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
                 \.strftime("%c")
     au bufwritepost,filewritepost *.R execute "normal `a"
 augroup END
@@ -292,7 +292,7 @@ augroup tex_settings
     au bufread *.tex set tw=150
     au FileType tex set tw=150
     au FileType tex setlocal colorcolumn=150
-    au FileType tex setlocal shiftwidth=2 tabstop=2 expandtab 
+    au FileType tex setlocal shiftwidth=2 tabstop=2 expandtab
     au FileType tex nnoremap <leader>kk :!open %:p:r.pdf -a /Applications/Skim.app/<cr>
     au FileType tex nnoremap <leader>lu :!lualatex %:p<cr>
     au bufnewfile *.tex 0r ~/.vim/headers/tex_header.txt
@@ -309,18 +309,18 @@ au bufread *.h   setlocal shiftwidth=4 tabstop=4 expandtab
 au bufread *.hpp setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
 
-" Custom header for c/cpp files 
+" Custom header for c/cpp files
 augroup cpp_header
     autocmd!
     au bufnewfile *.c,*.cpp 0r ~/.vim/headers/cpp_header.txt
-    au bufnewfile *.c,*.cpp exe "1," . 10 . "g/File Name:.*/s//File Name:     " 
+    au bufnewfile *.c,*.cpp exe "1," . 10 . "g/File Name:.*/s//File Name:     "
                 \.expand("%:t")
-    au bufnewfile *.c,*.cpp exe "1," . 10 . 
-                \"g/Creation Date:.*/s//Creation Date: " 
+    au bufnewfile *.c,*.cpp exe "1," . 10 .
+                \"g/Creation Date:.*/s//Creation Date: "
                 \.strftime("%d-%m-%Y")
     au bufwritepre,filewritepre *.c,*.cpp execute "normal ma"
-    au bufwritepre,filewritepre *.c,*.cpp execute "1," . 10 . 
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: " 
+    au bufwritepre,filewritepre *.c,*.cpp execute "1," . 10 .
+                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
                 \.strftime("%c")
     au bufwritepost,filewritepost *.c,*.cpp execute "normal `a"
 augroup END
@@ -329,14 +329,14 @@ augroup END
 augroup cpp_header_header
     autocmd!
     au bufnewfile *.h,*.hpp 0r ~/.vim/headers/cpp_header.txt
-    au bufnewfile *.h,*.hpp exe "1," . 10 . "g/File Name:.*/s//File Name:     " 
+    au bufnewfile *.h,*.hpp exe "1," . 10 . "g/File Name:.*/s//File Name:     "
                 \.expand("%:t")
-    au bufnewfile *.h,*.hpp exe "1," . 10 . 
-                \"g/Creation Date:.*/s//Creation Date: " 
+    au bufnewfile *.h,*.hpp exe "1," . 10 .
+                \"g/Creation Date:.*/s//Creation Date: "
                 \.strftime("%d-%m-%Y")
     au bufwritepre,filewritepre *.h,*.hpp execute "normal ma"
-    au bufwritepre,filewritepre *.h,*.hpp execute "1," . 10 . 
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: " 
+    au bufwritepre,filewritepre *.h,*.hpp execute "1," . 10 .
+                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
                 \.strftime("%c")
     au bufwritepost,filewritepost *.h,*.hpp execute "normal `a"
 augroup END
@@ -348,7 +348,7 @@ let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
-let g:pymode_folding = 0 
+let g:pymode_folding = 0
 let g:SuperTabDefaultCompletionType = "context"
 let g:pymode_virtualenv = 1
 let g:pymode_rope = 0
@@ -356,18 +356,18 @@ set completeopt=menuone,longest,preview
 au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType python setlocal omnifunc=pythoncomplete#Complete
 
-" Custom header 
+" Custom header
 augroup python_header
     autocmd!
     au bufnewfile *.py 0r ~/.vim/headers/py_header.txt
-    au bufnewfile *.py exe "1," . 10 . "g/File Name:.*/s//File Name:     " 
+    au bufnewfile *.py exe "1," . 10 . "g/File Name:.*/s//File Name:     "
                 \.expand("%:t")
-    au bufnewfile *.py exe "1," . 10 . 
-                \"g/Creation Date:.*/s//Creation Date: " 
+    au bufnewfile *.py exe "1," . 10 .
+                \"g/Creation Date:.*/s//Creation Date: "
                 \.strftime("%d-%m-%Y")
     au bufwritepre,filewritepre *.py execute "normal ma"
-    au bufwritepre,filewritepre *.py execute "1," . 10 . 
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: " 
+    au bufwritepre,filewritepre *.py execute "1," . 10 .
+                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
                 \.strftime("%c")
     au bufwritepost,filewritepost *.py execute "normal `a"
 augroup END
@@ -378,7 +378,7 @@ if !exists("*SetPythonOptions")
     function SetPythonOptions()
         " Using ipython within tmux is the best way.
         let g:slime_target = "tmux"
-        " Create a tempory file to hold sent commands 
+        " Create a tempory file to hold sent commands
         let g:slime_paste_file = tempname()
         let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
         " Enable ipython's magic paste
@@ -397,8 +397,8 @@ endif
 let g:user_emmet_leader_key='<C-Z>'
 au FileType html setlocal shiftwidth=2 tabstop=2 expandtab
 au FileType html setlocal nowrap
-au FileType css  setlocal shiftwidth=4 tabstop=4 expandtab 
-au FileType css  setlocal nowrap 
+au FileType css  setlocal shiftwidth=4 tabstop=4 expandtab
+au FileType css  setlocal nowrap
 " ---------------------------------------------------------------------- }}}
 
 " Bash settings -------------------------------------------------------- {{{
@@ -406,7 +406,7 @@ augroup bash_settings
     autocmd!
     au FileType sh setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType sh setlocal foldmethod=marker
-    au bufnewfile *.sh 0r ~/.vim/headers/sh_header.txt 
+    au bufnewfile *.sh 0r ~/.vim/headers/sh_header.txt
 augroup END
 " ---------------------------------------------------------------------- }}}
 
@@ -415,8 +415,8 @@ augroup tmux_conf
     autocmd!
     au bufread *.tmux.conf setlocal foldmethod=marker
     au Bufwritepre,filewritepre *.tmux.conf execute "normal ma"
-    au Bufwritepre,filewritepre *.tmux.conf execute "1," . 10 . 
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: " 
+    au Bufwritepre,filewritepre *.tmux.conf execute "1," . 10 .
+                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
                 \.strftime("%c")
     au bufwritepost,filewritepost *.tmux.conf execute "normal `a"
 augroup END
@@ -426,13 +426,13 @@ augroup END
 augroup bash_dotfiles
     autocmd!
      au Bufwritepre,filewritepre *.bash_profile execute "normal ma"
-     au Bufwritepre,filewritepre *.bash_profile execute "1," . 10 . 
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: " 
+     au Bufwritepre,filewritepre *.bash_profile execute "1," . 10 .
+                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
                 \.strftime("%c")
     au bufwritepost,filewritepost *.bash_profile execute "normal `a"
     au Bufwritepre,filewritepre *.bashrc execute "normal ma"
-    au Bufwritepre,filewritepre *.bashrc execute "1," . 10 . 
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: " 
+    au Bufwritepre,filewritepre *.bashrc execute "1," . 10 .
+                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
                 \.strftime("%c")
     au bufwritepost,filewritepost *.bashrc execute "normal `a"
 augroup END
@@ -454,23 +454,23 @@ let NERDSpaceDelims = 1
 "vnoremap cc <nop>
 "augroup comments
 "    autocmd!
-"    au FileType python nnoremap <buffer> <localleader>cc 
+"    au FileType python nnoremap <buffer> <localleader>cc
 "                \mqI# <esc>`qll
-"    au FileType python vnoremap <buffer> <localleader>cc 
+"    au FileType python vnoremap <buffer> <localleader>cc
 "                \<esc>mq:'<,'>s:^:# :<cr>:nohlsearch<cr>`qll
-"    au FileType python nnoremap <buffer> <localleader>cu 
+"    au FileType python nnoremap <buffer> <localleader>cu
 "                \mq:s:#\s\\|#<cr>:nohlsearch<cr>`qhh
-"    au FileType python vnoremap <buffer> <localleader>cu 
+"    au FileType python vnoremap <buffer> <localleader>cu
 "                \<esc>mq:'<,'>s:#\s\\|#::<cr>:nohlsearch<cr>`qhh
-"    au FileType cpp nnoremap <buffer> <localleader>cc 
+"    au FileType cpp nnoremap <buffer> <localleader>cc
 "                \mqI// <esc>`qlll
-"    au FileType cpp vnoremap <buffer> <localleader>cc 
+"    au FileType cpp vnoremap <buffer> <localleader>cc
 "                \<esc>mq`>A */<esc>`<I/* <esc>`q
-"    au FileType cpp inoremap <buffer> <localleader>// 
+"    au FileType cpp inoremap <buffer> <localleader>//
 "                \<c-r>=CppCommentBlock(input("Enter comment: "))<cr>
-"    au FileType html nnoremap <buffer> <localleader>cc 
+"    au FileType html nnoremap <buffer> <localleader>cc
 "                \mqI<!-- <esc>A--><esc>`q5l
-"    au FileType html vnoremap <buffer> <localleader>cc 
+"    au FileType html vnoremap <buffer> <localleader>cc
 "                \<esc>mq`>A --><esc>`<I<!-- <esc>`q
 "augroup END
 " ------------------------------------------------------------------------- }}}
