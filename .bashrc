@@ -1,11 +1,11 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
-# 
-# Last Modified: Fri Mar  4 15:10:02 2016
-# 
-# This file is sourced for interactive non-login shells in a linux environment. 
+#
+# Last Modified: Fri Mar 11 16:45:26 2016
+#
+# This file is sourced for interactive non-login shells in a linux environment.
 # This file also sources every time .bash_profile is sourced.
 
-# Vim-like keybindings 
+# Vim-like keybindings
 set -o vi
 
 # Command prompt --------------------------------------------------------- {{{
@@ -46,7 +46,7 @@ case "${OSTYPE}" in
     alias ls='ls -FG'
     alias la='ls -a'
 
-    source /usr/local/bin/virtualenvwrapper.sh 
+    source /usr/local/bin/virtualenvwrapper.sh
     workon py279
     ;;
     # -------------------------------------------------------------- }}}
