@@ -3,7 +3,7 @@
 " 'I always thought air was free until I bought a bag of chips.'
 " - Unknown
 "
-" Last Modified: Sat Mar 12 10:02:25 2016
+" Last Modified: Sat Mar 12 12:21:37 2016
 
 " Vundle package manager -------------------------------------------------- {{{
 set nocompatible
@@ -227,11 +227,17 @@ augroup filetype_vim
     au FileType vim setlocal shiftwidth=4 tabstop=4 expandtab
     " Allow code folding (type 'za' to fold or unfold)
     au FileType vim setlocal foldmethod=marker
-    au Bufwritepre,filewritepre *.vimrc execute "normal ma"
-    au Bufwritepre,filewritepre *.vimrc execute "1," . 10 .
+    au bufnewfile *.vim 0r ~/.vim/headers/vim_header.txt
+    au bufnewfile *.vim exe "1," . 8 . "g/File Name:.*/s//File Name:     "
+                \.expand("%:t")
+    au bufnewfile *.vim exe "1," . 8 .
+                \"g/Creation Date:.*/s//Creation Date: "
+                \.strftime("%d-%m-%Y")
+    au Bufwritepre,filewritepre *.vimrc,*.vim execute "normal ma"
+    au Bufwritepre,filewritepre *.vimrc,*.vim execute "1," . 10 .
                 \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
                 \.strftime("%c")
-    au bufwritepost,filewritepost *.vimrc execute "normal `a"
+    au bufwritepost,filewritepost *.vimrc,*.vim execute "normal `a"
 augroup END
 " ---------------------------------------------------------------------- }}}
 
