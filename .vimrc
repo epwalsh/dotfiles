@@ -3,7 +3,7 @@
 " 'I always thought air was free until I bought a bag of chips.'
 " - Unknown
 "
-" Last Modified: Sat Mar 12 12:21:37 2016
+" Last Modified: Sat Mar 12 13:49:58 2016
 
 " Vundle package manager -------------------------------------------------- {{{
 set nocompatible
@@ -206,9 +206,9 @@ nnoremap <leader>gp :! git push<cr>
 " ------------------------------------------------------------------------- }}}
 
 " Powerline / airline setup ----------------------------------------------- {{{
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
 set laststatus=2
-" let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 " Good themes: papercolor, murmur, powerlineish, solarized
@@ -234,7 +234,7 @@ augroup filetype_vim
                 \"g/Creation Date:.*/s//Creation Date: "
                 \.strftime("%d-%m-%Y")
     au Bufwritepre,filewritepre *.vimrc,*.vim execute "normal ma"
-    au Bufwritepre,filewritepre *.vimrc,*.vim execute "1," . 10 .
+    au Bufwritepre,filewritepre *.vimrc,*.vim execute "1," . 8 .
                 \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
                 \.strftime("%c")
     au bufwritepost,filewritepost *.vimrc,*.vim execute "normal `a"
