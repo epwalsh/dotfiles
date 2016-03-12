@@ -3,7 +3,7 @@
 " 'I always thought air was free until I bought a bag of chips.'
 " - Unknown
 "
-" Last Modified: Fri Mar 11 16:05:10 2016
+" Last Modified: Sat Mar 12 10:02:25 2016
 
 " Vundle package manager -------------------------------------------------- {{{
 set nocompatible
@@ -41,6 +41,9 @@ filetype plugin indent on
 " This will cause autocomplete tip window to close as soon as a selection is
 " made. This is particular useful for pymode rope omnicompletion.
 autocmd CompleteDone * pclose
+
+" Set encoding to utf-8, this may be the default anyway
+set encoding=utf-8
 
 " Leaders
 let maplocalleader = ","

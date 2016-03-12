@@ -15,5 +15,5 @@ do
     then
         rm $HOME/$f
     fi
-    ln -s $f $HOME/$f
+    ln -s $HOME/dotfiles/$f $HOME/$f
 done
