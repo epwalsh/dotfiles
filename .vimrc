@@ -1,9 +1,9 @@
 " The VIMRC of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 "
-" 'I always thought air was free until I bought a bag of chips.'
-" - Unknown
+" 'I always thought air was free until I bought a bag of chips.' - Unknown
 "
-" Last Modified: Sat Mar 12 14:00:07 2016
+" Last Modified: Sun Mar 13 16:15:34 2016
+" =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
 set nocompatible
@@ -31,6 +31,7 @@ Bundle 'vim-scripts/AutoComplPop'
 Bundle 'mattn/emmet-vim'
 Bundle 'jpalardy/vim-slime'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'epwalsh/Evim'
 
 call vundle#end()
 filetype plugin indent on
@@ -227,17 +228,11 @@ augroup filetype_vim
     au FileType vim setlocal shiftwidth=4 tabstop=4 expandtab
     " Allow code folding (type 'za' to fold or unfold)
     au FileType vim setlocal foldmethod=marker
-    au bufnewfile *.vim 0r ~/.vim/headers/vim_header.txt
-    au bufnewfile *.vim exe "1," . 8 . "g/File Name:.*/s//File Name:     "
-                \.expand("%:t")
-    au bufnewfile *.vim exe "1," . 8 .
-                \"g/Creation Date:.*/s//Creation Date: "
-                \.strftime("%d-%m-%Y")
-    au Bufwritepre,filewritepre *.vimrc,*.vim execute "normal ma"
-    au Bufwritepre,filewritepre *.vimrc,*.vim execute "1," . 8 .
+    au Bufwritepre,filewritepre *.vimrc execute "normal ma"
+    au Bufwritepre,filewritepre *.vimrc execute "1," . 8 .
                 \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
                 \.strftime("%c")
-    au bufwritepost,filewritepost *.vimrc,*.vim execute "normal `a"
+    au bufwritepost,filewritepost *.vimrc execute "normal `a"
 augroup END
 " ---------------------------------------------------------------------- }}}
 
@@ -278,22 +273,6 @@ endif
 let vimrplugin_assign = 0
 let vimrplugin_applescript=0
 let vimrplugin_vsplit=1
-
-" Custom header for R files
-augroup R_header
-    autocmd!
-    au bufnewfile *.R 0r ~/.vim/headers/R_header.txt
-    au bufnewfile *.R execute "1," . 10 . "g/File Name:.*/s//File Name:     "
-                \.expand("%:t")
-    au bufnewfile *.R execute "1," . 10 .
-                \"g/Creation Date:.*/s//Creation Date: "
-                \.strftime("%d-%m-%Y")
-    au bufwritepre,filewritepre *.R execute "normal ma"
-    au bufwritepre,filewritepre *.R execute "1," . 10 .
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
-                \.strftime("%c")
-    au bufwritepost,filewritepost *.R execute "normal `a"
-augroup END
 " ---------------------------------------------------------------------- }}}
 
 " Latex settings ------------------------------------------------------- {{{
@@ -318,38 +297,6 @@ au FileType cpp  setlocal shiftwidth=4 tabstop=4 expandtab
 au bufread *.h   setlocal shiftwidth=4 tabstop=4 expandtab
 au bufread *.hpp setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
-
-" Custom header for c/cpp files
-augroup cpp_header
-    autocmd!
-    au bufnewfile *.c,*.cpp 0r ~/.vim/headers/cpp_header.txt
-    au bufnewfile *.c,*.cpp exe "1," . 10 . "g/File Name:.*/s//File Name:     "
-                \.expand("%:t")
-    au bufnewfile *.c,*.cpp exe "1," . 10 .
-                \"g/Creation Date:.*/s//Creation Date: "
-                \.strftime("%d-%m-%Y")
-    au bufwritepre,filewritepre *.c,*.cpp execute "normal ma"
-    au bufwritepre,filewritepre *.c,*.cpp execute "1," . 10 .
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
-                \.strftime("%c")
-    au bufwritepost,filewritepost *.c,*.cpp execute "normal `a"
-augroup END
-
-" Custom header for cpp header files
-augroup cpp_header_header
-    autocmd!
-    au bufnewfile *.h,*.hpp 0r ~/.vim/headers/cpp_header.txt
-    au bufnewfile *.h,*.hpp exe "1," . 10 . "g/File Name:.*/s//File Name:     "
-                \.expand("%:t")
-    au bufnewfile *.h,*.hpp exe "1," . 10 .
-                \"g/Creation Date:.*/s//Creation Date: "
-                \.strftime("%d-%m-%Y")
-    au bufwritepre,filewritepre *.h,*.hpp execute "normal ma"
-    au bufwritepre,filewritepre *.h,*.hpp execute "1," . 10 .
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
-                \.strftime("%c")
-    au bufwritepost,filewritepost *.h,*.hpp execute "normal `a"
-augroup END
 " ---------------------------------------------------------------------- }}}
 
 " Python settings ------------------------------------------------------ {{{
@@ -358,29 +305,13 @@ let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
-let g:pymode_folding = 0
+let g:pymode_folding = 1
 let g:SuperTabDefaultCompletionType = "context"
 let g:pymode_virtualenv = 1
 let g:pymode_rope = 0
 set completeopt=menuone,longest,preview
 au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType python setlocal omnifunc=pythoncomplete#Complete
-
-" Custom header
-augroup python_header
-    autocmd!
-    au bufnewfile *.py 0r ~/.vim/headers/py_header.txt
-    au bufnewfile *.py exe "1," . 10 . "g/File Name:.*/s//File Name:     "
-                \.expand("%:t")
-    au bufnewfile *.py exe "1," . 10 .
-                \"g/Creation Date:.*/s//Creation Date: "
-                \.strftime("%d-%m-%Y")
-    au bufwritepre,filewritepre *.py execute "normal ma"
-    au bufwritepre,filewritepre *.py execute "1," . 10 .
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
-                \.strftime("%c")
-    au bufwritepost,filewritepost *.py execute "normal `a"
-augroup END
 
 " Use slime to send python code to interpreter.
 autocmd FileType python call SetPythonOptions()
@@ -416,7 +347,6 @@ augroup bash_settings
     autocmd!
     au FileType sh setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType sh setlocal foldmethod=marker
-    au bufnewfile *.sh 0r ~/.vim/headers/sh_header.txt
 augroup END
 " ---------------------------------------------------------------------- }}}
 
