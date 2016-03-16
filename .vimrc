@@ -2,7 +2,7 @@
 "
 " 'I always thought air was free until I bought a bag of chips.' - Unknown
 "
-" Last Modified: Mon Mar 14 09:25:53 2016
+" Last Modified: Wed Mar 16 14:28:38 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -267,6 +267,7 @@ if !exists("*SetROptions")
         map <buffer> <LocalLeader>qy :call SendCmdToR("q(save = 'yes')")<CR>
         map <buffer> <LocalLeader>qn :call SendCmdToR("q(save = 'no')")<CR>
         setlocal shiftwidth=2 tabstop=2 expandtab
+        setlocal foldmethod=marker
     endfunction
 endif
 
@@ -306,13 +307,14 @@ let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
-let g:pymode_folding = 1
+let g:pymode_folding = 0
 let g:SuperTabDefaultCompletionType = "context"
 let g:pymode_virtualenv = 1
 let g:pymode_rope = 0
 set completeopt=menuone,longest,preview
 au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType python setlocal omnifunc=pythoncomplete#Complete
+au FileType python setlocal foldmethod=marker
 
 " Use slime to send python code to interpreter.
 autocmd FileType python call SetPythonOptions()
