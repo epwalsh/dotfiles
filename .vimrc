@@ -2,7 +2,7 @@
 "
 " 'I always thought air was free until I bought a bag of chips.' - Unknown
 "
-" Last Modified: Wed Mar 16 14:28:38 2016
+" Last Modified: Sun Mar 20 20:10:11 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -21,7 +21,7 @@ Bundle 'altercation/vim-colors-solarized'
 " Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
-Bundle 'klen/python-mode'
+" Bundle 'klen/python-mode'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'jalvesaq/R-Vim-runtime'
 Bundle 'scrooloose/nerdtree'
@@ -31,6 +31,8 @@ Bundle 'vim-scripts/AutoComplPop'
 Bundle 'mattn/emmet-vim'
 Bundle 'jpalardy/vim-slime'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'pangloss/vim-javascript'
+Bundle 'scrooloose/syntastic'
 Bundle 'epwalsh/Evim'
 
 call vundle#end()
@@ -221,6 +223,17 @@ let g:airline_theme='solarized'
 map <F2> :NERDTreeToggle<CR>
 " ------------------------------------------------------------------------- }}}
 
+" Syntastic --------------------------------------------------------------- {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" ------------------------------------------------------------------------- }}}
+
 " FileType-specific settings ---------------------------------------------- {{{
 
 " Vimscript file settings ---------------------------------------------- {{{
@@ -299,6 +312,12 @@ au FileType cpp  setlocal shiftwidth=4 tabstop=4 expandtab
 au bufread *.h   setlocal shiftwidth=4 tabstop=4 expandtab
 au bufread *.hpp setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
+" ---------------------------------------------------------------------- }}}
+
+" JavaScript settings--------------------------------------------------- {{{
+au FileType javascript setlocal shiftwidth=4 tabstop=4 expandtab
+au FileType javascript setlocal omnifunc=javascriptcomplete#Complete
+au FileType javascript setlocal foldmethod=marker
 " ---------------------------------------------------------------------- }}}
 
 " Python settings ------------------------------------------------------ {{{
