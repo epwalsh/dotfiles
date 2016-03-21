@@ -2,7 +2,7 @@
 "
 " 'I always thought air was free until I bought a bag of chips.' - Unknown
 "
-" Last Modified: Sun Mar 20 20:10:11 2016
+" Last Modified: Sun Mar 20 21:27:32 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -14,26 +14,28 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Plugins
-Bundle 'gmarik/Vundle.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'vim-scripts/Vim-R-plugin'
 Bundle 'altercation/vim-colors-solarized'
-" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'davidhalter/jedi-vim'
+Bundle 'ervandew/supertab'
+Bundle 'gmarik/Vundle.vim'
+Bundle 'jalvesaq/R-Vim-runtime'
+Bundle 'jpalardy/vim-slime'
+Bundle 'mattn/emmet-vim'
+Bundle 'msanders/snipmate.vim'
+Bundle 'pangloss/vim-javascript'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
-" Bundle 'klen/python-mode'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'jalvesaq/R-Vim-runtime'
-Bundle 'scrooloose/nerdtree'
-Bundle 'msanders/snipmate.vim'
-Bundle 'ervandew/supertab'
 Bundle 'vim-scripts/AutoComplPop'
-Bundle 'mattn/emmet-vim'
-Bundle 'jpalardy/vim-slime'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'pangloss/vim-javascript'
-Bundle 'scrooloose/syntastic'
+Bundle 'vim-scripts/Vim-R-plugin'
+
 Bundle 'epwalsh/Evim'
+
+" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Bundle 'klen/python-mode'
 
 call vundle#end()
 filetype plugin indent on
