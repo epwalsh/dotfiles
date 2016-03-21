@@ -1,8 +1,8 @@
-" The VIMRC of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
+" The nvimrc/init.vim of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 "
 " 'I always thought air was free until I bought a bag of chips.' - Unknown
 "
-" Last Modified: Sun Mar 20 23:23:36 2016
+" Last Modified: Mon Mar 21 08:34:32 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -14,6 +14,7 @@ call vundle#begin("~/.config/nvim/bundle/")
 
 " Plugins
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'benekastah/neomake'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'ervandew/supertab'
 Bundle 'gmarik/Vundle.vim'
@@ -24,7 +25,6 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
@@ -35,6 +35,7 @@ Bundle 'epwalsh/Evim'
 
 " Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 " Bundle 'klen/python-mode'
+" Bundle 'scrooloose/syntastic'
 
 call vundle#end()
 filetype plugin indent on
@@ -221,15 +222,17 @@ let g:airline_theme='solarized'
 map <F2> :NERDTreeToggle<CR>
 " ------------------------------------------------------------------------- }}}
 
-" Syntastic --------------------------------------------------------------- {{{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" Neomake ----------------------------------------------------------------- {{{
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+autocmd! BufWritePost * Neomake
+let g:neomake_open_list = 2
 " ------------------------------------------------------------------------- }}}
 
 " FileType-specific settings ---------------------------------------------- {{{
