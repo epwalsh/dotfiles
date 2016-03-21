@@ -2,7 +2,7 @@
 "
 " 'I always thought air was free until I bought a bag of chips.' - Unknown
 "
-" Last Modified: Mon Mar 21 15:17:43 2016
+" Last Modified: Mon Mar 21 16:37:50 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -45,7 +45,7 @@ filetype plugin indent on
 
 " This will cause autocomplete tip window to close as soon as a selection is
 " made. This is particular useful for pymode rope omnicompletion.
-autocmd CompleteDone * pclose
+" autocmd CompleteDone * pclose
 
 " Set encoding to utf-8, this may be the default anyway
 set encoding=utf-8
@@ -332,7 +332,7 @@ au FileType javascript setlocal foldmethod=marker
 " let g:pymode_virtualenv = 1
 " let g:pymode_rope = 0
 " let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
+" set completeopt=menuone,longest,preview
 au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType python setlocal omnifunc=pythoncomplete#Complete
 au FileType python setlocal foldmethod=marker

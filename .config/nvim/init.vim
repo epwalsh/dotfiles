@@ -2,7 +2,7 @@
 "
 " 'I always thought air was free until I bought a bag of chips.' - Unknown
 "
-" Last Modified: Mon Mar 21 15:17:03 2016
+" Last Modified: Mon Mar 21 17:15:24 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -12,7 +12,6 @@ filetype off
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin("~/.config/nvim/bundle/")
 
-" Plugins
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'benekastah/neomake'
 Bundle 'davidhalter/jedi-vim'
@@ -26,16 +25,16 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
+Bundle 'Shougo/deoplete.nvim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
-Bundle 'vim-scripts/AutoComplPop'
 
 Bundle 'epwalsh/Evim'
 
-" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-" Bundle 'klen/python-mode'
-" Bundle 'scrooloose/syntastic'
+" Bundle 'klen/python-mode'         " Clunky - use jedi-vim and neomake
+" Bundle 'vim-scripts/AutoComplPop' " Use deoplete instead for async
+" Bundle 'zchee/deoplete-jedi'      " Works like shit
 
 call vundle#end()
 filetype plugin indent on
@@ -45,10 +44,10 @@ filetype plugin indent on
 
 " This will cause autocomplete tip window to close as soon as a selection is
 " made. This is particular useful for pymode rope omnicompletion.
-autocmd CompleteDone * pclose
+" autocmd CompleteDone * pclose
 
 " Set encoding to utf-8, this may be the default anyway
-set encoding=utf-8
+" set encoding=utf-8
 
 " Leaders
 let maplocalleader = ","
@@ -207,7 +206,8 @@ nnoremap <leader>gc :! git commit -a -m 'updates'<cr>
 nnoremap <leader>gp :! git push<cr>
 " ------------------------------------------------------------------------- }}}
 
-" Powerline / airline setup ----------------------------------------------- {{{
+" Global plugins ---------------------------------------------------------- {{{
+" Powerline / airline setup -------------------------------------------- {{{
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
@@ -215,17 +215,20 @@ let g:airline_powerline_fonts = 1
 let g:airline_solarized_bg = 'dark'
 let g:airline_theme='solarized'
 " Good themes: papercolor, murmur, powerlineish, solarized, light, badwolf
-" ------------------------------------------------------------------------- }}}
+" ---------------------------------------------------------------------- }}}
 
-" Nerdtree ---------------------------------------------------------------- {{{
+" Nerdtree ------------------------------------------------------------- {{{
 " Activate nerdtree with F2
 map <F2> :NERDTreeToggle<CR>
-" ------------------------------------------------------------------------- }}}
+" ---------------------------------------------------------------------- }}}
 
-" Neomake ----------------------------------------------------------------- {{{
+" Neomake -------------------------------------------------------------- {{{
 autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
 let g:neomake_list_height = 5
+" ---------------------------------------------------------------------- }}}
+
+let g:deoplete#enable_at_startup = 1
 " ------------------------------------------------------------------------- }}}
 
 " FileType-specific settings ---------------------------------------------- {{{
@@ -325,8 +328,6 @@ au FileType javascript setlocal foldmethod=marker
 " ---------------------------------------------------------------------- }}}
 
 " Python settings ------------------------------------------------------ {{{
-" let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
 au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType python setlocal omnifunc=pythoncomplete#Complete
 au FileType python setlocal foldmethod=marker
