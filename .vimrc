@@ -2,7 +2,7 @@
 "
 " 'I always thought air was free until I bought a bag of chips.' - Unknown
 "
-" Last Modified: Mon Mar 21 14:46:29 2016
+" Last Modified: Mon Mar 21 15:17:43 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -334,7 +334,7 @@ au FileType javascript setlocal foldmethod=marker
 " let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
-" au FileType python setlocal omnifunc=pythoncomplete#Complete
+au FileType python setlocal omnifunc=pythoncomplete#Complete
 au FileType python setlocal foldmethod=marker
 
 " Use slime to send python code to interpreter.

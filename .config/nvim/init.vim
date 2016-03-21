@@ -2,7 +2,7 @@
 "
 " 'I always thought air was free until I bought a bag of chips.' - Unknown
 "
-" Last Modified: Mon Mar 21 14:23:01 2016
+" Last Modified: Mon Mar 21 15:17:03 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -325,15 +325,7 @@ au FileType javascript setlocal foldmethod=marker
 " ---------------------------------------------------------------------- }}}
 
 " Python settings ------------------------------------------------------ {{{
-" Syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-let g:pymode_folding = 0
-let g:SuperTabDefaultCompletionType = "context"
-let g:pymode_virtualenv = 1
-let g:pymode_rope = 0
+" let g:SuperTabDefaultCompletionType = "context"
 set completeopt=menuone,longest,preview
 au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
 au FileType python setlocal omnifunc=pythoncomplete#Complete
