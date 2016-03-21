@@ -2,7 +2,7 @@
 "
 " 'I always thought air was free until I bought a bag of chips.' - Unknown
 "
-" Last Modified: Mon Mar 21 08:34:32 2016
+" Last Modified: Mon Mar 21 14:23:01 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -17,8 +17,9 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'benekastah/neomake'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'ervandew/supertab'
+Bundle 'gerw/vim-latex-suite'
 Bundle 'gmarik/Vundle.vim'
-Bundle 'jalvesaq/R-Vim-runtime'
+Bundle 'jalvesaq/Nvim-R'
 Bundle 'jpalardy/vim-slime'
 Bundle 'mattn/emmet-vim'
 Bundle 'msanders/snipmate.vim'
@@ -29,7 +30,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 Bundle 'vim-scripts/AutoComplPop'
-Bundle 'vim-scripts/Vim-R-plugin'
 
 Bundle 'epwalsh/Evim'
 
@@ -146,11 +146,11 @@ vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 
 " Change current word to uppercase
-inoremap <leader>u <esc>bveUea
-nnoremap <leader>u bveUe
+inoremap <leader>up <esc>bveUea
+nnoremap <leader>up bveUe
 " Change current word to lowercase
-inoremap <leader>l <esc>bveuea
-nnoremap <leader>l <esc>bveue
+inoremap <leader>lw <esc>bveuea
+nnoremap <leader>lw <esc>bveue
 
 " Copy current line
 nnoremap <leader>yl 0v$y
@@ -223,16 +223,9 @@ map <F2> :NERDTreeToggle<CR>
 " ------------------------------------------------------------------------- }}}
 
 " Neomake ----------------------------------------------------------------- {{{
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
 autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
+let g:neomake_list_height = 5
 " ------------------------------------------------------------------------- }}}
 
 " FileType-specific settings ---------------------------------------------- {{{
@@ -255,6 +248,12 @@ augroup END
 autocmd FileType r call SetROptions()
 if !exists("*SetROptions")
     function SetROptions()
+        " Use Ctrl+Space to do omnicompletion
+        if has("gui_running")
+            inoremap <C-Space> <C-x><C-o>
+        else
+            inoremap <Nul> <C-x><C-o>
+        endif
         vmap <buffer> <Space> <Plug>RDSendSelection
         nmap <buffer> <Space> <Plug>RDSendLine
         " nnoremap <buffer> <Space> :call SendLineToR('down')<CR>
@@ -285,10 +284,9 @@ if !exists("*SetROptions")
     endfunction
 endif
 
-" See VIM-R-Plugin manual for details on these
-let vimrplugin_assign = 0
-let vimrplugin_applescript=0
-let vimrplugin_vsplit=1
+let R_in_buffer = 0
+let R_applescript = 0
+let R_tmux_split = 1
 " ---------------------------------------------------------------------- }}}
 
 " Latex settings ------------------------------------------------------- {{{
@@ -300,11 +298,16 @@ augroup tex_settings
     au FileType tex setlocal shiftwidth=2 tabstop=2 expandtab
     au FileType tex nnoremap <leader>kk :!open %:p:r.pdf -a /Applications/Skim.app/<cr>
     au FileType tex nnoremap <leader>lu :!lualatex %:p<cr>
-    au bufnewfile *.tex 0r ~/.vim/headers/tex_header.txt
+    au bufnewfile *.tex 0r ~/.config/nvim/headers/tex_header.txt
 augroup END
 
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
+" let g:vimtex_fold_enabled = 1
+" let g:vimtex_quickfix_open_on_warning = 0
+" let g:vimtex_view_enabled = 0
+" let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+" let g:vimtex_view_general_options = '-r @line @pdf @tex'
 " ---------------------------------------------------------------------- }}}
 
 " C/Cpp settings --------------------------------------------------------- {{{

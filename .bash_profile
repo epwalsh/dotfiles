@@ -1,6 +1,6 @@
 # The bash_profile of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: Sat Mar 12 13:58:52 2016
+# Last Modified: Mon Mar 21 14:11:50 2016
 #
 # This file is sourced on login in a linux environment. On Mac OS X, this file
 # sourced for both login and non-login scripts. We put exports and in this file,
@@ -22,7 +22,6 @@ fi
 # cd ~/dotfiles/; git pull; cd -
 
 # Exports ---------------------------------------------------------------- {{{
-export EDITOR=vim
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/GitHub/Code/Python
 
@@ -35,11 +34,13 @@ case "${OSTYPE}" in
     export PATH="$PATH:/Library/Frameworks/R.framework/Versions/3.1/Resources"
     export TERM="xterm-256color"
     export LANG='en_US.UTF-8'
+    export EDITOR=nvim
     ;;
     # -------------------------------------------------------------- }}}
     # Linux -------------------------------------------------------- {{{
     linux*)
     export PATH=$HOME/.local/bin:$HOME/bin:$PATH
+    export EDITOR=vim
     ;;
     # -------------------------------------------------------------- }}}
 esac
