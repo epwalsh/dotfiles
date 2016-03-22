@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Mon Mar 21 21:55:39 2016
+" Last Modified: Tue Mar 22 11:10:09 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -15,7 +15,7 @@ call vundle#begin("~/.config/nvim/bundle/")
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'benekastah/neomake'
-Bundle 'davidhalter/jedi-vim'
+" Bundle 'davidhalter/jedi-vim'
 Bundle 'ervandew/supertab'
 Bundle 'gerw/vim-latex-suite'
 Bundle 'gmarik/Vundle.vim'
@@ -31,6 +31,7 @@ Bundle 'ternjs/tern_for_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
+Bundle 'zchee/deoplete-jedi'
 
 Bundle 'epwalsh/Evim'
 
