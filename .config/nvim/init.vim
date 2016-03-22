@@ -2,15 +2,17 @@
 "
 " 'I always thought air was free until I bought a bag of chips.' - Unknown
 "
-" Last Modified: Mon Mar 21 20:49:46 2016
+" Last Modified: Mon Mar 21 21:58:30 2016
 " =============================================================================
 
-" Wraps paths to make them relative to this directory.
+" Wraps paths to make them relative to this directory --------------------- {{{
 function! Dot(path)
   return '~/.config/nvim/' . a:path
 endfunction
+" ------------------------------------------------------------------------- }}}
 
-" Load all configuration modules.
+" Load configuration modules ---------------------------------------------- {{{
 for file in split(glob(Dot('modules/*.vim')), '\n')
   execute 'source' file
 endfor
+" ------------------------------------------------------------------------- }}}

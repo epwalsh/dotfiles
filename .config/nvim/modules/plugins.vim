@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Mon Mar 21 21:10:49 2016
+" Last Modified: Mon Mar 21 21:55:39 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -46,10 +46,10 @@ filetype plugin indent on
 for file in split(glob(Dot('modules/plugins/*.vim')), '\n')
     let name = fnamemodify(file, ':t:r')
 
-    let bundles = g:vundle#bundles
-    let plugins = map(bundles, "v:val['name']")
+    let bundles = deepcopy(g:vundle#bundles)
+    let plugins = map(bundles, "fnamemodify(v:val['name'], ':r')")
 
-    if exists("plugins['" . name . "']")
+    if index(plugins, name) >= 0
         exec 'source' file
     else
         echom "No plugin found for config file " . file
