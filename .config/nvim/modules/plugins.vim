@@ -3,19 +3,17 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Tue Mar 22 11:10:09 2016
+" Last Modified: Wed Mar 23 15:31:56 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
 filetype off
 
-" Set the runtime path to include Vundle and initialize
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin("~/.config/nvim/bundle/")
 
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'benekastah/neomake'
-" Bundle 'davidhalter/jedi-vim'
 Bundle 'ervandew/supertab'
 Bundle 'gerw/vim-latex-suite'
 Bundle 'gmarik/Vundle.vim'
@@ -35,9 +33,9 @@ Bundle 'zchee/deoplete-jedi'
 
 Bundle 'epwalsh/Evim'
 
+" Bundle 'davidhalter/jedi-vim'     " Replaced with deoplete-jedi
 " Bundle 'klen/python-mode'         " Clunky - use jedi-vim and neomake
 " Bundle 'vim-scripts/AutoComplPop' " Use deoplete instead for async
-" Bundle 'zchee/deoplete-jedi'      " Works like shit
 
 call vundle#end()
 filetype plugin indent on
