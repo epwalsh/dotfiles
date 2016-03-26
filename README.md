@@ -2,7 +2,7 @@
 
 iTerm2 + vim/neovim + tmux
 
-![screen_shot.png](screen_shot.png)
+![screen_shot.png](images/screen_shot.png)
 
 ### Transition from Vim to Neovim
 

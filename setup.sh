@@ -4,9 +4,10 @@
 # Author:        Evan Pete Walsh
 # Contact:       epwalsh10@gmail.com
 # Creation Date: 26-03-2016
-# Last Modified: Sat Mar 26 14:52:34 2016
+# Last Modified: Sat Mar 26 15:20:59 2016
 # =============================================================================
 
+# General setup ----------------------------------------------------------- {{{
 DIRS_HOME="bash
 tmux
 R
@@ -27,15 +28,38 @@ do
         fi
     done
 done
+# ------------------------------------------------------------------------- }}}
 
-NVIM_FILES="$(ls .config/nvim)"
-for f in $NVIM_FILES 
+# Neovim setup------------------------------------------------------------- {{{
+DIRS_NVIM="headers
+modules"
+
+for d in $DIRS_NVIM
 do
-    if [ -e $HOME/.config/nvim/$f ]
+    if [ -e $HOME/.config/nvim/$d ]
     then
-        rm -rf $HOME/.config/nvim/$f
+        rm $HOME/.config/nvim/$d
     fi
-    ln -s $HOME/dotfiles/.config/nvim/$f $HOME/.config/nvim/$f
+    ln -s $HOME/dotfiles/neovim/$d/ $HOME/.config/nvim/
 done
 
-a
+if [ -e $HOME/.config/nvim/init.vim ]
+then
+    rm $HOME/.config/nvim/init.vim
+fi
+ln -s $HOME/dotfiles/neovim/init.vim $HOME/.config/nvim/
+# ------------------------------------------------------------------------- }}}
+
+# Vim setup --------------------------------------------------------------- {{{
+if [ -e $HOME/.vimrc ]
+then
+    rm $HOME/.vimrc 
+fi
+ln -s $HOME/dotfiles/vim/.vimrc $HOME/
+
+if [ -e $HOME/.vim/headers ]
+then
+    rm $HOME/.vim/headers
+fi
+ln -s $HOME/dotfiles/vim/headers/ $HOME/.vim/
+# ------------------------------------------------------------------------- }}}
