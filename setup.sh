@@ -4,7 +4,7 @@
 # Author:        Evan Pete Walsh
 # Contact:       epwalsh10@gmail.com
 # Creation Date: 26-03-2016
-# Last Modified: Sat Mar 26 15:20:59 2016
+# Last Modified: Sat Mar 26 15:31:28 2016
 # =============================================================================
 
 # General setup ----------------------------------------------------------- {{{
@@ -15,10 +15,10 @@ git"
 
 for d in $DIRS_HOME
 do
-    FILES="$(ls -a $d)"
+    FILES="$(/bin/ls -a $d)"
     for f in $FILES 
     do
-        if [ "$f" != "./" ] && [ "$f" != "../" ]
+        if [ "$f" != "." ] && [ "$f" != ".." ]
         then
             if [ -e $HOME/$f ]
             then
