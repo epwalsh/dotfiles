@@ -18,3 +18,5 @@
 [core]
 	editor = /usr/local/bin/nvim
 	excludesfile = /Users/epwalsh/.gitignore_global
+[credential]
+	helper = osxkeychain
