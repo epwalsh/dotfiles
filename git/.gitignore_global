@@ -1,0 +1,25 @@
+# Compiled source
+*.o
+*.so 
+*.dll
+*.py[co]
+
+# VIM swp files 
+*.swp
+
+# Python files
+.ropeproject
+.ipynb_checkpoints
+
+# R files 
+.Rproj.user/
+*.Rproj
+.Rhistory
+.Rapp.history
+.RData
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+Thumbs.db
