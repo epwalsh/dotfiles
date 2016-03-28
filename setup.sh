@@ -4,7 +4,7 @@
 # Author:        Evan Pete Walsh
 # Contact:       epwalsh10@gmail.com
 # Creation Date: 26-03-2016
-# Last Modified: Sat Mar 26 15:31:28 2016
+# Last Modified: Sun Mar 27 12:42:39 2016
 # =============================================================================
 
 # General setup ----------------------------------------------------------- {{{
@@ -15,8 +15,8 @@ git"
 
 for d in $DIRS_HOME
 do
-    FILES="$(/bin/ls -a $d)"
-    for f in $FILES 
+    files="$(/bin/ls -a $d)"
+    for f in $files 
     do
         if [ "$f" != "." ] && [ "$f" != ".." ]
         then
@@ -63,3 +63,5 @@ then
 fi
 ln -s $HOME/dotfiles/vim/headers/ $HOME/.vim/
 # ------------------------------------------------------------------------- }}}
+
+exit 0

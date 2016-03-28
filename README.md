@@ -22,7 +22,7 @@ Linux and OS X
 - Neovim >= 0.1.2
 - Tmux >= 1.9
 - gcc
-- make
+- Make
 - iPython
 - Tmuxinator
 - Git >= 2.3
