@@ -10,6 +10,7 @@ To get started with neovim on OS X:
 - Install neovim using homebrew.
 - Run ```pip install neovim``` and ```pip3 install neovim```.
 - Copy necessary files to ```~/.config/nvim/``` and then clone Vundle.
+- Install Vundle with ```git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim```
 - Start neovim and ```:PluginInstall``` and then run ```:UpdateRemotePlugins```.
 
 ### Requirements and add-ons
