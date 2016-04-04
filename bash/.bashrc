@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: Sun Apr  3 21:24:42 2016
+# Last Modified: Mon Apr  4 08:34:25 2016
 #
 # This file is sourced for interactive non-login shells in a linux environment.
 # This file also sources every time .bash_profile is sourced.
@@ -39,7 +39,8 @@ case "${OSTYPE}" in
     alias 641='cd ~/coursework/STAT-641/'
     alias 642='cd ~/coursework/STAT-642/'
     alias tmux-py2='tmux new-session "tmux source-file ~/.vim/tmux-ipython2"'
-    alias docean='shh root@45.55.208.152'
+    alias doceanRoot='ssh root@45.55.208.152'
+    alias docean='ssh epwalsh@45.55.208.152'
     alias impact1='ssh epwalsh@impact1.stat.iastate.edu'
     alias aflex='ssh epwalsh@aflex.vrac.iastate.edu'
     alias julia="exec '/Applications/Julia-0.4.3.app/Contents/Resources/julia/bin/julia'"
