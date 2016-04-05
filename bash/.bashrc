@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: Mon Apr  4 08:34:25 2016
+# Last Modified: Tue Apr  5 12:34:01 2016
 #
 # This file is sourced for interactive non-login shells in a linux environment.
 # This file also sources every time .bash_profile is sourced.
@@ -29,7 +29,6 @@ case "${OSTYPE}" in
     darwin*)
     alias iCloud='cd /Users/epwalsh/Library/Mobile\ Documents/com~apple~CloudDocs'
     alias tmux="TERM=screen-256color-bce tmux"
-    alias linux10='ssh epwalsh@linux10.stat.iastate.edu'
     alias mypro="ssh epwalsh@10.0.1.163"
     alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app/'
     alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app/'
@@ -39,10 +38,9 @@ case "${OSTYPE}" in
     alias 641='cd ~/coursework/STAT-641/'
     alias 642='cd ~/coursework/STAT-642/'
     alias tmux-py2='tmux new-session "tmux source-file ~/.vim/tmux-ipython2"'
-    alias doceanRoot='ssh root@45.55.208.152'
-    alias docean='ssh epwalsh@45.55.208.152'
-    alias impact1='ssh epwalsh@impact1.stat.iastate.edu'
-    alias aflex='ssh epwalsh@aflex.vrac.iastate.edu'
+    alias doceanRoot='ssh -Y root@45.55.208.152'
+    alias docean='ssh -Y epwalsh@45.55.208.152'
+    alias aflex='ssh -Y epwalsh@aflex.vrac.iastate.edu'
     alias julia="exec '/Applications/Julia-0.4.3.app/Contents/Resources/julia/bin/julia'"
     alias ls='ls -FG'
     alias la='ls -a'
