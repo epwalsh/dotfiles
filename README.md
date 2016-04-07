@@ -1,6 +1,6 @@
 # Dotfiles
 
-iTerm2 + vim/neovim + tmux
+### iTerm2 + neovim + tmux
 
 ![screen_shot.png](images/screen_shot.png)
 

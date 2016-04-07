@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Sat Mar 26 15:13:20 2016
+" Last Modified: Thu Apr  7 12:19:07 2016
 " =============================================================================
 
 
@@ -23,8 +23,8 @@ augroup END
 " R settings -------------------------------------------------------------- {{{
 augroup filetype_r
     autocmd!
-    setlocal shiftwidth=2 tabstop=2 expandtab
-    setlocal foldmethod=marker
+    au FileType r,rmd setlocal shiftwidth=2 tabstop=2 expandtab
+    au FileType r,rmd setlocal foldmethod=marker
 augroup END
 " ------------------------------------------------------------------------- }}}
 
