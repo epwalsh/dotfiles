@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: Tue Apr  5 12:34:01 2016
+# Last Modified: Fri Apr  8 14:13:55 2016
 #
 # This file is sourced for interactive non-login shells in a linux environment.
 # This file also sources every time .bash_profile is sourced.
@@ -41,6 +41,7 @@ case "${OSTYPE}" in
     alias doceanRoot='ssh -Y root@45.55.208.152'
     alias docean='ssh -Y epwalsh@45.55.208.152'
     alias aflex='ssh -Y epwalsh@aflex.vrac.iastate.edu'
+    alias slurm='ssh -Y epwalsh@smaster.stat.iastate.edu'
     alias julia="exec '/Applications/Julia-0.4.3.app/Contents/Resources/julia/bin/julia'"
     alias ls='ls -FG'
     alias la='ls -a'
