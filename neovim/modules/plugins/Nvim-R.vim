@@ -3,12 +3,12 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Mon Apr 11 12:15:14 2016
+" Last Modified: Wed Apr 13 10:15:48 2016
 " =============================================================================
 
-let R_in_buffer = 0
+let R_in_buffer = 1
+let R_tmux_split = 0
 let R_applescript = 0
-let R_tmux_split = 1
 
 autocmd FileType r,rmd call SetROptions()
 if !exists("*SetROptions")
