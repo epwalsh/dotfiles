@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Mon Mar 21 20:09:21 2016
+" Last Modified: Wed Apr 13 10:07:41 2016
 " =============================================================================
 
 nnoremap ; :
@@ -70,9 +70,9 @@ inoremap <leader>cv <esc>"+pi
 nnoremap <leader><F7> "+p
 
 " Open vimrc in a split
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " Source vimrc
-nnoremap <leader>sv :source $MYVIMRC<cr>
+" nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Put quotes around a word
 nnoremap <leader>" ea"<esc>hbi"<esc>lel

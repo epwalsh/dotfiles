@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Wed Mar 23 15:31:56 2016
+" Last Modified: Wed Apr 13 10:00:06 2016
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -17,8 +17,9 @@ Bundle 'benekastah/neomake'
 Bundle 'ervandew/supertab'
 Bundle 'gerw/vim-latex-suite'
 Bundle 'gmarik/Vundle.vim'
+Bundle 'jalvesaq/vimcmdline'
 Bundle 'jalvesaq/Nvim-R'
-Bundle 'jpalardy/vim-slime'
+" Bundle 'jpalardy/vim-slime'
 Bundle 'mattn/emmet-vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'pangloss/vim-javascript'
