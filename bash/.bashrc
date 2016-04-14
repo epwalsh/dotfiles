@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: Thu Apr 14 11:24:19 2016
+# Last Modified: Thu Apr 14 13:37:55 2016
 #
 # This file is sourced for interactive non-login shells in a linux environment.
 # This file also sources every time .bash_profile is sourced.
@@ -43,7 +43,7 @@ case "${OSTYPE}" in
     alias aflex='ssh -Y epwalsh@aflex.vrac.iastate.edu'
     alias smaster='ssh -Y epwalsh@smaster.stat.iastate.edu'
     alias condo='ssh condo.its.iastate.edu'
-    alias julia="exec '/Applications/Julia-0.4.3.app/Contents/Resources/julia/bin/julia'"
+    # alias julia="/Applications/Julia-0.4.3.app/Contents/Resources/julia/bin/julia"
     alias ls='ls -FG'
     alias la='ls -a'
 
