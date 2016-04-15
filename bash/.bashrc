@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: Thu Apr 14 13:37:55 2016
+# Last Modified: Thu Apr 14 22:24:00 2016
 #
 # This file is sourced for interactive non-login shells in a linux environment.
 # This file also sources every time .bash_profile is sourced.
@@ -59,3 +59,15 @@ case "${OSTYPE}" in
     # -------------------------------------------------------------- }}}
 esac
 # ------------------------------------------------------------------------ }}}
+
+# Need this for matplotlib to work with a virtualenv ---------------------- {{{
+# Instead of running script as 'python script.py' use 
+# 'frameworkpython script.py'
+function frameworkpython {
+    if [[ ! -z "$VIRTUAL_ENV" ]]; then
+        PYTHONHOME=$VIRTUAL_ENV /usr/local/bin/python "$@"
+    else
+        /usr/local/bin/python "$@"
+    fi
+}
+# ------------------------------------------------------------------------- }}}
