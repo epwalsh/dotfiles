@@ -3,8 +3,12 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Wed Apr 13 10:07:41 2016
+" Last Modified: Fri Apr 29 07:39:09 2016
 " =============================================================================
+
+" For navigating up and down through wrapped lines
+nnoremap j gj
+nnoremap k gk
 
 nnoremap ; :
 vnoremap ; :
