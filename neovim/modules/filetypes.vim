@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Thu Apr  7 12:19:07 2016
+" Last Modified: Thu May 19 12:15:39 2016
 " =============================================================================
 
 
@@ -76,6 +76,13 @@ augroup filetype_html
     au FileType html setlocal nowrap
     au FileType css  setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType css  setlocal nowrap
+augroup END
+" ------------------------------------------------------------------------- }}}
+
+" Markdown settings ------------------------------------------------------- {{{
+augroup filetype_md
+    autocmd!
+    au FileType markdown setlocal wrap
 augroup END
 " ------------------------------------------------------------------------- }}}
 
