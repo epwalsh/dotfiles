@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Fri Apr 29 07:39:09 2016
+" Last Modified: Wed May 18 20:26:46 2016
 " =============================================================================
 
 " For navigating up and down through wrapped lines
@@ -65,13 +65,13 @@ nnoremap <leader>lw <esc>bveue
 nnoremap <leader>yl 0v$y
 
 " Global copying and pasting between files open in vim
-vnoremap <F6> "+y
-vnoremap <leader>cp "+y
-nnoremap <F7> "+p
-nnoremap <leader>cv "+p
-inoremap <F7> <esc>"+pi
-inoremap <leader>cv <esc>"+pi
-nnoremap <leader><F7> "+p
+" vnoremap <F6> "+y
+" vnoremap <leader>cp "+y
+" nnoremap <F7> "+p
+" nnoremap <leader>cv "+p
+" inoremap <F7> <esc>"+pi
+" inoremap <leader>cv <esc>"+pi
+" nnoremap <leader><F7> "+p
 
 " Open vimrc in a split
 " nnoremap <leader>ev :vsplit $MYVIMRC<cr>

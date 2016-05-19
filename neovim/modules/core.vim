@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Mon Mar 21 20:52:24 2016
+" Last Modified: Wed May 18 20:26:24 2016
 " =============================================================================
 
 " This will cause autocomplete tip window to close as soon as a selection is
@@ -12,6 +12,9 @@
 
 " Set encoding to utf-8, this may be the default anyway
 " set encoding=utf-8
+
+" Copy everything to OS clipboard
+set clipboard=unnamed
 
 " Leaders
 let maplocalleader = ","
