@@ -3,13 +3,14 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Wed Apr 13 13:30:34 2016
+" Last Modified: Wed May 25 15:42:03 2016
 " =============================================================================
 
 let R_in_buffer = 1
-let R_vsplit = 1
+let R_vsplit = 0
 let R_tmux_split = 0
 let R_applescript = 0
+let R_openpdf = 0
 
 autocmd FileType r,rmd call SetROptions()
 if !exists("*SetROptions")
