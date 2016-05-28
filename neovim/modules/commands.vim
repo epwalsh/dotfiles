@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 19-05-2016
-" Last Modified: Thu May 19 15:23:53 2016
+" Last Modified: Sat May 28 16:07:19 2016
 " =============================================================================
 
 " Pandoc commands
@@ -12,6 +12,6 @@
 command Pandoc call Knit_pandoc()
 
 function! Knit_pandoc()
-    execute "!pandoc -s --mathjax -c ../../main.css " . expand("%:p") . " -o " . expand("%:p:r") . "_preview.html"
+    execute "!pandoc -s --mathjax -c ../../main.css -c ../../math.css " . expand("%:p") . " -o " . expand("%:p:r") . "_preview.html"
     silent execute "!pandoc --mathjax " . expand("%:p") . " -o " . expand("%:p:r") . ".html"
 endfunction
