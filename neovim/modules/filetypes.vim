@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Thu May 19 12:15:39 2016
+" Last Modified: Sat May 28 13:33:31 2016
 " =============================================================================
 
 
@@ -83,6 +83,7 @@ augroup END
 augroup filetype_md
     autocmd!
     au FileType markdown setlocal wrap
+    au FileType markdown setlocal omnifunc=
 augroup END
 " ------------------------------------------------------------------------- }}}
 
