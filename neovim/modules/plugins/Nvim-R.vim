@@ -3,12 +3,12 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Thu May 26 08:56:52 2016
+" Last Modified: Fri Jun  3 14:31:11 2016
 " =============================================================================
 
-let R_in_buffer = 1
+let R_in_buffer = 0
 let R_vsplit = 0
-let R_tmux_split = 0
+let R_tmux_split = 1
 let R_applescript = 0
 let R_openpdf = 1
 
