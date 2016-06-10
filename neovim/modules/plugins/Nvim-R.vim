@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Fri Jun  3 14:31:11 2016
+" Last Modified: Thu Jun  9 22:31:27 2016
 " =============================================================================
 
 let R_in_buffer = 0
@@ -11,6 +11,9 @@ let R_vsplit = 0
 let R_tmux_split = 1
 let R_applescript = 0
 let R_openpdf = 1
+
+vmap <buffer> <Space> <Plug>RDSendSelection
+nmap <buffer> <Space> <Plug>RDSendLine
 
 autocmd FileType r,rmd call SetROptions()
 if !exists("*SetROptions")
@@ -21,11 +24,8 @@ if !exists("*SetROptions")
         else
             inoremap <Nul> <C-x><C-o>
         endif
-        vmap <buffer> <Space> <Plug>RDSendSelection
-        nmap <buffer> <Space> <Plug>RDSendLine
-        " nnoremap <buffer> <Space> :call SendLineToR('down')<CR>
-        "nmap <buffer> <LocalLeader>cc <Plug>RToggleComment
-        "vmap <buffer> <LocalLeader>cc <Plug>RToggleComment
+        nmap <buffer> <LocalLeader>cc <Plug>RToggleComment
+        vmap <buffer> <LocalLeader>cc <Plug>RToggleComment
         map <buffer> <LocalLeader>nr :call RAction("rownames")<CR>
         map <buffer> <LocalLeader>nc :call RAction("colnames")<CR>
         map <buffer> <LocalLeader>nn :call RAction("names")<CR>

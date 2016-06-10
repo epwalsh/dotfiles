@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Thu Jun  9 22:13:01 2016
+" Last Modified: Thu Jun  9 22:19:44 2016
 " =============================================================================
 
 " This will cause autocomplete tip window to close as soon as a selection is
@@ -17,7 +17,7 @@
 set clipboard=unnamed
 
 " Leaders
-" let maplocalleader = ","
+let maplocalleader = ","
 let mapleader = ","
 
 " Make sure background works properly for tmux
