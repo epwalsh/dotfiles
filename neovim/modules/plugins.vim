@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2016-06-16 10:53:48
+" Last Modified: 2016-06-16 12:35:21
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -32,7 +32,8 @@ Bundle 'vim-airline/vim-airline-themes'
 Bundle 'zchee/deoplete-jedi'
 
 " Bundle 'epwalsh/Evim'
-Bundle 'epwalsh/Nvim-autoheader'
+" Bundle 'epwalsh/Nvim-autoheader'
+Bundle 'epwalsh/NvimAutoheader'
 
 " Bundle 'davidhalter/jedi-vim'     " Replaced with deoplete-jedi
 " Bundle 'klen/python-mode'         " Clunky - use jedi-vim and neomake
