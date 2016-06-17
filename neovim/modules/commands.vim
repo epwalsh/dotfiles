@@ -3,12 +3,10 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 19-05-2016
-" Last Modified: Sat May 28 16:07:19 2016
+" Last Modified: 2016-06-17 16:28:42
 " =============================================================================
 
 " Pandoc commands
-" command KnitS !pandoc -s --mathjax -c ../../main.css %:p -o %:p:r_preview.html
-" command Knit !pandoc --mathjax %:p -o %:p:r.html
 command Pandoc call Knit_pandoc()
 
 function! Knit_pandoc()

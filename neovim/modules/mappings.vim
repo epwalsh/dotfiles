@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Wed May 18 20:26:46 2016
+" Last Modified: 2016-06-17 16:23:04
 " =============================================================================
 
 " For navigating up and down through wrapped lines
@@ -26,12 +26,6 @@ vnoremap <F5> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal relativenumber!
             \<cr>:<c-u>normal! `rv`t<cr>
 nnoremap <leader><F5> :setlocal relativenumber!<cr>
 vnoremap <leader><F5> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal relativenumber!
-            \<cr>:<c-u>normal! `rv`t<cr>
-
-" Toggle line wrap
-nnoremap <F8> :setlocal wrap!<cr>
-inoremap <F8> <esc>:setlocal wrap!<cr>li
-vnoremap <F8> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal wrap!
             \<cr>:<c-u>normal! `rv`t<cr>
 
 " Jump to matching character (ex. matching brace or parenthesis)
@@ -111,6 +105,5 @@ nnoremap <leader>o o<esc>
 " Insert line above and stay in normal mode
 nnoremap <leader>O O<esc>
 
-" Git
-nnoremap <leader>gc :! git commit -a -m 'updates'<cr>
-nnoremap <leader>gp :! git push<cr>
+" Toggle paste
+set pastetoggle=<F3>

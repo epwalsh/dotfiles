@@ -1,9 +1,9 @@
 " =============================================================================
-" File Name:     /Users/epwalsh/dotfiles/neovim/modules/plugins.vim
+" File Name:     plugins.vim
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2016-06-16 12:35:21
+" Last Modified: 2016-06-17 16:28:18
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -32,12 +32,7 @@ Bundle 'vim-airline/vim-airline-themes'
 Bundle 'zchee/deoplete-jedi'
 
 " Bundle 'epwalsh/Evim'
-" Bundle 'epwalsh/Nvim-autoheader'
 Bundle 'epwalsh/NvimAutoheader'
-
-" Bundle 'davidhalter/jedi-vim'     " Replaced with deoplete-jedi
-" Bundle 'klen/python-mode'         " Clunky - use jedi-vim and neomake
-" Bundle 'vim-scripts/AutoComplPop' " Use deoplete instead for async
 
 call vundle#end()
 filetype plugin indent on
