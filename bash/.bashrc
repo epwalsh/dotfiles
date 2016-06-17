@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2016-06-16 20:11:45
+# Last Modified: 2016-06-17 15:33:26
 #
 # This file is sourced for interactive non-login shells in a linux environment.
 # This file also sources every time .bash_profile is sourced.
@@ -48,6 +48,7 @@ case "${OSTYPE}" in
     alias la='ls -a'
 
     source /usr/local/bin/virtualenvwrapper.sh
+    workon py2.7
     ;;
     # -------------------------------------------------------------- }}}
     # Linux -------------------------------------------------------- {{{

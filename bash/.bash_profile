@@ -1,6 +1,6 @@
 # The bash_profile of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: Thu Apr 14 13:38:28 2016
+# Last Modified: 2016-06-17 15:29:48
 #
 # This file is sourced on login in a linux environment. On Mac OS X, this file
 # sourced for both login and non-login scripts. We put exports and in this file,
