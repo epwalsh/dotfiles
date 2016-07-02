@@ -1,9 +1,9 @@
 " =============================================================================
-" File Name:     plugins.vim
+" File Name:     /Users/epwalsh/dotfiles/neovim/modules/plugins.vim
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2016-06-17 16:28:18
+" Last Modified: 2016-06-18 20:48:40
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{

@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Thu Jun  9 22:31:27 2016
+" Last Modified: 2016-07-02 17:18:54
 " =============================================================================
 
 let R_in_buffer = 0
@@ -11,6 +11,7 @@ let R_vsplit = 0
 let R_tmux_split = 1
 let R_applescript = 0
 let R_openpdf = 1
+let r_indent_align_args = 0
 
 vmap <buffer> <Space> <Plug>RDSendSelection
 nmap <buffer> <Space> <Plug>RDSendLine
