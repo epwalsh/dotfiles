@@ -1,9 +1,14 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2016-07-02 17:46:51
+# Last Modified: 2016-07-09 00:28:53
 #
-# This file is sourced for interactive non-login shells in a linux environment.
-# This file also sources every time .bash_profile is sourced.
+# This file is supposed to be sourced for interactive non-login shells in a 
+# linux environment.
+# If not running interactively, don't do anything:
+case $- in
+    *i*) ;;
+    *) return;;
+esac
 
 # Vim-like keybindings
 set -o vi

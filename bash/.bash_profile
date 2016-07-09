@@ -1,6 +1,6 @@
 # The bash_profile of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2016-06-17 15:29:48
+# Last Modified: 2016-07-09 00:28:58
 #
 # This file is sourced on login in a linux environment. On Mac OS X, this file
 # sourced for both login and non-login scripts. We put exports and in this file,
@@ -15,6 +15,7 @@ fi
 if [ -n "$TMUX" ]; then
     kill -INT $$
 fi
+
 # Everything below here will not be sourced again when tmux is started.
 # ---------------------------------------------------------------------
 
@@ -22,17 +23,17 @@ fi
 # cd ~/dotfiles/; git pull; cd -
 
 # Exports ---------------------------------------------------------------- {{{
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/GitHub/Code/Python
 
 case "${OSTYPE}" in
     # Mac OS X ----------------------------------------------------- {{{
     darwin*)
+    export WORKON_HOME=$HOME/.virtualenvs
+    # export PROJECT_HOME=$HOME/GitHub/Code/Python
+
     export PATH=$HOME/bin:$PATH
-    export PATH="$PATH:/usr/local/Cellar/cmake/3.2.3/bin"
-    export PATH="$PATH:/usr/local/texlive/2014/bin/x86_64-darwin"
-    export PATH="$PATH:/Library/Frameworks/R.framework/Versions/3.1/Resources"
-    export PATH="$PATH:/Applications/Julia-0.4.3.app/Contents/Resources/julia/bin/"
+    # export PATH="$PATH:/usr/local/texlive/2014/bin/x86_64-darwin"
+    # export PATH="$PATH:/Library/Frameworks/R.framework/Versions/3.1/Resources"
+    # export PATH="$PATH:/Applications/Julia-0.4.3.app/Contents/Resources/julia/bin/"
     export TERM="xterm-256color"
     export LANG='en_US.UTF-8'
     export EDITOR=nvim
@@ -41,7 +42,7 @@ case "${OSTYPE}" in
     # Linux -------------------------------------------------------- {{{
     linux*)
     export PATH=$HOME/.local/bin:$HOME/bin:$PATH
-    export EDITOR=vim
+    export EDITOR=nvim
     ;;
     # -------------------------------------------------------------- }}}
 esac
