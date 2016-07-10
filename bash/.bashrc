@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2016-07-10 15:35:55
+# Last Modified: 2016-07-10 18:13:19
 #
 # This file is supposed to be sourced for interactive non-login shells in a 
 # linux environment.
@@ -12,6 +12,9 @@ esac
 
 # Vim-like keybindings
 set -o vi
+
+# Improve tab-completion by cycling through options
+bind '"\t":menu-complete'
 
 # Command prompt --------------------------------------------------------- {{{
 bldblk='\e[1;30m' # Black - Bold
