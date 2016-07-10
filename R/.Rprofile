@@ -1,5 +1,5 @@
 if (interactive()) {
-	library(colorout)
+  library(colorout)
   # Color scheme for dark background
   setOutputColors256(
                      normal = 40,
@@ -18,13 +18,6 @@ if (interactive()) {
                      # const = c(0, 0, 94),
                      # stderror = 52
                      # )
-	library(setwidth)
-	options(vimcom.verbose = -1)
-	library(vimcom)
+  library(setwidth)
+  options(max.print=200)
 }
-
-# suppressMessages(
-#                  c(library(ggplot2),
-#                    library(dplyr),
-#                    library(reshape2))
-#                  )

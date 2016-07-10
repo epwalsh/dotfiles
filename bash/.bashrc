@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2016-07-09 00:28:53
+# Last Modified: 2016-07-10 15:35:55
 #
 # This file is supposed to be sourced for interactive non-login shells in a 
 # linux environment.
@@ -27,6 +27,11 @@ print_before_the_prompt() {
 PROMPT_COMMAND=print_before_the_prompt
 PS1='\[\e[1;30m\]->> \[\e[0m\]'
 # ------------------------------------------------------------------------ }}}
+
+# General aliases
+alias ni='nvim'
+alias R='R --quiet'
+alias tree='tree -alC'
 
 # System-specific aliases and settings ----------------------------------- {{{
 case "${OSTYPE}" in
