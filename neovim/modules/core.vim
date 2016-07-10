@@ -3,11 +3,14 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2016-06-17 16:27:10
+" Last Modified: 2016-07-10 19:30:50
 " =============================================================================
 
-" Copy everything to OS clipboard
-set clipboard=unnamed
+" Copy everything to OS clipboard if using OS X
+let os = substitute(system('uname'), "\n", "", "")
+if os == "Darwin"
+    set clipboard=unnamed
+endif
 
 " Leaders
 let maplocalleader = ","
