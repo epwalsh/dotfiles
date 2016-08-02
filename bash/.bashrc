@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2016-07-20 17:19:52
+# Last Modified: 2016-08-02 11:41:35
 #
 # This file is supposed to be sourced for interactive non-login shells in a 
 # linux environment.
