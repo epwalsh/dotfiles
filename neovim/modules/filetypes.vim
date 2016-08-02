@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Sat May 28 13:33:31 2016
+" Last Modified: 2016-07-28 15:20:51
 " =============================================================================
 
 
@@ -76,6 +76,7 @@ augroup filetype_html
     au FileType html setlocal nowrap
     au FileType css  setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType css  setlocal nowrap
+    au FileType css setlocal foldmethod=marker
 augroup END
 " ------------------------------------------------------------------------- }}}
 

@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2016-08-02 11:41:35
+# Last Modified: 2016-08-02 11:45:23
 #
 # This file is supposed to be sourced for interactive non-login shells in a 
 # linux environment.
@@ -50,6 +50,7 @@ case "${OSTYPE}" in
     alias ls='ls -FG'
     alias la='ls -a'
     alias dOcean='ssh epwalsh@162.243.83.66'
+    alias dOcean2='ssh epwalsh@138.68.4.228'
 
     source /usr/local/bin/virtualenvwrapper.sh
     workon py2.7
