@@ -1,6 +1,6 @@
 # The bash_profile of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2016-07-09 00:28:58
+# Last Modified: 2016-08-02 11:42:11
 #
 # This file is sourced on login in a linux environment. On Mac OS X, this file
 # sourced for both login and non-login scripts. We put exports and in this file,
@@ -43,7 +43,11 @@ case "${OSTYPE}" in
     linux*)
     export PATH=$HOME/.local/bin:$HOME/bin:$PATH
     export EDITOR=nvim
+    export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
     ;;
     # -------------------------------------------------------------- }}}
 esac
 # ------------------------------------------------------------------------ }}}
+
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
