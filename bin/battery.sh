@@ -1,7 +1,8 @@
 #!/bin/bash
-# Source: github.com/AaronLasseigne/tmux_battery_charge_indicator 
+# Source: modified from github.com/AaronLasseigne/tmux_battery_charge_indicator 
 
-HEART='♥'
+UNCHARGE_SYMBOL='▯'
+CHARGE_SYMBOL='▮'
 
 if [[ `uname` == 'Linux' ]]; then
   current_charge=$(cat /proc/acpi/battery/BAT1/state | grep 'remaining capacity' | awk '{print $3}')
@@ -17,10 +18,20 @@ if [[ $charged_slots -gt 10 ]]; then
   charged_slots=10
 fi
 
-echo -n '#[fg=red]'
-for i in `seq 1 $charged_slots`; do echo -n "$HEART"; done
+if [[ $charged_slots -lt 3 ]]; then
+    echo -n '#[fg=colour41]'
+elif [[ $charged_slots -lt 5 ]]; then
+    echo -n '#[fg=colour42]'
+elif [[ $charged_slots -lt 7 ]]; then
+    echo -n '#[fg=colour43]'
+elif [[ $charged_slots -lt 9 ]]; then
+    echo -n '#[fg=colour44]'
+else
+    echo -n '#[fg=colour45]'
+fi
+
+for i in `seq 1 $charged_slots`; do echo -n "$CHARGE_SYMBOL"; done
 
 if [[ $charged_slots -lt 10 ]]; then
-  echo -n '#[fg=white]'
-  for i in `seq 1 $(echo "10-$charged_slots" | bc)`; do echo -n "$HEART"; done
+  for i in `seq 1 $(echo "10-$charged_slots" | bc)`; do echo -n "$UNCHARGE_SYMBOL"; done
 fi
