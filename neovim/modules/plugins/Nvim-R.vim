@@ -3,15 +3,16 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2016-07-02 17:18:54
+" Last Modified: 2016-10-14 16:25:32
 " =============================================================================
 
 let R_in_buffer = 0
-let R_vsplit = 0
+let R_vsplit = 1
 let R_tmux_split = 1
 let R_applescript = 0
 let R_openpdf = 1
 let r_indent_align_args = 0
+let R_assign = 0
 
 vmap <buffer> <Space> <Plug>RDSendSelection
 nmap <buffer> <Space> <Plug>RDSendLine

@@ -3,11 +3,12 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Wed Jun 15 17:14:05 2016
+" Last Modified: 2016-09-24 18:24:23
 " =============================================================================
 
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
+let g:Tex_GotoError=0
 
 augroup tex_mappings
     autocmd!
