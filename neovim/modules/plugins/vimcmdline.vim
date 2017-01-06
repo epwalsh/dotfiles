@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 13-04-2016
-" Last Modified: 2016-10-07 16:51:28
+" Last Modified: 2016-12-04 15:09:35
 " =============================================================================
 
 let cmdline_vsplit = 0        " Split the window vertically

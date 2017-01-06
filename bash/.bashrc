@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2016-10-05 11:23:15
+# Last Modified: 2017-01-06 10:09:46
 #
 # This file is supposed to be sourced for interactive non-login shells in a 
 # linux environment.
@@ -47,13 +47,8 @@ case "${OSTYPE}" in
     alias tmux="TERM=screen-256color-bce tmux"
     alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app/'
     alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app/'
-    alias aflex='ssh epwalsh@aflex.vrac.iastate.edu'
-    alias smaster='ssh epwalsh@smaster.stat.iastate.edu'
-    alias condo='ssh condo.its.iastate.edu'
     alias ls='ls -FG'
     alias la='ls -a'
-    alias dOcean='ssh epwalsh@162.243.83.66'
-    alias dOcean2='ssh epwalsh@138.68.4.228'
 
     source /usr/local/bin/virtualenvwrapper.sh
     workon py2.7
