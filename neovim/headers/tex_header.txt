@@ -15,6 +15,7 @@
 \usepackage{changepage}
 \usepackage{mathcomp}
 \usepackage{tcolorbox}
+\usepackage{eufrak}
 
 \declaretheoremstyle[headfont=\normalfont]{normal}
 \declaretheorem[style=normal]{Theorem}
@@ -37,17 +38,18 @@ $\Diamond$ \emph{Subclaim \theClaimCounter.\theSubClaimCounter}}
 
 % chktex-file 3
 
-\title{}
-\author{Evan P. Walsh}
-\makeatletter
-\makeatother
 \lhead{Evan P. Walsh}
-\chead{}
+\chead{MATH 502: Assignment VIII}
 \rhead{\thepage}
 \cfoot{}
 
-\begin{document}
-\maketitle
+\begin{document}\thispagestyle{empty}
+\begin{center}
+  \Large \textsc{math 502 -- ASSIGNMENT VIII -- spring 2017} \\ 
+  \vspace{5mm}
+  \large Evan Pete Walsh
+\end{center}
+
 
 
 \end{document}
