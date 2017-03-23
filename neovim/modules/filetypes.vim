@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2016-09-07 10:34:46
+" Last Modified: 2017-03-23 17:57:32
 " =============================================================================
 
 
@@ -77,6 +77,13 @@ augroup filetype_html
     au FileType css  setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType css  setlocal nowrap
     au FileType css setlocal foldmethod=marker
+augroup END
+" ------------------------------------------------------------------------- }}}
+
+" JSON settings ------------------------------------------------------- {{{
+augroup filetype_json
+    autocmd!
+    au FileType json setlocal shiftwidth=4 tabstop=4 expandtab
 augroup END
 " ------------------------------------------------------------------------- }}}
 
