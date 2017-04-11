@@ -1,9 +1,9 @@
 " =============================================================================
-" File Name:     /Users/epwalsh/dotfiles/neovim/modules/plugins.vim
+" File Name:     plugins.vim
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2016-06-18 20:48:40
+" Last Modified: 2017-03-28 19:31:52
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -30,6 +30,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 Bundle 'zchee/deoplete-jedi'
+Bundle 'Vimjas/vim-python-pep8-indent'
 
 " Bundle 'epwalsh/Evim'
 Bundle 'epwalsh/NvimAutoheader'

@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2017-01-06 10:09:46
+# Last Modified: 2017-04-10 14:57:45
 #
 # This file is supposed to be sourced for interactive non-login shells in a 
 # linux environment.
@@ -11,7 +11,8 @@ case $- in
 esac
 
 # Welcome message
-figlet Hello, World!
+# figlet Hello, World!
+fortune | cowsay
 
 # Vim-like keybindings
 set -o vi
