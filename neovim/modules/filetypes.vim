@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-03-23 17:57:32
+" Last Modified: 2017-04-12 14:54:23
 " =============================================================================
 
 
@@ -35,7 +35,7 @@ augroup filetype_tex
     au FileType tex  set tw=150
     au FileType tex  setlocal colorcolumn=150
     au FileType tex  setlocal shiftwidth=2 tabstop=2 expandtab
-    au BufNewFile *.tex 0r ~/.config/nvim/headers/tex_header.txt
+    au BufNewFile *.tex 0r ~/.config/nvim/headers/tex_template.txt
 augroup END
 " ------------------------------------------------------------------------- }}}
 
