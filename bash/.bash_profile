@@ -1,9 +1,9 @@
 # The bash_profile of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2016-09-13 15:43:15
+# Last Modified: 2017-04-13 14:45:05
 #
 # This file is sourced on login in a linux environment. On Mac OS X, this file
-# sourced for both login and non-login scripts. We put exports and in this file,
+# sourced for both login and non-login scripts. We put exports in this file
 # and aliases and other settings in .bashrc, which we source below.
 
 if [ -f ~/.bashrc ]; then
