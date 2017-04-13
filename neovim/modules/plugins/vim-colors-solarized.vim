@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-04-13 16:38:43
+" Last Modified: 2017-04-13 16:44:34
 " =============================================================================
 
 let g:solarized_termcolors = 256
