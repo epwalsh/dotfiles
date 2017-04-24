@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-04-12 15:39:12
+" Last Modified: 2017-04-21 15:17:54
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -13,15 +13,17 @@ set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin("~/.config/nvim/bundle/")
 
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'artur-shaik/vim-javacomplete2'
 Bundle 'benekastah/neomake'
 Bundle 'ervandew/supertab'
+Bundle 'epwalsh/NvimAutoheader'
 Bundle 'gerw/vim-latex-suite'
 Bundle 'gmarik/Vundle.vim'
 Bundle 'jalvesaq/vimcmdline'
 Bundle 'jalvesaq/Nvim-R'
+Bundle 'jiangmiao/auto-pairs'
 Bundle 'mattn/emmet-vim'
 Bundle 'msanders/snipmate.vim'
-Bundle 'pangloss/vim-javascript'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/deoplete.nvim'
@@ -29,11 +31,9 @@ Bundle 'ternjs/tern_for_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
-Bundle 'zchee/deoplete-jedi'
 Bundle 'Vimjas/vim-python-pep8-indent'
+Bundle 'zchee/deoplete-jedi'
 
-" Bundle 'epwalsh/Evim'
-Bundle 'epwalsh/NvimAutoheader'
 
 call vundle#end()
 filetype plugin indent on
