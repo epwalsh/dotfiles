@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-04-21 15:06:40
+" Last Modified: 2017-05-09 15:51:37
 " =============================================================================
 
 
@@ -65,7 +65,7 @@ augroup filetype_python
     autocmd!
     au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType python setlocal omnifunc=pythoncomplete#Complete
-    au FileType python setlocal foldmethod=marker
+    " au FileType python setlocal foldmethod=marker
 augroup END
 " ------------------------------------------------------------------------- }}}
 "

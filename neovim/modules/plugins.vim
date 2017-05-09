@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-04-21 15:17:54
+" Last Modified: 2017-05-09 15:51:33
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -28,6 +28,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/deoplete.nvim'
 Bundle 'ternjs/tern_for_vim'
+Bundle 'tmhedberg/SimpylFold'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
