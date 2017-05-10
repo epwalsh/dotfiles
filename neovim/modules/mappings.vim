@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2016-06-17 16:23:04
+" Last Modified: 2017-05-10 12:02:40
 " =============================================================================
 
 " For navigating up and down through wrapped lines

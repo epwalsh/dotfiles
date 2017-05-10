@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-05-09 15:51:33
+" Last Modified: 2017-05-10 12:03:03
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -30,6 +30,7 @@ Bundle 'Shougo/deoplete.nvim'
 Bundle 'ternjs/tern_for_vim'
 Bundle 'tmhedberg/SimpylFold'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 Bundle 'Vimjas/vim-python-pep8-indent'
