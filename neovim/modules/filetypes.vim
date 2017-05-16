@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-05-09 15:51:37
+" Last Modified: 2017-05-12 11:44:46
 " =============================================================================
 
 
@@ -68,7 +68,14 @@ augroup filetype_python
     " au FileType python setlocal foldmethod=marker
 augroup END
 " ------------------------------------------------------------------------- }}}
-"
+
+" yml settings ------------------------------------------------------------ {{{
+augroup filetype_yml
+    autocmd!
+    au BufRead *.yml setlocal shiftwidth=2 tabstop=2 expandtab
+augroup END
+" ------------------------------------------------------------------------- }}}
+
 " Java settings --------------------------------------------------------- {{{
 augroup filetype_java
     autocmd!
