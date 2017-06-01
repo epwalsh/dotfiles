@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-05-10 12:03:03
+" Last Modified: 2017-05-24 11:09:21
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -13,7 +13,7 @@ set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin("~/.config/nvim/bundle/")
 
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'artur-shaik/vim-javacomplete2'
+" Bundle 'artur-shaik/vim-javacomplete2'
 Bundle 'benekastah/neomake'
 Bundle 'ervandew/supertab'
 Bundle 'epwalsh/NvimAutoheader'
@@ -27,6 +27,7 @@ Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/deoplete.nvim'
+" Bundle 'takac/vim-spotifysearch'
 Bundle 'ternjs/tern_for_vim'
 Bundle 'tmhedberg/SimpylFold'
 Bundle 'tpope/vim-fugitive'

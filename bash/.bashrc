@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2017-05-16 14:51:16
+# Last Modified: 2017-05-28 17:52:05
 #
 # This file is supposed to be sourced for interactive non-login shells in a 
 # linux environment.
@@ -52,6 +52,7 @@ function cd_ls {
     fi
 }
 
+alias tree='tree --dirsfirst -C'
 alias ..='cd_ls ..'
 alias ...='cd_ls ../..'
 alias ....='cd_ls ../../..'
@@ -60,7 +61,7 @@ alias ......='cd_ls ../../../../..'
 
 # Virtual environment
 source /usr/local/bin/virtualenvwrapper.sh
-workon py3.5
+workon py2.7
 
 # Functions
 pyclean () {

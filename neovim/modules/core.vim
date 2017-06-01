@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2016-07-10 19:30:50
+" Last Modified: 2017-06-01 13:19:34
 " =============================================================================
 
 " Copy everything to OS clipboard if using OS X
@@ -47,3 +47,7 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 
 " Abbreviations
 iabbrev @@ epwalsh10@gmail.com
+
+" Scrolling behavior with mouse, scroll one line at a time
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
