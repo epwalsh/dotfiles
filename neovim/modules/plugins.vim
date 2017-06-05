@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-05-24 11:09:21
+" Last Modified: 2017-06-05 10:07:08
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -23,6 +23,7 @@ Bundle 'jalvesaq/vimcmdline'
 Bundle 'jalvesaq/Nvim-R'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'mattn/emmet-vim'
+Bundle 'metakirby5/codi.vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'

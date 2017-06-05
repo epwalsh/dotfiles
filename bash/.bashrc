@@ -1,6 +1,6 @@
 # The bashrc of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
 #
-# Last Modified: 2017-05-28 17:52:05
+# Last Modified: 2017-06-05 10:08:22
 #
 # This file is supposed to be sourced for interactive non-login shells in a 
 # linux environment.
@@ -66,4 +66,16 @@ workon py2.7
 # Functions
 pyclean () {
     find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+}
+
+codi() {
+    local syntax="${1:-python}"
+    shift
+    nvim -c \
+        "let g:startify_disable_at_vimenter = 1 |\
+        set bt=nofile ls=0 noru nonu nornu |\
+        hi ColorColumn ctermbg=NONE |\
+        hi VertSplit ctermbg=NONE |\
+        hi NonText ctermfg=0 |\
+        Codi $syntax" "$@"
 }
