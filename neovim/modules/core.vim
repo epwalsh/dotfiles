@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-01 13:19:34
+" Last Modified: 2017-06-08 10:09:33
 " =============================================================================
 
 " Copy everything to OS clipboard if using OS X
@@ -34,6 +34,9 @@ set relativenumber
 
 " Highlight text past 80 characters and add vertical bar
 set colorcolumn=80
+
+" Make tabs appear as 4 spaces
+set tabstop=4
 
 " Don't wrap lines by default
 set nowrap

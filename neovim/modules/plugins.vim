@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-05 10:07:08
+" Last Modified: 2017-06-05 11:19:05
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -21,6 +21,7 @@ Bundle 'gerw/vim-latex-suite'
 Bundle 'gmarik/Vundle.vim'
 Bundle 'jalvesaq/vimcmdline'
 Bundle 'jalvesaq/Nvim-R'
+Bundle 'JamshedVesuna/vim-markdown-preview'
 Bundle 'jiangmiao/auto-pairs'
 Bundle 'mattn/emmet-vim'
 Bundle 'metakirby5/codi.vim'
