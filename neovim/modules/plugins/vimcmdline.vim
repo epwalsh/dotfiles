@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 13-04-2016
-" Last Modified: 2017-03-11 15:09:56
+" Last Modified: 2017-06-12 17:52:24
 " =============================================================================
 
 let cmdline_vsplit = 0        " Split the window vertically
@@ -13,6 +13,9 @@ let cmdline_term_height = 20  " Initial height of interpreter window or pane
 let cmdline_term_width = 80   " Initial width of interpreter window or pane
 let cmdline_tmp_dir = '/tmp'  " Temporary directory to save files
 let cmdline_outhl = 1         " Syntax highlight the output
+
+let cmdline_app = {}
+let cmdline_app["python"] = "ipython"
 
 if &t_Co == 256
     let cmdline_color_input = 247
@@ -35,4 +38,4 @@ if &t_Co == 256
     let cmdline_color_index = 186
 endif
 
-let cmdline_follow_colorscheme = 0 " Use whatever default color scheme
+let cmdline_follow_colorscheme = 1 " Use whatever default color scheme

@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-05 11:19:05
+" Last Modified: 2017-06-12 17:53:55
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -17,9 +17,10 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'benekastah/neomake'
 Bundle 'ervandew/supertab'
 Bundle 'epwalsh/NvimAutoheader'
+Bundle 'epwalsh/vimcmdline'
 Bundle 'gerw/vim-latex-suite'
 Bundle 'gmarik/Vundle.vim'
-Bundle 'jalvesaq/vimcmdline'
+" Bundle 'jalvesaq/vimcmdline'
 Bundle 'jalvesaq/Nvim-R'
 Bundle 'JamshedVesuna/vim-markdown-preview'
 Bundle 'jiangmiao/auto-pairs'
