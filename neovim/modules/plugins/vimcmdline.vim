@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 13-04-2016
-" Last Modified: 2017-06-12 17:52:24
+" Last Modified: 2017-06-13 11:18:28
 " =============================================================================
 
 let cmdline_vsplit = 0        " Split the window vertically
@@ -16,6 +16,7 @@ let cmdline_outhl = 1         " Syntax highlight the output
 
 let cmdline_app = {}
 let cmdline_app["python"] = "ipython"
+
 
 if &t_Co == 256
     let cmdline_color_input = 247
