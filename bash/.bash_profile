@@ -14,7 +14,3 @@ for file in ~/.{bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
-
-# Virtual environment
-source /usr/local/bin/virtualenvwrapper.sh
-workon py2.7

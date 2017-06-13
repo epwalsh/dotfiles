@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# Set virtualenvwrapper home directory
-export WORKON_HOME=$HOME/.virtualenvs
-
-# Set term colors
-# export TERM="xterm-256color"
-
 # Prefer US English and use UTF-8
 export LANG='en_US.UTF-8'
 

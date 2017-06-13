@@ -22,6 +22,5 @@ alias .....='cd ../../../.. && ls'
 alias ......='cd ../../../../.. && ls'
 
 # OS X specific stuff
-alias iCloud='cd /Users/epwalsh/Library/Mobile\ Documents/com~apple~CloudDocs'
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app/'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app/'
