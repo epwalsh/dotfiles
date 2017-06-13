@@ -1,5 +1,5 @@
-# Dotfiles
+# Practical dotfiles for OS X users
 
-### iTerm2 + neovim + tmux
+### iTerm2 + tmux + neovim
 
-![demo](images/demo.gif)
+![demo](images/demo2.gif)
