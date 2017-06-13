@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-05-12 11:44:46
+" Last Modified: 2017-06-13 17:00:05
 " =============================================================================
 
 
@@ -115,33 +115,5 @@ augroup filetype_bash
     autocmd!
     au FileType sh setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType sh setlocal foldmethod=marker
-augroup END
-" ------------------------------------------------------------------------- }}}
-
-" .tmux.conf file settings ------------------------------------------------ {{{
-augroup tmux_dotfiles
-    autocmd!
-    au BufRead *.tmux.conf setlocal foldmethod=marker
-    au BufWritePre,FileWritePre *.tmux.conf execute "normal ma"
-    au BufWritePre,FileWritePre *.tmux.conf execute "1," . 10 .
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
-                \.strftime("%c")
-    au BufWritePost,FileWritePost *.tmux.conf execute "normal `a"
-augroup END
-" ------------------------------------------------------------------------- }}}
-
-" .bash_profile/.bashrc file settings ------------------------------------- {{{
-augroup bash_dotfiles
-    autocmd!
-     au BufWritePre,FileWritePre *.bash_profile execute "normal ma"
-     au BufWritePre,FileWritePre *.bash_profile execute "1," . 10 .
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
-                \.strftime("%c")
-    au BufWritePost,FileWritePost *.bash_profile execute "normal `a"
-    au BufWritePre,FileWritePre *.bashrc execute "normal ma"
-    au BufWritePre,FileWritePre *.bashrc execute "1," . 10 .
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
-                \.strftime("%c")
-    au BufWritePost,FileWritePost *.bashrc execute "normal `a"
 augroup END
 " ------------------------------------------------------------------------- }}}

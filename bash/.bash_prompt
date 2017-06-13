@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+bldblk='\e[1;30m' # Black - Bold
+lightpink='\033[38;5;165m'
+lightblue='\033[38;5;033m'
+txtrst='\e[0m'    # Text Reset
+HOST_PREFIX=$(echo $HOSTNAME | sed 's/\..*$//')
+print_before_the_prompt() {
+    printf "\n$lightblue[%s:%s] $bldblk%s $lightpink%s$txtrst\n" "$HOST_PREFIX" "$USER" "$PWD" "$(vcprompt)"
+}
+
+PROMPT_COMMAND=print_before_the_prompt
+PS1='\[\e[1;30m\]->> \[\e[0m\]'
