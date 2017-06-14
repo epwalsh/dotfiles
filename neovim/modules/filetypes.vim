@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-13 17:00:05
+" Last Modified: 2017-06-14 17:50:55
 " =============================================================================
 
 
@@ -12,11 +12,6 @@ augroup filetype_vim
     autocmd!
     au FileType vim setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType vim setlocal foldmethod=marker
-    au BufWritePre,FileWritePre *.vimrc execute "normal ma"
-    au BufWritePre,FileWritePre *.vimrc execute "1," . 8 .
-                \"g/Last Modified:.*/s/Last Modified:.*/Last Modified: "
-                \.strftime("%c")
-    au BufWritePost,FileWritePost *.vimrc execute "normal `a"
 augroup END
 " ------------------------------------------------------------------------- }}}
 
@@ -46,7 +41,6 @@ augroup filetype_c
     au FileType cpp  setlocal shiftwidth=4 tabstop=4 expandtab
     au BufRead *.h   setlocal shiftwidth=4 tabstop=4 expandtab
     au BufRead *.hpp setlocal shiftwidth=4 tabstop=4 expandtab
-    au FileType make setlocal noexpandtab shiftwidth=8 softtabstop=0
 augroup END
 " ------------------------------------------------------------------------- }}}
 
@@ -65,7 +59,14 @@ augroup filetype_python
     autocmd!
     au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType python setlocal omnifunc=pythoncomplete#Complete
-    " au FileType python setlocal foldmethod=marker
+augroup END
+" ------------------------------------------------------------------------- }}}
+
+" Julia settings ---------------------------------------------------------- {{{
+augroup filetype_julia
+    autocmd!
+    au BufRead,BufNewFile *.jl set filetype=julia
+    au FileType julia setlocal shiftwidth=4 expandtab
 augroup END
 " ------------------------------------------------------------------------- }}}
 
@@ -76,7 +77,7 @@ augroup filetype_yml
 augroup END
 " ------------------------------------------------------------------------- }}}
 
-" Java settings --------------------------------------------------------- {{{
+" Java settings ----------------------------------------------------------- {{{
 augroup filetype_java
     autocmd!
     autocmd FileType java setlocal shiftwidth=4 tabstop=4 expandtab
@@ -95,7 +96,7 @@ augroup filetype_html
 augroup END
 " ------------------------------------------------------------------------- }}}
 
-" JSON settings ------------------------------------------------------- {{{
+" JSON settings ----------------------------------------------------------- {{{
 augroup filetype_json
     autocmd!
     au FileType json setlocal shiftwidth=4 tabstop=4 expandtab

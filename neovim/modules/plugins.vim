@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-12 17:53:55
+" Last Modified: 2017-06-14 17:29:49
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -24,14 +24,13 @@ Bundle 'gmarik/Vundle.vim'
 Bundle 'jalvesaq/Nvim-R'
 Bundle 'JamshedVesuna/vim-markdown-preview'
 Bundle 'jiangmiao/auto-pairs'
+Bundle 'JuliaEditorSupport/julia-vim'
 Bundle 'mattn/emmet-vim'
 Bundle 'metakirby5/codi.vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/deoplete.nvim'
-" Bundle 'takac/vim-spotifysearch'
-Bundle 'ternjs/tern_for_vim'
 Bundle 'tmhedberg/SimpylFold'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'

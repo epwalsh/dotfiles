@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-08 10:09:33
+" Last Modified: 2017-06-14 17:42:28
 " =============================================================================
 
 " Copy everything to OS clipboard if using OS X

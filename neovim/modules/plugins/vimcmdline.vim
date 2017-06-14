@@ -3,7 +3,7 @@
 " Author:        Evan Pete Walsh
 " Contact:       epwalsh10@gmail.com
 " Creation Date: 13-04-2016
-" Last Modified: 2017-06-13 11:18:28
+" Last Modified: 2017-06-14 16:49:22
 " =============================================================================
 
 let cmdline_vsplit = 0        " Split the window vertically
@@ -16,6 +16,7 @@ let cmdline_outhl = 1         " Syntax highlight the output
 
 let cmdline_app = {}
 let cmdline_app["python"] = "ipython"
+let cmdline_app["julia"] = "/Applications/Julia-0.5.app/Contents/Resources/julia/bin/julia"
 
 
 if &t_Co == 256
