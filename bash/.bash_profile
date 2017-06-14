@@ -6,11 +6,13 @@ fortune | cowsay
 # Vim-like keybindings
 set -o vi
 
-# Improve tab-completion by cycling through options
-bind '"\t":menu-complete'
-
 # Source other config files
 for file in ~/.{bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
+
+# Use bash-completion2
+if [ -f /usr/local/share/bash-completion/bash_completion ]; then
+    . /usr/local/share/bash-completion/bash_completion
+fi
