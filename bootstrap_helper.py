@@ -9,7 +9,6 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-import sys
 
 
 EXCLUDE_LIST = ['.DS_Store']
