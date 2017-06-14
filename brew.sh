@@ -109,5 +109,8 @@ brew install vbindiff
 brew install webkit2png
 brew install zopfli
 
+# Need this for tmux to work properly
+brew install reattach-to-user-namespace
+
 # Remove outdated versions from the cellar.
 brew cleanup
