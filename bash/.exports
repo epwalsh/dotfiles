@@ -4,7 +4,8 @@
 export LANG='en_US.UTF-8'
 
 # Use neovim as default editor
-export EDITOR=nvim
+export VISUAL=nvim
+export EDITOR=$VISUAL
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
