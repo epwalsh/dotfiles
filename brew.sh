@@ -45,6 +45,13 @@ brew install narwhal
 
 # Install newer version of Python
 brew install python
+brew install python3
+# Set the homebrew Python and the default
+brew link python
+
+# Install Tmux
+brew install tmux
+brew install reattach-to-user-namespace
 
 # Install more recent versions of some macOS tools.
 brew tap neovim/neovim
@@ -111,9 +118,6 @@ brew install tree
 brew install vbindiff
 brew install webkit2png
 brew install zopfli
-
-# Need this for tmux to work properly
-brew install reattach-to-user-namespace
 
 # Remove outdated versions from the cellar.
 brew cleanup
