@@ -1,10 +1,8 @@
-export PATH=$HOME/bin:$PATH
-
 # Welcome message to decrease productivity
 fortune | cowsay
 
-# Vim-like keybindings
-set -o vi
+# Add ~/bin to PATH
+export PATH=$HOME/bin:$PATH
 
 # Source other config files
 for file in ~/.{bash_prompt,exports,aliases,functions,extra}; do
@@ -12,7 +10,21 @@ for file in ~/.{bash_prompt,exports,aliases,functions,extra}; do
 done;
 unset file;
 
-# Use bash-completion2
-if [ -f /usr/local/share/bash-completion/bash_completion ]; then
-    . /usr/local/share/bash-completion/bash_completion
-fi
+# Vim-like keybindings
+set -o vi
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell;
+
+# Add tab completion for many Bash commands
+if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
+	source "$(brew --prefix)/share/bash-completion/bash_completion";
+elif [ -f /etc/bash_completion ]; then
+	source /etc/bash_completion;
+fi;
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
+# Add `killall` tab completion for common apps
+complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal iTerm" killall;
