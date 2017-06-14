@@ -43,6 +43,9 @@ brew install wget --with-iri
 brew install ringojs
 brew install narwhal
 
+# Install newer version of Python
+brew install python
+
 # Install more recent versions of some macOS tools.
 brew tap neovim/neovim
 brew install neovim
