@@ -1,5 +1,7 @@
 # Welcome message to decrease productivity
-fortune | cowsay
+if ! [ -n "$TMUX" ]; then
+    fortune | cowsay;
+fi
 
 # Add ~/bin to PATH
 export PATH=$HOME/bin:$PATH
