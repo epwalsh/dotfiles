@@ -1,9 +1,7 @@
 " =============================================================================
 " File Name:     core.vim
-" Author:        Evan Pete Walsh
-" Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-14 17:42:28
+" Last Modified: 2017-06-15 12:15:47
 " =============================================================================
 
 " Copy everything to OS clipboard if using OS X
@@ -47,9 +45,6 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-" Abbreviations
-iabbrev @@ epwalsh10@gmail.com
 
 " Scrolling behavior with mouse, scroll one line at a time
 map <ScrollWheelUp> <C-Y>

@@ -1,9 +1,7 @@
 " =============================================================================
 " File Name:     vim-airline.vim
-" Author:        Evan Pete Walsh
-" Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-04-13 16:45:14
+" Last Modified: 2017-06-15 12:19:16
 " =============================================================================
 
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12

@@ -1,9 +1,7 @@
 " =============================================================================
 " File Name:     nerdcommenter.vim
-" Author:        Evan Pete Walsh
-" Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: Mon Mar 21 20:36:15 2016
+" Last Modified: 2017-06-15 12:18:58
 " =============================================================================
 
 let NERDSpaceDelims = 1

@@ -1,9 +1,7 @@
 " =============================================================================
 " File Name:     filetypes.vim
-" Author:        Evan Pete Walsh
-" Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-14 17:50:55
+" Last Modified: 2017-06-15 12:58:21
 " =============================================================================
 
 
@@ -30,7 +28,6 @@ augroup filetype_tex
     au FileType tex  set tw=150
     au FileType tex  setlocal colorcolumn=150
     au FileType tex  setlocal shiftwidth=2 tabstop=2 expandtab
-    au BufNewFile *.tex 0r ~/.config/nvim/headers/tex_template.txt
 augroup END
 " ------------------------------------------------------------------------- }}}
 
@@ -65,7 +62,6 @@ augroup END
 " Julia settings ---------------------------------------------------------- {{{
 augroup filetype_julia
     autocmd!
-    au BufRead,BufNewFile *.jl set filetype=julia
     au FileType julia setlocal shiftwidth=4 expandtab
 augroup END
 " ------------------------------------------------------------------------- }}}

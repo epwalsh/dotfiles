@@ -1,9 +1,7 @@
 " =============================================================================
 " File Name:     SimpylFold.vim
-" Author:        Evan Pete Walsh
-" Contact:       epwalsh@structurely.com
 " Creation Date: 2017-05-09
-" Last Modified: 2017-05-09 16:20:54
+" Last Modified: 2017-06-15 12:18:32
 " =============================================================================
 
 let g:SimpylFold_docstring_preview = 1

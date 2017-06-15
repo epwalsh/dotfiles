@@ -1,9 +1,7 @@
 " =============================================================================
 " File Name:     vimcmdline.vim
-" Author:        Evan Pete Walsh
-" Contact:       epwalsh10@gmail.com
 " Creation Date: 13-04-2016
-" Last Modified: 2017-06-14 16:49:22
+" Last Modified: 2017-06-15 12:19:41
 " =============================================================================
 
 let cmdline_vsplit = 0        " Split the window vertically

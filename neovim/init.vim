@@ -1,8 +1,8 @@
-" The nvimrc/init.vim of Evan Pete Walsh >> epwalsh.com :: epwalsh10@gmail.com
+" nvimrc/init.vim
 "
-" 'I always thought air was free until I bought a bag of chips.' - Unknown
+" This is equivalent to a .vimrc for vim.
 "
-" Last Modified: Mon Mar 21 21:58:30 2016
+" Last Modified: 2017-06-15 12:02:14
 " =============================================================================
 
 " Wraps paths to make them relative to this directory --------------------- {{{

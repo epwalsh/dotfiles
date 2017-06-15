@@ -1,9 +1,7 @@
 " =============================================================================
 " File Name:     vim-colors-solarized.vim
-" Author:        Evan Pete Walsh
-" Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-04-13 16:44:34
+" Last Modified: 2017-06-15 12:19:23
 " =============================================================================
 
 let g:solarized_termcolors = 256

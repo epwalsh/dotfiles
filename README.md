@@ -23,3 +23,7 @@ After installing iTerm2, just run the following:
 ```bash
 git clone https://github.com/epwalsh/dotfiles.git && cd dotfiles && source bootstrap.sh
 ```
+
+To personalize headers, make edits to the file `neovim/modules/plugins/NvimAutoheader.vim` and the files in
+`neovim/headers/`. See [github.com/epwalsh/NvimAutoheader](https://github.com/epwalsh/NvimAutoheader) for more
+information about custom headers.

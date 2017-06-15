@@ -1,9 +1,7 @@
 " =============================================================================
 " File Name:     vim-latex-suite.vim
-" Author:        Evan Pete Walsh
-" Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2016-09-24 18:24:23
+" Last Modified: 2017-06-15 12:19:27
 " =============================================================================
 
 set grepprg=grep\ -nH\ $*

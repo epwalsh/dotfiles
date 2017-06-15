@@ -1,9 +1,7 @@
 " =============================================================================
 " File Name:     Nvim-R.vim
-" Author:        Evan Pete Walsh
-" Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2016-10-14 16:25:32
+" Last Modified: 2017-06-15 12:18:19
 " =============================================================================
 
 let R_in_buffer = 0

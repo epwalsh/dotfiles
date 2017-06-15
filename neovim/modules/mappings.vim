@@ -1,9 +1,7 @@
 " =============================================================================
 " File Name:     mappings.vim
-" Author:        Evan Pete Walsh
-" Contact:       epwalsh10@gmail.com
 " Creation Date: 21-03-2016
-" Last Modified: 2017-05-10 12:02:40
+" Last Modified: 2017-06-15 12:16:00
 " =============================================================================
 
 " For navigating up and down through wrapped lines

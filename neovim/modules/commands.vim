@@ -1,9 +1,7 @@
 " =============================================================================
 " File Name:     commands.vim
-" Author:        Evan Pete Walsh
-" Contact:       epwalsh10@gmail.com
 " Creation Date: 19-05-2016
-" Last Modified: 2016-06-17 16:28:42
+" Last Modified: 2017-06-15 12:15:54
 " =============================================================================
 
 " Pandoc commands
