@@ -1,8 +1,11 @@
 " =============================================================================
 " File Name:     core.vim
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-15 12:15:47
+" Last Modified: 2017-06-21 12:28:33
 " =============================================================================
+
+" Enable mouse support
+set mouse=a
 
 " Copy everything to OS clipboard if using OS X
 let os = substitute(system('uname'), "\n", "", "")
