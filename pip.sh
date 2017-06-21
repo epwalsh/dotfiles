@@ -8,5 +8,3 @@ pip3 install --user --upgrade neovim
 
 pip2 install --user --upgrade jedi
 pip3 install --user --upgrade jedi
-
-nvim +UpdateRemotePlugins +qall
