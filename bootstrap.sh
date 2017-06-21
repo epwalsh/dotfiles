@@ -27,3 +27,25 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     python bootstrap_helper.py;
     source ~/.bash_profile
 fi;
+
+# Install fonts for powerline.
+read -p "Ready to install powerline fonts. Are you sure you want to continue? (y/n) " -n 1;
+echo "";
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    cd ..
+    git clone https://github.com/powerline/fonts.git
+    cd fonts
+    ./install.sh
+    cd ..
+    rm -rf fonts
+    cd dotfiles
+fi;
+
+# Now install neovim plugins.
+read -p "Ready to install neovim plugins. Are you sure you want to continue? (y/n) " -n 1;
+echo "";
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
+    nvim +PluginInstall +qall
+    nvim +UpdateRemotePlugins +qall
+fi;
