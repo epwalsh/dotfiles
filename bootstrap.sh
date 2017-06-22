@@ -87,6 +87,15 @@ defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool t
 # Finder: show hidden files by default
 defaults write com.apple.finder AppleShowAllFiles -bool true
 
+# Change menu bar to dark mode
+osascript <<EOF
+tell application "System Events"
+    tell appearance preferences
+        set dark mode to true
+    end tell
+end tell
+EOF
+
 # Kill affected applications                                                  
 for app in "Activity Monitor" \
 	"Address Book" \

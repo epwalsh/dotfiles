@@ -24,12 +24,12 @@ function tre() {
 }
 
 # Clean up Python compiled files
-pyclean () {
+function pyclean() {
     find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 }
 
 # Use codivim module
-codi() {
+function codi() {
     local syntax="${1:-python}"
     shift
     nvim -c \
@@ -39,4 +39,9 @@ codi() {
         hi VertSplit ctermbg=NONE |\
         hi NonText ctermfg=0 |\
         Codi $syntax" "$@"
+}
+
+# Install R packages easily from the command line
+function R_install() {
+    R -e "install.packages('$@', repos='http://cran.rstudio.com/')"
 }
