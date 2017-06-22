@@ -6,6 +6,10 @@ Tested on Mac OS X Sierra (10.12.5).
 
 ![demo](images/demo2.gif)
 
+And here is the Dark theme:
+
+![dark](images/screen_shot_dark.png)
+
 
 ## Setup
 
