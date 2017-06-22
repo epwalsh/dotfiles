@@ -2,7 +2,7 @@
 
 ### iTerm2 + tmux + neovim
 
-Tested on Mac OS X Sierra (10.12.5).
+This configuration supports two themes, Light and Dark. Here is the Light theme in action:
 
 ![demo](images/demo2.gif)
 

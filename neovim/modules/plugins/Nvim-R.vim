@@ -1,11 +1,10 @@
 " =============================================================================
 " File Name:     Nvim-R.vim
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-15 12:18:19
+" Last Modified: 2017-06-22 16:08:24
 " =============================================================================
 
 let R_in_buffer = 0
-let R_vsplit = 1
 let R_tmux_split = 1
 let R_applescript = 0
 let R_openpdf = 1
