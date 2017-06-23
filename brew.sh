@@ -101,6 +101,7 @@ brew install xz
 brew install vcprompt
 brew install fortune
 brew install cowsay
+brew install mcrypt
 brew install ack
 brew install dark-mode
 #brew install exiv2
