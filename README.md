@@ -19,7 +19,7 @@ To bootstrap this configuration, just enter the following in your terminal:
 git clone https://github.com/epwalsh/dotfiles.git && cd dotfiles && source bootstrap.sh
 ```
 
-Runtime: about 30 minutes to an hour if you install everything, depending on your internet speed.
+Runtime: about 30 minutes to an hour if you install everything (recommended), depending on your internet speed.
 
 ### iTerm2
 
