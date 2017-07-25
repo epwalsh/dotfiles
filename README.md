@@ -19,7 +19,7 @@ To bootstrap this configuration, just enter the following in your terminal:
 git clone https://github.com/epwalsh/dotfiles.git && cd dotfiles && source bootstrap.sh
 ```
 
-Runtime: about 30 minutes to an hour if you install everything, depending on your internet speed.
+Runtime: about 30 minutes to an hour if you install everything (recommended), depending on your internet speed.
 
 ### iTerm2
 
@@ -31,12 +31,15 @@ iTerm2 comes with two default themes that work well this setup: Solarized Light 
 #### Configuring iTerm2 themes
 
 You will need to set the theme manually once you install iTerm2 by going to Preferences > Profiles and 
-then creating two profiles. Do this by clicking the "+" in the lower left corner and then typing "Light" into
-the "Name" field under the "General" tab. Then click the "Colors" tab, then "Color Presets" and choose "Solarized Light".
-Then click on the "Text" tab and then "Change Font". The choose "DejaVu Sans Mono for Powerline".
-Now repeat this process for a new theme called "Dark" with the color preset "Tango Dark".
+then creating two profiles by doing the following: 
 
-The Neovim colorscheme will adjust itself to match the iTerm2 theme.
+- Click the "+" in the lower left corner and then type "Light" into
+the "Name" field under the "General" tab. 
+- Then click the "Colors" tab, then "Color Presets" and choose "Solarized Light".
+- Finally, click on the "Text" tab and then "Change Font". Then choose "DejaVu Sans Mono for Powerline".
+- Now repeat the above three steps for a new theme called "Dark" with the color preset "Tango Dark".
+
+The Neovim colorscheme will automatically adjust itself to match the iTerm2 theme by looking for the environment variable `ITERM_PROFILE`, which will correspond to the name of the current profile running (either "Light" or "Dark").
 
 ### Personalizing neovim headers
 
