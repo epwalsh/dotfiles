@@ -1,7 +1,7 @@
 " =============================================================================
 " File Name:     plugins.vim
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-15 12:16:09
+" Last Modified: 2017-07-25 09:27:53
 " =============================================================================
 
 " Vundle package manager -------------------------------------------------- {{{
@@ -35,6 +35,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 Bundle 'Vimjas/vim-python-pep8-indent'
+Bundle 'wojtekmach/vim-rename'
 Bundle 'zchee/deoplete-jedi'
 
 

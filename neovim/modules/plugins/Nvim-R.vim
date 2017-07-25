@@ -1,7 +1,7 @@
 " =============================================================================
 " File Name:     Nvim-R.vim
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-22 16:08:24
+" Last Modified: 2017-06-25 19:49:03
 " =============================================================================
 
 let R_in_buffer = 0
@@ -9,6 +9,8 @@ let R_tmux_split = 1
 let R_applescript = 0
 let R_openpdf = 1
 let r_indent_align_args = 0
+let r_indent_ess_comments = 0
+let r_indent_ess_compatible = 0
 let R_assign = 0
 
 vmap <buffer> <Space> <Plug>RDSendSelection
