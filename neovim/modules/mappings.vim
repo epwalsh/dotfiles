@@ -1,7 +1,7 @@
 " =============================================================================
 " File Name:     mappings.vim
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-15 12:16:00
+" Last Modified: 2017-07-26 14:55:43
 " =============================================================================
 
 " For navigating up and down through wrapped lines
@@ -76,8 +76,9 @@ nnoremap <leader>' ea'<esc>hbi'<esc>lel
 vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>`>ll
 vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>`>ll
 
-" Escape insert mode without having to press that stupid <esc> key
-inoremap jk <esc>
+" Escape insert mode without having to press that stupid <esc> key. Also keeps
+" the cursor from moving back one-character when possible.
+inoremap jk <esc>l
 vnoremap <leader>jk <esc>
 " Map <esc> to no operation in insert mode
 "inoremap <esc> <nop>
