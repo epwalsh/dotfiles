@@ -1,7 +1,7 @@
 " =============================================================================
 " File Name:     filetypes.vim
 " Creation Date: 21-03-2016
-" Last Modified: 2017-06-15 12:58:21
+" Last Modified: 2017-08-04 16:00:25
 " =============================================================================
 
 
@@ -69,7 +69,7 @@ augroup END
 " yml settings ------------------------------------------------------------ {{{
 augroup filetype_yml
     autocmd!
-    au BufRead *.yml setlocal shiftwidth=2 tabstop=2 expandtab
+    au FileType yaml setlocal shiftwidth=2 tabstop=2 expandtab
 augroup END
 " ------------------------------------------------------------------------- }}}
 
