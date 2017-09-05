@@ -56,6 +56,7 @@ augroup filetype_python
     autocmd!
     au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType python setlocal omnifunc=pythoncomplete#Complete
+    au BufNewFile *.py,*.pyx 0r /Users/epwalsh/.config/nvim/headers/template.py
 augroup END
 " ------------------------------------------------------------------------- }}}
 

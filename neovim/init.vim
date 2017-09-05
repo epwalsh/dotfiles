@@ -1,8 +1,8 @@
-" nvimrc/init.vim
+" nvimrc / init.vim
 "
 " This is equivalent to a .vimrc for vim.
 "
-" Last Modified: 2017-06-15 12:02:14
+" Last Modified: 2017-08-11 20:35:35
 " =============================================================================
 
 " Wraps paths to make them relative to this directory --------------------- {{{

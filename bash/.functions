@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Defines useful functions.
 
 # cd into a directory and list files
 function cd_ls {
