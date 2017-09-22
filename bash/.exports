@@ -15,4 +15,4 @@ export PYTHONIOENCODING='UTF-8';
 export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 # TERM settings
-# export TERM=screen-256color
+export TERM=screen-256color
