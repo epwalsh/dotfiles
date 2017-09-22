@@ -10,3 +10,9 @@ export EDITOR=$VISUAL
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
+
+# Allow messing with cursor in neovim
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+# TERM settings
+# export TERM=screen-256color
