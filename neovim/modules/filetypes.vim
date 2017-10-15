@@ -51,6 +51,13 @@ augroup filetype_js
 augroup END
 " ------------------------------------------------------------------------- }}}
 
+" Dockerfile settings ----------------------------------------------------- {{{
+augroup filetype_dockerfile
+    autocmd!
+    au FileType dockerfile setlocal shiftwidth=4 tabstop=4 expandtab
+augroup END
+" ------------------------------------------------------------------------- }}}
+
 " Python settings --------------------------------------------------------- {{{
 augroup filetype_python
     autocmd!
