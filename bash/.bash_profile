@@ -3,8 +3,8 @@ if ! [ -n "$TMUX" ]; then
     fortune | cowsay;
 fi
 
-# Add ~/bin to PATH
 export PATH=$HOME/bin:$PATH
+export PATH=$PATH:/usr/local/sbin
 
 # Source other config files
 for file in ~/.{bash_prompt,exports,aliases,functions,extra}; do
