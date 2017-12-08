@@ -9,9 +9,9 @@ set mouse=a
 
 " Copy everything to OS clipboard if using OS X
 let os = substitute(system('uname'), "\n", "", "")
-if os == "Darwin"
-    set clipboard=unnamed
-endif
+" if os == "Darwin"
+    " set clipboard=unnamed
+" endif
 
 " Leaders
 let maplocalleader = ","
