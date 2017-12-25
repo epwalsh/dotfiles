@@ -14,7 +14,6 @@ let cmdline_outhl = 1         " Syntax highlight the output
 
 let cmdline_app = {}
 let cmdline_app["python"] = "ipython"
-let cmdline_app["julia"] = "/Applications/Julia-0.5.app/Contents/Resources/julia/bin/julia"
 
 
 if &t_Co == 256
