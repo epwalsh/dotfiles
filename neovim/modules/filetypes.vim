@@ -111,6 +111,7 @@ augroup END
 " Markdown settings ------------------------------------------------------- {{{
 augroup filetype_md
     autocmd!
+    au FileType markdown setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType markdown setlocal wrap
     au FileType markdown setlocal omnifunc=
 augroup END
