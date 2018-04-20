@@ -35,10 +35,8 @@ augroup END
 " C/Cpp settings ---------------------------------------------------------- {{{
 augroup filetype_c
     autocmd!
-    au FileType c    setlocal shiftwidth=4 tabstop=4 expandtab
-    au FileType cpp  setlocal shiftwidth=4 tabstop=4 expandtab
-    au BufRead *.h   setlocal shiftwidth=4 tabstop=4 expandtab
-    au BufRead *.hpp setlocal shiftwidth=4 tabstop=4 expandtab
+    au FileType c    setlocal shiftwidth=4 tabstop=4 expandtab foldmethod=syntax
+    au FileType cpp  setlocal shiftwidth=4 tabstop=4 expandtab foldmethod=syntax
 augroup END
 " ------------------------------------------------------------------------- }}}
 

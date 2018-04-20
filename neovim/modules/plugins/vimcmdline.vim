@@ -4,7 +4,7 @@
 " Last Modified: 2017-06-15 12:19:41
 " =============================================================================
 
-let cmdline_vsplit = 0        " Split the window vertically
+let cmdline_vsplit = 1        " Split the window vertically
 let cmdline_esc_term = 1      " Remap <Esc> to :stopinsert in Neovim terminal
 let cmdline_in_buffer = 0     " Start the interpreter in a Neovim buffer
 let cmdline_term_height = 20  " Initial height of interpreter window or pane
