@@ -4,6 +4,12 @@
 " Last Modified: 2017-08-04 16:00:25
 " =============================================================================
 
+" Recognize the right filetype for specific files.
+augroup filetype_checks
+    autocmd!
+    au BufRead .clang-format set ft=yaml
+augroup END
+
 
 " Vimscript file settings ------------------------------------------------- {{{
 augroup filetype_vim
