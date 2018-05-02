@@ -8,6 +8,7 @@ let g:clang_format#style_options = {
             \ "BinPackParameters": "false",
             \ "BreakBeforeBraces": "Linux",
             \ "SpacesInAngles": "false",
+            \ "IndentWidth": 4,
             \ "PointerAlignment": "Right",
             \ "MaxEmptyLinesToKeep": 2,
             \ "Standard": "C++11"}
