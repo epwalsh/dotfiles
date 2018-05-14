@@ -9,7 +9,7 @@ let g:clang_format#style_options = {
             \ "BreakBeforeBraces": "Linux",
             \ "SpacesInAngles": "false",
             \ "IndentWidth": 4,
-            \ "PointerAlignment": "Right",
+            \ "PointerAlignment": "Left",
             \ "MaxEmptyLinesToKeep": 2,
             \ "Standard": "C++11"}
 " See http://clang.llvm.org/docs/ClangFormatStyleOptions.html for a full list

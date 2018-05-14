@@ -40,9 +40,3 @@ the "Name" field under the "General" tab.
 - Now repeat the above three steps for a new theme called "Dark" with the color preset "Tango Dark".
 
 The Neovim colorscheme will automatically adjust itself to match the iTerm2 theme by looking for the environment variable `ITERM_PROFILE`, which will correspond to the name of the current profile running (either "Light" or "Dark").
-
-### Personalizing neovim headers
-
-To personalize headers, make edits to the file `neovim/modules/plugins/NvimAutoheader.vim` and the files in
-`neovim/headers/`. See [github.com/epwalsh/NvimAutoheader](https://github.com/epwalsh/NvimAutoheader) for more
-information about custom headers.
