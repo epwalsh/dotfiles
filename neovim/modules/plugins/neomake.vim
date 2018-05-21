@@ -19,6 +19,6 @@ call add(args, '-I' . '/usr/local/Cellar/boost/1.66.0/include')
 
 let g:neomake_cpp_enabled_makers = ['clang']
 let g:neomake_cpp_clang_maker = {
-   \ 'exe': 'clang++',
+   \ 'exe': '/usr/local/opt/llvm/bin/clang++',
    \ 'args': args,
    \ }

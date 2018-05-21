@@ -2,7 +2,7 @@
 # Defines useful functions.
 
 # cd into a directory and list files
-function cd_ls {
+cd_ls() {
     if [[ -z $1 ]]
     then
         cd ; ls
@@ -12,7 +12,7 @@ function cd_ls {
 }
 
 # Create a new directory and enter it
-function mkd() {
+mkd() {
 	mkdir -p "$@" && cd "$_";
 }
 
@@ -20,17 +20,17 @@ function mkd() {
 # the `.git` directory, listing directories first. The output gets piped into
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
-function tre() {
+tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
 # Clean up Python compiled files
-function pyclean() {
+pyclean() {
     find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 }
 
 # Use codivim module
-function codi() {
+codi() {
     local syntax="${1:-python}"
     shift
     nvim -c \
@@ -43,6 +43,11 @@ function codi() {
 }
 
 # Install R packages easily from the command line
-function R_install() {
+R_install() {
     R -e "install.packages('$@', repos='http://cran.rstudio.com/')"
+}
+
+# Search files for key phrase.
+function search() {
+    find ${2:-.} -type f -not -path '.git/*' | xargs grep "$1"
 }
