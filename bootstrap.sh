@@ -28,6 +28,8 @@ read -p "Ready to bootstrap config files. This may overwrite existing files. Are
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     python bootstrap_helper.py;
+    ln -s ~/dotfiles/.pylintrc ~/.config/.pylintrc
+    ln -s ~/dotfiles/.pydocstyle ~/.config/.pydocstyle
     source ~/.bash_profile;
 fi;
 

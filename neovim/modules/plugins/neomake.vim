@@ -5,6 +5,8 @@ autocmd! BufWritePost *.hpp Neomake
 let g:neomake_open_list = 2
 let g:neomake_list_height = 5
 
+" C++ settings
+" ========================================================================= {{{
 let args = ['-Wall', '-pedantic', '-Wno-sign-conversion', '-Wno-c++11-extensions', '-std=c++11']
 
 " If in a Git repository, add the root of the Git repo
@@ -22,3 +24,21 @@ let g:neomake_cpp_clang_maker = {
    \ 'exe': '/usr/local/opt/llvm/bin/clang++',
    \ 'args': args,
    \ }
+" ========================================================================= }}}
+
+" Python settings
+" ========================================================================= {{{
+let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle', 'pydocstyle']
+let g:neomake_python_pylint_maker = {
+            \ 'args': [
+            \ '--rcfile', '~/.config/.pylintrc',
+            \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}"',
+            \ ],
+            \ }
+let g:neomake_python_pydocstyle_maker = {
+            \ 'args': [
+            \ '--config', '~/.config/.pydocstyle',
+            \ ],
+            \ 'errorformat': '%W%f:%l %.%#:,%+C %m',
+            \ }
+" ========================================================================= }}}
