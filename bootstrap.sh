@@ -16,7 +16,7 @@ fi;
 
 
 # Run the pip script to pip-install all the pipy stuff.
-read -p "Preparing to install Python dependencies. This may take a while. Are you sure you want to continue? (y/n) " -n 1;
+read -p "Preparing to install base Python dependencies. Are you sure you want to continue? (y/n) " -n 1;
 echo "";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     source pip.sh;
