@@ -29,7 +29,7 @@ let g:neomake_cpp_clang_maker = {
 
 " Python settings
 " ========================================================================= {{{
-let g:neomake_python_enabled_makers = ['pylint', 'pycodestyle', 'pydocstyle']
+let g:neomake_python_enabled_makers = []
 
 " If in a repository, check for a .pylintrc file in the root.
 if repo !~ "^fatal" && filereadable(repo . '/.pylintrc')
@@ -37,6 +37,7 @@ if repo !~ "^fatal" && filereadable(repo . '/.pylintrc')
 else
     let pylintrc = '~/.config/.pylintrc'
 endif
+call add(g:neomake_python_enabled_makers, 'pylint')
 
 let g:neomake_python_pylint_maker = {
             \ 'args': [
@@ -45,10 +46,15 @@ let g:neomake_python_pylint_maker = {
             \ ],
             \ }
 
-let g:neomake_python_pydocstyle_maker = {
-            \ 'args': [
-            \ '--config', '~/.config/.pydocstyle',
-            \ ],
-            \ 'errorformat': '%W%f:%l %.%#:,%+C %m',
-            \ }
+" If in repo, check for .pydocstyle config, otherwise ignore.
+if repo !~ "^fatal" && filereadable(repo . '/.pydocstyle')
+    let pydocstyle = repo . '/.pydocstyle'
+    let g:neomake_python_pydocstyle_maker = {
+                \ 'args': [
+                \ '--config', pydocstyle,
+                \ ],
+                \ 'errorformat': '%W%f:%l %.%#:,%+C %m',
+                \ }
+    call add(g:neomake_python_enabled_makers, 'pydocstyle')
+endif
 " ========================================================================= }}}
