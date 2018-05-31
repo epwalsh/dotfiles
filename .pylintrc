@@ -136,10 +136,7 @@ disable=print-statement,
         comprehension-escape,
 		too-many-instance-attributes,
 		too-many-arguments,
-		too-many-locals,
-		arguments-differ,
-		unsupported-assignment-operation,
-		not-callable
+		too-many-locals
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -227,7 +224,7 @@ const-naming-style=UPPER_CASE
 
 # Regular expression matching correct constant names. Overrides const-naming-
 # style
-const-rgx=(logger|[A-Z_]+)
+const-rgx=(logger|[A-Z_]+|[A-Za-z]+Type)
 
 # Minimum line length for functions/classes that require docstrings, shorter
 # ones are exempt.
