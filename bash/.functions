@@ -51,3 +51,8 @@ R_install() {
 function search() {
     find ${2:-.} -type f -not -path '.git/*' | xargs grep "$1"
 }
+
+# Close a git repo using SSH
+Gclone() {
+    git clone git@github.com:$1.git
+}

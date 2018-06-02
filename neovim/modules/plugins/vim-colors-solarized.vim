@@ -11,3 +11,6 @@ let iterm_profile = $ITERM_PROFILE
 if iterm_profile == "Light"
     set background=light
 endif
+
+" This ensures that vim will inheret transparency from the terminal.
+hi Normal guibg=NONE ctermbg=NONE
