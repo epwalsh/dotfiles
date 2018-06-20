@@ -7,6 +7,8 @@
 " For navigating up and down through wrapped lines
 nnoremap j gj
 nnoremap k gk
+nnoremap 0 g0
+nnoremap $ g$
 
 nnoremap ; :
 vnoremap ; :
