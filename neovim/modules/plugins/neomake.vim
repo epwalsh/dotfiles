@@ -29,7 +29,7 @@ let g:neomake_cpp_clang_maker = {
 
 " Python settings
 " ========================================================================= {{{
-let g:neomake_python_enabled_makers = []
+let g:neomake_python_enabled_makers = ["mypy"]
 
 " If in a repository, check for a .pylintrc file in the root.
 if repo !~ "^fatal" && filereadable(repo . '/.pylintrc')
