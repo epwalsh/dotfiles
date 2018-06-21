@@ -1,9 +1,3 @@
-" =============================================================================
-" File Name:     filetypes.vim
-" Creation Date: 21-03-2016
-" Last Modified: 2017-08-04 16:00:25
-" =============================================================================
-
 " Recognize the right filetype for specific files.
 augroup filetype_checks
     autocmd!
