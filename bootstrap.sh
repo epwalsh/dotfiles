@@ -2,60 +2,63 @@
 
 # Install homebrew if not yet installed.
 if ! hash brew 2>/dev/null; then
-    echo "Installing homebrew";
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
+    echo "Installing homebrew"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 
 # Run the brew script to brew-install all the brewy stuff.
-read -p "Preparing to update homebrew and run formulas. This may take a while. Are you sure you want to continue? (y/n) " -n 1;
-echo "";
+read -p "Preparing to update homebrew and run formulas. This may take a while. Are you sure you want to continue? (y/n) " -n 1
+echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    source brew.sh;
-fi;
+    source brew.sh
+fi
 
 
 # Run the pip script to pip-install all the pipy stuff.
-read -p "Preparing to install base Python dependencies. Are you sure you want to continue? (y/n) " -n 1;
-echo "";
+read -p "Preparing to install base Python dependencies. Are you sure you want to continue? (y/n) " -n 1
+echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    source pip.sh;
-fi;
+    pip2 install --upgrade pip setuptools wheel
+    pip3 install --upgrade pip setuptools wheel
+    pip2 install -r requirements.txt
+    pip3 install -r requirements.txt
+fi
 
 
 # Now run bootstrap_helper.py to move the important files to the right place.
-read -p "Ready to bootstrap config files. This may overwrite existing files. Are you sure you want to continue? (y/n) " -n 1;
-echo "";
+read -p "Ready to bootstrap config files. This may overwrite existing files. Are you sure you want to continue? (y/n) " -n 1
+echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    python bootstrap_helper.py;
+    python bootstrap_helper.py
     ln -s ~/dotfiles/.pylintrc ~/.config/.pylintrc
     ln -s ~/dotfiles/.pydocstyle ~/.config/.pydocstyle
-    source ~/.bash_profile;
-fi;
+    source ~/.bash_profile
+fi
 
 
 # Install fonts for powerline.
-read -p "Ready to install powerline fonts. Are you sure you want to continue? (y/n) " -n 1;
-echo "";
+read -p "Ready to install powerline fonts. Are you sure you want to continue? (y/n) " -n 1
+echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    cd ..;
-    git clone https://github.com/powerline/fonts.git;
-    cd fonts;
-    ./install.sh;
-    cd ..;
-    rm -rf fonts;
-    cd dotfiles;
-fi;
+    cd ..
+    git clone https://github.com/powerline/fonts.git
+    cd fonts
+    ./install.sh
+    cd ..
+    rm -rf fonts
+    cd dotfiles
+fi
 
 
 # Now install neovim plugins.
-read -p "Ready to install neovim plugins. Are you sure you want to continue? (y/n) " -n 1;
-echo "";
+read -p "Ready to install neovim plugins. Are you sure you want to continue? (y/n) " -n 1
+echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim;
-    nvim +PluginInstall +qall;
-    nvim +UpdateRemotePlugins +qall;
-fi;
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
+    nvim +PluginInstall +qall
+    nvim +UpdateRemotePlugins +qall
+fi
 
 
 # Set some sane Apple defaults.
@@ -98,7 +101,7 @@ tell application "System Events"
 end tell
 EOF
 
-# Kill affected applications                                                  
+# Kill affected applications
 for app in "Activity Monitor" \
 	"Address Book" \
 	"Calendar" \

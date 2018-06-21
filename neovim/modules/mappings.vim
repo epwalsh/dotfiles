@@ -1,14 +1,16 @@
-" =============================================================================
-" File Name:     mappings.vim
-" Creation Date: 21-03-2016
-" Last Modified: 2017-07-26 14:55:43
-" =============================================================================
+function! WrapMove(move_type)
+    if &wrap == 0
+        execute "normal! " . a:move_type
+    else
+        execute "normal! g" . a:move_type
+    endif
+endfunction
 
-" For navigating up and down through wrapped lines
+" For navigating through wrapped lines.
 nnoremap j gj
 nnoremap k gk
-nnoremap 0 g0
-nnoremap $ g$
+nnoremap 0 :call WrapMove("0")<cr>
+nnoremap $ :call WrapMove("$")<cr>
 
 nnoremap ; :
 vnoremap ; :
