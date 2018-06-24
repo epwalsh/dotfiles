@@ -14,3 +14,6 @@ endif
 
 " This ensures that vim will inheret transparency from the terminal.
 hi Normal guibg=NONE ctermbg=NONE
+
+" Set ColorColumn color.
+hi ColorColumn ctermbg=236 guibg=grey

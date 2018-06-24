@@ -1,1 +1,2 @@
 neovim/modules/local.vim
+.mypy_cache

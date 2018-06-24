@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Match hidden files with "*"
+shopt -s dotglob
+
+# ==============================================================================
+# Install dependencies.
+# ==============================================================================
+
 # Install homebrew if not yet installed.
 if ! hash brew 2>/dev/null; then
     echo "Installing homebrew"
@@ -26,14 +33,56 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 
-# Now run bootstrap_helper.py to move the important files to the right place.
-read -p "Ready to bootstrap config files. This may overwrite existing files. Are you sure you want to continue? (y/n) " -n 1
+# ==============================================================================
+# Move config files into place.
+# ==============================================================================
+
+# Install bash dotfiles.
+read -p "Ready to install bash dotfiles. Are you sure you want to continue? (y/n) " -n 1
 echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    python bootstrap_helper.py
+    for filename in ~/dotfiles/bash/*; do
+        filebase=`basename $filename`
+        ln -s $filename ~/$filebase
+    done
+    source ~/.bash_profile
+fi
+
+
+# Install tmux configs.
+read -p "Ready to install tmux configs. Are you sure you want to continue? (y/n) " -n 1
+echo ""
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    mkdir -p ~/bin
+    for filename in ~/dotfiles/bin/*; do
+        filebase=`basename $filename`
+        ln -s $filename ~/bin/$filebase
+    done
+    for filename in ~/dotfiles/tmux/*; do
+        filebase=`basename $filename`
+        ln -s $filename ~/$filebase
+    done
+fi
+
+
+# Install tmux configs.
+read -p "Ready to install neovim configs. Are you sure you want to continue? (y/n) " -n 1
+echo ""
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    mkdir -p ~/.config/nvim
+    for filename in ~/dotfiles/neovim/*; do
+        filebase=`basename $filename`
+        ln -s $filename ~/.config/nvim/$filebase
+    done
+fi
+
+
+# Other configs.
+read -p "Ready to install python lint configs. Are you sure you want to continue? (y/n) " -n 1
+echo ""
+if [[ $REPLY =~ ^[Yy]$ ]]; then
     ln -s ~/dotfiles/.pylintrc ~/.config/.pylintrc
     ln -s ~/dotfiles/.pydocstyle ~/.config/.pydocstyle
-    source ~/.bash_profile
 fi
 
 
@@ -41,13 +90,13 @@ fi
 read -p "Ready to install powerline fonts. Are you sure you want to continue? (y/n) " -n 1
 echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    cd ..
+    cd ~/Downloads
     git clone https://github.com/powerline/fonts.git
     cd fonts
     ./install.sh
     cd ..
-    rm -rf fonts
-    cd dotfiles
+    rm -rf fonts/
+    cd ~/dotfiles
 fi
 
 
@@ -61,7 +110,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 
+# ==============================================================================
 # Set some sane Apple defaults.
+# ==============================================================================
 
 # Use list view in all Finder windows by default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
