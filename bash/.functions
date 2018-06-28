@@ -21,7 +21,7 @@ mkd() {
 # `less` with options to preserve color and line numbers, unless the output is
 # small enough for one screen.
 tre() {
-	tree -aC -I '.git|node_modules|bower_components|__pycache__' --dirsfirst "$@" | less -FRNX;
+	tree -aC -I '.git|node_modules|bower_components|__pycache__|.mypy_cache' --dirsfirst "$@" | less -FRNX;
 }
 
 # Clean up Python compiled files
