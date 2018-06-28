@@ -49,7 +49,10 @@ R_install() {
 
 # Search files for key phrase.
 function search() {
-    find ${2:-.} -type f -not -path '.git/*' | xargs grep "$1"
+    find ${2:-.} -type f \
+        -not -path '*.git/*' \
+        -not -path '*.mypy_cache/*' \
+        -not -path '*__pycache__/*'| xargs grep "$1"
 }
 
 # Close a git repo using SSH
