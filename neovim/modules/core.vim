@@ -49,3 +49,5 @@ map <ScrollWheelDown> <C-E>
 
 " Configure the cursor shape and color.
 set guicursor=i:ver25
+
+set scroll=20

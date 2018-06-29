@@ -39,10 +39,6 @@ vnoremap <F4> :<c-u>normal! `<mr`>mt<cr>:<c-u>set<Space>hls!<cr>:<c-u>normal! `r
 
 " Movements between windows when not in tmux
 nnoremap <c-j> <nop>
-" map <c-j> <c-w>j
-" map <c-k> <c-w>k
-" map <c-l> <c-w>l
-" map <c-h> <c-w>h
 
 " Move lines up or down
 nnoremap ∆ :m .+1<CR>==
@@ -59,20 +55,6 @@ nnoremap <leader>lw <esc>bveue
 
 " Copy current line
 nnoremap <leader>yl 0v$y
-
-" Global copying and pasting between files open in vim
-" vnoremap <F6> "+y
-" vnoremap <leader>cp "+y
-" nnoremap <F7> "+p
-" nnoremap <leader>cv "+p
-" inoremap <F7> <esc>"+pi
-" inoremap <leader>cv <esc>"+pi
-" nnoremap <leader><F7> "+p
-
-" Open vimrc in a split
-" nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-" Source vimrc
-" nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Put quotes around a word
 nnoremap <leader>" ea"<esc>hbi"<esc>lel
@@ -110,3 +92,7 @@ nnoremap <leader>O O<esc>
 
 " Toggle paste
 set pastetoggle=<F3>
+
+" Hop up and down without losing track of where the fudge you are.
+nnoremap <c-u> 10<c-y>
+nnoremap <c-d> 10<c-e>
