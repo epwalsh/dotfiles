@@ -77,6 +77,18 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 
+# Install Alacritty config.
+read -p "Ready to install alacritty config. Are you sure you want to continue? (y/n) " -n 1
+echo ""
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    mkdir -p ~/.config/alacritty
+    for filename in ~/dotfiles/alacritty/*; do
+        filebase=`basename $filename`
+        ln -s $filename ~/.config/alacritty/$filebase
+    done
+fi
+
+
 # Other configs.
 read -p "Ready to install python lint configs. Are you sure you want to continue? (y/n) " -n 1
 echo ""

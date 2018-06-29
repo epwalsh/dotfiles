@@ -1,6 +1,6 @@
 # Practical dotfiles for (neo)vim OS X hackers
 
-### iTerm2 + tmux + neovim
+### iTerm2 (or Alacritty) + tmux + neovim
 
 This configuration supports two themes, Light and Dark. Here is the Light theme in action:
 
