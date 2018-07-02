@@ -31,3 +31,6 @@ alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 
 # Go directory to root of git repo
 alias git-root='cd $(git rev-parse --show-cdup)'
+
+# Get external IP address.
+alias external-ip='echo `curl ipecho.net/plain;echo`'
