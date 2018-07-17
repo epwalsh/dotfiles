@@ -12,7 +12,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 # Exploring a directory
 alias tree='tree -lC --dirsfirst'
-alias ls='ls -FG'
+alias ls='ls -FG --color'
 alias la='ls -a'
 
 # Navigation
