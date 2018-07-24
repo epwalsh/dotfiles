@@ -40,3 +40,6 @@ alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 # Remote into Piper.
 alias mosh-piper='mosh epwalsh@73.97.143.214'
 alias mosh-local-piper='mosh epwalsh@10.0.0.178'
+
+# Remote into Parnell.
+alias mosh-parnell='mosh epwalsh@173.18.194.82'
