@@ -14,6 +14,7 @@ let cmdline_outhl = 1         " Syntax highlight the output
 
 let cmdline_app = {}
 let cmdline_app["python"] = "ipython"
+let cmdline_app["sh"]     = "bash"
 
 
 if &t_Co == 256
