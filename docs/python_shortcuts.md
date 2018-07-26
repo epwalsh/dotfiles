@@ -1,0 +1,7 @@
+- `<leader>K` - open documentation for object
+- `<leader>g` - go to assignments
+- `<leader>n` - see all usages
+- `<leader>r` - rename
+- `<leader>s` - start interactive session
+- `<leader>q` - stop session
+- `<C-k>` - open / skip through snippet
