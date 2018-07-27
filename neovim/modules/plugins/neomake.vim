@@ -2,7 +2,7 @@ autocmd! BufWritePost *.py Neomake
 autocmd! BufWritePost *.cpp Neomake
 autocmd! BufWritePost *.hpp Neomake
 
-let g:neomake_open_list = 2
+let g:neomake_open_list = 1
 let g:neomake_list_height = 5
 
 let repo = systemlist("git rev-parse --show-toplevel")[0]
