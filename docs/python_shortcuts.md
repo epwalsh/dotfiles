@@ -5,3 +5,5 @@
 - `<leader>s` - start interactive session
 - `<leader>q` - stop session
 - `<C-k>` - open / skip through snippet
+- `:lopen` - open location-list window of linting errors/warnings.
+- `:lcl` - close location-list.
