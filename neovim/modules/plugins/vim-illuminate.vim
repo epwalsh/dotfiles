@@ -7,8 +7,3 @@ let g:Illuminate_ftHighlightGroups = {
       \ }
 
 let g:Illuminate_ftblacklist = ['nerdtree']
-
-" Highlight the line under the cursor. Matching words will be highlighted with
-" the same color.
-set cursorline
-highlight CursorLine ctermbg=237
