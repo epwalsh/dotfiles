@@ -8,4 +8,9 @@ let g:Illuminate_ftHighlightGroups = {
 
 let g:Illuminate_ftblacklist = ['nerdtree']
 
-highlight illuminatedWord cterm=bold ctermbg=236
+let iterm_profile = $ITERM_PROFILE
+if iterm_profile == "Light"
+    highlight illuminatedWord cterm=bold ctermbg=187
+else
+    highlight illuminatedWord cterm=bold ctermbg=236
+endif
