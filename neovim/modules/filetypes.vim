@@ -10,6 +10,7 @@ augroup filetype_vim
     autocmd!
     au FileType vim setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType vim setlocal foldmethod=marker
+    au FileType vim hi vimLineComment ctermfg=005
 augroup END
 " ------------------------------------------------------------------------- }}}
 
@@ -125,5 +126,6 @@ augroup filetype_bash
     autocmd!
     au FileType sh setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType sh setlocal foldmethod=marker
+    au FileType sh hi shComment ctermfg=005
 augroup END
 " ------------------------------------------------------------------------- }}}

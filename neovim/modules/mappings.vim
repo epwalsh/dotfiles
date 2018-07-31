@@ -96,3 +96,12 @@ set pastetoggle=<F3>
 " Hop up and down without losing track of where the fudge you are.
 nnoremap <c-u> 10<c-y>
 nnoremap <c-d> 10<c-e>
+
+" Show highlight group.
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
