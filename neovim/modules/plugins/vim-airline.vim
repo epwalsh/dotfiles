@@ -17,3 +17,6 @@ else
     let g:airline_solarized_bg = 'dark'
 endif
 " Good themes: papercolor, murmur, powerlineish, solarized, light, badwolf
+
+" Disable airline from changing tmux theme.
+let g:airline#extensions#tmuxline#enabled = 0

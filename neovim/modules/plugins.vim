@@ -7,6 +7,7 @@ call vundle#begin("~/.config/nvim/bundle/")
 Bundle 'altercation/vim-colors-solarized'
 " Bundle 'artur-shaik/vim-javacomplete2'
 Bundle 'benekastah/neomake'
+Bundle 'edkolev/tmuxline.vim'
 Bundle 'ervandew/supertab'
 Bundle 'epwalsh/NvimAutoheader'
 Bundle 'epwalsh/vimcmdline'
