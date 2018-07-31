@@ -65,10 +65,6 @@ augroup filetype_python
     au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType python setlocal omnifunc=pythoncomplete#Complete
     au BufNewFile *.py,*.pyx 0r ~/.config/nvim/headers/template.py
-
-    " Some custom syntax highlighting colors.
-    au FileType python hi pythonComment ctermfg=005
-    au FileType python hi pythonNumber ctermfg=197
 augroup END
 " ------------------------------------------------------------------------- }}}
 
@@ -126,6 +122,5 @@ augroup filetype_bash
     autocmd!
     au FileType sh setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType sh setlocal foldmethod=marker
-    au FileType sh hi shComment ctermfg=005
 augroup END
 " ------------------------------------------------------------------------- }}}

@@ -8,4 +8,4 @@ let g:Illuminate_ftHighlightGroups = {
 
 let g:Illuminate_ftblacklist = ['nerdtree']
 
-highlight illuminatedWord cterm=inverse
+highlight illuminatedWord cterm=bold ctermbg=236
