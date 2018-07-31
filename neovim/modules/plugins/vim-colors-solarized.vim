@@ -15,7 +15,7 @@ if iterm_profile == "Light"
     set background=light
 else
     " Set cursorline color.
-    highlight CursorLine ctermbg=236
+    highlight CursorLine ctermbg=237
 
     " Set ColorColumn color.
     hi ColorColumn ctermbg=236 guibg=grey
