@@ -78,6 +78,7 @@ augroup END
 augroup filetype_yml
     autocmd!
     au FileType yaml setlocal shiftwidth=2 tabstop=2 expandtab
+    au FileType yaml setlocal wrap linebreak nolist
 augroup END
 " ------------------------------------------------------------------------- }}}
 
