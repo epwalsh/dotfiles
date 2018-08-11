@@ -13,3 +13,9 @@ export PYTHONIOENCODING='UTF-8';
 
 # TERM settings
 export TERM=screen-256color
+
+# Better coloring of directories for light colorscheme.
+if [[ ${ITERM_PROFILE:-"Dark"} = "Light" ]]; then
+    LS_COLORS=$LS_COLORS:'di=0;35:'
+    export LS_COLORS
+fi
