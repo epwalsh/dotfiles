@@ -16,7 +16,7 @@ And here is the Dark theme:
 To bootstrap this configuration, just enter the following in your terminal:
 
 ```bash
-git clone https://github.com/epwalsh/dotfiles.git && cd dotfiles && source bootstrap.sh
+git clone https://github.com/epwalsh/dotfiles.git && cd dotfiles && source bootstrap.sh && source ~/.bash_profile
 ```
 
 Runtime: about 30 minutes to an hour if you install everything (recommended), depending on your internet speed.
