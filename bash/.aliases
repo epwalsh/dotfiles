@@ -36,10 +36,3 @@ alias git-root='cd $(git rev-parse --show-cdup)'
 # OS X specific stuff
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app/'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app/'
-
-# Remote into Piper.
-alias mosh-piper='mosh epwalsh@73.97.143.214'
-alias mosh-local-piper='mosh epwalsh@10.0.0.178'
-
-# Remote into Parnell.
-alias mosh-parnell='mosh epwalsh@173.18.194.82'
