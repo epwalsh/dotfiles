@@ -3,3 +3,5 @@ jedi
 pylint
 pydocstyle
 mypy
+virtualenv
+virtualenvwrapper

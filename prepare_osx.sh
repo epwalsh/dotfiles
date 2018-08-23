@@ -1,8 +1,10 @@
-#!/usr/bin/env bash
-
 # Modified from https://github.com/mathiasbynens/dotfiles/blob/master/brew.sh
 
-# Install command-line tools using Homebrew.
+# Install homebrew if not yet installed.
+if ! hash brew 2>/dev/null; then
+    echo "Installing homebrew"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 # Make sure we’re using the latest Homebrew.
 brew update

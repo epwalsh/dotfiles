@@ -148,3 +148,10 @@ abbr        import ipdb..
 snippet     ipy
 abbr        import ipython..
 	from IPython import embed; embed()
+
+snippet     pytest_parametrize
+abbr        @pytest.mark.parametrize("...", ...)
+options     head
+    @pytest.mark.parametrize("${1:#:params}", ${2:cases})
+    def test_${3:method name}(${4:#:fixtures, }$1):
+        ${5:pass}
