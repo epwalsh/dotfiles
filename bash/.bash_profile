@@ -34,3 +34,7 @@ if [[ `uname` == 'Darwin' ]]; then
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Virtualenv setup.
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh

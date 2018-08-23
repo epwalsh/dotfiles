@@ -12,3 +12,8 @@ cd fonts
 cd ..
 rm -rf fonts/
 cd ~/dotfiles
+
+# Install vcprompt.
+mkdir -p ~/bin
+curl -sL https://github.com/djl/vcprompt/raw/master/bin/vcprompt > ~/bin/vcprompt
+chmod 755 ~/bin/vcprompt
