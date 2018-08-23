@@ -6,7 +6,8 @@ sudo apt-get install -y \
     tmux \
     python-setuptools \
     fortune-mod \
-    cowsay
+    cowsay \
+    tree
 
 # Python 3.6.
 sudo add-apt-repository ppa:deadsnakes/ppa
