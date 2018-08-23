@@ -1,6 +1,6 @@
 # Base python dependencies.
-pip install --upgrade pip setuptools wheel
-pip install -r requirements.txt
+sudo pip install --upgrade pip setuptools wheel
+sudo pip install -r requirements.txt
 
 # Powerline fonts.
 cd ~/Downloads
