@@ -6,6 +6,10 @@ fi
 export PATH=$HOME/bin:$PATH
 export PATH=$PATH:/usr/local/sbin
 
+# Virtualenv setup.
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
 # Source other config files
 for file in ~/.{bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
@@ -34,7 +38,3 @@ if [[ `uname` == 'Darwin' ]]; then
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# Virtualenv setup.
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
