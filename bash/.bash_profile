@@ -4,7 +4,7 @@ if ! [ -n "$TMUX" ]; then
 fi
 
 export PATH=$HOME/bin:$PATH
-export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin
 
 # Virtualenv setup.
 export WORKON_HOME=$HOME/.virtualenvs
