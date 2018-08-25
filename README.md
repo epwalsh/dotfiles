@@ -1,8 +1,8 @@
-# Practical dotfiles for (neo)vim OS X hackers
+# Practical dotfiles for (neo)vim hackers
 
-### iTerm2 (or Alacritty) + tmux + neovim
+### tmux + neovim
 
-This configuration supports two themes, Light and Dark. Here is the Light theme in action:
+This configuration supports two themes, "Light" and "Dark". Here is the Light theme in action:
 
 ![demo](images/demo2.gif)
 
@@ -20,7 +20,7 @@ git clone https://github.com/epwalsh/dotfiles.git && cd dotfiles && bootstrap.sh
 source ~/.bash_profile
 ```
 
-Runtime: about 30 minutes to an hour if you install everything (recommended), depending on your internet speed.
+## Additional setup for Mac OS X
 
 ### iTerm2
 
