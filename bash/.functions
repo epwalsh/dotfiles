@@ -60,8 +60,14 @@ function Gclone() {
 }
 
 # Quickly cleanup cruft from docker machine.
-function docker-cleanup() {
-    docker rm `docker ps -a -q`
-    docker rmi `docker images | grep "^<none" | tr -s ' ' | cut -d' ' -f 3`
+function docker_cleanup() {
+    old_containers=$(docker ps -a -q)
+    if [[ ! -z $old_containers ]]; then
+        docker rm $(old_containers)
+    fi
+    old_images=$(docker images | grep "^<none" | tr -s ' ' | cut -d' ' -f 3)
+    if [[ ! -z $old_images ]]; then
+        docker rmi $(old_images)
+    fi
     docker volume prune -f
 }
