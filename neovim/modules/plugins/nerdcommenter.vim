@@ -1,9 +1,3 @@
-" =============================================================================
-" File Name:     nerdcommenter.vim
-" Creation Date: 21-03-2016
-" Last Modified: 2017-06-15 12:18:58
-" =============================================================================
-
 " Add spaces after comment delimiters by default
 let NERDSpaceDelims = 1
 

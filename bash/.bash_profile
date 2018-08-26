@@ -3,8 +3,16 @@ if ! [ -n "$TMUX" ]; then
     fortune | cowsay;
 fi
 
-export PATH=$HOME/bin:$PATH
-export PATH=$PATH:/usr/local/sbin:/usr/local/bin
+for x in $HOME/bin $HOME/.cargo/bin usr/local/sbin /usr/local/bin; do
+    if [[ ! -d $x ]]; then
+        echo "Warning, path $x does not exist, skipping adding it to PATH" >&2
+        continue
+    fi
+    case ":$PATH:" in
+        *":$x:"*) :;; # already there
+        *) export PATH="$x:$PATH";;
+    esac
+done
 
 # Virtualenv setup.
 export WORKON_HOME=$HOME/.virtualenvs
@@ -36,5 +44,3 @@ fi
 if [[ `uname` == 'Darwin' ]]; then
     complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal iTerm" killall;
 fi
-
-export PATH="$HOME/.cargo/bin:$PATH"

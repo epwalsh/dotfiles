@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Defines convenient aliases.
 
 # Neovim
 alias ni='nvim'
@@ -34,5 +33,8 @@ alias external-ip='echo `curl ipecho.net/plain;echo`'
 alias git-root='cd $(git rev-parse --show-cdup)'
 
 # OS X specific stuff
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app/'
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app/'
+if [[ `uname` == 'Darwin' ]]; then
+    # Show or hide hidden files in Finder App.
+    alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app/'
+    alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app/'
+fi

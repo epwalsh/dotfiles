@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Styles the bash prompt.
 
 bldblk='\e[1;30m' # Black - Bold
 lightpink='\033[38;5;165m'

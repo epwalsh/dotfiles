@@ -1,9 +1,3 @@
-" =============================================================================
-" File Name:     vimcmdline.vim
-" Creation Date: 13-04-2016
-" Last Modified: 2017-06-15 12:19:41
-" =============================================================================
-
 let cmdline_vsplit = 1        " Split the window vertically
 let cmdline_esc_term = 1      " Remap <Esc> to :stopinsert in Neovim terminal
 let cmdline_in_buffer = 0     " Start the interpreter in a Neovim buffer

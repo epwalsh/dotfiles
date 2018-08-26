@@ -21,7 +21,7 @@ fi
 if [[ $OS = 'Darwin' ]]; then
     read -p "Preparing to set OS X defaults. Are you sure you want to continue? (y/n) " confirm
     if [[ $confirm =~ ^[Yy]$ ]]; then
-        source ./defaults_osx.sh
+        source defaults_osx.sh
     fi
 fi
 
