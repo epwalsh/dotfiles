@@ -134,9 +134,10 @@ disable=print-statement,
         deprecated-sys-function,
         exception-escape,
         comprehension-escape,
-		too-many-instance-attributes,
-		too-many-arguments,
-		too-many-locals
+        too-many-instance-attributes,
+        too-many-arguments,
+        too-many-locals,
+        missing-docstring
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -244,10 +245,11 @@ good-names=i,
            ex,
            Run,
            _,
-		   x,
-		   n,
-		   s,
-		   f
+           x,
+           n,
+           s,
+           f,
+           db
 
 # Include a hint for the correct naming format with invalid-name
 include-naming-hint=no
