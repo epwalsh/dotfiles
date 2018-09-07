@@ -1,4 +1,5 @@
 autocmd! BufWritePost *.py Neomake
+autocmd! BufWritePost *.sh Neomake
 autocmd! BufWritePost *.cpp Neomake
 autocmd! BufWritePost *.hpp Neomake
 
@@ -68,4 +69,16 @@ if repo !~ "^fatal" && filereadable(repo . '/.pydocstyle')
                 \ }
     call add(g:neomake_python_enabled_makers, 'pydocstyle')
 endif
+" ========================================================================= }}}
+
+" Shell/Bash settings
+" ========================================================================= {{{
+let g:neomake_sh_enabled_makers = ["shellcheck"]
+let g:neomake_sh_shellcheck_maker = {
+            \ 'args': ['-fgcc'],
+            \ 'errorformat':
+                \ '%f:%l:%c: %trror: %m,' .
+                \ '%f:%l:%c: %tarning: %m,' .
+                \ '%f:%l:%c: %tote: %m'
+            \}
 " ========================================================================= }}}

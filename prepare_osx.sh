@@ -101,6 +101,9 @@ brew install ucspi-tcp # `tcpserver` etc.
 brew install xpdf
 brew install xz
 
+# Linting bash files.
+brew install shellcheck
+
 # Install other useful binaries.
 brew install vcprompt
 brew install fortune
