@@ -4,6 +4,12 @@ augroup filetype_checks
     au BufRead .clang-format set ft=yaml
 augroup END
 
+" Miscellaneous config file settings -------------------------------------- {{{
+augroup filetype_conf
+    autocmd!
+    au FileType conf setlocal shiftwidth=4 tabstop=4 expandtab
+augroup END
+" ------------------------------------------------------------------------- }}}
 
 " Vimscript file settings ------------------------------------------------- {{{
 augroup filetype_vim
