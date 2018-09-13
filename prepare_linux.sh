@@ -13,4 +13,8 @@ sudo apt-get install -y \
 # Python 3.6.
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt-get update
-sudo apt-get install python3.6
+sudo apt-get install -y \
+    python3.6 \
+    python3-pip \
+    python3-dev \
+    python-virtualenv
