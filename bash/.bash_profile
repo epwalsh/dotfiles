@@ -3,7 +3,7 @@ if ! [ -n "$TMUX" ]; then
     fortune | cowsay;
 fi
 
-for x in $HOME/bin $HOME/.cargo/bin usr/local/sbin /usr/local/bin; do
+for x in $HOME/bin $HOME/.cargo/bin /usr/local/bin; do
     if [[ ! -d $x ]]; then
         echo "Warning, path $x does not exist, skipping adding it to PATH" >&2
         continue
