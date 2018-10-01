@@ -1,6 +1,7 @@
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
 let g:Tex_GotoError=0
+let g:tex_conceal = ""
 
 augroup tex_mappings
     autocmd!
