@@ -7,7 +7,8 @@ alias ni='nvim'
 alias R='R --quiet'
 
 # Tmux
-alias tmux="TERM=screen-256color-bce tmux"
+alias tmux='TERM=screen-256color-bce tmux'
+alias mux='tmuxinator'
 
 # Exploring a directory
 alias tree='tree -lC --dirsfirst'
