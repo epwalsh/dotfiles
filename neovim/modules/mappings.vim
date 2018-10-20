@@ -1,16 +1,27 @@
-function! WrapMove(move_type)
-    if &wrap == 0
-        execute "normal! " . a:move_type
-    else
-        execute "normal! g" . a:move_type
-    endif
+" mapping to make movements operate on 1 screen line in wrap mode
+function! ScreenMovement(movement)
+  if &wrap
+    return "g" . a:movement
+  else
+    return a:movement
+  endif
 endfunction
-
-" For navigating through wrapped lines.
-nnoremap j gj
-nnoremap k gk
-nnoremap 0 :call WrapMove("0")<cr>
-nnoremap $ :call WrapMove("$")<cr>
+onoremap <silent> <expr> j ScreenMovement("j")
+onoremap <silent> <expr> k ScreenMovement("k")
+onoremap <silent> <expr> 0 ScreenMovement("0")
+onoremap <silent> <expr> ^ ScreenMovement("^")
+onoremap <silent> <expr> $ ScreenMovement("$")
+nnoremap <silent> <expr> j ScreenMovement("j")
+nnoremap <silent> <expr> k ScreenMovement("k")
+nnoremap <silent> <expr> 0 ScreenMovement("0")
+nnoremap <silent> <expr> ^ ScreenMovement("^")
+nnoremap <silent> <expr> $ ScreenMovement("$")
+vnoremap <silent> <expr> j ScreenMovement("j")
+vnoremap <silent> <expr> k ScreenMovement("k")
+vnoremap <silent> <expr> 0 ScreenMovement("0")
+vnoremap <silent> <expr> ^ ScreenMovement("^")
+vnoremap <silent> <expr> $ ScreenMovement("$")
+vnoremap <silent> <expr> j ScreenMovement("j")
 
 nnoremap ; :
 vnoremap ; :
