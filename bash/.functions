@@ -71,3 +71,12 @@ function docker_cleanup() {
     fi
     docker volume prune -f
 }
+
+# Update all files.
+function update_all() {
+    if [[ `uname` != 'Darwin' ]]; then
+        sudo bash -c 'for i in update {,dist-}upgrade auto{remove,clean}; do apt-get $i -y; done'
+    else
+        brew update
+    fi
+}

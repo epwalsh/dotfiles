@@ -51,3 +51,6 @@ map <ScrollWheelDown> <C-E>
 set guicursor=i:ver25
 
 set scroll=20
+
+" Change directory to where current buffer is.
+autocmd BufEnter * silent! lcd %:p:h

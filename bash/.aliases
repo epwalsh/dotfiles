@@ -33,7 +33,7 @@ alias external-ip='echo `curl ipecho.net/plain;echo`'
 # Go directory to root of git repo
 alias git-root='cd $(git rev-parse --show-cdup)'
 
-# OS X specific stuff
+# OS specific stuff
 if [[ `uname` == 'Darwin' ]]; then
     # Show or hide hidden files in Finder App.
     alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app/'
