@@ -30,7 +30,7 @@ augroup END
 " Latex settings ---------------------------------------------------------- {{{
 augroup filetype_tex
     autocmd!
-    " au FileType tex  let b:autopairs_enabled=0
+    au FileType tex  let b:autopairs_enabled=0
     au FileType tex  setlocal colorcolumn=150
     au FileType tex  setlocal shiftwidth=2 tabstop=2 expandtab
     au FileType tex  setlocal wrap linebreak nolist
