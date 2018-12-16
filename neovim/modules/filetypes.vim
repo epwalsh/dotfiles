@@ -109,7 +109,7 @@ augroup END
 " JSON settings ----------------------------------------------------------- {{{
 augroup filetype_json
     autocmd!
-    au FileType json setlocal shiftwidth=2 tabstop=2 expandtab
+    au FileType json setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType json setlocal conceallevel=0
 augroup END
 " ------------------------------------------------------------------------- }}}
