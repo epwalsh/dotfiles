@@ -18,3 +18,6 @@ sudo apt-get install -y \
     python3-pip \
     python3-dev \
     python-virtualenv
+
+# Fuzzy completion.
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
