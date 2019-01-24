@@ -52,6 +52,9 @@ Bundle 'mattn/emmet-vim'
 " Command line tool for math that runs Python in Vim session.
 Bundle 'metakirby5/codi.vim'
 
+" Javascript bundle. Comes with syntax highlighting, improved indentation.
+Bundle 'pangloss/vim-javascript'
+
 " Check C and C++ files.
 Bundle 'rhysd/vim-clang-format'
 
