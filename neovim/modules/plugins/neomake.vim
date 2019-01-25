@@ -13,6 +13,8 @@ let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'airline_z'}
 let g:neomake_error_sign = {'text': 'E>', 'texthl': 'airline_a'}
 " Run :so $VIMRUNTIME/syntax/hitest.vim to show all highlight groups.
 
+" let g:neomake_javascript_enabled_makers = ["eslint"]
+
 " C++ settings
 " ========================================================================= {{{
 let args = ['-Wall', '-pedantic', '-Wno-sign-conversion', '-Wno-c++11-extensions', '-std=c++11']
