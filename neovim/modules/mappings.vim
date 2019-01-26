@@ -48,9 +48,6 @@ nnoremap <leader>m %
 nnoremap <F4> :set<Space>hls!<cr>
 vnoremap <F4> :<c-u>normal! `<mr`>mt<cr>:<c-u>set<Space>hls!<cr>:<c-u>normal! `rv`t<cr>
 
-" Movements between windows when not in tmux
-nnoremap <c-j> <nop>
-
 " Move lines up or down
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
@@ -116,3 +113,9 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" Adjust window size.
+nnoremap <c-w><left> :vertical resize -5<CR>
+nnoremap <c-w><right> :vertical resize +5<CR>
+nnoremap <c-w><up> :res +5<CR>
+nnoremap <c-w><down> :res -5<CR>
