@@ -92,3 +92,8 @@ function update_all() {
         brew update
     fi
 }
+
+# Check if cuda available
+function check_cuda() {
+    python -c 'import torch; print("Cuda devices available:", torch.cuda.device_count())'
+}

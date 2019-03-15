@@ -2,6 +2,7 @@
 augroup filetype_checks
     autocmd!
     au BufRead .clang-format set ft=yaml
+    au BufRead *.swift set ft=swift
 augroup END
 
 " Miscellaneous config file settings -------------------------------------- {{{
