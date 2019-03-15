@@ -46,6 +46,9 @@ Bundle 'jiangmiao/auto-pairs'
 
 " Bundle 'JuliaEditorSupport/julia-vim'
 
+" Swift syntax highlighting and indentation.
+Bundle "keith/swift.vim"
+
 " HTML files.
 Bundle 'mattn/emmet-vim'
 

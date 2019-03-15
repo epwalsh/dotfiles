@@ -2,7 +2,6 @@
 augroup filetype_checks
     autocmd!
     au BufRead .clang-format set ft=yaml
-    au BufRead *.swift set ft=swift
 augroup END
 
 " Miscellaneous config file settings -------------------------------------- {{{
@@ -61,6 +60,13 @@ augroup END
 augroup filetype_dockerfile
     autocmd!
     au FileType dockerfile setlocal shiftwidth=4 tabstop=4 expandtab
+augroup END
+" ------------------------------------------------------------------------- }}}
+
+" Swift settings --------------------------------------------------------- {{{
+augroup filetype_swift
+    autocmd!
+    au FileType swift setlocal shiftwidth=4 tabstop=4 expandtab
 augroup END
 " ------------------------------------------------------------------------- }}}
 
