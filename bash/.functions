@@ -37,7 +37,7 @@ function tre() {
 
 # Clean up Python compiled files
 function pyclean() {
-    find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+    find . | grep -E "(.mypy_cache|__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
 }
 
 # Use codivim module.
@@ -96,4 +96,8 @@ function update_all() {
 # Check if cuda available
 function check_cuda() {
     python -c 'import torch; print("Cuda devices available:", torch.cuda.device_count())'
+}
+
+function utc_now() {
+    python -c 'from datetime import datetime as dt; print(dt.utcnow())'
 }

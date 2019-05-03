@@ -2,6 +2,7 @@
 augroup filetype_checks
     autocmd!
     au BufRead .clang-format set ft=yaml
+    au BufRead Dockerfile.* set ft=dockerfile
 augroup END
 
 " Miscellaneous config file settings -------------------------------------- {{{
@@ -60,6 +61,13 @@ augroup END
 augroup filetype_dockerfile
     autocmd!
     au FileType dockerfile setlocal shiftwidth=4 tabstop=4 expandtab
+augroup END
+" ------------------------------------------------------------------------- }}}
+
+" Jenkinsfile settings ----------------------------------------------------- {{{
+augroup filetype_jenkinsfile
+    autocmd!
+    au BufRead Jenkinsfile setlocal shiftwidth=2 tabstop=2 expandtab
 augroup END
 " ------------------------------------------------------------------------- }}}
 

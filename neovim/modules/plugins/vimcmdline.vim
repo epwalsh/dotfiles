@@ -9,7 +9,7 @@ let cmdline_outhl = 1         " Syntax highlight the output
 let cmdline_app = {}
 let cmdline_app["python"] = "ipython"
 let cmdline_app["sh"]     = "bash"
-let cmdline_app["swift"]  = "~/swift-4.2.3-RELEASE-ubuntu16.04/usr/bin/swift"
+let cmdline_app["swift"]  = "~/swift-5.0-RELEASE-ubuntu18.04/usr/bin/swift"
 
 
 if &t_Co == 256
