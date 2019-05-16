@@ -1,7 +1,4 @@
-autocmd! BufWritePost *.py Neomake
-autocmd! BufWritePost *.sh Neomake
-autocmd! BufWritePost *.cpp Neomake
-autocmd! BufWritePost *.hpp Neomake
+call neomake#configure#automake("nrwi", 1000)
 
 let g:neomake_open_list = 0
 let g:neomake_list_height = 5

@@ -87,6 +87,13 @@ augroup filetype_python
 augroup END
 " ------------------------------------------------------------------------- }}}
 
+" Kotlin settings --------------------------------------------------------- {{{
+augroup filetype_kotlin
+    autocmd!
+    au FileType kotlin setlocal shiftwidth=4 tabstop=4 expandtab
+augroup END
+" ------------------------------------------------------------------------- }}}
+
 " Julia settings ---------------------------------------------------------- {{{
 augroup filetype_julia
     autocmd!

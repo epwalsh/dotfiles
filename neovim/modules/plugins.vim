@@ -86,6 +86,9 @@ Bundle 'tpope/vim-fugitive'
 " Changing surroundings.
 Bundle 'tpope/vim-surround'
 
+" Kotlin lang
+Bundle 'udalov/kotlin-vim'
+
 " Status bar theme.
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
