@@ -3,6 +3,7 @@ augroup filetype_checks
     autocmd!
     au BufRead .clang-format set ft=yaml
     au BufRead Dockerfile.* set ft=dockerfile
+    au BufRead *.conf set ft=conf
 augroup END
 
 " Miscellaneous config file settings -------------------------------------- {{{
