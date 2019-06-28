@@ -13,6 +13,13 @@ augroup filetype_conf
 augroup END
 " ------------------------------------------------------------------------- }}}
 
+" Jsonnet file settings --------------------------------------------------- {{{
+augroup filetype_jsonnet
+    autocmd!
+    au FileType jsonnet setlocal shiftwidth=4 tabstop=4 expandtab
+augroup END
+" ------------------------------------------------------------------------- }}}
+
 " Vimscript file settings ------------------------------------------------- {{{
 augroup filetype_vim
     autocmd!
