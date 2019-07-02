@@ -152,6 +152,8 @@ abbr        import ipython..
 snippet     pytest_parametrize
 abbr        @pytest.mark.parametrize("...", ...)
 options     head
-    @pytest.mark.parametrize("${1:#:params}", ${2:cases})
-    def test_${3:method name}(${4:#:fixtures, }$1):
-        ${5:pass}
+    @pytest.mark.parametrize("${1:#:params}", [
+        (),
+    ])
+    def test_${2:method name}(${3:#:fixtures, }$1):
+        ${4:pass}
