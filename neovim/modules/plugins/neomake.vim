@@ -73,7 +73,7 @@ endif
 " ========================================================================= {{{
 let g:neomake_sh_enabled_makers = ["shellcheck"]
 let g:neomake_sh_shellcheck_maker = {
-            \ 'args': ['-fgcc'],
+            \ 'args': ['-fgcc', '-x'],
             \ 'errorformat':
                 \ '%f:%l:%c: %trror: %m,' .
                 \ '%f:%l:%c: %tarning: %m,' .
