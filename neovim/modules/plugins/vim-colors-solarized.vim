@@ -11,8 +11,7 @@ else
     highlight CursorLine ctermbg=236
     highlight ColorColumn ctermbg=236 guibg=grey
     highlight Comment cterm=italic ctermfg=96 ctermbg=236
-    highlight Number ctermfg=204
-    " highlight Normal ctermfg=246
+    highlight Number ctermfg=198
 endif
 
 " This ensures that vim will inheret transparency from the terminal.
