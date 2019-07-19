@@ -11,7 +11,7 @@ export EDITOR=$VISUAL
 export PYTHONIOENCODING='UTF-8';
 
 # TERM settings
-export TERM=screen-256color
+export TERM=xterm-256color
 
 # Better coloring of directories for light colorscheme.
 if [[ ${ITERM_PROFILE:-"Dark"} = "Light" ]]; then
