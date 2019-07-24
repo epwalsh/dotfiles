@@ -44,7 +44,7 @@ Bundle 'JamshedVesuna/vim-markdown-preview'
 " Auto-complete pairs.
 Bundle 'jiangmiao/auto-pairs'
 
-" Bundle 'JuliaEditorSupport/julia-vim'
+Bundle 'JuliaEditorSupport/julia-vim'
 
 " Swift syntax highlighting and indentation.
 Bundle "keith/swift.vim"

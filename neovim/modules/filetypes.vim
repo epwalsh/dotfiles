@@ -4,6 +4,7 @@ augroup filetype_checks
     au BufRead .clang-format set ft=yaml
     au BufRead Dockerfile.* set ft=dockerfile
     au BufRead *.conf set ft=conf
+    au BufRead *.jl set ft=julia
 augroup END
 
 " Miscellaneous config file settings -------------------------------------- {{{
