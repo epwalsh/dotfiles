@@ -54,3 +54,5 @@ complete -F _longopt -X '@(*.mypy_cache|*__pycache__|*.pdf|*.aux|*.png|*.jpg|*.j
 if [[ `uname` == 'Darwin' ]]; then
     complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal iTerm" killall;
 fi
+
+export PATH="$HOME/.cargo/bin:$PATH"

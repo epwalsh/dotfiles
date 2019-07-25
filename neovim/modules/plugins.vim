@@ -64,6 +64,9 @@ Bundle 'rhysd/vim-clang-format'
 " Illuminate words matching current word under cursor.
 Bundle 'rrethy/vim-illuminate'
 
+" Rust.
+Bundle 'rust-lang/rust.vim'
+
 " Bindings for commenting out.
 Bundle 'scrooloose/nerdcommenter'
 
