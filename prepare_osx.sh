@@ -106,6 +106,7 @@ brew install shellcheck
 
 # Install other useful binaries.
 brew install vcprompt
+brew install ripgrep  # improved grep written in rust.
 brew install fortune
 brew install cowsay
 brew install mcrypt

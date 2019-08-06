@@ -8,7 +8,8 @@ sudo apt-get install -y \
     fortune-mod \
     cowsay \
     tree \
-    shellcheck
+    shellcheck \
+    ripgrep
 
 # Python 3.6.
 sudo add-apt-repository ppa:deadsnakes/ppa
