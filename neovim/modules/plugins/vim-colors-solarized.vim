@@ -7,6 +7,9 @@ set cursorline
 let iterm_profile = $ITERM_PROFILE
 if iterm_profile == "Light"
     set background=light
+    highlight Comment cterm=italic ctermfg=96 ctermbg=251
+    " highlight Comment cterm=italic ctermfg=96 ctermbg=187
+    highlight Number ctermfg=198
 else
     highlight CursorLine ctermbg=236
     highlight ColorColumn ctermbg=236 guibg=grey
