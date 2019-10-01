@@ -41,20 +41,27 @@ let g:neomake_python_mypy_makers = {
             \ ],
             \ }
 
+" If in a repository, check for a .flake8 file in the root.
+if repo !~ "^fatal" && filereadable(repo . '/.flake8')
+    let flake8conf = repo . '/.flake8'
+    let g:neomake_python_flake8_maker = {
+                \ 'args': [
+                \ '--config', flake8conf,
+                \ ],
+                \ }
+endif
+
 " If in a repository, check for a .pylintrc file in the root.
 if repo !~ "^fatal" && filereadable(repo . '/.pylintrc')
     let pylintrc = repo . '/.pylintrc'
-else
-    let pylintrc = '~/.config/.pylintrc'
+    call add(g:neomake_python_enabled_makers, 'pylint')
+    let g:neomake_python_pylint_maker = {
+                \ 'args': [
+                \ '--rcfile', pylintrc,
+                \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}"',
+                \ ],
+                \ }
 endif
-call add(g:neomake_python_enabled_makers, 'pylint')
-
-let g:neomake_python_pylint_maker = {
-            \ 'args': [
-            \ '--rcfile', pylintrc,
-            \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}"',
-            \ ],
-            \ }
 
 " If in repo, check for .pydocstyle config, otherwise ignore.
 if repo !~ "^fatal" && filereadable(repo . '/.pydocstyle')
