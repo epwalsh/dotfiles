@@ -4,11 +4,23 @@ set mouse=a
 " Enable true colors.
 " set termguicolors
 
-" Copy everything to OS clipboard if using OS X
 let os = substitute(system('uname'), "\n", "", "")
-" if os == 'Darwin'
+if os == 'Darwin'
     " set clipboard=unnamed
-" endif
+else
+    " let g:clipboard = {
+    "             \   'name': 'myClipboard',
+    "             \   'copy': {
+    "             \      '+': 'xsel --nodetach -i --clipboard',
+    "             \      '*': 'xsel --nodetach -i --clipboard',
+    "             \    },
+    "             \   'paste': {
+    "             \      '+': 'xsel -o --clipboard',
+    "             \      '*': 'xsel -o --clipboard',
+    "             \   },
+    "             \   'cache_enabled': 1,
+    "             \ }
+endif
 
 " Leaders
 let maplocalleader = ","

@@ -34,7 +34,7 @@ let g:neomake_cpp_clang_maker = {
 
 " Python settings
 " ========================================================================= {{{
-let g:neomake_python_enabled_makers = ["mypy"]
+let g:neomake_python_enabled_makers = ["mypy", "flake8"]
 let g:neomake_python_mypy_makers = {
             \ 'args': [
             \ '--ignore-missing-imports',
