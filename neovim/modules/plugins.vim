@@ -107,6 +107,9 @@ Bundle 'wojtekmach/vim-rename'
 Bundle 'zchee/deoplete-jedi'
 Bundle 'davidhalter/jedi-vim'
 
+" Python autoformatting.
+Bundle 'psf/black'
+
 
 call vundle#end()
 filetype plugin indent on

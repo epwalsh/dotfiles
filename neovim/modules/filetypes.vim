@@ -92,8 +92,8 @@ augroup filetype_python
     autocmd!
     au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType python setlocal omnifunc=pythoncomplete#Complete
-    au FileType python command! -buffer Black !black %
     au BufNewFile *.py,*.pyx 0r ~/.config/nvim/headers/template.py
+    au BufWritePre *.py execute ':Black'
 augroup END
 " ------------------------------------------------------------------------- }}}
 
