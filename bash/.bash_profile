@@ -48,7 +48,7 @@ fi
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # Exclude certain patterns from vim completion.
-complete -F _longopt -X '@(*.mypy_cache|*__pycache__|*.pdf|*.aux|*.png|*.jpg|*.jpeg|*.gif|*.dvi|*.svg|*.pyc)' vim vi nvim ni
+complete -F _longopt -X '@(*.mypy_cache|*__pycache__|*.pdf|*.aux|*.png|*.jpg|*.jpeg|*.gif|*.dvi|*.svg|*.pyc|*.lock)' vim vi nvim ni
 
 # Add `killall` tab completion for common apps
 if [[ `uname` == 'Darwin' ]]; then
