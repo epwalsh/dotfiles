@@ -58,6 +58,9 @@ Bundle 'metakirby5/codi.vim'
 " Javascript bundle. Comes with syntax highlighting, improved indentation.
 Bundle 'pangloss/vim-javascript'
 
+" Code completion in Rust.
+Bundle 'racer-rust/vim-racer'
+
 " Check C and C++ files.
 Bundle 'rhysd/vim-clang-format'
 
@@ -66,6 +69,9 @@ Bundle 'rrethy/vim-illuminate'
 
 " Rust.
 Bundle 'rust-lang/rust.vim'
+
+" Deopletion for Rust.
+" Bundle 'sebastianmarkow/deoplete-rust'
 
 " Bindings for commenting out.
 Bundle 'scrooloose/nerdcommenter'
