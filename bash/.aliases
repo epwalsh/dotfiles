@@ -2,6 +2,8 @@
 
 # Neovim
 alias ni='nvim'
+alias fzni='nvim $(fzf)'
+alias fzvi='nvim $(fzf)'
 
 # R
 alias R='R --quiet'
