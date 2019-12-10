@@ -1,3 +1,8 @@
+nnoremap <localleader>s :call VimCmdLineStartApp()
+nnoremap <leader>s :call VimCmdLineStartApp()
+map <localleader>s :call VimCmdLineStartApp()
+map <leader>s :call VimCmdLineStartApp()
+
 let cmdline_vsplit = 1        " Split the window vertically
 let cmdline_esc_term = 1      " Remap <Esc> to :stopinsert in Neovim terminal
 let cmdline_in_buffer = 1     " Start the interpreter in a Neovim buffer

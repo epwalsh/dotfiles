@@ -15,7 +15,7 @@ alias mux='tmuxinator'
 # Exploring a directory
 alias tree='tree -lC --dirsfirst'
 if [[ `uname` == 'Darwin' ]]; then
-    alias ls='ls -FG --hide=__pycache__'
+    alias ls='ls -FG'
 else
     alias ls='ls -FG --color --hide=__pycache__'
 fi
