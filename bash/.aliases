@@ -14,7 +14,7 @@ alias mux='tmuxinator'
 
 # Exploring a directory
 alias tree='tree -lC --dirsfirst'
-if [[ `uname` == 'Darwin' ]]; then
+if [[ $(uname) == 'Darwin' ]]; then
     alias ls='ls -FG'
 else
     alias ls='ls -FG --color --hide=__pycache__'
@@ -36,10 +36,14 @@ alias external-ip='echo `curl ipecho.net/plain;echo`'
 alias git-root='cd $(git rev-parse --show-cdup)'
 
 # OS specific stuff
-if [[ `uname` == 'Darwin' ]]; then
+if [[ $(uname) == 'Darwin' ]]; then
     # Show or hide hidden files in Finder App.
     alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app/'
     alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app/'
 else
     alias suspend='sudo systemctl suspend'
 fi
+
+# Rust helpers.
+alias Cclippy='cargo clippy --all-features --all-targets -- -D warnings'
+alias Cfmt='cargo fmt -- --check'
