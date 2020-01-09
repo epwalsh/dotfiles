@@ -20,10 +20,7 @@ for filename in ~/dotfiles/neovim/*; do
 done
 
 mkdir -p ~/.config/alacritty
-for filename in ~/dotfiles/alacritty/*; do
-    filebase=`basename $filename`
-    ln -sf $filename ~/.config/alacritty/$filebase
-done
+ln -sf ~/dotfiles/alacritty.yml ~/.config/alacritty/
 
 # Python linting configs.
 ln -sf ~/dotfiles/.pylintrc ~/.config/.pylintrc
