@@ -56,3 +56,4 @@ if [[ `uname` == 'Darwin' ]]; then
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
+[ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
