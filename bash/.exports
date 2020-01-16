@@ -18,3 +18,6 @@ if [[ ${ITERM_PROFILE:-"Dark"} = "Light" ]]; then
     LS_COLORS=$LS_COLORS:'di=0;35:'
     export LS_COLORS
 fi
+
+# Force pipenv to create it's own virtualenvs.
+export PIPENV_IGNORE_VIRTUALENVS=1
