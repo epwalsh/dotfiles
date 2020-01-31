@@ -1,4 +1,4 @@
-call neomake#configure#automake("w")
+" call neomake#configure#automake("w")
 
 let g:neomake_open_list = 0
 let g:neomake_list_height = 5
