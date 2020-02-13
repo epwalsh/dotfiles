@@ -20,6 +20,7 @@ chmod 755 $HOME/bin/vcprompt
 
 # Setup python virtualenv.
 export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 source /usr/local/bin/virtualenvwrapper.sh
 mkvirtualenv py3 -p $(which python3)
 workon py3
