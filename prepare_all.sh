@@ -21,6 +21,6 @@ chmod 755 $HOME/bin/vcprompt
 # Setup python virtualenv.
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
-mkvirtualenv py3.6 -p $(which python3.6)
-workon py3.6
+mkvirtualenv py3 -p $(which python3)
+workon py3
 pip install -r requirements.txt

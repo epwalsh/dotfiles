@@ -3,5 +3,6 @@ jedi
 pylint
 pydocstyle
 mypy
+black
 virtualenv
 virtualenvwrapper
