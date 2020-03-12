@@ -1,9 +1,14 @@
+# Options
+set __fish_git_prompt_show_informative_status
+set __fish_git_prompt_showcolorhints
+set __fish_git_prompt_showupstream "informative"
+
 function fish_prompt
     if not set -q VIRTUAL_ENV_DISABLE_PROMPT
         set -g VIRTUAL_ENV_DISABLE_PROMPT true
     end
     set_color yellow
-    printf '%s' $USER
+    printf '\n%s' $USER
     set_color normal
     printf ' at '
 
