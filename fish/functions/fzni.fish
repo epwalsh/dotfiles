@@ -1,0 +1,1 @@
+alias fzni='nvim (fzf)'

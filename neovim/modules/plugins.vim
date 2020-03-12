@@ -12,6 +12,9 @@ Bundle 'altercation/vim-colors-solarized'
 " Async linting and other stuff.
 Bundle 'benekastah/neomake'
 
+" Fish
+Bundle 'dag/vim-fish'
+
 " Setting tmux theme to match Vim theme.
 Bundle 'edkolev/tmuxline.vim'
 

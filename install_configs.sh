@@ -19,6 +19,12 @@ for filename in ~/dotfiles/neovim/*; do
     ln -sf $filename ~/.config/nvim/$filebase
 done
 
+mkdir -p ~/.config/fish
+for filename in ~/dotfiles/fish/*; do
+    filebase=`basename $filename`
+    ln -sf $filename ~/.config/fish/$filebase
+done
+
 mkdir -p ~/.config/alacritty
 ln -sf ~/dotfiles/alacritty.yml ~/.config/alacritty/
 

@@ -9,7 +9,8 @@ sudo apt-get install -y \
     cowsay \
     tree \
     shellcheck \
-    ripgrep
+    ripgrep \
+    fish
 
 # Python 3.6.
 sudo add-apt-repository ppa:deadsnakes/ppa
