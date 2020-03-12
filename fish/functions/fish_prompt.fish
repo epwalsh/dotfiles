@@ -24,7 +24,7 @@ function fish_prompt
     # Line 2
     echo
     if test $VIRTUAL_ENV
-        printf "(%s) " (set_color blue)(basename $VIRTUAL_ENV)(set_color normal)
+        printf "(%s) " (set_color blue)(string replace -r '(.+)-.*' '$1' (basename $VIRTUAL_ENV))(set_color normal)
     end
     printf '↪ '
     set_color normal
