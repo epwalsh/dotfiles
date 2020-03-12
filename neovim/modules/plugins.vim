@@ -52,6 +52,9 @@ Bundle "keith/swift.vim"
 " HTML files.
 Bundle 'mattn/emmet-vim'
 
+" CSV column highlighting + RBQL.
+Bundle 'mechatroner/rainbow_csv'
+ 
 " Command line tool for math that runs Python in Vim session.
 Bundle 'metakirby5/codi.vim'
 
