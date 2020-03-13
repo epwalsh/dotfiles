@@ -10,3 +10,7 @@ set -gx PATH ~/.cargo/bin/ $PATH
 
 # Set default editor
 set -gx EDITOR nvim
+
+set -gx PIPENV_IGNORE_VIRTUALENVS 1
+
+set -gx WORKON_HOME $HOME/.virtualenvs
