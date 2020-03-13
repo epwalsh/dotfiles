@@ -25,4 +25,8 @@ if [[ $OS = 'Darwin' ]]; then
     fi
 fi
 
+# Set default shell to Fish.
+echo $(which fish) | sudo tee -a /etc/shells
+chsh -s $(which fish)
+
 echo "Done. Note that some of these changes require a logout/restart to take effect."
