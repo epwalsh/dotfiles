@@ -17,3 +17,11 @@ set -gx EDITOR nvim
 
 # Vi bindings
 fish_vi_key_bindings
+
+# Some useful navigation helpers. 
+function ..    ; cd .. ; end
+function ...   ; cd ../.. ; end
+function ....  ; cd ../../.. ; end
+function ..... ; cd ../../../.. ; end
+
+function root ; cd (git rev-parse --show-cdup) ; end
