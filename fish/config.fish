@@ -35,3 +35,11 @@ contains -- $linuxbrew_manpath $MANPATH
 
 contains -- $linuxbrew_infopath $INFOPATH
   or set -gx INFOPATH $linuxbrew_infopath $INFOPATH
+
+# Some useful navigation helpers. 
+function ..    ; cd .. ; end
+function ...   ; cd ../.. ; end
+function ....  ; cd ../../.. ; end
+function ..... ; cd ../../../.. ; end
+
+function root ; cd (git rev-parse --show-cdup) ; end
