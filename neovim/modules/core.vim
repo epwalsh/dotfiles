@@ -71,10 +71,8 @@ set scroll=20
 " autocmd BufEnter * silent! lcd %:p:h
 
 " Set Python 3 provider.
-if filereadable($HOME . "/.virtualenvs/py3.6/bin/python")
-    let g:python3_host_prog = $HOME . "/.virtualenvs/py3.6/bin/python"
-elseif filereadable($HOME . "/.virtualenvs/py3.6/bin/python")
-    let g:python3_host_prog = $HOME . "/.virtualenvs/py3.7/bin/python"
+if filereadable($HOME . "/.virtualenvs/py3/bin/python")
+    let g:python3_host_prog = $HOME . "/.virtualenvs/py3/bin/python"
 endif
 
 " Disable Python 2.
