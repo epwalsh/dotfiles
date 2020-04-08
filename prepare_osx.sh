@@ -16,21 +16,21 @@ brew upgrade
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
 
-brew install clang-format
+# brew install clang-format
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+brew install gnu-sed
 
 # Install Bash 4.
 # Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
 # running `chsh`. To do so, run `sudo chsh -s /usr/local/bin/bash`.
-brew install bash
-brew tap homebrew/versions
-brew install bash-completion2
+# brew install bash
+# brew tap homebrew/versions
+# brew install bash-completion2
 
 # Fish
 brew install fish
@@ -46,13 +46,7 @@ tic -x xterm-256color.terminfo.txt
 tic -x tmux/tmux-256color.terminfo.txt
 
 # Install `wget` with IRI support.
-brew install wget --with-iri
-
-# Install RingoJS and Narwhal.
-# Note that the order in which these are installed is important;
-# see http://git.io/brew-narwhal-ringo.
-brew install ringojs
-brew install narwhal
+brew install wget
 
 # Install newer version of Python
 brew install python
@@ -68,13 +62,13 @@ brew install reattach-to-user-namespace
 brew tap neovim/neovim
 brew install neovim
 brew install vim --with-override-system-vi
-brew install homebrew/dupes/grep
-brew install homebrew/dupes/openssh
-brew install homebrew/dupes/screen
-brew install homebrew/php/php56 --with-gmp
+# brew install homebrew/dupes/grep
+# brew install homebrew/dupes/openssh
+# brew install homebrew/dupes/screen
+# brew install homebrew/php/php56 --with-gmp
 
 # Install Java
-brew cask install java
+# brew cask install java
 
 # Install font tools.
 brew tap bramstein/webfonttools
@@ -83,34 +77,34 @@ brew install sfnt2woff-zopfli
 brew install woff2
 
 # Linting bash files.
-brew install shellcheck
+# brew install shellcheck
 
 # Install other useful binaries.
 brew install vcprompt
 brew install ripgrep  # improved grep written in rust.
-brew install fortune
-brew install cowsay
-brew install mcrypt
-brew install ack
-brew install dark-mode
+# brew install fortune
+# brew install cowsay
+# brew install mcrypt
+# brew install ack
+# brew install dark-mode
 #brew install exiv2
-brew install git
-brew install git-lfs
-brew install imagemagick --with-webp
-brew install lua
-brew install lynx
-brew install p7zip
-brew install pigz
-brew install pv
+# brew install git
+# brew install git-lfs
+# brew install imagemagick --with-webp
+# brew install lua
+# brew install lynx
+# brew install p7zip
+# brew install pigz
+# brew install pv
 brew install rename
-brew install rhino
-brew install speedtest_cli
-brew install ssh-copy-id
-brew install testssl
+# brew install rhino
+# brew install speedtest_cli
+# brew install ssh-copy-id
+# brew install testssl
 brew install tree
-brew install vbindiff
-brew install webkit2png
-brew install zopfli
+# brew install vbindiff
+# brew install webkit2png
+# brew install zopfli
 brew install fzf
 
 # Remove outdated versions from the cellar.
