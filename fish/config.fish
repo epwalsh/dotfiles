@@ -2,21 +2,6 @@ if test -e ~/.config/fish/extra.fish
     source ~/.config/fish/extra.fish
 end
 
-# Python virtual env setup
-set -gx PIPENV_IGNORE_VIRTUALENVS 1
-set -gx WORKON_HOME $HOME/.virtualenvs
-if not set -q VIRTUAL_ENV
-    for maybe_venv in ~/.virtualenvs/py3 ~/.virtualenvs/py3.6 ~/.virtualenvs/py3.7
-        if test -d $maybe_venv
-            set -gx VIRTUAL_ENV $maybe_venv
-            break
-        end
-    end
-end
-if set -q VIRTUAL_ENV
-    vf activate (basename $VIRTUAL_ENV)
-end
-
 # Add cargo bin to PATH
 set -l cargo_bin_path $HOME/.cargo/bin
 contains -- $cargo_bin_path $PATH
@@ -55,3 +40,7 @@ function ....  ; cd ../../.. && ls ; end
 function ..... ; cd ../../../.. && ls ; end
 
 function root ; cd ./(git rev-parse --show-cdup) ; end
+
+# Python virtual env setup
+set -gx PIPENV_IGNORE_VIRTUALENVS 1
+set -gx WORKON_HOME $HOME/.virtualenvs
