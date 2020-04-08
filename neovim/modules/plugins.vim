@@ -1,143 +1,129 @@
-" Vundle package manager -------------------------------------------------- {{{
-filetype off
-
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin("~/.config/nvim/bundle/")
+" Vim-plug package manager -------------------------------------------------- {{{
+call plug#begin("~/.config/nvim/plugged/")
 
 " Color theme.
-Bundle 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
-" Bundle 'artur-shaik/vim-javacomplete2'
+" Plug 'artur-shaik/vim-javacomplete2'
 
 " Async linting and other stuff.
-Bundle 'benekastah/neomake'
+Plug 'benekastah/neomake'
 
 " Fish
-Bundle 'dag/vim-fish'
+Plug 'dag/vim-fish'
 
 " Setting tmux theme to match Vim theme.
-Bundle 'edkolev/tmuxline.vim'
+Plug 'edkolev/tmuxline.vim'
 
 " Using tab for insertion.
-Bundle 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
-" Bundle 'epwalsh/NvimAutoheader'
+" Plug 'epwalsh/NvimAutoheader'
 
 " LaTeX files.
-Bundle 'gerw/vim-latex-suite'
+Plug 'gerw/vim-latex-suite'
 
 " Package manager.
-Bundle 'gmarik/Vundle.vim'
+Plug 'gmarik/Vundle.vim'
 
 " Jsonnet filetype.
-Bundle 'google/vim-jsonnet'
+Plug 'google/vim-jsonnet'
 
-" Bundle 'jaxbot/github-issues.vim'
+" Plug 'jaxbot/github-issues.vim'
 
 " Sending code to an interpreter for any language.
-Bundle 'jalvesaq/vimcmdline'
-" Bundle 'epwalsh/vimcmdline'
+Plug 'jalvesaq/vimcmdline'
+" Plug 'epwalsh/vimcmdline'
 
 " R REPL + a lot of other stuff.
-Bundle 'jalvesaq/Nvim-R'
+Plug 'jalvesaq/Nvim-R'
 
 " Previewing markdown files.
-Bundle 'JamshedVesuna/vim-markdown-preview'
+Plug 'JamshedVesuna/vim-markdown-preview'
 
 " Auto-complete pairs.
-Bundle 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 
-Bundle 'JuliaEditorSupport/julia-vim'
-
-" Swift syntax highlighting and indentation.
-Bundle "keith/swift.vim"
+Plug 'JuliaEditorSupport/julia-vim'
 
 " HTML files.
-Bundle 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 
 " CSV column highlighting + RBQL.
-Bundle 'mechatroner/rainbow_csv'
+Plug 'mechatroner/rainbow_csv'
  
 " Command line tool for math that runs Python in Vim session.
-Bundle 'metakirby5/codi.vim'
+Plug 'metakirby5/codi.vim'
 
 " Javascript bundle. Comes with syntax highlighting, improved indentation.
-Bundle 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 
 " Code completion in Rust.
-Bundle 'racer-rust/vim-racer'
+Plug 'racer-rust/vim-racer'
 
 " Check C and C++ files.
-Bundle 'rhysd/vim-clang-format'
+Plug 'rhysd/vim-clang-format'
 
 " Illuminate words matching current word under cursor.
-Bundle 'rrethy/vim-illuminate'
+Plug 'rrethy/vim-illuminate'
 
 " Rust.
-Bundle 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
 
 " Deopletion for Rust.
-" Bundle 'sebastianmarkow/deoplete-rust'
+" Plug 'sebastianmarkow/deoplete-rust'
 
 " Bindings for commenting out.
-Bundle 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " File navigation.
-Bundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " Autocompletion.
-Bundle 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim'
 
 " Snippets.
-Bundle 'Shougo/neosnippet.vim'
-Bundle 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 " Folding.
-Bundle 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold'
 
 " Git.
-Bundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Changing surroundings.
-Bundle 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Kotlin lang
-" Bundle 'udalov/kotlin-vim'
-Bundle 'epwalsh/kotlin-vim'
+" Plug 'udalov/kotlin-vim'
+Plug 'epwalsh/kotlin-vim'
 
 " Status bar theme.
-Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Better Python indenting.
-Bundle 'Vimjas/vim-python-pep8-indent'
+Plug 'Vimjas/vim-python-pep8-indent'
 
 " Renaming variables.
-Bundle 'wojtekmach/vim-rename'
+Plug 'wojtekmach/vim-rename'
 
 " Python autocompletion.
-Bundle 'zchee/deoplete-jedi'
-Bundle 'davidhalter/jedi-vim'
+Plug 'zchee/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
 
 " Python autoformatting.
-Bundle 'psf/black'
+Plug 'psf/black', { 'commit': 'ce14fa8b497bae2b50ec48b3bd7022573a59cdb1' }
 
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 " ------------------------------------------------------------------------- }}}
+
+filetype plugin indent on
 
 " Load plugin configuration files ----------------------------------------- {{{
 for file in split(glob(Dot('modules/plugins/*.vim')), '\n')
-    let name = fnamemodify(file, ':t:r')
-
-    let bundles = deepcopy(g:vundle#bundles)
-    let plugins = map(bundles, "fnamemodify(v:val['name'], ':r')")
-
-    if index(plugins, name) >= 0
-        exec 'source' file
-    else
-        echom "No plugin found for config file " . file
-    endif
+    exec 'source' file
 endfor
 " ------------------------------------------------------------------------- }}}
