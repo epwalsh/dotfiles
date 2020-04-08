@@ -49,9 +49,9 @@ if test -d "/home/linuxbrew"
 end
 
 # Some useful navigation helpers. 
-function ..    ; cd .. ; end
-function ...   ; cd ../.. ; end
-function ....  ; cd ../../.. ; end
-function ..... ; cd ../../../.. ; end
+function ..    ; cd .. && ls ; end
+function ...   ; cd ../.. && ls ; end
+function ....  ; cd ../../.. && ls ; end
+function ..... ; cd ../../../.. && ls ; end
 
-function root ; cd (git rev-parse --show-cdup) ; end
+function root ; cd ./(git rev-parse --show-cdup) ; end
