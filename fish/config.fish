@@ -2,17 +2,20 @@ if test -e ~/.config/fish/extra.fish
     source ~/.config/fish/extra.fish
 end
 
-# eval (python3 -m virtualfish auto_activation global_requirements)
-
+# Python virtual env setup
 set -gx PIPENV_IGNORE_VIRTUALENVS 1
-
 set -gx WORKON_HOME $HOME/.virtualenvs
-
-# Default virtual env
 if not set -q VIRTUAL_ENV
-    set -gx VIRTUAL_ENV ~/.virtualenvs/py3
+    for maybe_venv in ~/.virtualenvs/py3 ~/.virtualenvs/py3.6 ~/.virtualenvs/py3.7
+        if test -d $maybe_venv
+            set -gx VIRTUAL_ENV $maybe_venv
+            break
+        end
+    end
 end
-vf activate (basename $VIRTUAL_ENV)
+if set -q VIRTUAL_ENV
+    vf activate (basename $VIRTUAL_ENV)
+end
 
 # Add cargo bin to PATH
 set -l cargo_bin_path $HOME/.cargo/bin
