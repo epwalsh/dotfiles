@@ -15,7 +15,9 @@ end
 vf activate (basename $VIRTUAL_ENV)
 
 # Add cargo bin to PATH
-set -gx PATH ~/.cargo/bin/ $PATH
+set -l cargo_bin_path $HOME/.cargo/bin
+contains -- $cargo_bin_path $PATH
+  or set -gx PATH $cargo_bin_path $PATH
 
 # Set default editor
 set -gx EDITOR nvim
