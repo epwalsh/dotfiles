@@ -8,7 +8,7 @@ for filename in ~/dotfiles/bash/*; do
     ln -sf $filename ~/$filebase
 done
 
-for filename in ~/dotfiles/tmux/*; do
+for filename in ~/dotfiles/tmux/.*; do
     filebase=`basename $filename`
     ln -sf $filename ~/$filebase
 done
