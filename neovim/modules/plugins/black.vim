@@ -1,4 +1,11 @@
-let g:black_linelength = 88
+if exists("g:repo") && filereadable(g:repo . '/.flake8')
+    let line_length = systemlist("grep 'max-line-length' " . g:repo . '/.flake8')
+    if len(line_length) == 1
+        let g:black_linelength = split(line_length[0], " = ")[1]
+    endif
+else
+    let g:black_linelength = 88
+endif
 
 function! Black()
     if !exists("b:black_off") || b:black_off != 1

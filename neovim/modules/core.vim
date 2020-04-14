@@ -79,3 +79,8 @@ endif
 let g:loaded_python_provider = 0
 
 set shell=sh
+
+let repo = systemlist("git rev-parse --show-toplevel")[0]
+if repo !~ "^fatal"
+    let g:repo = repo
+endif

@@ -3,8 +3,6 @@
 let g:neomake_open_list = 0
 let g:neomake_list_height = 5
 
-let repo = systemlist("git rev-parse --show-toplevel")[0]
-
 " Change error/warning sign to something that works on both linux and OS X well.
 let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'airline_z'}
 let g:neomake_error_sign = {'text': 'E>', 'texthl': 'airline_a'}
@@ -17,8 +15,8 @@ let g:neomake_error_sign = {'text': 'E>', 'texthl': 'airline_a'}
 let args = ['-Wall', '-pedantic', '-Wno-sign-conversion', '-Wno-c++11-extensions', '-std=c++11']
 
 " If in a Git repository, add the root of the Git repo
-if repo !~ "^fatal"
-    call add(args, '-I' . repo . '/include')
+if exists("g:repo")
+    call add(args, '-I' . g:repo . '/include')
 endif
 
 " Include Eigen and Boost.
@@ -42,8 +40,8 @@ let g:neomake_python_mypy_makers = {
             \ }
 
 " If in a repository, check for a .flake8 file in the root.
-if repo !~ "^fatal" && filereadable(repo . '/.flake8')
-    let flake8conf = repo . '/.flake8'
+if exists("g:repo") && filereadable(g:repo . '/.flake8')
+    let flake8conf = g:repo . '/.flake8'
     let g:neomake_python_flake8_maker = {
                 \ 'args': [
                 \ '--config', flake8conf,
@@ -52,8 +50,8 @@ if repo !~ "^fatal" && filereadable(repo . '/.flake8')
 endif
 
 " If in a repository, check for a .pylintrc file in the root.
-if repo !~ "^fatal" && filereadable(repo . '/.pylintrc')
-    let pylintrc = repo . '/.pylintrc'
+if exists("g:repo") && filereadable(g:repo . '/.pylintrc')
+    let pylintrc = g:repo . '/.pylintrc'
     call add(g:neomake_python_enabled_makers, 'pylint')
     let g:neomake_python_pylint_maker = {
                 \ 'args': [
@@ -64,8 +62,8 @@ if repo !~ "^fatal" && filereadable(repo . '/.pylintrc')
 endif
 
 " If in repo, check for .pydocstyle config, otherwise ignore.
-if repo !~ "^fatal" && filereadable(repo . '/.pydocstyle')
-    let pydocstyle = repo . '/.pydocstyle'
+if exists("g:repo") && filereadable(g:repo . '/.pydocstyle')
+    let pydocstyle = g:repo . '/.pydocstyle'
     let g:neomake_python_pydocstyle_maker = {
                 \ 'args': [
                 \ '--config', pydocstyle,
