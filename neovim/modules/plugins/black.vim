@@ -1,11 +1,7 @@
-if exists("g:repo") && filereadable(g:repo . '/.flake8')
-    let line_length = systemlist("grep 'max-line-length' " . g:repo . '/.flake8')
+if exists("g:repo") && filereadable(g:repo . '/pyproject.toml')
+    let line_length = systemlist("grep 'line-length' " . g:repo . '/pyproject.toml')
     if len(line_length) == 1
-        let black_linelength = split(line_length[0], " = ")[1]
-        if black_linelength > 100
-            let black_linelength = 100
-        endif
-        let g:black_linelength = black_linelength
+        let g:black_linelength = split(line_length[0], " = ")[1]
     endif
 else
     let g:black_linelength = 88
