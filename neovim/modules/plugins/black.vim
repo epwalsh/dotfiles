@@ -1,10 +1,36 @@
-if exists("g:repo") && filereadable(g:repo . '/pyproject.toml')
-    let line_length = systemlist("grep 'line-length' " . g:repo . '/pyproject.toml')
+" Default linelength.
+let g:black_linelength = 88
+
+" Helper function to grab the line-length from a pyproject.toml file.
+function! SetBlackLinelengthFromPyproject(filepath)
+    let line_length = systemlist("grep 'line-length' " . a:filepath)
     if len(line_length) == 1
         let g:black_linelength = split(line_length[0], " = ")[1]
     endif
-else
-    let g:black_linelength = 88
+endfunction
+
+" Try to find a pyproject.toml file if this is a git repo.
+if exists("g:repo")
+    let buffer_path = expand("%:p")
+    let buffer_path_parts = split(buffer_path, '/')
+
+    " Traverse up through the git repo starting at the current directory,
+    " looking for a pyproject.toml file in each subdirectory.
+    for index in reverse(range(len(buffer_path_parts) - 1))
+        let directory = '/' . join(buffer_path_parts[0:index], '/')
+        let potential_pyproject_path = directory . '/pyproject.toml'
+
+        if filereadable(potential_pyproject_path)
+            call SetBlackLinelengthFromPyproject(potential_pyproject_path)
+            break
+        endif
+
+        " If we've reached the git repo root and still haven't found a
+        " pyproject.toml, quit.
+        if directory == g:repo
+            break
+        endif
+    endfor
 endif
 
 function! Black()
