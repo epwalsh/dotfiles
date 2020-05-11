@@ -44,3 +44,8 @@ function root ; cd ./(git rev-parse --show-cdup) ; end
 # Python virtual env setup
 set -gx PIPENV_IGNORE_VIRTUALENVS 1
 set -gx WORKON_HOME $HOME/.virtualenvs
+
+# Google cloud.
+if test -e ~/google-cloud-sdk/path.fish.inc
+    source ~/google-cloud-sdk/path.fish.inc
+end
