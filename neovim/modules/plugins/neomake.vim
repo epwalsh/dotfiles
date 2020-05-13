@@ -88,6 +88,6 @@ let g:neomake_sh_shellcheck_maker = {
 
 " Rust settings
 " ========================================================================= {{{
-let g:neomake_rust_enabled_makers = ["cargo"]
-let g:neomake_rust_cargo_command = ["test", "--no-run"]
+" let g:neomake_rust_enabled_makers = ["cargo"]
+" let g:neomake_rust_cargo_command = ["test", "--no-run"]
 " ========================================================================= }}}
