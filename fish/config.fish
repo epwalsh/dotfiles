@@ -2,6 +2,11 @@ if test -e ~/.config/fish/extra.fish
     source ~/.config/fish/extra.fish
 end
 
+# Add ~/bin to PATH
+set -l bin_path $HOME/bin
+contains -- $bin_path $PATH
+  or set -gx PATH $bin_path $PATH
+
 # Add cargo bin to PATH
 set -l cargo_bin_path $HOME/.cargo/bin
 contains -- $cargo_bin_path $PATH
