@@ -171,3 +171,11 @@ augroup filetype_fish
     " au FileType fish setlocal foldmethod=marker
 augroup END
 " ------------------------------------------------------------------------- }}}
+
+" Go settings ----------------------------------------------------------- {{{
+augroup filetype_go
+    autocmd!
+    au FileType go setlocal shiftwidth=4 tabstop=4
+    " au FileType fish setlocal foldmethod=marker
+augroup END
+" ------------------------------------------------------------------------- }}}

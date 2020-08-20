@@ -20,6 +20,9 @@ Plug 'ervandew/supertab'
 
 " Plug 'epwalsh/NvimAutoheader'
 
+" Go.
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 " LaTeX files.
 Plug 'gerw/vim-latex-suite'
 
