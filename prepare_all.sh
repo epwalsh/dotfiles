@@ -25,3 +25,22 @@ cd ~/dotfiles
 # mkvirtualenv py3 -p $(which python3)
 # workon py3
 # pip install -r requirements.txt
+
+# Install Rust toolchain.
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# And Rust tools.
+cargo install bat  # alternative to cat
+cargo install ripgrep  # alternative to grep
+cargo install fd-find  # alternative to find
+cargo install procs  # alternative to ps
+cargo install sd  # alternative to sed
+cargo install du-dust  # alternative to du
+cargo install tokei  # displays statistics about your code
+cargo install hyperfine  # command line benchmarking tool
+cargo install ytop  # alternative to top
+cargo install tealdeer  # fast implementation of tldr: https://github.com/tldr-pages/tldr
+cargo install bandwhich  # CLI for diplaying network utilization
+cargo install grex  # CLI for generating regexs based on user-provided test cases
+cargo install zoxide  # autojumper alternative to cd (requires fzf for fuzzy selection)
+cargo install startship  # very cool command line prompt

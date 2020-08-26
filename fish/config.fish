@@ -59,3 +59,9 @@ set -gx WORKON_HOME $HOME/.virtualenvs
 if test -e ~/google-cloud-sdk/path.fish.inc
     source ~/google-cloud-sdk/path.fish.inc
 end
+
+# zoxide
+zoxide init fish | source
+
+# starship prompt.
+starship init fish | source
