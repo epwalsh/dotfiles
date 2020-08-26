@@ -117,7 +117,8 @@ Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 
 " Python autoformatting.
-Plug 'psf/black', { 'commit': 'ce14fa8b497bae2b50ec48b3bd7022573a59cdb1' }
+" Plug 'psf/black', { 'commit': 'ce14fa8b497bae2b50ec48b3bd7022573a59cdb1' }
+Plug 'psf/black'
 
 
 call plug#end()

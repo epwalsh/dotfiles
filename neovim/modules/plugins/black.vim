@@ -11,7 +11,12 @@ endfunction
 
 " Try to find a pyproject.toml file if this is a git repo.
 if exists("g:repo")
+    " Get path to current file being edited.
     let buffer_path = expand("%:p")
+    if empty(buffer_path)
+        let buffer_path = getcwd() . '/.'
+    endif
+
     let buffer_path_parts = split(buffer_path, '/')
 
     " Traverse up through the git repo starting at the current directory,
