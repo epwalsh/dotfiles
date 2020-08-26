@@ -4,5 +4,5 @@ function l
     else
         set dir .
     end
-    exa --long --all --git-ignore --icons --color always --group-directories-first $dir | less -RFX
+    exa --long --all --git-ignore --ignore-glob '**/.git' --icons --color always --group-directories-first $dir | less -RFX
 end
