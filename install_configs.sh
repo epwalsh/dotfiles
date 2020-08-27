@@ -28,6 +28,8 @@ done
 mkdir -p ~/.config/alacritty
 ln -sf ~/dotfiles/alacritty.yml ~/.config/alacritty/
 
+ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
+
 # Python linting configs.
 ln -sf ~/dotfiles/.pylintrc ~/.config/.pylintrc
 ln -sf ~/dotfiles/.pydocstyle ~/.config/.pydocstyle
