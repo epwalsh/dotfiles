@@ -1,2 +1,15 @@
-[aws]
-disabled = true
+prompt_order = [
+    "username",
+    "hostname",
+    "directory",
+    "git_branch",
+    "git_commit",
+    "git_state",
+    "git_status",
+    "line_break",
+    "package",
+    "rust",
+    "python",
+    "line_break",
+    "character",
+]
