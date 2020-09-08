@@ -1,5 +1,8 @@
 " Enable mouse support
 set mouse=a
+set hidden
+set nobackup
+set nowritebackup
 
 " Enable true colors.
 " set termguicolors

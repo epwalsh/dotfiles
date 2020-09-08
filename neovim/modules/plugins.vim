@@ -4,6 +4,11 @@ call plug#begin("~/.config/nvim/plugged/")
 " Color theme.
 Plug 'altercation/vim-colors-solarized'
 
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 " Plug 'artur-shaik/vim-javacomplete2'
 
 " Async linting and other stuff.

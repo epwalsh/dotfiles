@@ -1,3 +1,9 @@
+" Language Client mappings.
+noremap <F5> :call LanguageClient_contextMenu()<cr>
+noremap H :call LanguageClient_textDocument_hover()<cr>
+noremap D :call LanguageClient_textDocument_definition()<cr>
+noremap R :call LanguageClient_textDocument_references()<cr>
+
 " mapping to make movements operate on 1 screen line in wrap mode
 function! ScreenMovement(movement)
   if &wrap
@@ -33,20 +39,20 @@ nmap / /\v
 vmap / /\v
 
 " Toggle relative line numbers
-nnoremap <F5> :setlocal relativenumber!<cr>
-inoremap <F5> <esc>:setlocal relativenumber!<cr>li
-vnoremap <F5> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal relativenumber!
-            \<cr>:<c-u>normal! `rv`t<cr>
-nnoremap <leader><F5> :setlocal relativenumber!<cr>
-vnoremap <leader><F5> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal relativenumber!
-            \<cr>:<c-u>normal! `rv`t<cr>
+" nnoremap <F5> :setlocal relativenumber!<cr>
+" inoremap <F5> <esc>:setlocal relativenumber!<cr>li
+" vnoremap <F5> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal relativenumber!
+"             \<cr>:<c-u>normal! `rv`t<cr>
+" nnoremap <leader><F5> :setlocal relativenumber!<cr>
+" vnoremap <leader><F5> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal relativenumber!
+"             \<cr>:<c-u>normal! `rv`t<cr>
 
 " Jump to matching character (ex. matching brace or parenthesis)
 nnoremap <leader>m %
 
 " Execute :nohl with <F4>
-nnoremap <F4> :set<Space>hls!<cr>
-vnoremap <F4> :<c-u>normal! `<mr`>mt<cr>:<c-u>set<Space>hls!<cr>:<c-u>normal! `rv`t<cr>
+" nnoremap <F4> :set<Space>hls!<cr>
+" vnoremap <F4> :<c-u>normal! `<mr`>mt<cr>:<c-u>set<Space>hls!<cr>:<c-u>normal! `rv`t<cr>
 
 " Move lines up or down
 nnoremap ∆ :m .+1<CR>==
@@ -78,10 +84,10 @@ vnoremap <leader>jk <esc>
 "inoremap <esc> <nop>
 
 " Quickly jump to beginning and end of lines
-nnoremap H 0
-nnoremap L $h
-vnoremap H 0
-vnoremap L $h
+" nnoremap H 0
+" nnoremap L $h
+" vnoremap H 0
+" vnoremap L $h
 
 " Define some nifty operating-pending mappings
 onoremap p i(
