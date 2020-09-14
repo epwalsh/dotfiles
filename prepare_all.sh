@@ -45,3 +45,4 @@ cargo install bandwhich  # CLI for diplaying network utilization
 cargo install grex  # CLI for generating regexs based on user-provided test cases
 cargo install zoxide  # autojumper alternative to cd (requires fzf for fuzzy selection)
 cargo install startship  # very cool command line prompt
+cargo install hors  # How do I?
