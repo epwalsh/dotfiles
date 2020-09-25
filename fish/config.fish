@@ -16,6 +16,9 @@ contains -- $cargo_bin_path $PATH
 set -l go_bin_path /usr/local/go/bin
 contains -- $go_bin_path $PATH
   or set -gx PATH $go_bin_path $PATH
+set -l go_user_bin_path $HOME/go/bin
+contains -- $go_user_bin_path $PATH
+  or set -gx PATH $go_user_bin_path $PATH
 
 # Set default editor
 set -gx EDITOR nvim
