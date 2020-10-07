@@ -39,7 +39,7 @@ cargo install sd  # alternative to sed
 cargo install du-dust  # alternative to du
 cargo install tokei  # displays statistics about your code
 cargo install hyperfine  # command line benchmarking tool
-cargo install ytop  # alternative to top
+cargo install bottom  # alternative to top, invoke as 'btm'
 cargo install tealdeer  # fast implementation of tldr: https://github.com/tldr-pages/tldr
 cargo install bandwhich  # CLI for diplaying network utilization
 cargo install grex  # CLI for generating regexs based on user-provided test cases
