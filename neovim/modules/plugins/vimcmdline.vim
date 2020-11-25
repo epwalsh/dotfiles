@@ -3,7 +3,7 @@ nnoremap <leader>s :call VimCmdLineStartApp()
 map <localleader>s :call VimCmdLineStartApp()
 map <leader>s :call VimCmdLineStartApp()
 
-let cmdline_vsplit = 0        " Split the window vertically
+let cmdline_vsplit = 1        " Split the window vertically
 let cmdline_esc_term = 1      " Remap <Esc> to :stopinsert in Neovim terminal
 let cmdline_in_buffer = 1     " Start the interpreter in a Neovim buffer
 let cmdline_term_height = 20  " Initial height of interpreter window or pane

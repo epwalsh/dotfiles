@@ -130,5 +130,5 @@ nnoremap <c-w><down> :res -5<CR>
 nnoremap <leader>mm :Neomake<CR>
 
 " Tab completion.
-inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
