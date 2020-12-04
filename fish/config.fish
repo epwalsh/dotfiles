@@ -4,8 +4,10 @@ end
 
 # Add ~/bin to PATH
 set -l bin_path $HOME/bin
-contains -- $bin_path $PATH
-  or set -gx PATH $bin_path $PATH
+if test -d $bin_path
+    contains -- $bin_path $PATH
+    or set -gx PATH $bin_path $PATH
+end
 
 # Add cargo bin to PATH
 set -l cargo_bin_path $HOME/.cargo/bin
@@ -14,11 +16,13 @@ contains -- $cargo_bin_path $PATH
 
 # go bin to PATH
 set -l go_bin_path /usr/local/go/bin
-contains -- $go_bin_path $PATH
-  or set -gx PATH $go_bin_path $PATH
-set -l go_user_bin_path $HOME/go/bin
-contains -- $go_user_bin_path $PATH
-  or set -gx PATH $go_user_bin_path $PATH
+if test -d $go_bin_path
+    contains -- $go_bin_path $PATH
+    or set -gx PATH $go_bin_path $PATH
+    set -l go_user_bin_path $HOME/go/bin
+    contains -- $go_user_bin_path $PATH
+    or set -gx PATH $go_user_bin_path $PATH
+end
 
 # Set default editor
 set -gx EDITOR nvim
@@ -47,10 +51,10 @@ if test -d "/home/linuxbrew"
 end
 
 # Some useful navigation helpers. 
-function ..    ; cd .. && ls ; end
-function ...   ; cd ../.. && ls ; end
-function ....  ; cd ../../.. && ls ; end
-function ..... ; cd ../../../.. && ls ; end
+function ..    ; cd ..; and ls ; end
+function ...   ; cd ../..; and ls ; end
+function ....  ; cd ../../..; and ls ; end
+function ..... ; cd ../../../..; and ls ; end
 
 function root ; cd ./(git rev-parse --show-cdup) ; end
 
@@ -64,7 +68,13 @@ if test -e ~/google-cloud-sdk/path.fish.inc
 end
 
 # zoxide
-zoxide init fish | source
+if type -q zoxide
+    zoxide init fish | source
+end
 
 # starship prompt.
 starship init fish | source
+
+if test -d $HOME/miniconda3/bin
+    eval /home/paperspace/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+end
