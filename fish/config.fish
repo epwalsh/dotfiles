@@ -1,7 +1,3 @@
-if test -e ~/.config/fish/extra.fish
-    source ~/.config/fish/extra.fish
-end
-
 # Add ~/bin to PATH
 set -l bin_path $HOME/bin
 if test -d $bin_path
@@ -81,3 +77,8 @@ end
 
 # Git shortcuts
 alias g git
+
+# Source local extras.
+if test -e ~/.config/fish/extra.fish
+    source ~/.config/fish/extra.fish
+end
