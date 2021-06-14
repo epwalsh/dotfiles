@@ -78,6 +78,11 @@ end
 # Git shortcuts
 alias g git
 
+# sccache for Rust.
+if command -v sccache > /dev/null
+    set -gx RUSTC_WRAPPER (which sccache)
+end
+
 # Source local extras.
 if test -e ~/.config/fish/extra.fish
     source ~/.config/fish/extra.fish
