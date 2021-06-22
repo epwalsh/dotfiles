@@ -82,3 +82,5 @@ alias g git
 if test -e ~/.config/fish/extra.fish
     source ~/.config/fish/extra.fish
 end
+
+alias mux tmuxinator
