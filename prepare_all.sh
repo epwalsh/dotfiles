@@ -30,6 +30,7 @@ cd ~/dotfiles
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # And Rust tools.
+cargo install sccache
 cargo install bat  # alternative to cat
 cargo install exa  # alternative to ls and tree
 cargo install ripgrep  # alternative to grep
