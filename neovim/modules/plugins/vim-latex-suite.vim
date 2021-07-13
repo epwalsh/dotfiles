@@ -11,4 +11,5 @@ augroup tex_mappings
         au FileType tex nnoremap <leader>kk :!xdg-open %:p:r.pdf<cr>
     endif
     au FileType tex nnoremap <leader>lu :!lualatex %:p<cr>
+    au BufWritePost *.tex :!lualatex %:p
 augroup END
