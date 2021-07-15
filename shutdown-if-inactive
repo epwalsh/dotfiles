@@ -1,13 +1,13 @@
 #!/bin/bash
 #
-# Shuts down the host on inactivity.
+# Shuts down the host on inactivity, based on https://serverfault.com/a/1061792
 #
 # Designed to be executed as root from a cron job.
-# It will power off on the 2nd consecutive run without an active ssh session.
+# It will power off on the 2nd consecutive run without logged-in users.
 # That prevents an undesirable shutdown when the machine was just started, or on a brief disconnect.
 #
 # To enable, add this entry to /etc/crontab:
-# */5 *   * * *   root    /home/evanw/dotfiles/shutdown-if-inactive
+# */5 * * * * /DIRECTORY_THIS_SCRIPT_IS_IN/shutdown-if-inactive
 #
 set -o nounset -o errexit -o pipefail
 
