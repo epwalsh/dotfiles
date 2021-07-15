@@ -2,7 +2,7 @@
 call plug#begin("~/.config/nvim/plugged/")
 
 " Package manager.
-Plug 'gmarik/Vundle.vim'
+" Plug 'gmarik/Vundle.vim'
 
 " Theme and appearance --- {{{
 
