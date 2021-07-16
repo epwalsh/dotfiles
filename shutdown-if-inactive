@@ -17,13 +17,15 @@ LOGGED_IN=$(users)
 
 if [ -n "$LOGGED_IN" ]; then
   # Delete marker file if it exists
+  echo "Found users logged in, removing marker file"
   rm --force "$MARKER_FILE"
 else
   if [ -f "$MARKER_FILE" ]; then
-    echo "Powering off due to ssh inactivity."
-    poweroff  # See https://unix.stackexchange.com/a/196014/56711
+    echo "No users logged in, powering off"
+    /usr/sbin/poweroff  # See https://unix.stackexchange.com/a/196014/56711
   else
     # Create a marker file so that it will shut down if still inactive on the next time this script runs.
+    echo "No users logged in, creating marker file"
     touch "$MARKER_FILE"
   fi
 fi
