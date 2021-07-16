@@ -26,6 +26,12 @@ cd ~/dotfiles
 # workon py3
 # pip install -r requirements.txt
 
+# Git configs.
+git config --global user.name "epwalsh"
+git config --global user.email "petew@allenai.org"
+echo ".venv" >> ~/.gitignore
+git config --global core.excludesFile '~/.gitignore'
+
 # Install Rust toolchain.
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
