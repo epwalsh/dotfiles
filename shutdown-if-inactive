@@ -11,6 +11,8 @@
 #
 set -o nounset -o errexit -o pipefail
 
+echo "Starting check at $(date)"
+
 MARKER_FILE="/tmp/ssh-inactivity-flag"
 
 LOGGED_IN=$(users)
