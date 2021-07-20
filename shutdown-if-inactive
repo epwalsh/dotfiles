@@ -1,19 +1,37 @@
 #!/bin/bash
 #
-# Shuts down the host on inactivity, based on https://serverfault.com/a/1061792
+# This script shuts down the machine after a period of inactivity when there are no users logged in.
+# It should be ran as a root cron job every ~10 minutes.
 #
-# Designed to be executed as root from a cron job.
-# It will power off on the 2nd consecutive run without logged-in users.
-# That prevents an undesirable shutdown when the machine was just started, or on a brief disconnect.
+# NOTE: detached tmux/screen sessions count as logged-in users, so this will never shutdown
+# a machine when there is a tmux or screen session running.
 #
-# To enable, add this entry to /etc/crontab:
-# */5 * * * * /DIRECTORY_THIS_SCRIPT_IS_IN/shutdown-if-inactive
+# To install this script, run the following:
 #
+# ```
+# sudo wget https://raw.githubusercontent.com/epwalsh/dotfiles/master/shutdown-if-inactive -O /usr/bin/shutdown-if-inactive
+# sudo chmod +x /usr/bin/shutdown-if-inactive
+# ```
+#
+# Then run:
+#
+# ```
+# sudo crontab -e
+# ```
+#
+# And add the following line to the end of the file:
+#
+# ```
+# */10 * * * * /usr/bin/shutdown-if-inactive 2>&1 > /var/log/shutdown-if-inactive.log
+# ```
+#
+# If this script isn't working properly, check the logs: /var/log/shutdown-if-inactive.log
+
 set -o nounset -o errexit -o pipefail
 
 echo "Starting check at $(date)"
 
-MARKER_FILE="/tmp/ssh-inactivity-flag"
+MARKER_FILE="/tmp/user-inactivity-flag"
 
 LOGGED_IN=$(users)
 
