@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# Shuts down the node on inactivity, meaning there are no users logged in and no beaker jobs running.
+#
+# Designed to be executed as root from a cron job.
+# It will power off on the 2nd consecutive run without logged-in users.
+# That prevents an undesirable shutdown when the machine was just started, or on a brief disconnect.
+#
+# To enable, add this entry to /etc/crontab:
+# */5 * * * * /DIRECTORY_THIS_SCRIPT_IS_IN/shutdown-if-inactive
+#
+set -o nounset -o errexit -o pipefail
+
+echo "Starting check at $(date)"
+
+MARKER_FILE="/tmp/node-inactivity-flag"
+
+LOGGED_IN=$(users)
+BEAKER_JOB_COUNT=$(/usr/local/bin/beaker job list --format json | /usr/bin/jq '. | length')
+
+echo "Users logged in: $LOGGED_IN"
+echo "Beaker job count: $BEAKER_JOB_COUNT"
+
+if (( $BEAKER_JOB_COUNT > 0 )); then
+  echo "Found $BEAKER_JOB_COUNT active beaker jobs, removing marker file"
+  rm --force "$MARKER_FILE"
+elif [ -n "$LOGGED_IN" ]; then
+  # Delete marker file if it exists
+  echo "Found users logged in, removing marker file"
+  rm --force "$MARKER_FILE"
+else
+  if [ -f "$MARKER_FILE" ]; then
+    echo "No users logged in or active beaker jobs, powering off"
+    # /usr/sbin/poweroff  # See https://unix.stackexchange.com/a/196014/56711
+  else
+    # Create a marker file so that it will shut down if still inactive on the next time this script runs.
+    echo "No users logged in or active beaker jobs, creating marker file"
+    touch "$MARKER_FILE"
+  fi
+fi
