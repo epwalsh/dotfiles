@@ -31,7 +31,7 @@ elif [ -n "$LOGGED_IN" ]; then
 else
   if [ -f "$MARKER_FILE" ]; then
     echo "No users logged in or active beaker jobs, powering off"
-    # /usr/sbin/poweroff  # See https://unix.stackexchange.com/a/196014/56711
+    /usr/sbin/poweroff  # See https://unix.stackexchange.com/a/196014/56711
   else
     # Create a marker file so that it will shut down if still inactive on the next time this script runs.
     echo "No users logged in or active beaker jobs, creating marker file"
