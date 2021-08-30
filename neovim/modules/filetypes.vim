@@ -153,7 +153,10 @@ augroup filetype_md
     au FileType markdown setlocal wrap linebreak nolist
     au FileType markdown setlocal omnifunc=
     au FileType markdown setlocal conceallevel=0
+    au BufRead,BufNewFile ~/epwalsh-notes/* setlocal path+=~/epwalsh-notes/**
+    au FileType markdown nnoremap gf :GoTo<cr>
 augroup END
+set suffixesadd+=.md
 " ------------------------------------------------------------------------- }}}
 
 " Bash settings ----------------------------------------------------------- {{{
