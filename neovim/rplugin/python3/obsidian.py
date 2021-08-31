@@ -43,13 +43,20 @@ class ObsidianPlugin:
 
     @pynvim.command("Today", sync=True)
     def today(self) -> None:
-        today = datetime.now().strftime("%Y-%m-%d")
-        self.insert_text(f"[[{today}]]")
+        self.nvim.command("GoTo today")
 
     @pynvim.command("Tomorrow", sync=True)
     def tomorrow(self) -> None:
-        tomorrow = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
-        self.insert_text(f"[[{tomorrow}]]")
+        self.nvim.command("GoTo tomorrow")
+
+    @pynvim.command("Link", nargs=1, sync=True)
+    def link(self, args) -> None:
+        link = args[0]
+        if link in {"today", "tod"}:
+            link = datetime.now().strftime("%Y-%m-%d")
+        elif link in {"tomorrow", "tom"}:
+            link = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+        self.insert_text(f"[[{link}]]")
 
     def get_current_link(self) -> t.Optional[str]:
         return self.get_link(self.nvim.current.line, self.nvim.current.window.cursor[1])
