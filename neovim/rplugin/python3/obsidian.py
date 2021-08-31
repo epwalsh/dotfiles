@@ -119,7 +119,7 @@ class ObsidianPlugin:
     def insert_text(self, text: str) -> None:
         line = self.current_line
         _, pos = self.nvim.current.window.cursor
-        self.current_line = line[0:pos] + text + line[pos:]
+        self.current_line = line[0 : pos + 1] + text + line[pos + 1 :]
 
     @property
     def current_line(self) -> str:
