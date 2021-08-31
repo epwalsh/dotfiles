@@ -76,6 +76,10 @@ nnoremap <leader>' ea'<esc>hbi'<esc>lel
 vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>`>ll
 vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>`>ll
 
+" Put double brackets around a word (this creates a link to another markdown
+" file for Obsidian).
+vnoremap <leader>l <esc>`>a]]<esc>`<i[[<esc>`>ll
+
 " Escape insert mode without having to press that stupid <esc> key. Also keeps
 " the cursor from moving back one-character when possible.
 inoremap jk <esc>l

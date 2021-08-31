@@ -58,8 +58,38 @@ class ObsidianPlugin:
             link = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
         self.insert_text(f"[[{link}]]")
 
+    @pynvim.command("Done", sync=True)
+    def done(self) -> None:
+        line = self.current_line
+        stripped_line = line.lstrip()  # remove leading whitespace
+        if stripped_line.startswith("- [x]"):
+            new_line = line
+        elif stripped_line.startswith("- [ ]"):
+            new_line = line.replace("- [ ]", "- [x]", 1)
+        elif stripped_line.startswith("-"):
+            new_line = line.replace("-", "- [x]", 1)
+        else:
+            indent = len(line) - len(stripped_line)
+            new_line = (" " * indent) + "- [x] " + stripped_line
+        self.current_line = new_line
+
+    @pynvim.command("Todo", sync=True)
+    def todo(self) -> None:
+        line = self.current_line
+        stripped_line = line.lstrip()  # remove leading whitespace
+        if stripped_line.startswith("- [ ]"):
+            new_line = line
+        elif stripped_line.startswith("- [x]"):
+            new_line = line.replace("- [x]", "- [ ]", 1)
+        elif stripped_line.startswith("-"):
+            new_line = line.replace("-", "- [ ]", 1)
+        else:
+            indent = len(line) - len(stripped_line)
+            new_line = (" " * indent) + "- [ ] " + stripped_line
+        self.current_line = new_line
+
     def get_current_link(self) -> t.Optional[str]:
-        return self.get_link(self.nvim.current.line, self.nvim.current.window.cursor[1])
+        return self.get_link(self.current_line, self.nvim.current.window.cursor[1])
 
     def get_link(self, line: str, cursor_pos: str) -> t.Optional[str]:
         for match in self.internal_link_finder.finditer(line):
@@ -68,6 +98,14 @@ class ObsidianPlugin:
         return None
 
     def insert_text(self, text: str) -> None:
-        line = self.nvim.current.line
+        line = self.current_line
         _, pos = self.nvim.current.window.cursor
-        self.nvim.current.line = line[0:pos] + text + line[pos:]
+        self.current_line = line[0:pos] + text + line[pos:]
+
+    @property
+    def current_line(self) -> str:
+        return self.nvim.current.line
+
+    @current_line.setter
+    def current_line(self, line: str) -> None:
+        self.nvim.current.line = line
