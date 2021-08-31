@@ -9,3 +9,5 @@ flake8
 virtualenv
 virtualenvwrapper
 virtualfish
+oyaml
+requests

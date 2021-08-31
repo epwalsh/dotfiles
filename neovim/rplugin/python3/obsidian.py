@@ -2,13 +2,18 @@
 Plugin for working in an [Obsidian](https://obsidian.md/) vault in Neovim.
 """
 
+from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta
-import os
 from pathlib import Path
 import re
 import typing as t
 
 import pynvim
+import requests
+import oyaml as yaml
+
+
+FILE_NAME_SAFE_CHARS = {"-", "_"}
 
 
 @pynvim.plugin
@@ -17,6 +22,7 @@ class ObsidianPlugin:
 
     def __init__(self, nvim):
         self.nvim = nvim
+        self.s2_client = S2Client()
 
     @pynvim.command("GoTo", nargs="*", sync=True)
     def goto(self, args) -> None:
@@ -48,6 +54,12 @@ class ObsidianPlugin:
     @pynvim.command("Tomorrow", sync=True)
     def tomorrow(self) -> None:
         self.nvim.command("GoTo tomorrow")
+
+    @pynvim.command("Paper", nargs=1, sync=True)
+    def paper(self, args) -> None:
+        paper = self.s2_client.get_paper(args[0])
+        paper.to_file()
+        self.nvim.command(f"GoTo {paper.reference_name()}")
 
     @pynvim.command("Link", nargs=1, sync=True)
     def link(self, args) -> None:
@@ -94,7 +106,7 @@ class ObsidianPlugin:
     def get_link(self, line: str, cursor_pos: str) -> t.Optional[str]:
         for match in self.internal_link_finder.finditer(line):
             if match.start() <= cursor_pos <= match.end():
-                return match.group(1)
+                return match.group(1).split("|")[0]
         return None
 
     def insert_text(self, text: str) -> None:
@@ -109,3 +121,66 @@ class ObsidianPlugin:
     @current_line.setter
     def current_line(self, line: str) -> None:
         self.nvim.current.line = line
+
+
+@dataclass
+class S2Author:
+    authorId: str
+    name: str
+
+
+@dataclass
+class S2Paper:
+    corpusId: str
+    paperId: str
+    url: str
+    title: str
+    abstract: str
+    authors: t.List[S2Author]
+    year: int
+
+    @classmethod
+    def from_dict(cls, corpus_id, data: t.Dict[str, t.Any]) -> "S2Paper":
+        data["authors"] = [S2Author(**author) for author in data["authors"]]
+        return cls(corpusId=str(corpus_id), **data)
+
+    def to_dict(self) -> t.Dict[str, t.Any]:
+        return asdict(self)
+
+    def to_file(self):
+        path = self.path()
+        if not path.is_file():
+            with open(path, "w") as f:
+                f.write("---\n")
+                f.write(yaml.dump({"tags": ["paper"]}, Dumper=CustomYamlDumper))
+                f.write("\n---\n\n")
+                f.write(f"# [{self.title}]({self.url})\n\n")
+                f.write(f"> {self.abstract}")
+
+    def path(self) -> Path:
+        return Path(f"{self.reference_name()}.md")
+
+    def reference_name(self) -> str:
+        standardized_name = "".join(
+            [
+                c
+                for c in self.title.replace(" ", "-").replace(":", "-").lower()
+                if c.isalnum() or c in FILE_NAME_SAFE_CHARS
+            ]
+        )
+        return f"paper-{standardized_name}-{self.corpusId}s2"
+
+
+class S2Client:
+    base_url = "https://api.semanticscholar.org/graph/v1"
+
+    def get_paper(self, corpus_id: t.Union[str, int]) -> S2Paper:
+        response = requests.get(
+            f"{self.base_url}/paper/CorpusID:{corpus_id}?fields=url,title,abstract,authors,year"
+        )
+        return S2Paper.from_dict(corpus_id, response.json())
+
+
+class CustomYamlDumper(yaml.Dumper):
+    def increase_indent(self, flow=False, indentless=False):
+        return super().increase_indent(flow, False)
