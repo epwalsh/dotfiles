@@ -22,8 +22,11 @@ Plug 'rrethy/vim-illuminate'
 " CSV column highlighting + RBQL.
 " Plug 'mechatroner/rainbow_csv'
 
-" Folding.
+" Better folding for Python.
 Plug 'tmhedberg/SimpylFold'
+
+" Markdown section folding.
+Plug 'masukomi/vim-markdown-folding'
 
 " --- }}}
 

@@ -157,6 +157,7 @@ augroup filetype_md
     au FileType markdown nnoremap gf :GoTo<cr>
 augroup END
 set suffixesadd+=.md
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'rust']
 " ------------------------------------------------------------------------- }}}
 
 " Bash settings ----------------------------------------------------------- {{{
