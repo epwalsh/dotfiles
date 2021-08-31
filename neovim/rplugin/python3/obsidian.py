@@ -70,6 +70,13 @@ class ObsidianPlugin:
             link = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
         self.insert_text(f"[[{link}]]")
 
+    @pynvim.command("LinkPaper", nargs=1, sync=True)
+    def link_paper(self, args) -> None:
+        corpus_id = args[0]
+        paper = self.s2_client.get_paper(args[0])
+        paper.to_file()
+        self.nvim.command(f"Link {paper.reference_name()}")
+
     @pynvim.command("Done", sync=True)
     def done(self) -> None:
         line = self.current_line
