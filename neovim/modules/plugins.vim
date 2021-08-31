@@ -74,6 +74,9 @@ Plug 'tpope/vim-fugitive'
 " Rename the current file.
 Plug 'wojtekmach/vim-rename'
 
+" fzf.
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
 " --- }}}
 
 " Language specific tools --- {{{

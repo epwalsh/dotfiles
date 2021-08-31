@@ -2,6 +2,7 @@
 Plugin for working in an [Obsidian](https://obsidian.md/) vault in Neovim.
 """
 
+from datetime import datetime
 import os
 from pathlib import Path
 import re
@@ -31,6 +32,12 @@ class ObsidianPlugin:
 
         self.nvim.command(f"e {str(path)}")
 
+    @pynvim.command("Today", sync=True)
+    def today(self) -> None:
+        today = datetime.now().strftime("%Y-%m-%d")
+        self.insert_text(f"[[{today}]]")
+        return None
+
     def get_current_link(self) -> t.Optional[str]:
         return self.get_link(self.nvim.current.line, self.nvim.current.window.cursor[1])
 
@@ -38,4 +45,10 @@ class ObsidianPlugin:
         for match in self.internal_link_finder.finditer(line):
             if match.start() <= cursor_pos <= match.end():
                 return match.group(1)
+        return None
+
+    def insert_text(self, text: str) -> None:
+        line = self.nvim.current.line
+        _, pos = self.nvim.current.window.cursor
+        self.nvim.current.line = line[0:pos] + text + line[pos:]
         return None
