@@ -2,7 +2,7 @@
 Plugin for working in an [Obsidian](https://obsidian.md/) vault in Neovim.
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 from pathlib import Path
 import re
@@ -18,12 +18,21 @@ class ObsidianPlugin:
     def __init__(self, nvim):
         self.nvim = nvim
 
-    @pynvim.command("GoTo", sync=True)
-    def goto(self) -> None:
-        link = self.get_current_link()
-        if link is None:
-            self.nvim.err_write("Cursor is not on a link!\n")
-            return None
+    @pynvim.command("GoTo", nargs="*", sync=True)
+    def goto(self, args) -> None:
+        link: str
+        if args:
+            if len(args) > 1:
+                return self.nvim.err_write("Expected at most 1 argument\n")
+            link = args[0]
+            if link == "today":
+                link = datetime.now().strftime("%Y-%m-%d")
+            elif link == "tomorrow":
+                link = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+        else:
+            link = self.get_current_link()
+            if link is None:
+                return self.nvim.err_write("Cursor is not on a link!\n")
 
         # Create file if it doesn't already exist.
         path = Path(f"{link}.md")
@@ -36,7 +45,11 @@ class ObsidianPlugin:
     def today(self) -> None:
         today = datetime.now().strftime("%Y-%m-%d")
         self.insert_text(f"[[{today}]]")
-        return None
+
+    @pynvim.command("Tomorrow", sync=True)
+    def tomorrow(self) -> None:
+        tomorrow = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+        self.insert_text(f"[[{tomorrow}]]")
 
     def get_current_link(self) -> t.Optional[str]:
         return self.get_link(self.nvim.current.line, self.nvim.current.window.cursor[1])
@@ -51,4 +64,3 @@ class ObsidianPlugin:
         line = self.nvim.current.line
         _, pos = self.nvim.current.window.cursor
         self.nvim.current.line = line[0:pos] + text + line[pos:]
-        return None
