@@ -27,9 +27,7 @@ class Source(Base):
 
         if text:
             i = 0
-            candidates = self.clean_and_filter_paths(
-                iglob(f"**/{text}*.md", recursive=True), text
-            )
+            candidates = self.clean_and_filter_paths(iglob(f"**/{text}*.md", recursive=True), text)
             for cand, match in candidates:
                 if i > self.MAX_CANDIDATES_PER_GROUP:
                     break
