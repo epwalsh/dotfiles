@@ -24,6 +24,10 @@ class ObsidianPlugin:
         self.nvim = nvim
         self.s2_client = S2Client()
 
+    @pynvim.function("ObsidianComplete")
+    def complete(self, args):
+        return ["FOOBAR"]
+
     @pynvim.command("GoTo", nargs="*", sync=True)
     def goto(self, args) -> None:
         link: str
@@ -31,9 +35,9 @@ class ObsidianPlugin:
             if len(args) > 1:
                 return self.nvim.err_write("Expected at most 1 argument\n")
             link = args[0]
-            if link == "today":
+            if link in {"today", "tod"}:
                 link = datetime.now().strftime("%Y-%m-%d")
-            elif link == "tomorrow":
+            elif link in {"tomorrow", "tom"}:
                 link = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
         else:
             link = self.get_current_link()

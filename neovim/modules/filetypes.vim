@@ -155,6 +155,7 @@ augroup filetype_md
     au FileType markdown setlocal conceallevel=0
     au BufRead,BufNewFile ~/epwalsh-notes/* setlocal path+=~/epwalsh-notes/**
     au FileType markdown nnoremap gf :GoTo<cr>
+    au FileType markdown setlocal omnifunc=ObsidianComplete
 augroup END
 set suffixesadd+=.md
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'rust']
