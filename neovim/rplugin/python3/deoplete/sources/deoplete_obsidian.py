@@ -30,21 +30,21 @@ class Source(Base):
             candidates = self.clean_and_filter_paths(
                 iglob(f"**/{text}*.md", recursive=True), text
             )
-            for cand in candidates:
+            for cand, match in candidates:
                 if i > self.MAX_CANDIDATES_PER_GROUP:
                     break
                 if cand not in unique:
-                    out.append({"word": cand, "kind": "[ref]", "match": cand})
+                    out.append({"word": cand, "kind": "[ref]", "match": match})
                     unique.add(cand)
                     i += 1
 
         buf = self.vim.buffers[context["bufnr"]]
         i = 0
-        for cand in self.find_buf_refs(buf, text):
+        for cand, match in self.find_buf_refs(buf, text):
             if i > self.MAX_CANDIDATES_PER_GROUP:
                 break
             if cand not in unique:
-                out.append({"word": cand, "kind": "[ref(buf)]", "match": cand})
+                out.append({"word": cand, "kind": "[ref(buf)]", "match": match})
                 unique.add(cand)
                 i += 1
 
@@ -58,11 +58,18 @@ class Source(Base):
                     continue
                 if not ref.startswith(text):
                     continue
-                yield ref
+                yield ref, ref
 
     def clean_and_filter_paths(self, paths, text):
+        if text in {"to", "tod", "toda", "today"}:
+            yield datetime.now().strftime("%Y-%m-%d") + "|today", "today"
+        if text in {"to", "tom", "tomo", "tomor", "tomorr", "tomorro", "tomorrow"}:
+            yield (datetime.now() + timedelta(days=1)).strftime(
+                "%Y-%m-%d"
+            ) + "|tomorrow", "tomorrow"
         for path in paths:
             basename = os.path.basename(path)
             if not basename.startswith(text):
                 continue
-            yield basename[:-3]
+            cand = basename[:-3]
+            yield cand, cand
