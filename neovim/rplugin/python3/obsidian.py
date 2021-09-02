@@ -4,16 +4,18 @@ from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta
 import os
 from pathlib import Path
-import string
-import time
-import random
 import re
 import urllib
+import sys
 import typing as t
 
 import pynvim
 import requests
 import oyaml as yaml
+
+sys.path.append(str(Path(__file__).absolute().parent))
+
+from nvim_common.util import new_zettel_id  # noqa: E402
 
 
 FILE_NAME_SAFE_CHARS = {"-", "_"}
@@ -31,15 +33,6 @@ id: {id}
 
 {body}
 """.lstrip()
-
-
-_CHAR_CHOICES = string.ascii_uppercase + string.digits
-
-
-def new_zettel_id(ts: t.Optional[float] = None) -> str:
-    ts = int(ts or time.time())
-    suffix = "".join((random.choice(_CHAR_CHOICES) for _ in range(4)))
-    return f"{ts}-{suffix}"
 
 
 def new_note(title: str, zettel_id: t.Optional[str] = None, body: t.Optional[str] = None):
@@ -98,7 +91,7 @@ class ObsidianPlugin:
         if maybe_link is None:
             link = os.path.basename(self.nvim.current.buffer.name)
         else:
-            link = maybe_link
+            link, _ = maybe_link
         self.open_in_obsidian(link)
 
     @pynvim.command("GoTo", nargs="*", sync=True)
@@ -121,8 +114,10 @@ class ObsidianPlugin:
             maybe_link = self.get_current_link()
             if maybe_link is None:
                 return self.nvim.err_write("Cursor is not on a link!\n")
-            link = maybe_link
+            link, title = maybe_link
             path = Path(f"{link}.md")
+            if not path.exists() and title is not None:
+                new_note(title, zettel_id=link)
         self.nvim.command(f"e {str(path)}")
 
     @pynvim.command("Today", sync=True)
@@ -184,13 +179,20 @@ class ObsidianPlugin:
             new_line = (" " * indent) + "- [ ] " + stripped_line
         self.current_line = new_line
 
-    def get_current_link(self) -> t.Optional[str]:
-        return self.get_link(self.current_line, self.nvim.current.window.cursor[1])
+    def get_current_link(self) -> t.Optional[t.Tuple[str, t.Optional[str]]]:
+        full_link = self.get_link(self.current_line, self.nvim.current.window.cursor[1])
+        if not full_link:
+            return None
+        if "|" in full_link:
+            file_name, *display = full_link.split("|")
+            display_name = "|".join(display)
+            return file_name, display_name
+        return full_link, None
 
     def get_link(self, line: str, cursor_pos: int) -> t.Optional[str]:
         for match in self.internal_link_finder.finditer(line):
             if match.start() <= cursor_pos <= match.end():
-                return match.group(1).split("|")[0]
+                return match.group(1)
         return None
 
     def insert_text(self, text: str) -> None:
@@ -200,7 +202,7 @@ class ObsidianPlugin:
         self.nvim.current.window.cursor = (row, col + len(text))
 
     def open_in_obsidian(self, note: str):
-        encoded_note = urllib.parse.quote(note)
+        encoded_note = urllib.parse.quote(note)  # type: ignore[attr-defined]
         command = (
             f"open -a /Applications/Obsidian.app --background 'obsidian://open?file={encoded_note}'"
         )

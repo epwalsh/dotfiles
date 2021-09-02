@@ -2,9 +2,15 @@ from datetime import datetime, timedelta
 from glob import iglob
 import os
 import re
+import sys
+from pathlib import Path
 import typing as t
 
 from deoplete.base.source import Base
+
+sys.path.append(str(Path(__file__).absolute().parent.parent.parent))
+
+from nvim_common.util import new_zettel_id  # noqa: E402
 
 
 LINK_FINDER = re.compile(r"\[([^\]]+)\]\(([^\)]+)\)")
@@ -56,9 +62,14 @@ class Source(Base):
         return context["input"].rfind("[[") + 2
 
     def gather_candidates(self, context):
+        brackets_start = context["input"].rfind("[[")
+        brackets_end = context["input"].rfind("]]")
+        if brackets_start < 0 or (brackets_start <= brackets_end):
+            return []
+
         out = []
         unique = set()
-        text = context["input"].split("[[")[-1].replace("]]", "")
+        text = context["input"].split("[[")[-1].replace("]]", "").strip()
 
         def take_unique(candidates, kind="[ref]"):
             i = 0
@@ -69,6 +80,12 @@ class Source(Base):
                     out.append({"word": cand, "kind": kind, "match": match})
                     unique.add(cand)
                     i += 1
+
+        # Suggest a new.
+        if len(text) > 2 and not os.path.exists(f"{text}.md"):
+            zettel_id = new_zettel_id()
+            cand = f"{zettel_id}|{text}"
+            out.append({"word": cand, "kind": "[new]", "match": text})
 
         # `text` may be shortcut, e.g. 'today'
         if text:
@@ -109,7 +126,7 @@ class Source(Base):
         for line in buf:
             for match in self.REFERENCE_FINDER.finditer(line):
                 ref = match.group(1)
-                if ref == text:
+                if ref.strip() == text:
                     continue
                 if not ref.startswith(text):
                     continue
