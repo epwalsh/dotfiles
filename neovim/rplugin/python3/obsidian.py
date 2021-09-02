@@ -1,10 +1,11 @@
-"""
-Plugin for working in an [Obsidian](https://obsidian.md/) vault in Neovim.
-"""
+"""Plugin for working in an [Obsidian](https://obsidian.md/) vault in Neovim."""
 
 from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta
 from pathlib import Path
+import string
+import time
+import random
 import re
 import typing as t
 
@@ -16,6 +17,57 @@ import oyaml as yaml
 FILE_NAME_SAFE_CHARS = {"-", "_"}
 
 
+NOTE_TEMPLATE = """
+---
+tags: []
+aliases: []
+id: {id}
+
+---
+
+# {title}
+
+{body}
+""".lstrip()
+
+
+_CHAR_CHOICES = string.ascii_uppercase + string.digits
+
+
+def new_zettel_id(ts: t.Optional[float] = None) -> str:
+    ts = int(ts or time.time())
+    suffix = "".join((random.choice(_CHAR_CHOICES) for _ in range(4)))
+    return f"{ts}-{suffix}"
+
+
+def new_note(title: str, zettel_id: t.Optional[str] = None, body: t.Optional[str] = None):
+    zettel_id = zettel_id or new_zettel_id()
+    contents = NOTE_TEMPLATE.format(id=zettel_id, title=title, body=body or "")
+    path = f"{zettel_id}.md"
+    with open(path, "w") as f:
+        f.write(contents)
+
+
+def clean_ordinal(ordinal: str) -> str:
+    while ordinal.startswith("0"):
+        ordinal = ordinal.replace("0", "", 1)
+    if ordinal.endswith("1"):
+        suffix = "st"
+    elif ordinal.endswith("2"):
+        suffix = "nd"
+    elif ordinal.endswith("3"):
+        suffix = "rd"
+    else:
+        suffix = "th"
+    return ordinal + suffix
+
+
+def new_daily_note(date: datetime):
+    zettel_id = date.strftime("%Y-%m-%d")
+    title = date.strftime("%B {}, %Y").format(clean_ordinal(date.strftime("%d")))
+    return new_note(title, zettel_id=zettel_id)
+
+
 @pynvim.plugin
 class ObsidianPlugin:
     internal_link_finder = re.compile(r"\[\[([^\]]+)\]\]")
@@ -24,9 +76,15 @@ class ObsidianPlugin:
         self.nvim = nvim
         self.s2_client = S2Client()
 
-    @pynvim.function("ObsidianComplete")
-    def complete(self, args):
-        return ["FOOBAR"]
+    @pynvim.command("New", nargs="*", sync=True)
+    def new(self, args) -> None:
+        title = " ".join(args)
+        zettel_id = new_zettel_id()
+        new_note(title, zettel_id=zettel_id)
+        if title:
+            self.insert_text(f"[[{zettel_id}|{title}]]")
+        else:
+            self.insert_text(f"[[{zettel_id}]]")
 
     @pynvim.command("GoTo", nargs="*", sync=True)
     def goto(self, args) -> None:
@@ -36,19 +94,20 @@ class ObsidianPlugin:
                 return self.nvim.err_write("Expected at most 1 argument\n")
             link = args[0]
             if link in {"today", "tod"}:
-                link = datetime.now().strftime("%Y-%m-%d")
+                date = datetime.now()
+                link = date.strftime("%Y-%m-%d")
             elif link in {"tomorrow", "tom"}:
-                link = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+                date = datetime.now() + timedelta(days=1)
+                link = date.strftime("%Y-%m-%d")
+            path = Path(f"{link}.md")
+            if not path.exists():
+                new_daily_note(date)
         else:
-            link = self.get_current_link()
-            if link is None:
+            maybe_link = self.get_current_link()
+            if maybe_link is None:
                 return self.nvim.err_write("Cursor is not on a link!\n")
-
-        # Create file if it doesn't already exist.
-        path = Path(f"{link}.md")
-        if not path.is_file():
-            path.touch()
-
+            link = maybe_link
+            path = Path(f"{link}.md")
         self.nvim.command(f"e {str(path)}")
 
     @pynvim.command("Today", sync=True)
@@ -76,7 +135,6 @@ class ObsidianPlugin:
 
     @pynvim.command("LinkPaper", nargs=1, sync=True)
     def link_paper(self, args) -> None:
-        corpus_id = args[0]
         paper = self.s2_client.get_paper(args[0])
         paper.to_file()
         self.nvim.command(f"Link {paper.reference_name()}")
@@ -96,7 +154,7 @@ class ObsidianPlugin:
             new_line = (" " * indent) + "- [x] " + stripped_line
         self.current_line = new_line
 
-    @pynvim.command("Todo", sync=True)
+    @pynvim.command("ToDo", sync=True)
     def todo(self) -> None:
         line = self.current_line
         stripped_line = line.lstrip()  # remove leading whitespace
@@ -114,7 +172,7 @@ class ObsidianPlugin:
     def get_current_link(self) -> t.Optional[str]:
         return self.get_link(self.current_line, self.nvim.current.window.cursor[1])
 
-    def get_link(self, line: str, cursor_pos: str) -> t.Optional[str]:
+    def get_link(self, line: str, cursor_pos: int) -> t.Optional[str]:
         for match in self.internal_link_finder.finditer(line):
             if match.start() <= cursor_pos <= match.end():
                 return match.group(1).split("|")[0]
@@ -122,8 +180,9 @@ class ObsidianPlugin:
 
     def insert_text(self, text: str) -> None:
         line = self.current_line
-        _, pos = self.nvim.current.window.cursor
-        self.current_line = line[0 : pos + 1] + text + line[pos + 1 :]
+        row, col = self.nvim.current.window.cursor
+        self.current_line = line[0 : col + 1] + text + line[col + 1 :]
+        self.nvim.current.window.cursor = (row, col + len(text))
 
     @property
     def current_line(self) -> str:
