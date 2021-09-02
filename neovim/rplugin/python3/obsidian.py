@@ -2,11 +2,13 @@
 
 from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta
+import os
 from pathlib import Path
 import string
 import time
 import random
 import re
+import urllib
 import typing as t
 
 import pynvim
@@ -85,6 +87,19 @@ class ObsidianPlugin:
             self.insert_text(f"[[{zettel_id}|{title}]]")
         else:
             self.insert_text(f"[[{zettel_id}]]")
+
+    @pynvim.command("OpenCurrent", sync=False)
+    def open_current(self):
+        self.open_in_obsidian(os.path.basename(self.nvim.current.buffer.name))
+
+    @pynvim.command("Open", sync=False)
+    def open(self):
+        maybe_link = self.get_current_link()
+        if maybe_link is None:
+            link = os.path.basename(self.nvim.current.buffer.name)
+        else:
+            link = maybe_link
+        self.open_in_obsidian(link)
 
     @pynvim.command("GoTo", nargs="*", sync=True)
     def goto(self, args) -> None:
@@ -183,6 +198,13 @@ class ObsidianPlugin:
         row, col = self.nvim.current.window.cursor
         self.current_line = line[0 : col + 1] + text + line[col + 1 :]
         self.nvim.current.window.cursor = (row, col + len(text))
+
+    def open_in_obsidian(self, note: str):
+        encoded_note = urllib.parse.quote(note)
+        command = (
+            f"open -a /Applications/Obsidian.app --background 'obsidian://open?file={encoded_note}'"
+        )
+        os.system(command)
 
     @property
     def current_line(self) -> str:
