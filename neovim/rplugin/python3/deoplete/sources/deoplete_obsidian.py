@@ -10,7 +10,7 @@ from deoplete.base.source import Base
 
 sys.path.append(str(Path(__file__).absolute().parent.parent.parent))
 
-from nvim_common.util import new_zettel_id  # noqa: E402
+from nvim_common.util import new_zettel_id, parse_frontmatter  # noqa: E402
 
 
 LINK_FINDER = re.compile(r"\[([^\]]+)\]\(([^\)]+)\)")
@@ -20,25 +20,16 @@ def remove_links(content: str) -> str:
     return LINK_FINDER.sub(r"\g<1>", content)
 
 
-def parse_title(note: str) -> t.Optional[str]:
-    if not note.endswith(".md"):
-        note = note + ".md"
-    with open(note) as f:
-        in_front_matter = False
-        in_code_block = False
-        for line in f:
-            if line.startswith("---"):
-                if in_front_matter:
-                    in_front_matter = False
-                else:
-                    in_front_matter = True
-            elif line.startswith("```"):
-                if in_code_block:
-                    in_code_block = False
-                else:
-                    in_code_block = True
-            elif line.startswith("# ") and not in_front_matter and not in_code_block:
-                return remove_links(line[2:].strip())
+def parse_title(lines: t.Iterable[str]) -> t.Optional[str]:
+    in_code_block = False
+    for line in lines:
+        if line.startswith("```"):
+            if in_code_block:
+                in_code_block = False
+            else:
+                in_code_block = True
+        elif line.startswith("# ") and not in_code_block:
+            return remove_links(line[2:].strip())
     return None
 
 
@@ -82,7 +73,7 @@ class Source(Base):
                     i += 1
 
         # Suggest a new.
-        if len(text) > 2 and not os.path.exists(f"{text}.md"):
+        if len(text) > 2 and "|" not in text and not os.path.exists(f"{text}.md"):
             zettel_id = new_zettel_id()
             cand = f"{zettel_id}|{text}"
             out.append({"word": cand, "kind": "[new]", "match": text})
@@ -135,13 +126,29 @@ class Source(Base):
     def find_semantic_refs(self, text):
         text_tokens = set(self.tokenize(text))
         for path in iglob("**/*.md", recursive=True):
-            # For now we just try matching the title.
-            title = parse_title(path)
-            if not title:
+            with open(path) as lines:
+                try:
+                    frontmatter = parse_frontmatter(lines)
+                except Exception as e:
+                    self.vim.err_write(f"Error parsing frontmatter for {path}\n{e}\n")
+                    continue
+                aliases = None if not frontmatter else frontmatter.get("aliases")
+                title = parse_title(lines)
+
+            if not aliases and not title:
                 continue
-            title_tokens = set(self.tokenize(title))
-            if self.tokens_partially_match(text_tokens, title_tokens):
-                yield os.path.basename(path)[:-3] + "|" + title, title
+
+            note_id = os.path.basename(path)[:-3]
+
+            for alias in aliases or []:
+                alias_tokens = set(self.tokenize(alias))
+                if self.tokens_partially_match(text_tokens, alias_tokens):
+                    yield note_id + "|" + alias, alias
+
+            if title:
+                title_tokens = set(self.tokenize(title))
+                if self.tokens_partially_match(text_tokens, title_tokens):
+                    yield note_id + "|" + title, title
 
     def tokenize(self, text: str, do_lower=True):
         for tok in text.split(" "):

@@ -16,7 +16,7 @@ import oyaml as yaml
 
 sys.path.append(str(Path(__file__).absolute().parent))
 
-from nvim_common.util import new_zettel_id  # noqa: E402
+from nvim_common.util import new_zettel_id, parse_frontmatter  # noqa: E402
 
 
 FILE_NAME_SAFE_CHARS = {"-", "_"}
@@ -97,12 +97,34 @@ class ObsidianPlugin:
         self.nvim.command(command)
         self.nvim.command("lop")
 
-    @pynvim.command("Debug", sync=True)
-    def debug(self):
-        for window in self.nvim.windows:
-            buf = window.buffer
-            if os.path.basename(buf.name) != "nav.md":
-                self.nvim.current.window = window
+    @pynvim.command("Ref", nargs=1, sync=True)
+    def add_reference(self, args):
+        ref_num = args[0]
+        self.insert_text(f"[\[{ref_num}\]][{ref_num}]")
+
+    @pynvim.command("Frontmatter", sync=True)
+    def add_frontmatter(self):
+        try:
+            frontmatter = parse_frontmatter(self.nvim.current.buffer)
+        except Exception as e:
+            return self.nvim.err_write(f"Error parsing frontmatter\n{e}\n")
+        if frontmatter is None:
+            frontmatter_lines = (
+                ["---"]
+                + yaml.dump(
+                    OrderedDict(
+                        [
+                            ("tags", []),
+                            ("aliases", []),
+                            ("id", os.path.basename(self.nvim.current.buffer.name)),
+                        ]
+                    ),
+                    Dumper=CustomYamlDumper,
+                ).split("\n")
+                + ["---"]
+            )
+            for line in reversed(frontmatter_lines):
+                self.nvim.current.buffer.append(line, index=0)
 
     @pynvim.command("OpenCurrent", sync=False)
     def open_current(self):
