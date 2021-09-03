@@ -1,5 +1,6 @@
 """Plugin for working in an [Obsidian](https://obsidian.md/) vault in Neovim."""
 
+from collections import OrderedDict
 from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta
 import os
@@ -23,10 +24,7 @@ FILE_NAME_SAFE_CHARS = {"-", "_"}
 
 NOTE_TEMPLATE = """
 ---
-tags: []
-aliases: []
-id: {id}
-
+{frontmatter}
 ---
 
 # {title}
@@ -37,7 +35,10 @@ id: {id}
 
 def new_note(title: str, zettel_id: t.Optional[str] = None, body: t.Optional[str] = None):
     zettel_id = zettel_id or new_zettel_id()
-    contents = NOTE_TEMPLATE.format(id=zettel_id, title=title, body=body or "")
+    frontmatter = yaml.dump(
+        OrderedDict([("tags", []), ("aliases", []), ("id", zettel_id)]), Dumper=CustomYamlDumper
+    )
+    contents = NOTE_TEMPLATE.format(frontmatter=frontmatter, title=title, body=body or "")
     path = f"{zettel_id}.md"
     with open(path, "w") as f:
         f.write(contents)
