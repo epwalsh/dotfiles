@@ -159,6 +159,7 @@ augroup filetype_md
     au FileType markdown nnoremap cr :Create<cr>
     au FileType markdown nnoremap dn :Done<cr>
     au FileType markdown nnoremap td :ToDo<cr>
+    au FileType markdown nnoremap bl :Backlinks<cr>
     au FileType markdown nnoremap <leader>n :New<cr>
     au BufNewFile *.md 0r ~/.config/nvim/headers/template.md
 augroup END

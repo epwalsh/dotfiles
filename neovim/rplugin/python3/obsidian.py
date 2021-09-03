@@ -81,6 +81,28 @@ class ObsidianPlugin:
         else:
             self.insert_text(f"[[{zettel_id}]]")
 
+    @pynvim.command("Nav", sync=False)
+    def nav(self):
+        self.nvim.command("e nav.md")
+
+    @pynvim.command("Backlinks", sync=False)
+    def backlinks(self):
+        buf_name = os.path.basename(self.nvim.current.buffer.name)[:-3]
+        grep_cmd = "grep -FHn ''[[%s'' *.md" % buf_name
+        command = (
+            "call setloclist(0, [], ' ', {'lines' : systemlist('%s'), 'title': 'Backlinks'})"
+            % grep_cmd
+        )
+        self.nvim.command(command)
+        self.nvim.command("lop")
+
+    @pynvim.command("Debug", sync=True)
+    def debug(self):
+        for window in self.nvim.windows:
+            buf = window.buffer
+            if os.path.basename(buf.name) != "nav.md":
+                self.nvim.current.window = window
+
     @pynvim.command("OpenCurrent", sync=False)
     def open_current(self):
         self.open_in_obsidian(os.path.basename(self.nvim.current.buffer.name))
