@@ -44,7 +44,7 @@ def new_note(
     tags = tags or []
     # Is this a daily note?
     try:
-        datetime.strptime(title, "%Y-%m-%d")
+        datetime.strptime(zettel_id, "%Y-%m-%d")
         if "daily-notes" not in tags:
             tags.insert(0, "daily-notes")
     except ValueError:
@@ -187,18 +187,29 @@ class ObsidianPlugin:
             link, _ = maybe_link
         self.open_in_obsidian(link)
 
-    @pynvim.command("Create", sync=False)
-    def create(self) -> None:
+    def maybe_create_note(self, exist_ok=True) -> Path:
         maybe_link = self.get_current_link()
         if maybe_link is None:
             return self.nvim.err_write("Cursor is not on a link!\n")
         link, title = maybe_link
         path = Path(f"{link}.md")
-        if not path.exists() and title is not None:
-            new_note(title, zettel_id=link)
+        if not path.exists():
+            if title is not None:
+                new_note(title, zettel_id=link)
+            else:
+                try:
+                    date = datetime.strptime(link, "%Y-%m-%d")
+                    new_daily_note(date)
+                except ValueError:
+                    new_note(link, zettel_id=link)
             self.nvim.out_write(f"{link} created\n")
-        else:
+        elif not exist_ok:
             self.nvim.err_write(f"{link} already exists\n")
+        return path
+
+    @pynvim.command("Create", sync=False)
+    def create(self) -> None:
+        _ = self.maybe_create_note()
 
     @pynvim.command("GoTo", nargs="*", sync=True)
     def goto(self, args) -> None:
@@ -217,13 +228,7 @@ class ObsidianPlugin:
             if not path.exists():
                 new_daily_note(date)
         else:
-            maybe_link = self.get_current_link()
-            if maybe_link is None:
-                return self.nvim.err_write("Cursor is not on a link!\n")
-            link, title = maybe_link
-            path = Path(f"{link}.md")
-            if not path.exists() and title is not None:
-                new_note(title, zettel_id=link)
+            path = self.maybe_create_note()
         self.nvim.command(f"e {str(path)}")
 
     @pynvim.command("Today", sync=True)
