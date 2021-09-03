@@ -94,6 +94,19 @@ class ObsidianPlugin:
             link, _ = maybe_link
         self.open_in_obsidian(link)
 
+    @pynvim.command("Create", sync=False)
+    def create(self) -> None:
+        maybe_link = self.get_current_link()
+        if maybe_link is None:
+            return self.nvim.err_write("Cursor is not on a link!\n")
+        link, title = maybe_link
+        path = Path(f"{link}.md")
+        if not path.exists() and title is not None:
+            new_note(title, zettel_id=link)
+            self.nvim.out_write(f"{link} created\n")
+        else:
+            self.nvim.err_write(f"{link} already exists\n")
+
     @pynvim.command("GoTo", nargs="*", sync=True)
     def goto(self, args) -> None:
         link: str
