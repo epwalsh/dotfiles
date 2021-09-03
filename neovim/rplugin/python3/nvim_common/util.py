@@ -1,3 +1,4 @@
+import re
 import string
 import time
 import random
@@ -15,7 +16,7 @@ def new_zettel_id(ts: t.Optional[float] = None) -> str:
     return f"{ts}-{suffix}"
 
 
-def parse_frontmatter(lines: t.Iterable[str]) -> t.Optional[t.Dict[str, t.Any]]:
+def parse_frontmatter(lines: t.Iterable[str]) -> t.Tuple[t.Optional[t.Dict[str, t.Any]], int]:
     num_dashes = 3
     frontmatter = []
     for line_num, line in enumerate(lines):
@@ -23,12 +24,32 @@ def parse_frontmatter(lines: t.Iterable[str]) -> t.Optional[t.Dict[str, t.Any]]:
         if line_num == 0:
             num_dashes = line.count("-")
             if num_dashes == 0 or num_dashes < len(line):
-                return None
+                return None, 0
         else:
             if line == "-" * num_dashes:
                 break
             else:
                 frontmatter.append(line)
-    out = yaml.load("\n".join(frontmatter))
+    out = yaml.load("\n".join(frontmatter), Loader=yaml.FullLoader)
     assert isinstance(out, dict)
-    return out
+    return out, len(frontmatter) + 2
+
+
+LINK_FINDER = re.compile(r"\[([^\]]+)\]\(([^\)]+)\)")
+
+
+def remove_links(content: str) -> str:
+    return LINK_FINDER.sub(r"\g<1>", content)
+
+
+def parse_title(lines: t.Iterable[str]) -> t.Optional[str]:
+    in_code_block = False
+    for line in lines:
+        if line.startswith("```"):
+            if in_code_block:
+                in_code_block = False
+            else:
+                in_code_block = True
+        elif line.startswith("# ") and not in_code_block:
+            return remove_links(line[2:].strip())
+    return None

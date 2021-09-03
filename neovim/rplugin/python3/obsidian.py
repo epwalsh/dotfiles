@@ -1,5 +1,6 @@
 """Plugin for working in an [Obsidian](https://obsidian.md/) vault in Neovim."""
 
+from itertools import tee, islice
 from collections import OrderedDict
 from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta
@@ -16,7 +17,7 @@ import oyaml as yaml
 
 sys.path.append(str(Path(__file__).absolute().parent))
 
-from nvim_common.util import new_zettel_id, parse_frontmatter  # noqa: E402
+from nvim_common.util import new_zettel_id, parse_frontmatter, parse_title  # noqa: E402
 
 
 FILE_NAME_SAFE_CHARS = {"-", "_"}
@@ -33,10 +34,24 @@ NOTE_TEMPLATE = """
 """.lstrip()
 
 
-def new_note(title: str, zettel_id: t.Optional[str] = None, body: t.Optional[str] = None):
+def new_note(
+    title: str,
+    zettel_id: t.Optional[str] = None,
+    body: t.Optional[str] = None,
+    tags: t.Optional[t.List[str]] = None,
+):
     zettel_id = zettel_id or new_zettel_id()
+    tags = tags or []
+    # Is this a daily note?
+    try:
+        datetime.strptime(title, "%Y-%m-%d")
+        if "daily-notes" not in tags:
+            tags.insert(0, "daily-notes")
+    except ValueError:
+        pass
     frontmatter = yaml.dump(
-        OrderedDict([("tags", []), ("aliases", []), ("id", zettel_id)]), Dumper=CustomYamlDumper
+        OrderedDict([("tags", tags), ("aliases", [title]), ("id", zettel_id)]),
+        Dumper=CustomYamlDumper,
     )
     contents = NOTE_TEMPLATE.format(frontmatter=frontmatter, title=title, body=body or "")
     path = f"{zettel_id}.md"
@@ -61,7 +76,7 @@ def clean_ordinal(ordinal: str) -> str:
 def new_daily_note(date: datetime):
     zettel_id = date.strftime("%Y-%m-%d")
     title = date.strftime("%B {}, %Y").format(clean_ordinal(date.strftime("%d")))
-    return new_note(title, zettel_id=zettel_id)
+    return new_note(title, zettel_id=zettel_id, tags=["daily-notes"])
 
 
 @pynvim.plugin
@@ -86,6 +101,10 @@ class ObsidianPlugin:
     def nav(self):
         self.nvim.command("e nav.md")
 
+    @pynvim.command("Hub", sync=False)
+    def hub(self):
+        self.nvim.command("e hub.md")
+
     @pynvim.command("Backlinks", sync=False)
     def backlinks(self):
         buf_name = os.path.basename(self.nvim.current.buffer.name)[:-3]
@@ -100,29 +119,58 @@ class ObsidianPlugin:
     @pynvim.command("Ref", nargs=1, sync=True)
     def add_reference(self, args):
         ref_num = args[0]
-        self.insert_text(f"[\[{ref_num}\]][{ref_num}]")
+        self.insert_text(f"[\[{ref_num}\]][{ref_num}]")  # noqa: W605
 
     @pynvim.command("Frontmatter", sync=True)
     def add_frontmatter(self):
+        # Parse front matter and title from current note.
+        lines = iter(self.nvim.current.buffer)
+        lines_for_frontmatter, lines_for_title = tee(lines)
         try:
-            frontmatter = parse_frontmatter(self.nvim.current.buffer)
+            frontmatter, frontmatter_len = parse_frontmatter(lines_for_frontmatter)
         except Exception as e:
             return self.nvim.err_write(f"Error parsing frontmatter\n{e}\n")
+        lines_for_title = islice(lines_for_title, frontmatter_len, None)
+        title = parse_title(lines_for_title)
+        del lines, lines_for_frontmatter, lines_for_title
+
+        # Possibly update or initialize the frontmatter.
+        changed = False
         if frontmatter is None:
+            new_frontmatter = OrderedDict(
+                [
+                    ("tags", []),
+                    ("aliases", [title] if title else []),
+                    ("id", os.path.basename(self.nvim.current.buffer.name)),
+                ]
+            )
+            changed = True
+        else:
+            new_frontmatter = frontmatter  # type: ignore[assignment]
+            if "aliases" not in new_frontmatter:
+                new_frontmatter["aliases"] = [title] if title else []
+                changed = True
+            else:
+                if title and title not in new_frontmatter["aliases"]:
+                    new_frontmatter["aliases"].insert(0, title)
+                    changed = True
+            if "tags" not in new_frontmatter:
+                new_frontmatter["tags"] = []
+                changed = True
+
+        # If we've made changes, update the fronmatter.
+        if changed:
             frontmatter_lines = (
                 ["---"]
                 + yaml.dump(
-                    OrderedDict(
-                        [
-                            ("tags", []),
-                            ("aliases", []),
-                            ("id", os.path.basename(self.nvim.current.buffer.name)),
-                        ]
-                    ),
+                    new_frontmatter,
                     Dumper=CustomYamlDumper,
                 ).split("\n")
                 + ["---"]
             )
+            if frontmatter_len > 0:
+                # Remove old frontmatter.
+                del self.nvim.current.buffer[0:frontmatter_len]
             for line in reversed(frontmatter_lines):
                 self.nvim.current.buffer.append(line, index=0)
 

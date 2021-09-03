@@ -1,3 +1,4 @@
+from itertools import tee, islice
 from datetime import datetime, timedelta
 from glob import iglob
 import os
@@ -10,27 +11,7 @@ from deoplete.base.source import Base
 
 sys.path.append(str(Path(__file__).absolute().parent.parent.parent))
 
-from nvim_common.util import new_zettel_id, parse_frontmatter  # noqa: E402
-
-
-LINK_FINDER = re.compile(r"\[([^\]]+)\]\(([^\)]+)\)")
-
-
-def remove_links(content: str) -> str:
-    return LINK_FINDER.sub(r"\g<1>", content)
-
-
-def parse_title(lines: t.Iterable[str]) -> t.Optional[str]:
-    in_code_block = False
-    for line in lines:
-        if line.startswith("```"):
-            if in_code_block:
-                in_code_block = False
-            else:
-                in_code_block = True
-        elif line.startswith("# ") and not in_code_block:
-            return remove_links(line[2:].strip())
-    return None
+from nvim_common.util import new_zettel_id, parse_frontmatter, parse_title  # noqa: E402
 
 
 class Source(Base):
@@ -127,13 +108,15 @@ class Source(Base):
         text_tokens = set(self.tokenize(text))
         for path in iglob("**/*.md", recursive=True):
             with open(path) as lines:
+                lines_for_frontmatter, lines_for_title = tee(lines)
                 try:
-                    frontmatter = parse_frontmatter(lines)
+                    frontmatter, frontmatter_len = parse_frontmatter(lines_for_frontmatter)
                 except Exception as e:
                     self.vim.err_write(f"Error parsing frontmatter for {path}\n{e}\n")
                     continue
+                lines_for_title = islice(lines_for_title, frontmatter_len, None)
                 aliases = None if not frontmatter else frontmatter.get("aliases")
-                title = parse_title(lines)
+                title = parse_title(lines_for_title)
 
             if not aliases and not title:
                 continue
@@ -141,6 +124,8 @@ class Source(Base):
             note_id = os.path.basename(path)[:-3]
 
             for alias in aliases or []:
+                if alias == title:
+                    continue
                 alias_tokens = set(self.tokenize(alias))
                 if self.tokens_partially_match(text_tokens, alias_tokens):
                     yield note_id + "|" + alias, alias
