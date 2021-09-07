@@ -67,6 +67,9 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
+" Automatic aligning.
+Plug 'junegunn/vim-easy-align'
+
 " --- }}}
 
 " Other workflow tools --- {{{
