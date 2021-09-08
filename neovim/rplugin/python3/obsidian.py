@@ -243,7 +243,8 @@ class ObsidianPlugin:
                 new_daily_note(date)
         else:
             path = self.maybe_create_note()
-        self.nvim.command(f"e {str(path)}")
+        if path is not None:
+            self.nvim.command(f"e {str(path)}")
 
     @pynvim.command("Today", sync=True)
     def today(self) -> None:
@@ -307,6 +308,7 @@ class ObsidianPlugin:
     def get_current_link(self) -> t.Optional[t.Tuple[str, t.Optional[str]]]:
         full_link = self.get_link(self.current_line, self.nvim.current.window.cursor[1])
         if not full_link:
+            self.nvim.err_write(f"{self.current_line}\n{self.nvim.current.window.cursor[1]}\n")
             return None
         if "|" in full_link:
             file_name, *display = full_link.split("|")
@@ -315,8 +317,13 @@ class ObsidianPlugin:
         return full_link, None
 
     def get_link(self, line: str, cursor_pos: int) -> t.Optional[str]:
+        # We have to be careful because `cursor_pos` will be the position in terms of unicode
+        # code points. So if there are unicode characters in the line befpre `cursor_pos` that
+        # consist of multiple code points, then `cursor_pos` will not correspond to the position
+        # of the cusor within `line`.
+        adjusted_cursor_pos = len(line.encode()[:cursor_pos].decode())
         for match in self.internal_link_finder.finditer(line):
-            if match.start() <= cursor_pos <= match.end():
+            if match.start() <= adjusted_cursor_pos <= match.end():
                 return match.group(1)
         return None
 
