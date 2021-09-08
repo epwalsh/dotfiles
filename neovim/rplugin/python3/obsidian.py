@@ -134,14 +134,21 @@ class ObsidianPlugin:
         title = parse_title(lines_for_title)
         del lines, lines_for_frontmatter, lines_for_title
 
+        zettel_id = os.path.basename(self.nvim.current.buffer.name)[:-3]
+        try:
+            datetime.strptime(zettel_id, "%Y-%m-%d")
+            is_daily_note = True
+        except ValueError:
+            is_daily_note = False
+
         # Possibly update or initialize the frontmatter.
         changed = False
         if frontmatter is None:
             new_frontmatter = OrderedDict(
                 [
-                    ("tags", []),
+                    ("tags", ["daily-note"] if is_daily_note else []),
                     ("aliases", [title] if title else []),
-                    ("id", os.path.basename(self.nvim.current.buffer.name)),
+                    ("id", zettel_id),
                 ]
             )
             changed = True
@@ -150,12 +157,19 @@ class ObsidianPlugin:
             if "aliases" not in new_frontmatter:
                 new_frontmatter["aliases"] = [title] if title else []
                 changed = True
-            else:
-                if title and title not in new_frontmatter["aliases"]:
-                    new_frontmatter["aliases"].insert(0, title)
-                    changed = True
+            elif title and title not in new_frontmatter["aliases"]:
+                new_frontmatter["aliases"].insert(0, title)
+                changed = True
+
             if "tags" not in new_frontmatter:
-                new_frontmatter["tags"] = []
+                new_frontmatter["tags"] = ["daily-note"] if is_daily_note else []
+                changed = True
+            elif is_daily_note and "daily-note" not in new_frontmatter["tags"]:
+                new_frontmatter["tags"].insert(0, "daily-note")
+                changed = True
+
+            if "id" not in new_frontmatter:
+                new_frontmatter["id"] = zettel_id
                 changed = True
 
         # If we've made changes, update the fronmatter.
