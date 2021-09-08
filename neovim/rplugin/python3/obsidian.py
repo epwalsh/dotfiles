@@ -146,7 +146,7 @@ class ObsidianPlugin:
         if frontmatter is None:
             new_frontmatter = OrderedDict(
                 [
-                    ("tags", ["daily-note"] if is_daily_note else []),
+                    ("tags", ["daily-notes"] if is_daily_note else []),
                     ("aliases", [title] if title else []),
                     ("id", zettel_id),
                 ]
@@ -162,10 +162,10 @@ class ObsidianPlugin:
                 changed = True
 
             if "tags" not in new_frontmatter:
-                new_frontmatter["tags"] = ["daily-note"] if is_daily_note else []
+                new_frontmatter["tags"] = ["daily-notes"] if is_daily_note else []
                 changed = True
-            elif is_daily_note and "daily-note" not in new_frontmatter["tags"]:
-                new_frontmatter["tags"].insert(0, "daily-note")
+            elif is_daily_note and "daily-notes" not in new_frontmatter["tags"]:
+                new_frontmatter["tags"].insert(0, "daily-notes")
                 changed = True
 
             if "id" not in new_frontmatter:
@@ -201,10 +201,12 @@ class ObsidianPlugin:
             link, _ = maybe_link
         self.open_in_obsidian(link)
 
-    def maybe_create_note(self, exist_ok=True) -> Path:
+    def maybe_create_note(self, exist_ok=True, ignore_errors=False) -> Path:
         maybe_link = self.get_current_link()
         if maybe_link is None:
-            return self.nvim.err_write("Cursor is not on a link!\n")
+            if not ignore_errors:
+                self.nvim.err_write("Cursor is not on a link!\n")
+            return None
         link, title = maybe_link
         path = Path(f"{link}.md")
         if not path.exists():
@@ -217,13 +219,17 @@ class ObsidianPlugin:
                 except ValueError:
                     new_note(link, zettel_id=link)
             self.nvim.out_write(f"{link} created\n")
-        elif not exist_ok:
+        elif not exist_ok and not ignore_errors:
             self.nvim.err_write(f"{link} already exists\n")
         return path
 
     @pynvim.command("Create", sync=False)
     def create(self) -> None:
         _ = self.maybe_create_note()
+
+    @pynvim.command("CreateSilent", sync=False)
+    def create_silent(self) -> None:
+        _ = self.maybe_create_note(exist_ok=True, ignore_errors=True)
 
     @pynvim.command("GoTo", nargs="*", sync=True)
     def goto(self, args) -> None:
@@ -308,7 +314,6 @@ class ObsidianPlugin:
     def get_current_link(self) -> t.Optional[t.Tuple[str, t.Optional[str]]]:
         full_link = self.get_link(self.current_line, self.nvim.current.window.cursor[1])
         if not full_link:
-            self.nvim.err_write(f"{self.current_line}\n{self.nvim.current.window.cursor[1]}\n")
             return None
         if "|" in full_link:
             file_name, *display = full_link.split("|")

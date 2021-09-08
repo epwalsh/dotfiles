@@ -147,6 +147,14 @@ augroup END
 " ------------------------------------------------------------------------- }}}
 
 " Markdown settings ------------------------------------------------------- {{{
+function MaybeCreateLink()
+    if has_key(v:completed_item, 'kind')
+        if v:completed_item.kind == "[new]"
+            CreateSilent
+        endif
+    endif
+endfunction
+
 augroup filetype_md
     autocmd!
     au FileType markdown setlocal shiftwidth=4 tabstop=4 expandtab
@@ -162,6 +170,7 @@ augroup filetype_md
     au FileType markdown nnoremap <leader>bl :Backlinks<cr>
     au FileType markdown nnoremap <leader>n :New<cr>
     au BufWritePre ~/epwalsh-notes/*.md Frontmatter
+    au CompleteDone ~/epwalsh-notes/*.md call MaybeCreateLink()
     au BufNewFile *.md 0r ~/.config/nvim/headers/template.md
 augroup END
 set suffixesadd+=.md
