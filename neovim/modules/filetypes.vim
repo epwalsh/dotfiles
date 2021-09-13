@@ -157,7 +157,7 @@ endfunction
 
 augroup filetype_md
     autocmd!
-    au FileType markdown setlocal shiftwidth=4 tabstop=4 expandtab
+    au FileType markdown setlocal shiftwidth=2 tabstop=2 expandtab
     au FileType markdown setlocal wrap linebreak nolist
     au FileType markdown setlocal omnifunc=
     au FileType markdown setlocal conceallevel=0

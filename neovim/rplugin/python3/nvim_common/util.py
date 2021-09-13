@@ -42,6 +42,13 @@ def remove_links(content: str) -> str:
     return LINK_FINDER.sub(r"\g<1>", content)
 
 
+REF_FINDER = re.compile(r"\[\[[^\|\]]+\|([^\]]+)\]\]")
+
+
+def remove_refs(content: str) -> str:
+    return REF_FINDER.sub(r"\g<1>", content)
+
+
 def parse_title(lines: t.Iterable[str]) -> t.Optional[str]:
     in_code_block = False
     for line in lines:
@@ -51,5 +58,5 @@ def parse_title(lines: t.Iterable[str]) -> t.Optional[str]:
             else:
                 in_code_block = True
         elif line.startswith("# ") and not in_code_block:
-            return remove_links(line[2:].strip())
+            return remove_refs(remove_links(line[2:].strip()))
     return None
