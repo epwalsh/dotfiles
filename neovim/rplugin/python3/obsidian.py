@@ -17,7 +17,13 @@ import oyaml as yaml
 
 sys.path.append(str(Path(__file__).absolute().parent))
 
-from nvim_common.util import new_zettel_id, parse_frontmatter, parse_title  # noqa: E402
+from nvim_common.util import (  # noqa: E402
+    new_zettel_id,
+    parse_frontmatter,
+    parse_title,
+    remove_links,
+    remove_refs,
+)
 
 
 FILE_NAME_SAFE_CHARS = {"-", "_"}
@@ -50,7 +56,9 @@ def new_note(
     except ValueError:
         pass
     frontmatter = yaml.dump(
-        OrderedDict([("tags", tags), ("aliases", [title]), ("id", zettel_id)]),
+        OrderedDict(
+            [("tags", tags), ("aliases", [remove_refs(remove_links(title))]), ("id", zettel_id)]
+        ),
         Dumper=CustomYamlDumper,
     )
     contents = NOTE_TEMPLATE.format(frontmatter=frontmatter, title=title, body=body or "")
@@ -201,7 +209,7 @@ class ObsidianPlugin:
             link, _ = maybe_link
         self.open_in_obsidian(link)
 
-    def maybe_create_note(self, exist_ok=True, ignore_errors=False) -> Path:
+    def maybe_create_note(self, exist_ok=True, ignore_errors=False) -> t.Optional[Path]:
         maybe_link = self.get_current_link()
         if maybe_link is None:
             if not ignore_errors:
@@ -234,6 +242,7 @@ class ObsidianPlugin:
     @pynvim.command("GoTo", nargs="*", sync=True)
     def goto(self, args) -> None:
         link: str
+        path: t.Optional[Path]
         if args:
             if len(args) > 1:
                 return self.nvim.err_write("Expected at most 1 argument\n")
@@ -260,15 +269,9 @@ class ObsidianPlugin:
     def tomorrow(self) -> None:
         self.nvim.command("GoTo tomorrow")
 
-    @pynvim.command("Paper", nargs=1, sync=True)
-    def paper(self, args) -> None:
-        paper = self.s2_client.get_paper(args[0])
-        paper.to_file()
-        self.nvim.command(f"GoTo {paper.reference_name()}")
-
-    @pynvim.command("Link", nargs=1, sync=True)
+    @pynvim.command("Link", nargs="*", sync=True)
     def link(self, args) -> None:
-        link = args[0]
+        link = " ".join(args)
         if link in {"today", "tod"}:
             link = datetime.now().strftime("%Y-%m-%d")
         elif link in {"tomorrow", "tom"}:
@@ -278,8 +281,9 @@ class ObsidianPlugin:
     @pynvim.command("LinkPaper", nargs=1, sync=True)
     def link_paper(self, args) -> None:
         paper = self.s2_client.get_paper(args[0])
-        paper.to_file()
-        self.nvim.command(f"Link {paper.reference_name()}")
+        zettel_id = new_zettel_id()
+        paper.to_file(zettel_id)
+        self.nvim.command(f"Link {zettel_id}|{paper.title}")
 
     @pynvim.command("Done", sync=True)
     def done(self) -> None:
@@ -340,8 +344,10 @@ class ObsidianPlugin:
 
     def open_in_obsidian(self, note: str):
         encoded_note = urllib.parse.quote(note)  # type: ignore[attr-defined]
+        encoded_path = urllib.parse.quote(os.path.basename(Path(".").absolute()))  # type: ignore[attr-defined]
         command = (
-            f"open -a /Applications/Obsidian.app --background 'obsidian://open?file={encoded_note}'"
+            f"open -a /Applications/Obsidian.app --background "
+            f"'obsidian://open?file={encoded_note}&vault={encoded_path}'"
         )
         os.system(command)
 
@@ -378,28 +384,13 @@ class S2Paper:
     def to_dict(self) -> t.Dict[str, t.Any]:
         return asdict(self)
 
-    def to_file(self):
-        path = self.path()
-        if not path.is_file():
-            with open(path, "w") as f:
-                f.write("---\n")
-                f.write(yaml.dump({"tags": ["paper"]}, Dumper=CustomYamlDumper))
-                f.write("\n---\n\n")
-                f.write(f"# [{self.title}]({self.url})\n\n")
-                f.write(f"> {self.abstract}")
-
-    def path(self) -> Path:
-        return Path(f"{self.reference_name()}.md")
-
-    def reference_name(self) -> str:
-        standardized_name = "".join(
-            [
-                c
-                for c in self.title.replace(" ", "-").replace(":", "-").lower()
-                if c.isalnum() or c in FILE_NAME_SAFE_CHARS
-            ]
+    def to_file(self, zettel_id: str):
+        new_note(
+            f"[{self.title}]({self.url})",
+            zettel_id=zettel_id,
+            body=f"> {self.abstract}",
+            tags=["paper"],
         )
-        return f"paper-{standardized_name}-{self.corpusId}s2"
 
 
 class S2Client:
