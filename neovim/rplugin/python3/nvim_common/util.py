@@ -58,5 +58,6 @@ def parse_title(lines: t.Iterable[str]) -> t.Optional[str]:
             else:
                 in_code_block = True
         elif line.startswith("# ") and not in_code_block:
-            return remove_refs(remove_links(line[2:].strip()))
+            title = remove_refs(remove_links(line[2:].strip())).strip()
+            return title if title else None
     return None
