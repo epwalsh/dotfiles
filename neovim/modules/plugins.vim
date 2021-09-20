@@ -26,7 +26,10 @@ Plug 'rrethy/vim-illuminate'
 Plug 'tmhedberg/SimpylFold'
 
 " Markdown section folding.
-Plug 'masukomi/vim-markdown-folding'
+" Plug 'masukomi/vim-markdown-folding'
+
+" A bunch of markdown stuff, including folding.
+Plug 'plasticboy/vim-markdown'
 
 " --- }}}
 
