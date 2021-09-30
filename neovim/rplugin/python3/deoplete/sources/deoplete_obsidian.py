@@ -54,7 +54,14 @@ class Source(Base):
                     i += 1
 
         # Suggest a new.
-        if len(text) > 2 and "|" not in text and not os.path.exists(f"{text}.md"):
+        if (
+            len(text) >= 2
+            and "|" not in text
+            and not os.path.exists(f"{text}.md")
+            and re.search(
+                r"[a-zA-Z]", text
+            )  # should contain at least one letter, otherwise it might be a date
+        ):
             zettel_id = new_zettel_id()
             cand = f"{zettel_id}|{text}"
             out.append({"word": cand, "kind": "[new]", "match": text})
