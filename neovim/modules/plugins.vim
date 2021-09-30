@@ -73,6 +73,9 @@ Plug 'Shougo/neosnippet-snippets'
 " Automatic aligning.
 Plug 'junegunn/vim-easy-align'
 
+" Emojis.
+" Plug 'junegunn/vim-emoji'
+
 " --- }}}
 
 " Other workflow tools --- {{{

@@ -177,6 +177,13 @@ set suffixesadd+=.md
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'rust']
 " ------------------------------------------------------------------------- }}}
 
+" Restructured text settings ---------------------------------------------- {{{
+augroup filetype_rst
+    autocmd!
+    au FileType rst setlocal shiftwidth=4 tabstop=4 expandtab
+augroup  END
+" ------------------------------------------------------------------------- }}}
+
 " Bash settings ----------------------------------------------------------- {{{
 augroup filetype_bash
     autocmd!

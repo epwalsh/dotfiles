@@ -1,5 +1,6 @@
 neovim==0.2.6
 msgpack==0.5.6
+emoji
 jedi
 pylint
 pydocstyle
