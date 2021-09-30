@@ -2,7 +2,7 @@
 noremap <F5> :call LanguageClient_contextMenu()<cr>
 noremap H :call LanguageClient_textDocument_hover()<cr>
 noremap D :call LanguageClient_textDocument_definition()<cr>
-noremap R :call LanguageClient_textDocument_references()<cr>
+" noremap R :call LanguageClient_textDocument_references()<cr>
 
 " mapping to make movements operate on 1 screen line in wrap mode
 function! ScreenMovement(movement)

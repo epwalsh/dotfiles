@@ -20,7 +20,7 @@ class Source(Base):
         self.is_volatile = True
         self.matcher_key = "match"
         self.matchers = ["matcher_full_fuzzy"]
-        self.sorters = ["sorter_rank", "sorter_word"]
+        self.sorters = ["sorter_rank"]
 
     def get_complete_position(self, context):
         if context["input"].endswith(":"):
