@@ -259,6 +259,7 @@ class ObsidianPlugin:
         else:
             path = self.maybe_create_note()
         if path is not None:
+            self.nvim.command("w")
             self.nvim.command(f"e {str(path)}")
 
     @pynvim.command("Today", sync=True)

@@ -162,7 +162,7 @@ augroup filetype_md
     au FileType markdown setlocal omnifunc=
     au FileType markdown setlocal conceallevel=0
     au BufRead,BufNewFile ~/epwalsh-notes/* setlocal path+=~/epwalsh-notes/**
-    au FileType markdown nnoremap gf :w<cr>:GoTo<cr>
+    au FileType markdown nnoremap gf :GoTo<cr>
     au FileType markdown nnoremap so :Open<cr>
     au FileType markdown nnoremap cr :Create<cr>
     au FileType markdown nnoremap dn :Done<cr>
