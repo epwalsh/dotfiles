@@ -29,4 +29,8 @@ fi
 echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish)
 
+# Set up virtualfish.
+vf install global_requirements auto_activation
+ln -sf ~/dotfiles/requirements.txt ~/.virtualenvs/global_requirements.txt
+
 echo "Done. Note that some of these changes require a logout/restart to take effect."
