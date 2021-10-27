@@ -7,7 +7,7 @@ txtrst='\e[0m'    # Text Reset
 
 HOST_PREFIX=$(echo $HOSTNAME | sed 's/\..*$//')
 print_before_the_prompt() {
-    printf "\n$lightblue[%s:%s] $bldblk%s $lightpink%s$txtrst\n" "$HOST_PREFIX" "$USER" "$PWD" "$(vcprompt)"
+    printf "\n$lightblue[%s:%s] $bldblk%s $lightpink%s$txtrst\n" "$HOST_PREFIX" "$USER" "$PWD"
 }
 
 PROMPT_COMMAND=print_before_the_prompt
