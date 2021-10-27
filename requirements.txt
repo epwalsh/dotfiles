@@ -7,6 +7,7 @@ pylint
 pydocstyle
 mypy
 black
+isort
 flake8
 virtualenv
 virtualenvwrapper
