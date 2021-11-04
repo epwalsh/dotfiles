@@ -38,7 +38,7 @@ if exists("g:repo")
     endfor
 endif
 
-function! Black()
+function! MaybeBlack()
     if !exists("b:black_off") || b:black_off != 1
         execute ':Black'
     endif
@@ -46,5 +46,5 @@ endfunction
 
 augroup python_black
     autocmd!
-    au BufWritePre *.py call Black()
+    au BufWritePre *.py call MaybeBlack()
 augroup END
