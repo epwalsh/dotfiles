@@ -101,6 +101,7 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'psf/black'
+Plug 'fisadev/vim-isort'
 
 " Fish
 Plug 'dag/vim-fish'

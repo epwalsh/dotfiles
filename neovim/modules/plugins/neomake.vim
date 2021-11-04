@@ -36,6 +36,7 @@ let g:neomake_python_enabled_makers = ["mypy", "flake8"]
 let g:neomake_python_mypy_makers = {
             \ 'args': [
             \ '--ignore-missing-imports',
+            \ '--no-site-packages',
             \ ],
             \ }
 
