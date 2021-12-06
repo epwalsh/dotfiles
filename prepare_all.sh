@@ -38,18 +38,18 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # And Rust tools.
 cargo install sccache
 cargo install bat  # alternative to cat
-cargo install exa  # alternative to ls and tree
+# cargo install exa  # alternative to ls and tree
 cargo install ripgrep  # alternative to grep
 cargo install fd-find  # alternative to find
-cargo install procs  # alternative to ps
+# cargo install procs  # alternative to ps
 cargo install sd  # alternative to sed
 cargo install du-dust  # alternative to du
-cargo install tokei  # displays statistics about your code
-cargo install hyperfine  # command line benchmarking tool
+# cargo install tokei  # displays statistics about your code
+# cargo install hyperfine  # command line benchmarking tool
 cargo install bottom  # alternative to top, invoke as 'btm'
-cargo install tealdeer  # fast implementation of tldr: https://github.com/tldr-pages/tldr
-cargo install bandwhich  # CLI for diplaying network utilization
-cargo install grex  # CLI for generating regexs based on user-provided test cases
+# cargo install tealdeer  # fast implementation of tldr: https://github.com/tldr-pages/tldr
+# cargo install bandwhich  # CLI for diplaying network utilization
+# cargo install grex  # CLI for generating regexs based on user-provided test cases
 cargo install zoxide  # autojumper alternative to cd (requires fzf for fuzzy selection)
 cargo install starship  # very cool command line prompt
-cargo install hors  # How do I?
+# cargo install hors  # How do I?
