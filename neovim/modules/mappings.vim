@@ -136,3 +136,13 @@ nnoremap <leader>mm :Neomake<CR>
 " Tab completion.
 " inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+" Toggle conceallevel
+function! ToggleConcealLevel()
+    if &conceallevel == 0
+        setlocal conceallevel=2
+    else
+        setlocal conceallevel=0
+    endif
+endfunction
+nnoremap <silent> <C-c><C-y> :call ToggleConcealLevel()<CR>

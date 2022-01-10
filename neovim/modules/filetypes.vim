@@ -160,7 +160,7 @@ augroup filetype_md
     au FileType markdown setlocal shiftwidth=2 tabstop=2 expandtab
     au FileType markdown setlocal wrap linebreak nolist
     au FileType markdown setlocal omnifunc=
-    au FileType markdown setlocal conceallevel=0
+    au FileType markdown setlocal conceallevel=2
     au BufRead,BufNewFile ~/epwalsh-notes/* setlocal path+=~/epwalsh-notes/**
     au FileType markdown nnoremap gf :GoTo<cr>
     au FileType markdown nnoremap so :Open<cr>
