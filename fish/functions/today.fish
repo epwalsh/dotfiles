@@ -1,4 +1,4 @@
 function today
     set today (date +%F)
-    nvim "$today.md"
+    nvim "$today.md" +w
 end
