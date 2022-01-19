@@ -1,30 +1,25 @@
 """Plugin for working in an [Obsidian](https://obsidian.md/) vault in Neovim."""
 
-from itertools import tee, islice
-from collections import OrderedDict
-from dataclasses import dataclass, asdict
-from datetime import datetime, timedelta
 import os
-from pathlib import Path
 import re
-import urllib
 import sys
 import typing as t
+import urllib
+from collections import OrderedDict
+from dataclasses import asdict, dataclass
+from datetime import datetime, timedelta
+from itertools import islice, tee
+from pathlib import Path
 
+import oyaml as yaml
 import pynvim
 import requests
-import oyaml as yaml
 
 sys.path.append(str(Path(__file__).absolute().parent))
 
-from nvim_common.util import (  # noqa: E402
-    new_zettel_id,
-    parse_frontmatter,
-    parse_title,
-    remove_links,
-    remove_refs,
-)
-
+from nvim_common.util import parse_frontmatter  # noqa: E402
+from nvim_common.util import (new_zettel_id, parse_title, remove_links,
+                              remove_refs)
 
 FILE_NAME_SAFE_CHARS = {"-", "_"}
 
@@ -128,6 +123,19 @@ class ObsidianPlugin:
     def add_reference(self, args):
         ref_num = args[0]
         self.insert_text(f"[\[{ref_num}\]][{ref_num}]")  # noqa: W605
+
+    @pynvim.command("LinkGh", nargs=1, sync=True)
+    def link_github(self, args):
+        """
+        Add a nicely formatted markdown link to a GitHub issue or pull request, given
+        the URL of the issue / PR.
+
+        E.g. `:LinkGh https://github.com/allenai/tango/issues/143` results in:
+        `[tango#143](https://github.com/allenai/tango/pull/141)`.
+        """
+        url = args[0]
+        *_, org, repo, _, num = url.split("/")
+        self.insert_text(f"[{org}/{repo}#{num}]({url})")  # noqa: W605
 
     @pynvim.command("Frontmatter", sync=True)
     def add_frontmatter(self):
