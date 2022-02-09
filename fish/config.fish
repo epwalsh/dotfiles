@@ -77,6 +77,8 @@ end
 
 # Git shortcuts
 alias g git
+alias gc 'git add -A; git commit -m'
+alias gp 'git push'
 
 # sccache for Rust.
 if command -v sccache > /dev/null
