@@ -22,6 +22,13 @@ augroup filetype_jsonnet
 augroup END
 " ------------------------------------------------------------------------- }}}
 
+" dosini file settings --------------------------------------------------- {{{
+augroup filetype_dosini
+    autocmd!
+    au FileType dosini setlocal shiftwidth=4 tabstop=4 expandtab
+augroup END
+" ------------------------------------------------------------------------- }}}
+
 " Vimscript file settings ------------------------------------------------- {{{
 augroup filetype_vim
     autocmd!
