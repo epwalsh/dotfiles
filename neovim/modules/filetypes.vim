@@ -178,7 +178,7 @@ augroup filetype_md
     au FileType markdown nnoremap <leader>n :New<cr>
     au BufWritePre ~/epwalsh-notes/*.md Frontmatter
     au CompleteDone ~/epwalsh-notes/*.md call MaybeCreateLink()
-    au BufNewFile *.md 0r ~/.config/nvim/headers/template.md
+    au BufNewFile ~/epwalsh-notes/*.md 0r ~/.config/nvim/headers/template.md
 augroup END
 set suffixesadd+=.md
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'rust']
