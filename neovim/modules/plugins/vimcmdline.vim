@@ -12,7 +12,7 @@ let cmdline_tmp_dir = '/tmp'  " Temporary directory to save files
 let cmdline_outhl = 1         " Syntax highlight the output
 
 let cmdline_app = {}
-let cmdline_app["python"] = "ipython -i -c 'from rich import pretty; pretty.install()'"
+let cmdline_app["python"] = "ipython -i -c 'from rich import print, pretty; pretty.install()'"
 let cmdline_app["sh"]     = "bash"
 
 

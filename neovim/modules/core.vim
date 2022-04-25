@@ -87,3 +87,6 @@ let repo = systemlist("git rev-parse --show-toplevel")[0]
 if repo !~ "^fatal"
     let g:repo = repo
 endif
+
+" Enable spell checking.
+set spell spelllang=en_us spelloptions=camel

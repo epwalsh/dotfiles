@@ -1,16 +1,16 @@
 " In headers.
 " Zettel date links '[[xxxx-xx-xx]]'
 syntax region ZettelDateHeader matchgroup=ZettelDateDelim start="\v\[\[" skip="\v[0-9]{4}-[0-9]{2}-[0-9]{2}" end="\v\]\]" oneline concealends
-highlight ZettelDateHeader cterm=underline,bold ctermfg=166
+highlight ZettelDateHeader cterm=bold ctermfg=166
 " Zettel links '[[link|name]]'
 syntax region ZettelLinkHeader matchgroup=ZettelLinkDelim start="\v\[\[[^\|\]]+\|" end="\v\]\]" oneline concealends
-highlight ZettelLinkHeader cterm=underline,bold ctermfg=166
+highlight ZettelLinkHeader cterm=bold ctermfg=166
 
 " Same things, but not in headers.
 syntax region ZettelDate matchgroup=ZettelDateDelim start="\v\[\[" skip="\v[0-9]{4}-[0-9]{2}-[0-9]{2}" end="\v\]\]" oneline concealends
-highlight ZettelDate cterm=underline ctermfg=blue
+highlight ZettelDate ctermfg=blue
 syntax region ZettelLink matchgroup=ZettelLinkDelim start="\v\[\[[^\|\]]+\|" end="\v\]\]" oneline concealends
-highlight ZettelLink cterm=underline ctermfg=blue
+highlight ZettelLink ctermfg=blue
 
 " Need to override these region definitions from vim-markdown to contain our ZettelLink / ZettelLinkHeader.
 syn region mkdListItemLine start="^\s*\%([-*+]\|\d\+\.\)\s\+" end="$" oneline contains=@mkdNonListItem,mkdListItem,@Spell,ZettelLink,ZettelDate
