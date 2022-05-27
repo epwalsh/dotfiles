@@ -16,5 +16,4 @@ oyaml
 requests
 ipython
 rich
-pdbr
 grip==4.5.2

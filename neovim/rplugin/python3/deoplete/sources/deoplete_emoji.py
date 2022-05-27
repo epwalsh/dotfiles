@@ -1,8 +1,7 @@
-from pathlib import Path
 import sys
+from pathlib import Path
 
 from deoplete.base.source import Base
-from emoji.unicode_codes.en import EMOJI_ALIAS_UNICODE_ENGLISH
 
 sys.path.append(str(Path(__file__).absolute().parent.parent.parent))
 
@@ -15,7 +14,7 @@ class Source(Base):
         self.name = "emoji"
         self.mark = "[emoji]"
         self.rank = 500
-        self.filetypes = ["markdown"]
+        self.filetypes = ["markdown", "python"]
         self.input_pattern = r":[a-z_]+:?"
         self.is_volatile = True
         self.matcher_key = "match"
@@ -29,12 +28,15 @@ class Source(Base):
             return context["input"].rfind(":")
 
     def gather_candidates(self, context):
+        from emoji.unicode_codes.en import EMOJI_ALIAS_UNICODE_ENGLISH
+
         text: str
         if context["input"].endswith(":"):
             text = ":" + context["input"].split(":")[-2].strip() + ":"
             if text in EMOJI_ALIAS_UNICODE_ENGLISH:
                 return [
-                    {"word": EMOJI_ALIAS_UNICODE_ENGLISH[text], "kind": "[alias]", "match": text}
+                    {"word": EMOJI_ALIAS_UNICODE_ENGLISH[text], "kind": "emoji", "match": text},
+                    {"word": text, "kind": "alias", "match": text},
                 ]
             else:
                 return []
@@ -43,5 +45,6 @@ class Source(Base):
             text = ":" + context["input"].split(":")[-1].strip()
             for k, v in EMOJI_ALIAS_UNICODE_ENGLISH.items():
                 if k.startswith(text):
-                    out.append({"word": v, "kind": "[alias]", "match": k})
+                    out.append({"word": v, "kind": "emoji", "match": k})
+                    out.append({"word": k, "kind": "alias", "match": k})
             return out

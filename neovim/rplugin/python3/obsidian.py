@@ -11,15 +11,14 @@ from datetime import datetime, timedelta
 from itertools import islice, tee
 from pathlib import Path
 
-import oyaml as yaml
 import pynvim
 import requests
 
 sys.path.append(str(Path(__file__).absolute().parent))
 
 from nvim_common.util import parse_frontmatter  # noqa: E402
-from nvim_common.util import (new_zettel_id, parse_title, remove_links,
-                              remove_refs)
+from nvim_common.util import (new_zettel_id, parse_title,  # noqa: E402
+                              remove_links, remove_refs)
 
 FILE_NAME_SAFE_CHARS = {"-", "_"}
 
@@ -33,6 +32,16 @@ NOTE_TEMPLATE = """
 
 {body}
 """.lstrip()
+
+
+def dump_yaml(o) -> str:
+    import oyaml as yaml
+
+    class CustomYamlDumper(yaml.Dumper):
+        def increase_indent(self, flow=False, indentless=False):
+            return super().increase_indent(flow, False)
+
+    return yaml.dump(o, Dumper=CustomYamlDumper)
 
 
 def new_note(
@@ -50,11 +59,10 @@ def new_note(
             tags.insert(0, "daily-notes")
     except ValueError:
         pass
-    frontmatter = yaml.dump(
+    frontmatter = dump_yaml(
         OrderedDict(
             [("tags", tags), ("aliases", [remove_refs(remove_links(title))]), ("id", zettel_id)]
-        ),
-        Dumper=CustomYamlDumper,
+        )
     )
     contents = NOTE_TEMPLATE.format(frontmatter=frontmatter, title=title, body=body or "")
     path = f"{zettel_id}.md"
@@ -190,14 +198,7 @@ class ObsidianPlugin:
 
         # If we've made changes, update the fronmatter.
         if changed:
-            frontmatter_lines = (
-                ["---"]
-                + yaml.dump(
-                    new_frontmatter,
-                    Dumper=CustomYamlDumper,
-                ).split("\n")
-                + ["---"]
-            )
+            frontmatter_lines = ["---"] + dump_yaml(new_frontmatter).split("\n") + ["---"]
             if frontmatter_len > 0:
                 # Remove old frontmatter.
                 del self.nvim.current.buffer[0:frontmatter_len]
@@ -410,8 +411,3 @@ class S2Client:
             f"{self.base_url}/paper/CorpusID:{corpus_id}?fields=url,title,abstract,authors,year"
         )
         return S2Paper.from_dict(corpus_id, response.json())
-
-
-class CustomYamlDumper(yaml.Dumper):
-    def increase_indent(self, flow=False, indentless=False):
-        return super().increase_indent(flow, False)
