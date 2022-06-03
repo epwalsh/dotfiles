@@ -1,11 +1,8 @@
+import random
 import re
 import string
 import time
-import random
 import typing as t
-
-import oyaml as yaml
-
 
 _CHAR_CHOICES = string.ascii_uppercase + string.digits
 
@@ -30,6 +27,9 @@ def parse_frontmatter(lines: t.Iterable[str]) -> t.Tuple[t.Optional[t.Dict[str, 
                 break
             else:
                 frontmatter.append(line)
+
+    import oyaml as yaml
+
     out = yaml.load("\n".join(frontmatter), Loader=yaml.FullLoader)
     assert isinstance(out, dict)
     return out, len(frontmatter) + 2

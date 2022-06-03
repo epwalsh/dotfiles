@@ -28,11 +28,14 @@ class Source(Base):
             return context["input"].rfind(":")
 
     def gather_candidates(self, context):
-        from emoji.unicode_codes.en import EMOJI_ALIAS_UNICODE_ENGLISH
-
-        text: str
         if context["input"].endswith(":"):
-            text = ":" + context["input"].split(":")[-2].strip() + ":"
+            m = context["input"].split(":")[-2].strip()
+            if not m:
+                return []
+
+            from emoji.unicode_codes.en import EMOJI_ALIAS_UNICODE_ENGLISH
+
+            text = ":" + m + ":"
             if text in EMOJI_ALIAS_UNICODE_ENGLISH:
                 return [
                     {"word": EMOJI_ALIAS_UNICODE_ENGLISH[text], "kind": "emoji", "match": text},
@@ -41,8 +44,14 @@ class Source(Base):
             else:
                 return []
         else:
+            m = context["input"].split(":")[-1].strip()
+            if not m:
+                return []
+
+            from emoji.unicode_codes.en import EMOJI_ALIAS_UNICODE_ENGLISH
+
             out = []
-            text = ":" + context["input"].split(":")[-1].strip()
+            text = ":" + m
             for k, v in EMOJI_ALIAS_UNICODE_ENGLISH.items():
                 if k.startswith(text):
                     out.append({"word": v, "kind": "emoji", "match": k})
