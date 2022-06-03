@@ -74,9 +74,14 @@ set scroll=20
 " autocmd BufEnter * silent! lcd %:p:h
 
 " Set Python 3 provider.
-if filereadable($HOME . "/.virtualenvs/py3/bin/python")
-    let g:python3_host_prog = $HOME . "/.virtualenvs/py3/bin/python"
-endif
+let g:python3_host_prog = trim(system('which python'))
+" fname(system('which python'))
+" if filereadable(g:python_ex)
+" elseif filereadable(system('which python'))
+"     echoerr "Oh no!"
+" else
+"     echoerr "Oh no!!"
+" endif
 
 " Disable Python 2.
 let g:loaded_python_provider = 0
