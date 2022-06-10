@@ -3,6 +3,7 @@ import re
 import string
 import time
 import typing as t
+from pathlib import Path
 
 _CHAR_CHOICES = string.ascii_uppercase + string.digits
 
@@ -61,3 +62,15 @@ def parse_title(lines: t.Iterable[str]) -> t.Optional[str]:
             title = remove_refs(remove_links(line[2:].strip())).strip()
             return title if title else None
     return None
+
+
+def git_root() -> t.Optional[Path]:
+    path = Path(".").absolute()
+    while True:
+        git_path = path / ".git"
+        if git_path.is_dir():
+            return path
+        if path.parent == path:
+            return None
+        else:
+            path = path.parent

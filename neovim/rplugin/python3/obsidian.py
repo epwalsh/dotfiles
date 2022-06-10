@@ -16,9 +16,14 @@ import requests
 
 sys.path.append(str(Path(__file__).absolute().parent))
 
-from nvim_common.util import parse_frontmatter  # noqa: E402
-from nvim_common.util import (new_zettel_id, parse_title,  # noqa: E402
-                              remove_links, remove_refs)
+from nvim_common.util import (
+    git_root,
+    new_zettel_id,
+    parse_frontmatter,
+    parse_title,
+    remove_links,
+    remove_refs,
+)
 
 FILE_NAME_SAFE_CHARS = {"-", "_"}
 
@@ -353,11 +358,13 @@ class ObsidianPlugin:
         self.nvim.current.window.cursor = (row, col + len(text))
 
     def open_in_obsidian(self, note: str):
-        encoded_note = urllib.parse.quote(note)  # type: ignore[attr-defined]
-        encoded_path = urllib.parse.quote(os.path.basename(Path(".").absolute()))  # type: ignore[attr-defined]
+        vault = git_root() or Path(".")
+        path = Path(note).absolute().relative_to(vault)
+        encoded_path = urllib.parse.quote(str(path))  # type: ignore[attr-defined]
+        encoded_vault = urllib.parse.quote(str(vault.name))  # type: ignore[attr-defined]
         command = (
             f"open -a /Applications/Obsidian.app --background "
-            f"'obsidian://open?file={encoded_note}&vault={encoded_path}'"
+            f"'obsidian://open?file={encoded_path}&vault={encoded_vault}'"
         )
         os.system(command)
 
