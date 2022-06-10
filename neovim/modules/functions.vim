@@ -10,4 +10,5 @@ function! Format()
     normal m`
     %!isort --stdout --filename % --quiet - | black --stdin-filename % --quiet -
     normal ``
+    normal zx
 endfunc
