@@ -6,9 +6,10 @@ function! SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-function! Format()
+function! PyFormat()
     normal m`
     %!isort --stdout --filename % --quiet - | black --stdin-filename % --quiet -
     normal ``
+    call SimpylFold#Recache()
     normal zx
 endfunc

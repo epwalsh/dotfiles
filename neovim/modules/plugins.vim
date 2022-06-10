@@ -36,10 +36,10 @@ Plug 'plasticboy/vim-markdown'
 " General language tools --- {{{
 
 " Language Client. TODO: won't need this anymore once we update neovim to 0.5.
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
 
 " Async linting and other stuff.
 Plug 'benekastah/neomake'
