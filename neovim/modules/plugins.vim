@@ -82,6 +82,7 @@ Plug 'junegunn/vim-easy-align'
 
 " Git.
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " Rename the current file.
 Plug 'wojtekmach/vim-rename'
