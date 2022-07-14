@@ -149,9 +149,19 @@ snippet     ipy
 abbr        import ipython..
 	from IPython import embed; embed()
 
+snippet     rich
+abbr        from rich...
+	from rich import pretty, print, traceback; pretty.install(); traceback.install()
+
+snippet     Step
+abbr        @Step.register...
+	@Step.register("${1:#:name}")
+	class ${2:#:class}Step(Step):
+	    def run(self) -> None:
+            pass
+
 snippet     pytest_parametrize
 abbr        @pytest.mark.parametrize("...", ...)
-options     head
     @pytest.mark.parametrize("${1:#:params}", [
         (),
     ])
