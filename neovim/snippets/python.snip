@@ -157,7 +157,7 @@ snippet     Step
 abbr        @Step.register...
 	@Step.register("${1:#:name}")
 	class ${2:#:class}Step(Step):
-	    def run(self) -> None:
+	    def run(self) -> None:  # type: ignore[override]
             pass
 
 snippet     pytest_parametrize
