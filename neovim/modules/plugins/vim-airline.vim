@@ -1,4 +1,4 @@
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+" set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
