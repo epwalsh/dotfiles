@@ -7,13 +7,14 @@
 # pip3 install --user -r requirements.txt
 
 # Powerline fonts.
-cd ~/Downloads || exit
-git clone https://github.com/powerline/fonts.git
-cd fonts || exit
-./install.sh
-cd .. || exit
-rm -rf fonts/
-cd ~/dotfiles || exit
+# NOTE: We switched to Nerd Fonts, which can be installed via homebrew. See ./prepare_osx.sh
+# cd ~/Downloads || exit
+# git clone https://github.com/powerline/fonts.git
+# cd fonts || exit
+# ./install.sh
+# cd .. || exit
+# rm -rf fonts/
+# cd ~/dotfiles || exit
 
 # Install vcprompt.
 # mkdir -p $HOME/bin
