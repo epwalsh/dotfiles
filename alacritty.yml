@@ -115,10 +115,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: DejaVu Sans Mono for Powerline
+    family: DejaVuSansMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    #style: Regular
+    style: Book
 
   # Bold font face
   #bold:

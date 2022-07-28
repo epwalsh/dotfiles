@@ -110,3 +110,7 @@ brew install go
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+# Install NERDFont
+brew tap homebrew/cask-fonts
+brew install --cask font-dejavu-sans-mono-nerd-font
