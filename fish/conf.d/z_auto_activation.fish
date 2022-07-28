@@ -2,6 +2,13 @@
 # Automatic Python virtual environment activation.
 ################################################################
 
+if test -d $HOME/miniconda3/bin
+    eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+    set -gx DEFAULT_VIRTUAL_ENV base
+else
+    set -gx DEFAULT_VIRTUAL_ENV py3
+end
+
 if not set -q VENV_ACTIVATOR
     if type -q vf
         set -g VENV_ACTIVATOR vf
@@ -12,6 +19,18 @@ end
 
 if not set -q VENV_ACTIVATION_FILE
     set -g VENV_ACTIVATION_FILE .venv
+end
+
+function __venv_activate
+    $VENV_ACTIVATOR activate $argv[1] &> /dev/null
+    set -g current_virtual_env $argv[1]
+    if not set -q VIRTUAL_ENV
+        set -g VIRTUAL_ENV (dirname (dirname (which python)))
+    end
+end
+
+if begin; set -q VENV_ACTIVATOR; and not set -q current_virtual_env; and set -q DEFAULT_VIRTUAL_ENV; end
+    __venv_activate $DEFAULT_VIRTUAL_ENV
 end
 
 function __venv_support_auto_activate --on-variable PWD
@@ -35,13 +54,13 @@ function __venv_support_auto_activate --on-variable PWD
         set activation_root (echo $activation_root | sed 's|/[^/]*$||')
     end
 
-
     if test $new_virtualenv_name != ""
         # if the virtualenv in the file is different, switch to it
         if begin; not set -q current_virtual_env; or test $new_virtualenv_name != (basename $current_virtual_env); end
-            $VENV_ACTIVATOR activate $new_virtualenv_name
-            set -g current_virtual_env $new_virtualenv_name
+            __venv_activate $new_virtualenv_name
         end
+    else if begin; not set -q current_virtual_env; and set -q DEFAULT_VIRTUAL_ENV; end
+        __venv_activate $DEFAULT_VIRTUAL_ENV
     end
 end
 

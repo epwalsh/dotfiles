@@ -71,10 +71,6 @@ end
 # starship prompt.
 starship init fish | source
 
-if test -d $HOME/miniconda3/bin
-    eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-end
-
 # Git shortcuts
 alias g git
 alias gc 'git add -A; git commit -m'

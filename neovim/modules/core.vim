@@ -74,7 +74,8 @@ set scroll=20
 " autocmd BufEnter * silent! lcd %:p:h
 
 " Set Python 3 provider.
-let g:python3_host_prog = trim(system('which python'))
+let g:python3_host_prog = $VIRTUAL_ENV . '/bin/python'
+" let g:python3_host_prog = trim(system('which python'))
 " fname(system('which python'))
 " if filereadable(g:python_ex)
 " elseif filereadable(system('which python'))
