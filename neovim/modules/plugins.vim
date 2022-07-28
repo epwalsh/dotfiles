@@ -116,6 +116,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'gerw/vim-latex-suite'
 
 " Jsonnet.
+" To get automatic formatting, you also need to install jsonnetfmt.
+" AFAIK the only way to do that is with go:
+"   > go get github.com/google/go-jsonnet/cmd/jsonnetfmt
 Plug 'google/vim-jsonnet'
 
 " R.

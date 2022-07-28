@@ -10,7 +10,8 @@ sudo apt-get install -y \
     tree \
     shellcheck \
     ripgrep \
-    fish
+    fish \
+    golang
 
 # Python
 sudo add-apt-repository ppa:deadsnakes/ppa
