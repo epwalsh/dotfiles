@@ -20,6 +20,11 @@ for filename in ~/dotfiles/fish/*; do
     ln -sf $filename ~/.config/fish/$filebase
 done
 
+for filename in ~/dotfiles/go/.*; do
+    filebase=`basename $filename`
+    ln -sf $filename ~/$filebase
+done
+
 mkdir -p ~/.config/alacritty
 ln -sf ~/dotfiles/alacritty.yml ~/.config/alacritty/
 
