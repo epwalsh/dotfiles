@@ -19,6 +19,7 @@ augroup END
 augroup filetype_jsonnet
     autocmd!
     au FileType jsonnet setlocal shiftwidth=4 tabstop=4 expandtab
+    au FileType jsonnet setlocal indentexpr=GetJSONIndent(v:lnum)
 augroup END
 " ------------------------------------------------------------------------- }}}
 
@@ -100,6 +101,8 @@ augroup filetype_python
     autocmd!
     au FileType python setlocal shiftwidth=4 tabstop=4 expandtab
     au FileType python setlocal omnifunc=pythoncomplete#Complete
+    " Don't automatically adjust indentation when typing ':'
+    au FileType python setlocal indentkeys-=<:>
     au BufNewFile *.py,*.pyx 0r ~/.config/nvim/headers/template.py
     au BufWritePre *.py call PyFormat()
 augroup END
