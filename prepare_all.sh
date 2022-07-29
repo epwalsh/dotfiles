@@ -55,9 +55,10 @@ cargo install sccache \
     # autojumper alternative to cd (requires fzf for fuzzy selection)
     zoxide \
     # very cool command line prompt
-    starship
+    starship \
+    # alternative to ls and tree
+    exa
 
-# cargo install exa  # alternative to ls and tree
 # cargo install procs  # alternative to ps
 # cargo install tokei  # displays statistics about your code
 # cargo install hyperfine  # command line benchmarking tool
