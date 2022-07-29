@@ -64,6 +64,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " Alternative to NERDTree:
 "  - I couldn't figure out how to open files in split view. This is a big
 "  missing feature.
