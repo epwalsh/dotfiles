@@ -1,3 +1,12 @@
+function ShiftFocusThenExecute(command)
+    " Shift focus to the right/main window,
+    " especially when focus is in sidebar.
+    :wincmd l
+
+    " Run commands like `:Files`.
+    execute a:command
+endfunction
+
 function! s:init_fern() abort
   " Define NERDTree like mappings
   nmap <buffer> o <Plug>(fern-action-open:edit)
@@ -42,6 +51,11 @@ function! s:init_fern() abort
   " Smart preview.
   nmap <silent> <buffer> <expr> <Plug>(fern-quit-or-close-preview) fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
   nmap <silent> <buffer> q <Plug>(fern-quit-or-close-preview)
+
+  nnoremap ff :call ShiftFocusThenExecute('Files')<CR>
+  " nnoremap <Leader>rg :call ShiftFocusThenExecute('Rg')<CR>
+  " nnoremap <Leader>b :call ShiftFocusThenExecute('Buffers')<CR>
+  " nnoremap <Leader>m :call ShiftFocusThenExecute('Maps')<CR>
 endfunction
 
 " Use NERD Font icons.
@@ -64,3 +78,13 @@ autocmd VimEnter * ++nested if argc() == 0 && !exists('s:std_in') | Fern . -draw
 map <F2> :Fern . -drawer<CR>
 " use this one instead if you F2 to close Fern drawer instead of refocus
 " map <F2> :Fern . -drawer -toggle<CR>
+
+let g:fern#mapping#fzf#disable_default_mappings = 1
+
+" Fuzzy find with preview.
+function! s:Fern_mapping_fzf_customize_option(spec)
+    let a:spec.options .= ' --multi'
+    return fzf#vim#with_preview(a:spec)
+endfunction
+
+let g:Fern_mapping_fzf_customize_option = function('s:Fern_mapping_fzf_customize_option')

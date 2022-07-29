@@ -74,6 +74,7 @@ Plug 'lambdalisue/glyph-palette.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'yuki-yano/fern-preview.vim'
 Plug 'lambdalisue/fern-git-status.vim'
+Plug 'LumaKernel/fern-mapping-fzf.vim'
 
 " Autocompletion.
 Plug 'Shougo/deoplete.nvim'
@@ -102,6 +103,7 @@ Plug 'wojtekmach/vim-rename'
 
 " fzf.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " --- }}}
 
