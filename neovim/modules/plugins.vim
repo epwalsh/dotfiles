@@ -61,18 +61,19 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 
 " File navigation.
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-" Alternative to NERDTree:
-"  - I couldn't figure out how to open files in split view. This is a big
-"  missing feature.
-" Plug 'lambdalisue/nerdfont.vim'
-" Plug 'lambdalisue/fern.vim', {
-"     \ 'branch': 'main',
-"     \ }
-" Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+" Plug 'scrooloose/nerdtree'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern.vim', {
+    \ 'branch': 'main',
+    \ }
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/glyph-palette.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'yuki-yano/fern-preview.vim'
+Plug 'lambdalisue/fern-git-status.vim'
 
 " Autocompletion.
 Plug 'Shougo/deoplete.nvim'
