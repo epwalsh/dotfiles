@@ -53,7 +53,7 @@ function! s:init_fern() abort
   nmap <silent> <buffer> q <Plug>(fern-quit-or-close-preview)
 
   nnoremap ff :call ShiftFocusThenExecute('Files')<CR>
-  " nnoremap <Leader>rg :call ShiftFocusThenExecute('Rg')<CR>
+  nnoremap rg :call ShiftFocusThenExecute('Rg')<CR>
   " nnoremap <Leader>b :call ShiftFocusThenExecute('Buffers')<CR>
   " nnoremap <Leader>m :call ShiftFocusThenExecute('Maps')<CR>
 endfunction
