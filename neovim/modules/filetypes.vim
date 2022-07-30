@@ -180,6 +180,8 @@ augroup filetype_md
     au FileType markdown nnoremap td :ToDo<cr>
     au FileType markdown nnoremap <leader>bl :Backlinks<cr>
     au FileType markdown nnoremap <leader>n :New<cr>
+    au FileType markdown command! PasteImg call mdip#MarkdownClipboardImage()<CR>
+    au FileType markdown nnoremap <leader>p :PasteImg<CR>
     au BufWritePre ~/epwalsh-notes/*.md Frontmatter
     au CompleteDone ~/epwalsh-notes/*.md call MaybeCreateLink()
     au BufNewFile ~/epwalsh-notes/*.md 0r ~/.config/nvim/headers/template.md

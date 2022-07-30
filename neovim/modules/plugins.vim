@@ -31,6 +31,9 @@ Plug 'tmhedberg/SimpylFold'
 " A bunch of markdown stuff, including folding.
 Plug 'plasticboy/vim-markdown'
 
+" Paste images into Markdown.
+Plug 'ferrine/md-img-paste.vim'
+
 " --- }}}
 
 " General language tools --- {{{

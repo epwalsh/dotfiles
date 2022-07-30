@@ -72,7 +72,7 @@ let g:fern#default_exclude = '^\%(\.mypy_cache\|__pycache__\|\.git\|\.pytest_cac
 
 augroup fern-custom
   autocmd! *
-  autocmd! FileType fern call s:init_fern()
+  autocmd FileType fern call s:init_fern()
   autocmd FileType fern call glyph_palette#apply()
 augroup END
 
