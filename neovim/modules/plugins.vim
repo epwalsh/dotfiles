@@ -1,9 +1,6 @@
 " Vim-plug package manager -------------------------------------------------- {{{
 call plug#begin("~/.config/nvim/plugged/")
 
-" Package manager.
-" Plug 'gmarik/Vundle.vim'
-
 " Theme and appearance --- {{{
 
 " Solarized theme.
