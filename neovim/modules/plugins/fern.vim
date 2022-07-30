@@ -7,6 +7,11 @@ function ShiftFocusThenExecute(command)
     execute a:command
 endfunction
 
+function ExecuteThenShiftFocus(command)
+    execute a:command
+    :wincmd l
+endfunction
+
 function! s:init_fern() abort
   " Define NERDTree like mappings
   nmap <buffer> o <Plug>(fern-action-open:edit)
@@ -63,7 +68,7 @@ let g:fern#renderer = "nerdfont"
 " Show hidden files by default.
 let g:fern#default_hidden = 1
 " Exlude these files/dirs by default.
-let g:fern#default_exclude = '^\%(\.mypy_cache\|__pycache__\|\.git\|\.pytest_cache\|\.ipynb_checkpoints\|.*\.egg-info\)$'
+let g:fern#default_exclude = '^\%(\.mypy_cache\|__pycache__\|\.git\|\.pytest_cache\|\.ipynb_checkpoints\|.*\.egg-info\|\.DS_Store\)$'
 
 augroup fern-custom
   autocmd! *
@@ -73,7 +78,7 @@ augroup END
 
 " Start Fern when Vim is started without file arguments.
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * ++nested if argc() == 0 && !exists('s:std_in') | Fern . -drawer | endif
+autocmd VimEnter * ++nested if !exists('s:std_in') | call ExecuteThenShiftFocus('Fern . -drawer') | endif
 
 map <F2> :Fern . -drawer<CR>
 " use this one instead if you F2 to close Fern drawer instead of refocus
