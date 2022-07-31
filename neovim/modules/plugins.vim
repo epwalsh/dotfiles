@@ -1,7 +1,4 @@
-" Vim-plug package manager -------------------------------------------------- {{{
 call plug#begin("~/.config/nvim/plugged/")
-
-" Theme and appearance --- {{{
 
 " Solarized theme.
 Plug 'altercation/vim-colors-solarized'
@@ -31,14 +28,20 @@ Plug 'plasticboy/vim-markdown'
 " Paste images into Markdown.
 Plug 'ferrine/md-img-paste.vim'
 
-" --- }}}
-
-" General language tools --- {{{
-
 " Language Client.
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
+Plug 'williamboman/mason.nvim', {
+    \ 'branch': 'main',
+    \ }
+Plug 'neovim/nvim-lspconfig'
+Plug 'j-hui/fidget.nvim', {
+    \ 'branch': 'main',
+    \ }
+Plug 'kosayoda/nvim-lightbulb'
+Plug 'folke/trouble.nvim', {
+    \ 'branch': 'main',
+    \ }
+Plug 'weilbith/nvim-code-action-menu', {
+    \ 'branch': 'main',
     \ }
 
 " Async linting and other stuff.
@@ -49,7 +52,6 @@ Plug 'ervandew/supertab'
 
 " Sending code to an interpreter for any language.
 Plug 'jalvesaq/vimcmdline'
-" Plug 'epwalsh/vimcmdline'
 
 " Auto-complete pairs.
 Plug 'jiangmiao/auto-pairs'
@@ -61,10 +63,6 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 
 " File navigation.
-" Plug 'scrooloose/nerdtree'
-" Plug 'ryanoasis/vim-devicons'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern.vim', {
     \ 'branch': 'main',
@@ -77,21 +75,30 @@ Plug 'lambdalisue/fern-git-status.vim'
 Plug 'LumaKernel/fern-mapping-fzf.vim'
 
 " Autocompletion.
-Plug 'Shougo/deoplete.nvim'
-
-" Snippets.
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+Plug 'hrsh7th/cmp-buffer', {
+    \ 'branch': 'main',
+    \ }
+Plug 'hrsh7th/cmp-nvim-lsp', {
+    \ 'branch': 'main',
+    \ }
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help', {
+    \ 'branch': 'main',
+    \ }
+Plug 'hrsh7th/cmp-path', {
+    \ 'branch': 'main',
+    \ }
+Plug 'hrsh7th/cmp-vsnip', {
+    \ 'branch': 'main',
+    \ }
+Plug 'hrsh7th/nvim-cmp', {
+    \ 'branch': 'main',
+    \ }
+Plug 'hrsh7th/vim-vsnip-integ', {
+    \ 'branch': 'main',
+    \ }
 
 " Automatic aligning.
 Plug 'junegunn/vim-easy-align'
-
-" Emojis.
-" Plug 'junegunn/vim-emoji'
-
-" --- }}}
-
-" Other workflow tools --- {{{
 
 " Git.
 Plug 'tpope/vim-fugitive'
@@ -101,24 +108,17 @@ Plug 'ruanyl/vim-gh-line'
 " Rename the current file.
 Plug 'wojtekmach/vim-rename'
 
-" fzf.
+" fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" --- }}}
-
-" Language specific tools --- {{{
-
 " Rust.
 Plug 'rust-lang/rust.vim'
+Plug 'simrat39/rust-tools.nvim'
 
 " Python.
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
-" Plug 'psf/black'
-" Plug 'EgZvor/vim-black', { 'branch': 'main' }
-" Plug 'fisadev/vim-isort'
 
 " Fish
 Plug 'dag/vim-fish'
@@ -135,18 +135,10 @@ Plug 'gerw/vim-latex-suite'
 "   > go get github.com/google/go-jsonnet/cmd/jsonnetfmt
 Plug 'google/vim-jsonnet'
 
-" R.
-" Plug 'jalvesaq/Nvim-R'
-
-" --- }}}
-
 call plug#end()
-" ------------------------------------------------------------------------- }}}
 
 filetype plugin indent on
 
-" Load plugin configuration files ----------------------------------------- {{{
 for file in split(glob(Dot('modules/plugins/*.vim')), '\n')
     exec 'source' file
 endfor
-" ------------------------------------------------------------------------- }}}

@@ -1,6 +1,6 @@
 pynvim
-emoji==1.5.0
 jedi
+jedi-language-server
 pylint
 pydocstyle
 mypy
