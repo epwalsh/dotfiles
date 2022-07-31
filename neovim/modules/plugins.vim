@@ -41,6 +41,9 @@ Plug 'kosayoda/nvim-lightbulb'
 " Use `:Trouble` to open.
 Plug 'folke/trouble.nvim'
 
+" Improves the default vim.ui interface.
+Plug 'stevearc/dressing.nvim'
+
 " Provides a nice menu for code actions.
 " Use `:CodeActionMenu` to open.
 Plug 'weilbith/nvim-code-action-menu'
