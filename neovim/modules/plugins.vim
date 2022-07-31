@@ -1,3 +1,6 @@
+" Plugins.
+"
+
 call plug#begin("~/.config/nvim/plugged/")
 
 " Solarized theme.
@@ -133,7 +136,3 @@ Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 call plug#end()
 
 filetype plugin indent on
-
-for file in split(glob(Dot('modules/plugins/*.vim')), '\n')
-    exec 'source' file
-endfor

@@ -1,11 +1,6 @@
-" Language Client mappings.
-" noremap <F5> :call LanguageClient_contextMenu()<cr>
-" noremap H :call LanguageClient_textDocument_hover()<cr>
-" noremap D :call LanguageClient_textDocument_definition()<cr>
-" noremap R :call LanguageClient_textDocument_references()<cr>
-
 " Configure LSP code navigation shortcuts
 " as found in :help lsp
+"
 nnoremap <silent> <c-]>     <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <c-k>     <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> K         <cmd>lua vim.lsp.buf.hover()<CR>
@@ -60,28 +55,13 @@ vnoremap <silent> <expr> j ScreenMovement("j")
 
 nnoremap ; :
 vnoremap ; :
-"nmap : <nop>
-"vmap : <nop>
 
 " Always use very magic setting for regex searches
 nmap / /\v
 vmap / /\v
 
-" Toggle relative line numbers
-" nnoremap <F5> :setlocal relativenumber!<cr>
-" inoremap <F5> <esc>:setlocal relativenumber!<cr>li
-" vnoremap <F5> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal relativenumber!
-"             \<cr>:<c-u>normal! `rv`t<cr>
-" nnoremap <leader><F5> :setlocal relativenumber!<cr>
-" vnoremap <leader><F5> :<c-u>normal! `<mr`>mt<cr>:<c-u>setlocal relativenumber!
-"             \<cr>:<c-u>normal! `rv`t<cr>
-
 " Jump to matching character (ex. matching brace or parenthesis)
 nnoremap <leader>m %
-
-" Execute :nohl with <F4>
-" nnoremap <F4> :set<Space>hls!<cr>
-" vnoremap <F4> :<c-u>normal! `<mr`>mt<cr>:<c-u>set<Space>hls!<cr>:<c-u>normal! `rv`t<cr>
 
 " Move lines up or down
 nnoremap ∆ :m .+1<CR>==
@@ -92,6 +72,7 @@ vnoremap ˚ :m '<-2<CR>gv=gv
 " Change current word to uppercase
 inoremap <leader>up <esc>bveUea
 nnoremap <leader>up bveUe
+
 " Change current word to lowercase
 inoremap <leader>lw <esc>bveuea
 nnoremap <leader>lw <esc>bveue
@@ -113,8 +94,6 @@ vnoremap <leader>l <esc>`>a]]<esc>`<i[[<esc>`>ll
 " the cursor from moving back one-character when possible.
 inoremap jk <esc>l
 vnoremap <leader>jk <esc>
-" Map <esc> to no operation in insert mode
-"inoremap <esc> <nop>
 
 " Quickly jump to beginning and end of lines
 " nnoremap H 0
@@ -175,3 +154,8 @@ function! ToggleConcealLevel()
     endif
 endfunction
 nnoremap <silent> <C-c><C-y> :call ToggleConcealLevel()<CR>
+
+" Open a fold and stay at the top.
+nnoremap z[ zo[z
+" Open a fold and go to the bottom.
+nnoremap z] zo]z
