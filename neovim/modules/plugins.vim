@@ -40,6 +40,7 @@ Plug 'kosayoda/nvim-lightbulb'
 " A pretty list for showing issues / quickfix / location lists.
 " Use `:Trouble` to open.
 Plug 'folke/trouble.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 " Improves the default vim.ui interface.
 Plug 'stevearc/dressing.nvim'
