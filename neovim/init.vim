@@ -6,6 +6,9 @@
 " For plugins, see 'modules/plugins.vim'.
 " For plugin-specifc settings, see the files in 'modules/plugins/'.
 "
+" References:
+" - https://www.integralist.co.uk/posts/neovim/
+"
 
 " Ensure the right filetype is set for these special cases.
 augroup filetype_settings
