@@ -13,36 +13,34 @@ Plug 'vim-airline/vim-airline-themes'
 " Illuminate words matching current word under cursor.
 Plug 'rrethy/vim-illuminate'
 
-" CSV column highlighting + RBQL.
-" Plug 'mechatroner/rainbow_csv'
-
 " Better folding for Python.
 Plug 'tmhedberg/SimpylFold'
 
-" Markdown section folding.
-" Plug 'masukomi/vim-markdown-folding'
-
 " A bunch of markdown stuff, including folding.
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 " Paste images into Markdown.
-Plug 'ferrine/md-img-paste.vim'
+Plug 'ferrine/md-img-paste.vim', { 'for': 'markdown' }
 
-" Language Client.
-Plug 'williamboman/mason.nvim', {
-    \ 'branch': 'main',
-    \ }
+" Automatically manages LSP servers.
+Plug 'williamboman/mason.nvim'
+
+" Quickstart configs for LSP.
 Plug 'neovim/nvim-lspconfig'
-Plug 'j-hui/fidget.nvim', {
-    \ 'branch': 'main',
-    \ }
+
+" Show LSP progress.
+Plug 'j-hui/fidget.nvim'
+
+" Shows a lightbulb whenever a text doc / code action is available.
 Plug 'kosayoda/nvim-lightbulb'
-Plug 'folke/trouble.nvim', {
-    \ 'branch': 'main',
-    \ }
-Plug 'weilbith/nvim-code-action-menu', {
-    \ 'branch': 'main',
-    \ }
+
+" A pretty list for showing issues / quickfix / location lists.
+" Use `:Trouble` to open.
+Plug 'folke/trouble.nvim'
+
+" Provides a nice menu for code actions.
+" Use `:CodeActionMenu` to open.
+Plug 'weilbith/nvim-code-action-menu'
 
 " Async linting and other stuff.
 Plug 'benekastah/neomake'
@@ -113,27 +111,24 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Rust.
-Plug 'rust-lang/rust.vim'
-Plug 'simrat39/rust-tools.nvim'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'simrat39/rust-tools.nvim', { 'for': 'rust' }
 
 " Python.
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'davidhalter/jedi-vim'
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
 " Fish
-Plug 'dag/vim-fish'
+Plug 'dag/vim-fish', { 'for': 'fish' }
 
 " Go.
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-" LaTeX.
-Plug 'gerw/vim-latex-suite'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 
 " Jsonnet.
 " To get automatic formatting, you also need to install jsonnetfmt.
 " AFAIK the only way to do that is with go:
 "   > go get github.com/google/go-jsonnet/cmd/jsonnetfmt
-Plug 'google/vim-jsonnet'
+Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 
 call plug#end()
 

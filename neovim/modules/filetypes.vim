@@ -38,14 +38,6 @@ augroup filetype_vim
 augroup END
 " ------------------------------------------------------------------------- }}}
 
-" R settings -------------------------------------------------------------- {{{
-augroup filetype_r
-    autocmd!
-    au FileType r,rmd setlocal shiftwidth=2 tabstop=2 expandtab
-    au FileType r,rmd setlocal foldmethod=marker
-augroup END
-" ------------------------------------------------------------------------- }}}
-
 " Latex settings ---------------------------------------------------------- {{{
 augroup filetype_tex
     autocmd!
@@ -82,20 +74,6 @@ augroup filetype_dockerfile
 augroup END
 " ------------------------------------------------------------------------- }}}
 
-" Jenkinsfile settings ----------------------------------------------------- {{{
-augroup filetype_jenkinsfile
-    autocmd!
-    au BufRead Jenkinsfile setlocal shiftwidth=2 tabstop=2 expandtab
-augroup END
-" ------------------------------------------------------------------------- }}}
-
-" Swift settings --------------------------------------------------------- {{{
-augroup filetype_swift
-    autocmd!
-    au FileType swift setlocal shiftwidth=4 tabstop=4 expandtab
-augroup END
-" ------------------------------------------------------------------------- }}}
-
 " Python settings --------------------------------------------------------- {{{
 augroup filetype_python
     autocmd!
@@ -108,33 +86,11 @@ augroup filetype_python
 augroup END
 " ------------------------------------------------------------------------- }}}
 
-" Kotlin settings --------------------------------------------------------- {{{
-augroup filetype_kotlin
-    autocmd!
-    au FileType kotlin setlocal shiftwidth=4 tabstop=4 expandtab
-augroup END
-" ------------------------------------------------------------------------- }}}
-
-" Julia settings ---------------------------------------------------------- {{{
-augroup filetype_julia
-    autocmd!
-    au FileType julia setlocal shiftwidth=4 tabstop=4 expandtab
-augroup END
-" ------------------------------------------------------------------------- }}}
-
 " yml settings ------------------------------------------------------------ {{{
 augroup filetype_yml
     autocmd!
     au FileType yaml setlocal shiftwidth=2 tabstop=2 expandtab
     au FileType yaml setlocal wrap linebreak nolist
-augroup END
-" ------------------------------------------------------------------------- }}}
-
-" Java settings ----------------------------------------------------------- {{{
-augroup filetype_java
-    autocmd!
-    autocmd FileType java setlocal shiftwidth=4 tabstop=4 expandtab
-    autocmd FileType java setlocal omnifunc=javacomplete#Complete
 augroup END
 " ------------------------------------------------------------------------- }}}
 

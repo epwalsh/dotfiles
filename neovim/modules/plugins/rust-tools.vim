@@ -1,1 +1,1 @@
-lua require("rust-tools").setup({})
+au FileType rust lua require("rust-tools").setup({})
