@@ -1,6 +1,7 @@
 pynvim
 jedi
 jedi-language-server
+pyright
 pylint
 pydocstyle
 mypy

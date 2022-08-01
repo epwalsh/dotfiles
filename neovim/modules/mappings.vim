@@ -8,7 +8,8 @@ nnoremap <silent> gi        <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> gc        <cmd>lua vim.lsp.buf.incoming_calls()<CR>
 nnoremap <silent> gd        <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr        <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gn        <cmd>lua vim.lsp.buf.rename()<CR>
+" Use inc-rename.nvim for renaming.
+" nnoremap <silent> rn        <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> gs        <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gw        <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 
@@ -16,7 +17,6 @@ nnoremap <silent> gw        <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 "
 " nnoremap <silent> ga        <cmd>lua vim.lsp.buf.code_action()<CR>
 "
-nnoremap <silent> ga        <cmd>CodeActionMenu<CR>
 
 nnoremap <silent> [x        <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> ]x        <cmd>lua vim.diagnostic.goto_next()<CR>
@@ -26,7 +26,6 @@ nnoremap <silent> ]s        <cmd>lua vim.diagnostic.show()<CR>
 "
 " nnoremap <silent> <space>q  <cmd>lua vim.diagnostic.setloclist()<CR>
 "
-nnoremap <silent> <space>q  <cmd>Trouble<CR>
 
 " mapping to make movements operate on 1 screen line in wrap mode
 function! ScreenMovement(movement)

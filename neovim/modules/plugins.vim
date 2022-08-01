@@ -31,6 +31,9 @@ Plug 'williamboman/mason.nvim'
 " Quickstart configs for LSP.
 Plug 'neovim/nvim-lspconfig'
 
+" LSP renaming with immediate preview as you type.
+Plug 'smjonas/inc-rename.nvim'
+
 " Show LSP progress.
 Plug 'j-hui/fidget.nvim'
 
@@ -69,9 +72,7 @@ Plug 'scrooloose/nerdcommenter'
 
 " File navigation.
 Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern.vim', {
-    \ 'branch': 'main',
-    \ }
+Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'lambdalisue/fern-hijack.vim'
@@ -80,27 +81,14 @@ Plug 'lambdalisue/fern-git-status.vim'
 Plug 'LumaKernel/fern-mapping-fzf.vim'
 
 " Autocompletion.
-Plug 'hrsh7th/cmp-buffer', {
-    \ 'branch': 'main',
-    \ }
-Plug 'hrsh7th/cmp-nvim-lsp', {
-    \ 'branch': 'main',
-    \ }
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help', {
-    \ 'branch': 'main',
-    \ }
-Plug 'hrsh7th/cmp-path', {
-    \ 'branch': 'main',
-    \ }
-Plug 'hrsh7th/cmp-vsnip', {
-    \ 'branch': 'main',
-    \ }
-Plug 'hrsh7th/nvim-cmp', {
-    \ 'branch': 'main',
-    \ }
-Plug 'hrsh7th/vim-vsnip-integ', {
-    \ 'branch': 'main',
-    \ }
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 " Automatic aligning.
 Plug 'junegunn/vim-easy-align'
@@ -123,7 +111,6 @@ Plug 'simrat39/rust-tools.nvim', { 'for': 'rust' }
 
 " Python.
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
 " Fish
 Plug 'dag/vim-fish', { 'for': 'fish' }

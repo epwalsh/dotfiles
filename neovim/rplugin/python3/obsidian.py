@@ -342,9 +342,9 @@ class ObsidianPlugin:
 
     def get_link(self, line: str, cursor_pos: int) -> t.Optional[str]:
         # We have to be careful because `cursor_pos` will be the position in terms of unicode
-        # code points. So if there are unicode characters in the line befpre `cursor_pos` that
+        # code points. So if there are unicode characters in the line before `cursor_pos` that
         # consist of multiple code points, then `cursor_pos` will not correspond to the position
-        # of the cusor within `line`.
+        # of the cursor within `line`.
         adjusted_cursor_pos = len(line.encode()[:cursor_pos].decode())
         for match in self.internal_link_finder.finditer(line):
             if match.start() <= adjusted_cursor_pos <= match.end():
