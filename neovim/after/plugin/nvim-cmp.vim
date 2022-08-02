@@ -32,6 +32,7 @@ cmp.setup({
     { name = 'buffer', keyword_length = 3 },
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
+    { name = 'nvim_lua' },
     { name = 'path' },
     { name = 'emoji' },
     { name = 'vsnip' },
