@@ -28,9 +28,19 @@ require'lspconfig'.sumneko_lua.setup {
       telemetry = {
         enable = false,
       },
+      format = {
+        enable = true,
+        defaultConfig = {
+          indent_style = 'space',
+          indent_size = '2',
+        },
+      },
     },
   },
 }
+
+-- Automatic formatting.
+vim.cmd [[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync()]]
 EOF
 
 " Python.
