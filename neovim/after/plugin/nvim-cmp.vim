@@ -36,7 +36,7 @@ cmp.setup({
     { name = 'path' },
     { name = 'emoji' },
     { name = 'vsnip' },
-    { name = 'obsidian' },
+    { name = 'obsidian', option = { dir = '~/epwalsh-notes/notes' } },
   },
   formatting = {
     format = lspkind.cmp_format({
