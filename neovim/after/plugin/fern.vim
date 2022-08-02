@@ -47,20 +47,37 @@ function! s:init_fern() abort
 
   nmap <buffer><nowait> l <Plug>(fern-my-expand-or-collapse)
 
-  " Preview.
-  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
-  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
-  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
-
-  " Smart preview.
-  nmap <silent> <buffer> <expr> <Plug>(fern-quit-or-close-preview) fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
-  nmap <silent> <buffer> q <Plug>(fern-quit-or-close-preview)
-
   nnoremap ff :call ShiftFocusThenExecute('Files')<CR>
   nnoremap rg :call ShiftFocusThenExecute('Rg')<CR>
   " nnoremap <Leader>b :call ShiftFocusThenExecute('Buffers')<CR>
   " nnoremap <Leader>m :call ShiftFocusThenExecute('Maps')<CR>
+
+  " Preview.
+  "
+  " See https://github.com/yuki-yano/fern-preview.vim/issues/19
+  if !exists("b:fern_is_preview")
+    let b:fern_is_preview = 0
+  endif
+
+  function! FernPreviewToggle()
+    if b:fern_is_preview
+      :execute "normal \<Plug>(fern-action-preview:close)"
+      :execute "normal \<Plug>(fern-action-preview:auto:disable)"
+      nunmap <buffer> <C-d>
+      nunmap <buffer> <C-u>
+      let b:fern_is_preview = 0
+    else
+      :execute "normal \<Plug>(fern-action-preview:open)"
+      :execute "normal \<Plug>(fern-action-preview:auto:enable)<Plug>(fern-action-preview:open)"
+      nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+      nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+      let b:fern_is_preview = 1
+    endif
+  endfunction
+
+  nmap <silent> <buffer> p :call FernPreviewToggle()<CR>
+  nmap <silent> <buffer> <expr> <Plug>(fern-quit-or-close-preview) fern_preview#smart_preview("\<Plug>(fern-action-preview:close)", ":q\<CR>")
+  nmap <silent> <buffer> q <Plug>(fern-quit-or-close-preview)
 endfunction
 
 " Use NERD Font icons.

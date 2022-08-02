@@ -127,6 +127,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 "   > go get github.com/google/go-jsonnet/cmd/jsonnetfmt
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 
+Plug 'kkharji/sqlite.lua'
 " Plug 'epwalsh/obsidian.nvim', { 'do': 'make TARGET=release' }
 Plug '~/Projects/obsidian.nvim'
 

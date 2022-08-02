@@ -1,1 +1,1 @@
- " lua require("obsidian").setup({ dir = "notes" })
+ " lua require("obsidian").setup({ dir = "~/epwalsh-notes/notes" })
