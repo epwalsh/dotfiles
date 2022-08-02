@@ -4,7 +4,7 @@
 " For filetype-specific settings, see the files in 'ftplugin/'.
 " For mappings, see 'modules/mappings.vim'.
 " For plugins, see 'modules/plugins.vim'.
-" For plugin-specifc settings, see the files in 'modules/plugins/'.
+" For plugin-specific settings, see the files in 'after/plugin/'.
 "
 " References:
 " - https://www.integralist.co.uk/posts/neovim/
@@ -95,7 +95,31 @@ for file in split(glob(Dot('modules/*.vim')), '\n')
   execute 'source' file
 endfor
 
-" Load plugin-specific modules.
-for file in split(glob(Dot('modules/plugins/*.vim')), '\n')
-    exec 'source' file
-endfor
+" Appearance.
+"
+" Set theme.
+let g:solarized_termcolors = 256
+colorscheme solarized
+
+" Highlight current line under cursor.
+set cursorline
+highlight CursorLine ctermbg=236
+highlight CursorLineNr cterm=None
+highlight ColorColumn ctermbg=236 guibg=grey
+
+" Tweak some colors.
+highlight Comment cterm=italic ctermfg=96 ctermbg=236
+highlight Number ctermfg=198
+
+" This ensures that vim will inherit transparency from the terminal.
+highlight Normal guibg=NONE ctermbg=NONE
+
+" Always show status line of last window.
+set laststatus=2
+let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'solarized'
+let g:airline_solarized_bg = 'dark'
+
+" Disable airline from changing tmux theme.
+let g:airline#extensions#tmuxline#enabled = 0
