@@ -16,15 +16,15 @@ endfunction
 
 augroup obsidian_settings
     autocmd!
-    au BufRead,BufNewFile ~/epwalsh-notes/* setlocal path+=~/epwalsh-notes/**
-    au BufRead,BufNewFile ~/epwalsh-notes/* nnoremap gf :GoTo<cr>
-    au BufRead,BufNewFile ~/epwalsh-notes/* nnoremap so :Open<cr>
-    au BufRead,BufNewFile ~/epwalsh-notes/* nnoremap cr :Create<cr>
-    au BufRead,BufNewFile ~/epwalsh-notes/* nnoremap dn :Done<cr>
-    au BufRead,BufNewFile ~/epwalsh-notes/* nnoremap td :ToDo<cr>
-    au BufRead,BufNewFile ~/epwalsh-notes/* nnoremap <leader>bl :Backlinks<cr>
-    au BufRead,BufNewFile ~/epwalsh-notes/* nnoremap <leader>n :New<cr>
-    au BufWritePre ~/epwalsh-notes/*.md Frontmatter
-    au CompleteDone ~/epwalsh-notes/*.md call MaybeCreateLink()
-    au BufNewFile ~/epwalsh-notes/*.md 0r ~/.config/nvim/headers/template.md
+    " au BufEnter ~/epwalsh-notes/* setlocal path+=~/epwalsh-notes/**
+"     au BufEnter ~/epwalsh-notes/* nnoremap gf :GoTo<cr>
+"     au BufEnter ~/epwalsh-notes/* nnoremap so :Open<cr>
+"     au BufEnter ~/epwalsh-notes/* nnoremap cr :Create<cr>
+"     au BufEnter ~/epwalsh-notes/* nnoremap dn :Done<cr>
+"     au BufEnter ~/epwalsh-notes/* nnoremap td :ToDo<cr>
+"     au BufEnter ~/epwalsh-notes/* nnoremap <leader>bl :Backlinks<cr>
+"     au BufEnter ~/epwalsh-notes/* nnoremap <leader>n :New<cr>
+"     au BufWritePre ~/epwalsh-notes/*.md Frontmatter
+"     au CompleteDone ~/epwalsh-notes/*.md call MaybeCreateLink()
+"     au BufNewFile ~/epwalsh-notes/*.md 0r ~/.config/nvim/headers/template.md
 augroup END

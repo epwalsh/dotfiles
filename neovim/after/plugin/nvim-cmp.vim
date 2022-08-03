@@ -37,7 +37,6 @@ cmp.setup({
     { name = 'path', option = { get_cwd = function(params) return vim.fn.getcwd() end } },
     { name = 'emoji' },
     { name = 'vsnip' },
-    { name = 'obsidian', option = { dir = '~/epwalsh-notes/notes' } },
   },
   formatting = {
     format = lspkind.cmp_format({
