@@ -10,6 +10,13 @@ lua require('lspconfig').gopls.setup({})
 "
 lua << EOF
 require'lspconfig'.sumneko_lua.setup {
+  commands = {
+    Format = {
+      function()
+        require("stylua-nvim").format_file()
+      end
+    }
+  },
   settings = {
     Lua = {
       runtime = {

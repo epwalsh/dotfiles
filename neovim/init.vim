@@ -18,6 +18,7 @@ augroup filetype_settings
     au BufRead *.conf set ft=conf
     au BufRead *.toml set ft=conf
     au BufRead *.jl set ft=julia
+    au BufRead .luacheckrc set ft=lua
 augroup END
 
 set mouse=a hidden nobackup nowritebackup shell=sh

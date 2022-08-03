@@ -121,6 +121,9 @@ Plug 'dag/vim-fish', { 'for': 'fish' }
 " Go.
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 
+" Lua.
+Plug 'ckipp01/stylua-nvim', { 'do': 'cargo install stylua' }
+
 " Jsonnet.
 " To get automatic formatting, you also need to install jsonnetfmt.
 " AFAIK the only way to do that is with go:

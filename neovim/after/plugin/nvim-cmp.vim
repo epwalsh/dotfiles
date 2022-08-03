@@ -28,6 +28,7 @@ cmp.setup({
       select = true,
     })
   },
+  -- To disable a source for a certain file type, see the example in ./ftplugin/make.lua
   sources = {
     { name = 'buffer', keyword_length = 3 },
     { name = 'nvim_lsp' },
