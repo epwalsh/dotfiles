@@ -33,7 +33,7 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
-    { name = 'path' },
+    { name = 'path', option = { get_cwd = function(params) return vim.fn.getcwd() end } },
     { name = 'emoji' },
     { name = 'vsnip' },
     { name = 'obsidian', option = { dir = '~/epwalsh-notes/notes' } },
