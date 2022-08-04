@@ -1,7 +1,7 @@
-" Vim-plug package manager -------------------------------------------------- {{{
-call plug#begin("~/.config/nvim/plugged/")
+" Plugins.
+"
 
-" Theme and appearance --- {{{
+call plug#begin("~/.config/nvim/plugged/")
 
 " Solarized theme.
 Plug 'altercation/vim-colors-solarized'
@@ -16,30 +16,41 @@ Plug 'vim-airline/vim-airline-themes'
 " Illuminate words matching current word under cursor.
 Plug 'rrethy/vim-illuminate'
 
-" CSV column highlighting + RBQL.
-" Plug 'mechatroner/rainbow_csv'
-
 " Better folding for Python.
 Plug 'tmhedberg/SimpylFold'
 
-" Markdown section folding.
-" Plug 'masukomi/vim-markdown-folding'
-
 " A bunch of markdown stuff, including folding.
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 " Paste images into Markdown.
-Plug 'ferrine/md-img-paste.vim'
+Plug 'ferrine/md-img-paste.vim', { 'for': 'markdown' }
 
-" --- }}}
+" Automatically manages LSP servers.
+Plug 'williamboman/mason.nvim'
 
-" General language tools --- {{{
+" Quickstart configs for LSP.
+Plug 'neovim/nvim-lspconfig'
 
-" Language Client.
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+" LSP renaming with immediate preview as you type.
+Plug 'smjonas/inc-rename.nvim'
+
+" Show LSP progress.
+Plug 'j-hui/fidget.nvim'
+
+" Shows a lightbulb whenever a text doc / code action is available.
+Plug 'kosayoda/nvim-lightbulb'
+
+" A pretty list for showing issues / quickfix / location lists.
+" Use `:Trouble` to open.
+Plug 'folke/trouble.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+
+" Improves the default vim.ui interface.
+Plug 'stevearc/dressing.nvim'
+
+" Provides a nice menu for code actions.
+" Use `:CodeActionMenu` to open.
+Plug 'weilbith/nvim-code-action-menu'
 
 " Async linting and other stuff.
 Plug 'benekastah/neomake'
@@ -49,7 +60,6 @@ Plug 'ervandew/supertab'
 
 " Sending code to an interpreter for any language.
 Plug 'jalvesaq/vimcmdline'
-" Plug 'epwalsh/vimcmdline'
 
 " Auto-complete pairs.
 Plug 'jiangmiao/auto-pairs'
@@ -61,14 +71,8 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 
 " File navigation.
-" Plug 'scrooloose/nerdtree'
-" Plug 'ryanoasis/vim-devicons'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern.vim', {
-    \ 'branch': 'main',
-    \ }
+Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'lambdalisue/fern-hijack.vim'
@@ -77,21 +81,20 @@ Plug 'lambdalisue/fern-git-status.vim'
 Plug 'LumaKernel/fern-mapping-fzf.vim'
 
 " Autocompletion.
-Plug 'Shougo/deoplete.nvim'
-
-" Snippets.
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'onsails/lspkind.nvim'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-emoji'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 " Automatic aligning.
 Plug 'junegunn/vim-easy-align'
-
-" Emojis.
-" Plug 'junegunn/vim-emoji'
-
-" --- }}}
-
-" Other workflow tools --- {{{
 
 " Git.
 Plug 'tpope/vim-fugitive'
@@ -101,52 +104,37 @@ Plug 'ruanyl/vim-gh-line'
 " Rename the current file.
 Plug 'wojtekmach/vim-rename'
 
-" fzf.
+" fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" --- }}}
-
-" Language specific tools --- {{{
-
 " Rust.
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'simrat39/rust-tools.nvim', { 'for': 'rust' }
 
 " Python.
-Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'zchee/deoplete-jedi'
-Plug 'davidhalter/jedi-vim'
-" Plug 'psf/black'
-" Plug 'EgZvor/vim-black', { 'branch': 'main' }
-" Plug 'fisadev/vim-isort'
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 
 " Fish
-Plug 'dag/vim-fish'
+Plug 'dag/vim-fish', { 'for': 'fish' }
 
 " Go.
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 
-" LaTeX.
-Plug 'gerw/vim-latex-suite'
+" Lua.
+Plug 'ckipp01/stylua-nvim', { 'do': 'cargo install stylua' }
 
 " Jsonnet.
 " To get automatic formatting, you also need to install jsonnetfmt.
 " AFAIK the only way to do that is with go:
 "   > go get github.com/google/go-jsonnet/cmd/jsonnetfmt
-Plug 'google/vim-jsonnet'
+Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 
-" R.
-" Plug 'jalvesaq/Nvim-R'
-
-" --- }}}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'kkharji/sqlite.lua'
+" Plug 'epwalsh/obsidian.nvim', { 'do': 'make TARGET=release' }
+Plug '~/Projects/obsidian.nvim'
 
 call plug#end()
-" ------------------------------------------------------------------------- }}}
 
 filetype plugin indent on
-
-" Load plugin configuration files ----------------------------------------- {{{
-for file in split(glob(Dot('modules/plugins/*.vim')), '\n')
-    exec 'source' file
-endfor
-" ------------------------------------------------------------------------- }}}
