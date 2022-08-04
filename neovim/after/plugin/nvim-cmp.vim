@@ -46,6 +46,7 @@ cmp.setup({
         buffer = '[Buffer]',
         nvim_lsp = '[LSP]',
         obsidian = '[Obsidian]',
+        obsidian_new = '[Obsidian]',
       }),
     })
   },
