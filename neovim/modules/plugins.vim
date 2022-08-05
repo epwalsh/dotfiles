@@ -20,7 +20,8 @@ Plug 'rrethy/vim-illuminate'
 Plug 'tmhedberg/SimpylFold'
 
 " A bunch of markdown stuff, including folding.
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown', { 'for': 'markdown' }
 
 " Paste images into Markdown.
 Plug 'ferrine/md-img-paste.vim', { 'for': 'markdown' }
