@@ -93,6 +93,7 @@ Plug 'hrsh7th/cmp-emoji'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
 
 " Automatic aligning.
 Plug 'junegunn/vim-easy-align'
