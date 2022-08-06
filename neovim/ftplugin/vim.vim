@@ -1,1 +1,1 @@
-setlocal shiftwidth=4 tabstop=4 expandtab foldmethod=marker
+setlocal shiftwidth=2 tabstop=2 expandtab foldmethod=marker

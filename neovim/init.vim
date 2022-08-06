@@ -12,13 +12,13 @@
 
 " Ensure the right filetype is set for these special cases.
 augroup filetype_settings
-    autocmd!
-    au BufRead .clang-format set ft=yaml
-    au BufRead Dockerfile.* set ft=dockerfile
-    au BufRead *.conf set ft=conf
-    au BufRead *.toml set ft=conf
-    au BufRead *.jl set ft=julia
-    au BufRead .luacheckrc set ft=lua
+  autocmd!
+  au BufRead .clang-format set ft=yaml
+  au BufRead Dockerfile.* set ft=dockerfile
+  au BufRead *.conf set ft=conf
+  au BufRead *.toml set ft=conf
+  au BufRead *.jl set ft=julia
+  au BufRead .luacheckrc set ft=lua
 augroup END
 
 set mouse=a hidden nobackup nowritebackup shell=sh
@@ -54,10 +54,8 @@ set nowrap
 
 set completeopt=longest,menuone
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 " Scrolling behavior with mouse, scroll one line at a time
 map <ScrollWheelUp> <C-Y>
@@ -92,8 +90,10 @@ function! Dot(path)
 endfunction
 
 " Load configuration modules.
-for file in split(glob(Dot('modules/*.vim')), '\n')
-  execute 'source' file
+for file in split(glob(Dot('*.vim')), '\n')
+  if fnamemodify(file, ":p:t") != "init.vim"
+    execute 'source' file
+  endif
 endfor
 
 " Appearance.
