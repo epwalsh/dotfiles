@@ -16,8 +16,10 @@ Plug 'vim-airline/vim-airline-themes'
 " Illuminate words matching current word under cursor.
 Plug 'rrethy/vim-illuminate'
 
-" Better folding for Python.
-Plug 'tmhedberg/SimpylFold'
+" Interface for tree-sitter that other plugins can build off of.
+" Includes better folding and syntax highlighting.
+" See 'ftplugin/python.vim' for an example of how to configure folding.
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " A bunch of markdown stuff, including folding.
 Plug 'godlygeek/tabular'
