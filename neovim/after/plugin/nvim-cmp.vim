@@ -35,13 +35,13 @@ cmp.setup({
   },
   -- To disable a source for a certain file type, see the example in ./ftplugin/make.lua
   sources = {
-    { name = 'buffer', keyword_length = 3 },
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lua' },
     { name = 'path', option = { get_cwd = function(params) return vim.fn.getcwd() end } },
     { name = 'emoji' },
     { name = 'vsnip' },
+    { name = 'buffer', keyword_length = 3 },
   },
   formatting = {
     format = lspkind.cmp_format({
