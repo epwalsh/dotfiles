@@ -3,27 +3,24 @@
 
 call plug#begin("~/.config/nvim/plugged/")
 
-" Solarized theme.
-Plug 'altercation/vim-colors-solarized'
+" Theme.
+Plug 'marko-cerovac/material.nvim'
 
-" Status line theme.
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" Setting tmux status line theme to match Vim status line theme.
-" Plug 'edkolev/tmuxline.vim'
-
-" Illuminate words matching current word under cursor.
-Plug 'rrethy/vim-illuminate'
+" Status line.
+Plug 'nvim-lualine/lualine.nvim'
 
 " Interface for tree-sitter that other plugins can build off of.
 " Includes better folding and syntax highlighting.
 " See 'ftplugin/python.vim' for an example of how to configure folding.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" A bunch of markdown stuff, including folding.
-Plug 'godlygeek/tabular'
-Plug 'preservim/vim-markdown', { 'for': 'markdown' }
+" This is useful for figuring out how treesitter is highlighting elements.
+" Toggle it with ':TSPlaygroundToggle'
+Plug 'nvim-treesitter/playground'
+
+" Makes Neovim's builtin spellchecker work for buffers with tree-sitter
+" highlighting.
+Plug 'lewis6991/spellsitter.nvim'
 
 " Paste images into Markdown.
 Plug 'ferrine/md-img-paste.vim', { 'for': 'markdown' }
@@ -113,7 +110,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Rust.
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'simrat39/rust-tools.nvim', { 'for': 'rust' }
 
 " Python.

@@ -36,9 +36,6 @@ set nohls
 " Enable syntax highlighting.
 syntax enable
 
-" Theme settings.
-set background=dark
-
 " Line numbers.
 set number
 set relativenumber
@@ -88,6 +85,9 @@ set spell spelllang=en_us spelloptions=camel
 " Faster update time, helps some plugins like vim-gitgutter.
 set updatetime=100
 
+" Set theme.
+set background=dark
+
 " Wraps paths to make them relative to nvim config directory.
 function! Dot(path)
   return '~/.config/nvim/' . a:path
@@ -102,29 +102,20 @@ endfor
 
 " Appearance.
 "
-" Set theme.
-let g:solarized_termcolors = 256
-colorscheme solarized
+let g:material_style = "oceanic"
+lua << EOF
+require("lualine").setup({
+  options = {
+    theme = "auto"
+  }
+})
+require("material").setup({})
+EOF
+
+colorscheme material
 
 " Highlight current line under cursor.
 set cursorline
 highlight CursorLine ctermbg=236
 highlight CursorLineNr cterm=None
-highlight ColorColumn ctermbg=236 guibg=grey
-
-" Tweak some colors.
-highlight Comment cterm=italic ctermfg=96 ctermbg=236
-highlight Number ctermfg=198
-
-" This ensures that vim will inherit transparency from the terminal.
-highlight Normal guibg=NONE ctermbg=NONE
-
-" Always show status line of last window.
-set laststatus=2
-let g:Powerline_symbols = 'fancy'
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'solarized'
-let g:airline_solarized_bg = 'dark'
-
-" Disable airline from changing tmux theme.
-let g:airline#extensions#tmuxline#enabled = 0
+highlight ColorColumn ctermbg=236

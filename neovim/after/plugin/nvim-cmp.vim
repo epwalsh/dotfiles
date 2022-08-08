@@ -56,9 +56,7 @@ cmp.setup({
     })
   },
   window = {
-    completion = cmp.config.window.bordered({
-      winhighlight = 'Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:CmpPmenuSel,Search:None',
-    }),
+    completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
 })
@@ -95,36 +93,3 @@ endfunction
 function! s:complete(...) abort
   lua require('cmp').complete({ reason = require('cmp').ContextReason.Auto })
 endfunction
-
-" Customize colors.
-"
-" See https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance
-" for inspiration.
-"
-hi! CMpPmenuSel ctermbg=Black ctermfg=NONE
-hi! CmpPmenuBorder ctermfg=Cyan
-
-hi! CmpItemAbbrDeprecated ctermbg=NONE cterm=strikethrough ctermfg=Grey
-
-hi! CmpItemAbbrMatch ctermbg=NONE ctermfg=Blue
-hi! CmpItemAbbrMatchFuzzy ctermbg=NONE ctermfg=Blue
-
-hi! CmpItemKindVariable ctermbg=NONE ctermfg=LightBlue
-hi! CmpItemKindInterface ctermbg=NONE ctermfg=LightBlue
-
-hi! CmpItemKindText ctermbg=NONE ctermfg=Grey
-hi! CmpItemKindFile ctermbg=NONE ctermfg=Grey
-hi! CmpItemKindFolder ctermbg=NONE ctermfg=Grey
-hi! CmpItemKindReference ctermbg=NONE ctermfg=Grey
-
-hi! CmpItemKindConstant ctermbg=NONE ctermfg=Yellow
-
-hi! CmpItemKindFunction ctermbg=NONE ctermfg=Magenta
-hi! CmpItemKindMethod ctermbg=NONE ctermfg=Magenta
-hi! CmpItemKindClass ctermbg=NONE ctermfg=Magenta
-hi! CmpItemKindStruct ctermbg=NONE ctermfg=Magenta
-hi! CmpItemKindModule ctermbg=NONE ctermfg=Magenta
-
-hi! CmpItemKindKeyword ctermbg=NONE ctermfg=Cyan
-hi! CmpItemKindProperty ctermbg=NONE ctermfg=Cyan
-hi! CmpItemKindUnit ctermbg=NONE ctermfg=Cyan
