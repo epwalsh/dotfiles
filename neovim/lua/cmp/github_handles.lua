@@ -1,4 +1,5 @@
 -- Custom nvim-cmp source for GitHub handles.
+-- Adapted from https://github.com/wincent/wincent/blob/2d926177773f72f4bf3d87b87ac8535ad45341ad/aspects/nvim/files/.config/nvim/lua/wincent/cmp/handles.lua
 
 local handles = {
 	AkshitaB = "Akshita Bhagia",
