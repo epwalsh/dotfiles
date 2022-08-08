@@ -95,9 +95,9 @@ vnoremap <leader>jk <esc>
 
 " Quickly jump to beginning and end of lines
 " nnoremap H 0
-nnoremap L $h
+nnoremap L $
 " vnoremap H 0
-vnoremap L $h
+vnoremap L $
 
 " Define some nifty operating-pending mappings
 onoremap p i(
