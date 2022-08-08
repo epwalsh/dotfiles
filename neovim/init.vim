@@ -64,7 +64,11 @@ map <ScrollWheelDown> <C-E>
 " Configure the cursor shape and color.
 set guicursor=i:ver25
 
-set scroll=20
+if winheight(0) > 20
+  set scroll=20
+else
+  set scroll=0
+endif
 
 " Set Python 3 provider.
 let g:python3_host_prog = $VIRTUAL_ENV . '/bin/python'
