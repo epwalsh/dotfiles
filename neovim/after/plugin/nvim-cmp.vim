@@ -2,11 +2,16 @@
 " https://github.com/hrsh7th/nvim-cmp#recommended-configuration
 "
 lua <<EOF
-local cmp = require('cmp')
-local lspkind = require("lspkind")
+local cmp = require "cmp"
+local lspkind = require "lspkind"
+
+-- Load custom github handles source from ./lua/cmp/github_handles.lua
+cmp.register_source("github_handles", require("cmp.github_handles").new())
+ 
+-- General setup.
 cmp.setup({
   completion = {
-    --- We hardcode a small delay before autocomplete suggestions pop up. See below.
+    -- We hardcode a small delay before autocomplete suggestions pop up. See below.
     autocomplete = false
   },
   snippet = {
@@ -56,6 +61,23 @@ cmp.setup({
     }),
     documentation = cmp.config.window.bordered(),
   },
+})
+
+-- Filetype specific setup.
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'buffer', keyword_length = 3 },
+    { name = 'path', option = { get_cwd = function(params) return vim.fn.getcwd() end } },
+    { name = 'emoji' },
+    { name = "github_handles" },  -- from ./lua/cmp/github_handles.lua
+  })
+})
+
+cmp.setup.filetype('make', {
+  sources = cmp.config.sources({
+    { name = 'buffer', keyword_length = 3 },
+    { name = 'path', option = { get_cwd = function(params) return vim.fn.getcwd() end } },
+  })
 })
 EOF
 
