@@ -112,9 +112,6 @@ Plug 'junegunn/fzf.vim'
 " Rust.
 Plug 'simrat39/rust-tools.nvim', { 'for': 'rust' }
 
-" Python.
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-
 " Fish
 Plug 'dag/vim-fish', { 'for': 'fish' }
 
