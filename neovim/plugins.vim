@@ -31,6 +31,9 @@ Plug 'williamboman/mason.nvim'
 " Quickstart configs for LSP.
 Plug 'neovim/nvim-lspconfig'
 
+" Highlight word under cursor.
+Plug 'RRethy/vim-illuminate'
+
 " LSP renaming with immediate preview as you type.
 Plug 'smjonas/inc-rename.nvim'
 

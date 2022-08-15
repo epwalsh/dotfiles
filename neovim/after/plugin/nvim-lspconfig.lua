@@ -1,5 +1,8 @@
 -- Rust.
 require("lspconfig").rust_analyzer.setup({
+	on_attach = function(client)
+		require("illuminate").on_attach(client)
+	end,
 	settings = {
 		format = {
 			enable = true,
@@ -10,10 +13,17 @@ require("lspconfig").rust_analyzer.setup({
 vim.cmd([[autocmd BufWritePre *.rs lua vim.lsp.buf.format()]])
 
 -- Go.
-require("lspconfig").gopls.setup({})
+require("lspconfig").gopls.setup({
+	on_attach = function(client)
+		require("illuminate").on_attach(client)
+	end,
+})
 
 -- Lua.
 require("lspconfig").sumneko_lua.setup({
+	on_attach = function(client)
+		require("illuminate").on_attach(client)
+	end,
 	commands = {
 		Format = {
 			function()
@@ -64,7 +74,7 @@ vim.cmd([[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync()]])
 -- On the other hand, Pyright is great for linting and type-checking, but its
 -- other LS capabilities are not great, so we disable Pyright as a completion
 -- provider to avoid duplicate suggestions from nvim-cmp.
-local on_attach = function(client, bufnr)
+local python_on_attach = function(client, bufnr)
 	if client.name == "pyright" then
 		--- Renaming doesn't work properly unless we only have a single
 		--- rename provider, so we disable it for pyright.
@@ -76,13 +86,15 @@ local on_attach = function(client, bufnr)
 		--- For some reason doing rc.completion = false, doesn't work, so
 		--- we disable it in a different way:
 		client.server_capabilities.completionProvider = false
+	else
+		require("illuminate").on_attach(client)
 	end
 end
 
 require("lspconfig")["jedi_language_server"].setup({
-	on_attach = on_attach,
+	on_attach = python_on_attach,
 })
 
 require("lspconfig")["pyright"].setup({
-	on_attach = on_attach,
+	on_attach = python_on_attach,
 })
