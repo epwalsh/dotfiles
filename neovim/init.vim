@@ -106,10 +106,15 @@ let g:material_style = "oceanic"
 lua << EOF
 require("lualine").setup({
   options = {
-    theme = "auto"
+    theme = "horizon",
+    -- theme = "auto", -- let 'material' set it
+    -- theme = "nightfly",
+    -- theme = "palenight",
   }
 })
-require("material").setup({})
+require("material").setup({
+  lualine_style = "default",
+})
 EOF
 
 colorscheme material
