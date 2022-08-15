@@ -25,10 +25,10 @@ local function format_buffer()
 		end
 	end
 
+	vim.cmd("mkview")
 	if output ~= input then
 		-- Save current view. We restore this on `BufWritePost` (see below).
 		-- Idea taken from https://github.com/nvim-treesitter/nvim-treesitter/issues/1424#issuecomment-909181939
-		vim.cmd("mkview")
 		local new_lines = vim.fn.split(output, "\n")
 		vim.api.nvim_buf_set_lines(0, 0, -1, false, new_lines)
 		vim.opt.foldmethod = vim.opt.foldmethod
