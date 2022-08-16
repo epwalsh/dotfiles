@@ -12,7 +12,7 @@ cmp.register_source("github_handles", require("cmp.github_handles").new())
 cmp.setup({
   completion = {
     -- We hardcode a small delay before autocomplete suggestions pop up. See below.
-    autocomplete = false
+    autocomplete = false,
   },
   snippet = {
     expand = function(args)
@@ -30,7 +30,6 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
     })
   },
   -- To disable a source for a certain file type, see the example in ./ftplugin/make.lua
