@@ -32,7 +32,6 @@ cmp.setup({
       behavior = cmp.ConfirmBehavior.Insert,
     })
   },
-  -- To disable a source for a certain file type, see the example in ./ftplugin/make.lua
   sources = {
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
@@ -41,6 +40,8 @@ cmp.setup({
     { name = 'emoji' },
     { name = 'vsnip' },
     { name = 'buffer', keyword_length = 3 },
+    { name = 'calc' },
+    { name = 'dictionary' },
   },
   formatting = {
     format = lspkind.cmp_format({
@@ -75,6 +76,21 @@ cmp.setup.filetype('make', {
     { name = 'buffer', keyword_length = 3 },
     { name = 'path', option = { get_cwd = function(params) return vim.fn.getcwd() end } },
   })
+})
+
+cmp.setup.filetype('markdown', {
+  sources = cmp.config.sources({
+    { name = 'buffer', keyword_length = 3 },
+    { name = 'path', option = { get_cwd = function(params) return vim.fn.getcwd() end } },
+    { name = 'vsnip' },
+    { name = 'calc' },
+    { name = 'dictionary', keyword_length = 3 },
+  })
+})
+
+-- cmp-dictionary setup
+require("cmp_dictionary").setup({
+  dic = { ["markdown"] = { vim.fs.normalize("~/.config/nvim/spell/en.utf-8.add"), "/usr/share/dict/words" } }
 })
 EOF
 
