@@ -48,6 +48,6 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = "*.py",
 	callback = function()
 		vim.cmd("edit")
-		vim.cmd("loadview")
+		pcall(vim.cmd, "loadview")
 	end,
 })
