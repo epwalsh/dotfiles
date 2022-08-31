@@ -11,6 +11,12 @@ require("nvim-treesitter.configs").setup({
 	-- List of parsers to ignore installing (for "all")
 	-- ignore_install = { "javascript" },
 
+	-- Indentation via treesitter is experimental
+	indent = {
+		enable = false,
+		-- disable = { "python" },
+	},
+
 	highlight = {
 		-- `false` will disable the whole extension
 		enable = true,

@@ -126,6 +126,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 " Lua.
 Plug 'ckipp01/stylua-nvim', { 'do': 'cargo install stylua' }
 
+" Python
+Plug 'Vimjas/vim-python-pep8-indent'
+
 " Jsonnet.
 " To get automatic formatting, you also need to install jsonnetfmt.
 " AFAIK the only way to do that is with go:

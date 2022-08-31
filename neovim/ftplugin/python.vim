@@ -1,5 +1,9 @@
 setlocal shiftwidth=4 tabstop=4 expandtab omnifunc=pythoncomplete#Complete
-setlocal indentkeys-=<:> " Don't automatically adjust indentation when typing ':'
 setlocal foldmethod=expr
 setlocal foldexpr=nvim_treesitter#foldexpr()
 setlocal foldnestmax=2
+
+" Don't automatically adjust indentation when typing ':'
+" Need to do this in an autocmd. See https://stackoverflow.com/a/37889460/4151392
+autocmd FileType python setlocal indentkeys-=<:>
+autocmd FileType python setlocal indentkeys-=:
