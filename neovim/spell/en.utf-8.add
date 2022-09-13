@@ -42,3 +42,7 @@ foo
 integrations
 timestamp
 viewable
+Dockerfile
+Makefile
+Cirrascale
+conda
