@@ -11,11 +11,7 @@ nnoremap <silent> gr        <cmd>lua vim.lsp.buf.references()<CR>
 " nnoremap <silent> rn        <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> gs        <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gw        <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-
-" Replaced LSP implementation with code action plugin...
-"
-" nnoremap <silent> ga        <cmd>lua vim.lsp.buf.code_action()<CR>
-"
+nnoremap <silent> ca        <cmd>lua vim.lsp.buf.code_action()<CR>
 
 nnoremap <silent> [x        <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> ]x        <cmd>lua vim.diagnostic.goto_next()<CR>

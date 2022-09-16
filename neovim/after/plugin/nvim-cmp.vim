@@ -88,6 +88,16 @@ cmp.setup.filetype('markdown', {
   })
 })
 
+cmp.setup.filetype('yaml', {
+  sources = cmp.config.sources({
+    { name = 'buffer', keyword_length = 3 },
+    { name = 'path', option = { get_cwd = function(params) return vim.fn.getcwd() end } },
+    { name = 'calc' },
+    { name = 'emoji', option = { insert = true } },
+    { name = 'dictionary', keyword_length = 3 },
+  })
+})
+
 -- cmp-dictionary setup
 require("cmp_dictionary").setup({
   dic = { ["markdown"] = { vim.fs.normalize("~/.config/nvim/spell/en.utf-8.add"), "/usr/share/dict/words" } }

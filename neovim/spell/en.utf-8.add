@@ -46,3 +46,5 @@ Dockerfile
 Makefile
 Cirrascale
 conda
+registrable
+NFS

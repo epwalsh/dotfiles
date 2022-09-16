@@ -5,4 +5,4 @@ setlocal foldnestmax=2
 
 " Don't automatically adjust indentation when typing ':'
 " Need to do this in an autocmd. See https://stackoverflow.com/a/37889460/4151392
-autocmd FileType python setlocal indentkeys-=<:>
+autocmd FileType python setlocal indentkeys-=<:> indentkeys+==else:
