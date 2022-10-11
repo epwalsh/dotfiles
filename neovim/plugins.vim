@@ -114,6 +114,10 @@ Plug 'wojtekmach/vim-rename'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" telescope, does a lot of the same things as fzf
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+
 " Rust.
 Plug 'simrat39/rust-tools.nvim', { 'for': 'rust' }
 
@@ -135,8 +139,6 @@ Plug 'Vimjas/vim-python-pep8-indent'
 "   > go get github.com/google/go-jsonnet/cmd/jsonnetfmt
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 
-Plug 'nvim-lua/plenary.nvim'
-Plug 'kkharji/sqlite.lua'
 " Plug 'epwalsh/obsidian.nvim', { 'do': 'make TARGET=release' }
 Plug '~/Projects/obsidian.nvim'
 
