@@ -29,6 +29,10 @@ for filename in ~/dotfiles/go/.*; do
     ln -sf $filename ~/$filebase
 done
 
+mkdir ~/bin
+ln -sf ~/dotfiles/bin/parse_jsonnet.py ~/bin/parse_jsonnet
+chmod +x ~/bin/parse_jsonnet
+
 mkdir -p ~/.config/alacritty
 ln -sf ~/dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 

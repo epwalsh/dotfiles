@@ -47,6 +47,10 @@ vnoremap <silent> <expr> ^ ScreenMovement("^")
 vnoremap <silent> <expr> $ ScreenMovement("$")
 vnoremap <silent> <expr> j ScreenMovement("j")
 
+" Switch to previously edited buffer.
+nnoremap <c-h> :b#<cr>
+nnoremap <c-l> :b#<cr>
+
 nnoremap ; :
 vnoremap ; :
 
