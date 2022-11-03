@@ -9,7 +9,7 @@
 # To install this script, run the following:
 #
 # ```
-# sudo wget https://raw.githubusercontent.com/epwalsh/dotfiles/master/shutdown-if-inactive -O /usr/bin/shutdown-if-inactive
+# sudo wget https://raw.githubusercontent.com/epwalsh/dotfiles/master/scripts/shutdown-if-inactive -O /usr/bin/shutdown-if-inactive
 # sudo chmod +x /usr/bin/shutdown-if-inactive
 # ```
 #
