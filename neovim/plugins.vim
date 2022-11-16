@@ -18,9 +18,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Toggle it with ':TSPlaygroundToggle'
 Plug 'nvim-treesitter/playground'
 
-" Makes Neovim's builtin spellchecker work for buffers with tree-sitter
-" highlighting.
-Plug 'lewis6991/spellsitter.nvim'
+" Syntax highlighting for markdown.
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 
 " Paste images into Markdown.
 Plug 'ferrine/md-img-paste.vim', { 'for': 'markdown' }
