@@ -26,7 +26,9 @@ brew install \
     tmux \
     reattach-to-user-namespace \
     fzf \
-    go
+    go \
+    git-crypt \
+    gnupg
 
 # Install nightly neovim.
 brew install --HEAD neovim

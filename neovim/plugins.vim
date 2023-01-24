@@ -141,6 +141,10 @@ Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 
 Plug '~/Projects/obsidian.nvim'
 
+" Use <leader>b to open a list of open buffers. <ENTER> to open a buffer in
+" the list, <SHIFT>o to preview.
+Plug 'jeetsukumaran/vim-buffergator'
+
 call plug#end()
 
 filetype plugin indent on
