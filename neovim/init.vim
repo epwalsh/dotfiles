@@ -80,7 +80,7 @@ if repo !~ "^fatal"
 endif
 
 " Enable spell checking.
-set spell spelllang=en_us spelloptions=camel
+set spelllang=en_us spelloptions=camel
 
 " Faster update time, helps some plugins like vim-gitgutter.
 set updatetime=100

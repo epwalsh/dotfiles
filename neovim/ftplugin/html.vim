@@ -1,1 +1,1 @@
-setlocal shiftwidth=2 tabstop=2 expandtab nowrap
+setlocal spell shiftwidth=2 tabstop=2 expandtab nowrap

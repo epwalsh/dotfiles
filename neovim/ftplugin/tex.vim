@@ -1,5 +1,5 @@
 let b:autopairs_enabled=0
-setlocal colorcolumn=150 shiftwidth=2 tabstop=2 expandtab wrap linebreak nolist
+setlocal spell colorcolumn=150 shiftwidth=2 tabstop=2 expandtab wrap linebreak nolist
 
 augroup tex_settings
     autocmd!

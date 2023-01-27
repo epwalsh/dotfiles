@@ -1,1 +1,1 @@
-setlocal shiftwidth=2 tabstop=2 expandtab foldmethod=marker
+setlocal spell shiftwidth=2 tabstop=2 expandtab foldmethod=marker

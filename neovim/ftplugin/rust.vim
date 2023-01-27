@@ -1,3 +1,1 @@
-setlocal foldmethod=expr
-setlocal foldexpr=nvim_treesitter#foldexpr()
-setlocal foldnestmax=2
+setlocal spell foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldnestmax=2
