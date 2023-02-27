@@ -1,6 +1,7 @@
 local obsidian = require("obsidian").setup({
 	dir = "~/epwalsh-notes",
 	notes_subdir = "notes",
+	-- disable_frontmatter = true,
 	note_id_func = function(title)
 		-- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
 		local suffix = ""

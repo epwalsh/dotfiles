@@ -114,8 +114,10 @@ Plug 'wojtekmach/vim-rename'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Dependency of obsidian and others.
+Plug 'nvim-lua/plenary.nvim'
+
 " telescope, does a lot of the same things as fzf
-" Plug 'nvim-lua/plenary.nvim'
 " Plug 'nvim-telescope/telescope.nvim'
 
 " Rust.
