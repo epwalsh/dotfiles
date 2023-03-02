@@ -112,13 +112,16 @@ Plug 'wojtekmach/vim-rename'
 
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim' 
+" Alternative to the above, at least for Obsidian, but fern-mapping-fzf needs
+" fzf.vim for now.
+" Plug 'ibhagwan/fzf-lua'
 
 " Dependency of obsidian and others.
 Plug 'nvim-lua/plenary.nvim'
 
 " telescope, does a lot of the same things as fzf
-" Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " Rust.
 Plug 'simrat39/rust-tools.nvim', { 'for': 'rust' }

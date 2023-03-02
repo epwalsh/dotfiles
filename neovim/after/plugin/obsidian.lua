@@ -19,6 +19,11 @@ local obsidian = require("obsidian").setup({
 	completion = {
 		nvim_cmp = true,
 	},
+	templates = {
+		subdir = "templates",
+		date_format = "%Y-%m-%d-%a",
+		time_format = "%H:%M",
+	},
 })
 
 local au_group = vim.api.nvim_create_augroup("obsidian_extra_setup", { clear = true })
