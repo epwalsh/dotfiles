@@ -124,3 +124,5 @@ set cursorline
 highlight CursorLine ctermbg=236
 highlight CursorLineNr cterm=None
 highlight ColorColumn ctermbg=236
+
+set wildignore+=*.pdf,*.o,*.egg-info/,__pycache__/

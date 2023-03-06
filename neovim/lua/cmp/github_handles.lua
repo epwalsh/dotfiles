@@ -5,6 +5,8 @@ local handles = {
 	AkshitaB = "Akshita Bhagia",
 	dirkgr = "Dirk Groeneveld",
 	schmmd = "Michael Schmitz",
+	jonborchardt = "Jon Borchardt",
+	codeviking = "Sam Skjonsberg",
 }
 
 local source = {}
