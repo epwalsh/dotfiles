@@ -8,6 +8,7 @@ beaker account whoami
 
 # Pull a GitHub token that can be used to clone private repos.
 export GITHUB_TOKEN=$(beaker secret read GITHUB_TOKEN --workspace ai2/llm-testing)
+export WANDB_API_KEY=$(beaker secret read WANDB_API_KEY --workspace ai2/llm-testing)
 
 # Initialize conda for bash.
 # See https://stackoverflow.com/a/58081608/4151392
