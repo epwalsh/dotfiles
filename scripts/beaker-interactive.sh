@@ -1,4 +1,6 @@
 #!/bin/bash
+# Run this script to bootstrap a Beaker interactive image.
+# curl https://raw.githubusercontent.com/epwalsh/dotfiles/master/scripts/beaker-interactive.sh | sh
 
 set -eo pipefail
 
