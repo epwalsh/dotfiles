@@ -40,7 +40,7 @@ require("lspconfig").gopls.setup({
 })
 
 -- Lua.
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
 	on_attach = function(client)
 		require("illuminate").on_attach(client)
 	end,

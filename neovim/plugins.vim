@@ -144,7 +144,7 @@ Plug 'Vimjas/vim-python-pep8-indent'
 "   > go get github.com/google/go-jsonnet/cmd/jsonnetfmt
 Plug 'google/vim-jsonnet', { 'for': 'jsonnet' }
 
-Plug '~/Projects/obsidian.nvim'
+Plug '~/github.com/epwalsh/obsidian.nvim'
 
 " Use <leader>b to open a list of open buffers. <ENTER> to open a buffer in
 " the list, <SHIFT>o to preview.

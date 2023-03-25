@@ -6,7 +6,7 @@ if test -d $HOME/miniconda3/bin
     eval $HOME/miniconda3/bin/conda "shell.fish" "hook" $argv | source
     set -gx DEFAULT_VIRTUAL_ENV base
 else
-    set -gx DEFAULT_VIRTUAL_ENV py3
+    set -gx DEFAULT_VIRTUAL_ENV base
 end
 
 if not set -q VENV_ACTIVATOR

@@ -137,3 +137,5 @@ Preprocess
 pyright
 S3
 preprocess
+HuggingFace
+GPT

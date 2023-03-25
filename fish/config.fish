@@ -26,6 +26,17 @@ set -gx EDITOR nvim
 # Vi bindings
 fish_vi_key_bindings
 
+# Homebrew.
+if test -d "/opt/homebrew"
+    set -l homebrew_bin_path "/opt/homebrew/bin"
+    set -l homebrew_sbin_path "/opt/homebrew/sbin"
+
+    contains -- $homebrew_bin_path $PATH
+      or set -gx PATH $homebrew_bin_path $PATH
+    contains -- $homebrew_sbin_path $PATH
+      or set -gx PATH $homebrew_sbin_path $PATH
+end
+
 # Linux brew.
 if test -d "/home/linuxbrew"
     set -l linuxbrew_bin_path "/home/linuxbrew/.linuxbrew/bin"

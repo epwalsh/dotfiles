@@ -3,7 +3,7 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
@@ -11,6 +11,11 @@
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
   #TERM: xterm-256color
+  SHELL: /opt/homebrew/bin/fish
+
+shell:
+  program: /opt/homebrew/bin/fish
+  args: [-l, -c, "tmux attach -t main || tmux new-session -t main"]
 
 window:
   # Window dimensions (changes require restart)

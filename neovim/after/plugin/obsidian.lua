@@ -1,5 +1,5 @@
 local obsidian = require("obsidian").setup({
-	dir = "~/epwalsh-notes",
+	dir = "~/notes",
 	notes_subdir = "notes",
 	-- disable_frontmatter = true,
 	note_id_func = function(title)
