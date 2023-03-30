@@ -136,9 +136,6 @@ nnoremap <c-w><right> :vertical resize +5<CR>
 nnoremap <c-w><up> :res +5<CR>
 nnoremap <c-w><down> :res -5<CR>
 
-" Run Neomake.
-nnoremap <leader>mm :Neomake<CR>
-
 " Tab completion.
 " inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"

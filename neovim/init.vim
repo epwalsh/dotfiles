@@ -2,7 +2,7 @@
 "
 " This module defines general settings and loads plugins.
 " For filetype-specific settings, see the files in 'ftplugin/'.
-" For mappings, see 'modules/mappings.vim'.
+" For mappings, see 'mappings.vim'.
 " For plugins, see 'modules/plugins.vim'.
 " For plugin-specific settings, see the files in 'after/plugin/'.
 "
