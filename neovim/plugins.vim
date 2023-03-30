@@ -40,9 +40,6 @@ Plug 'smjonas/inc-rename.nvim'
 " Show LSP progress.
 Plug 'j-hui/fidget.nvim'
 
-" Shows a lightbulb whenever a text doc / code action is available.
-Plug 'kosayoda/nvim-lightbulb'
-
 " A pretty list for showing issues / quickfix / location lists.
 " Use `:Trouble` to open.
 Plug 'folke/trouble.nvim'
@@ -50,10 +47,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 
 " Improves the default vim.ui interface.
 Plug 'stevearc/dressing.nvim'
-
-" Provides a nice menu for code actions.
-" Use `:CodeActionMenu` to open.
-Plug 'weilbith/nvim-code-action-menu'
 
 " Using tab for insertion.
 Plug 'ervandew/supertab'

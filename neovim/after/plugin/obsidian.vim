@@ -1,1 +1,0 @@
-" command! -bang -nargs=? ObsidianSearch call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case -- " . shellescape(<q-args>) . " ~/epwalsh-notes", 1, fzf#vim#with_preview(), <bang>0)
