@@ -63,15 +63,11 @@ Plug 'tpope/vim-surround'
 " Bindings for commenting out.
 Plug 'scrooloose/nerdcommenter'
 
+" Welcome screen.
+Plug 'goolord/alpha-nvim'
+
 " File navigation.
-Plug 'lambdalisue/nerdfont.vim'
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/glyph-palette.vim'
-Plug 'lambdalisue/fern-hijack.vim'
-Plug 'yuki-yano/fern-preview.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'LumaKernel/fern-mapping-fzf.vim'
+Plug 'nvim-tree/nvim-tree.lua'
 
 " Autocompletion.
 Plug 'hrsh7th/nvim-cmp'

@@ -43,6 +43,8 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
 vim.g.maplocalleader = ","
 vim.g.mapleader = ","
 vim.g.python3_host_prog = os.getenv("VIRTUAL_ENV") .. "/bin/python"
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -------------
 -- Options --
@@ -145,5 +147,5 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references)
 -- Ignore line wrapping when navigating.
 vim.keymap.set({ "n", "v" }, "j", "gj")
 vim.keymap.set({ "n", "v" }, "k", "gk")
-vim.keymap.set({ "n", "v" }, "0", "g0")
-vim.keymap.set({ "n", "v" }, "$", "g$")
+-- vim.keymap.set({ "n", "v" }, "0", "g0")
+-- vim.keymap.set({ "n", "v" }, "$", "g$")
