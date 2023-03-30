@@ -20,9 +20,9 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 
 -- Rust.
 require("lspconfig").rust_analyzer.setup({
-	on_attach = function(client)
-		require("illuminate").on_attach(client)
-	end,
+	-- on_attach = function(client)
+	--   require("illuminate").on_attach(client)
+	-- end,
 	settings = {
 		format = {
 			enable = true,
@@ -34,16 +34,16 @@ vim.cmd([[autocmd BufWritePre *.rs lua vim.lsp.buf.format()]])
 
 -- Go.
 require("lspconfig").gopls.setup({
-	on_attach = function(client)
-		require("illuminate").on_attach(client)
-	end,
+	-- on_attach = function(client)
+	--   require("illuminate").on_attach(client)
+	-- end,
 })
 
 -- Lua.
 require("lspconfig").lua_ls.setup({
-	on_attach = function(client)
-		require("illuminate").on_attach(client)
-	end,
+	-- on_attach = function(client)
+	--   require("illuminate").on_attach(client)
+	-- end,
 	commands = {
 		Format = {
 			function()
@@ -106,8 +106,8 @@ local python_on_attach = function(client, bufnr)
 		--- For some reason doing rc.completion = false, doesn't work, so
 		--- we disable it in a different way:
 		client.server_capabilities.completionProvider = false
-	else
-		require("illuminate").on_attach(client)
+		-- else
+		--   require("illuminate").on_attach(client)
 	end
 end
 
