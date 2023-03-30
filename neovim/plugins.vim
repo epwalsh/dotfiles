@@ -97,8 +97,8 @@ Plug 'ruanyl/vim-gh-line'
 Plug 'wojtekmach/vim-rename'
 
 " fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim' 
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim' 
 " Alternative to the above, at least for Obsidian, but fern-mapping-fzf needs
 " fzf.vim for now.
 " Plug 'ibhagwan/fzf-lua'
@@ -116,7 +116,7 @@ Plug 'simrat39/rust-tools.nvim', { 'for': 'rust' }
 Plug 'dag/vim-fish', { 'for': 'fish' }
 
 " Go.
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 
 " Lua.
 Plug 'ckipp01/stylua-nvim', { 'do': 'cargo install stylua' }
