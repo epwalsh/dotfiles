@@ -15,7 +15,7 @@ env:
 
 shell:
   program: /opt/homebrew/bin/fish
-  args: [-l, -c, "tmux attach -t main || tmux new-session -t main"]
+  args: [-l, -c, "tmux has-session && fish || tmux"]
 
 window:
   # Window dimensions (changes require restart)
