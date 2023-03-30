@@ -55,9 +55,6 @@ Plug 'stevearc/dressing.nvim'
 " Use `:CodeActionMenu` to open.
 Plug 'weilbith/nvim-code-action-menu'
 
-" Async linting and other stuff.
-Plug 'benekastah/neomake'
-
 " Using tab for insertion.
 Plug 'ervandew/supertab'
 

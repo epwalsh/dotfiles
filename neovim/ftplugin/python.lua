@@ -1,3 +1,16 @@
+vim.opt_local.shiftwidth = 4
+vim.opt_local.tabstop = 4
+vim.opt_local.expandtab = true
+vim.opt_local.foldmethod = "expr"
+vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt_local.foldnestmax = 2
+vim.opt_local.spell = true
+
+-- Don't automatically adjust indentation when typing ':'
+-- Need to do this in an autocmd. See https://stackoverflow.com/a/37889460/4151392
+vim.opt_local.indentkeys:remove({ "<:>" })
+vim.opt_local.indentkeys:append({ "=else:" })
+
 -- Configure auto formatting using isort and black.
 -- Adapted from stylua-nvim:
 -- https://github.com/ckipp01/stylua-nvim/blob/main/lua/stylua-nvim.lua
