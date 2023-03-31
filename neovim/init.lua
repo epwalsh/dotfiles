@@ -1,7 +1,7 @@
 -- Core neovim settings.
 --
--- For filetype-specific settings, see ftplugin/* and after/ftplugin/*
--- For plugin-specific settings, see after/plugin/*
+-- For filetype-specific settings, see after/ftplugin/*.lua
+-- For plugin-specific settings, see lua/plugin/*.lua
 
 ---------------
 -- Auto cmds --
@@ -77,37 +77,35 @@ end
 -------------
 -- Plugins --
 -------------
--- TODO: switch to a Lua-based plugin manager like lazy.nvim
-vim.cmd("source ~/.config/nvim/plugins.vim")
+-- vim.cmd("source ~/.config/nvim/plugins.vim")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
 
-----------------
--- Appearance --
-----------------
-vim.opt.background = "dark"
-vim.g.material_style = "oceanic"
-
-require("lualine").setup({
-	options = {
-		theme = "horizon",
-		-- theme = "auto", -- let 'material' set it
-		-- theme = "nightfly",
-		-- theme = "palenight",
+require("lazy").setup("plugins", {
+	change_detection = {
+		-- automatically check for config file changes and reload the ui
+		enabled = true,
+		notify = false, -- get a notification when changes are found
 	},
 })
-
-require("material").setup({
-	lualine_style = "default",
-})
-
-vim.cmd("colorscheme material")
-vim.cmd("highlight CursorLine ctermbg=236")
-vim.cmd("highlight CursorLineNr cterm=None")
-vim.cmd("highlight ColorColumn ctermbg=236")
 
 --------------
 -- Mappings --
 --------------
-vim.cmd("source ~/.config/nvim/plugins.vim")
+-- More sensible jump mappings.
+vim.keymap.set("v", "L", "$h")
+vim.keymap.set("v", "$", "$h")
+vim.keymap.set("n", "L", "$")
 
 -- Scroll with mouse one line at a time.
 vim.keymap.set("n", "<ScrollWheelUp>", "<c-y>")
