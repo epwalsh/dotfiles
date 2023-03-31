@@ -18,6 +18,15 @@ return {
     "smjonas/inc-rename.nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile" },
+    -- cmd = "IncRename",
+    config = function(_, _)
+      require("inc_rename").setup()
+    end,
+    init = function()
+      vim.keymap.set("n", "<leader>r", function()
+        return ":IncRename " .. vim.fn.expand "<cword>"
+      end, { expr = true })
+    end,
   },
 
   {
