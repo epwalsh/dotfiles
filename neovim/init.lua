@@ -59,6 +59,7 @@ vim.opt.tabstop = 4
 vim.opt.foldnestmax = 2
 vim.opt.expandtab = true
 vim.opt.spell = true
+vim.opt.colorcolumn = "100"
 vim.opt.completeopt = { "longest", "menuone" }
 vim.opt.guicursor = "i:ver25"
 vim.opt.spelllang = "en_us"

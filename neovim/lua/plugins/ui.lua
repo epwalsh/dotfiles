@@ -41,14 +41,18 @@ return {
         -- types = { bold = true },
       },
       custom_highlights = {
-        CursorLine = { ctermbg = 236 },
-        ColorColumn = { ctermbg = 236 },
+        -- These don't seem to work when set here. See below.
+        -- CursorLine = { ctermbg = 236 },
+        -- ColorColumn = { ctermbg = 236 },
       },
     },
     init = function()
       vim.opt.background = "dark"
       vim.g.material_style = "oceanic"
       vim.cmd "colorscheme material"
+      vim.cmd "highlight CursorLine ctermbg=236"
+      vim.cmd "highlight CursorLineNr cterm=None"
+      vim.cmd "highlight ColorColumn ctermbg=236"
     end,
   },
 
