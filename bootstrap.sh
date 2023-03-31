@@ -122,10 +122,6 @@ git config --global core.excludesFile "$HOME/.gitignore"
 echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish)
 
-# Fish italics (might not need this anymore).
-# tic -x xterm-256color.terminfo.txt
-# tic -x tmux/tmux-256color.terminfo.txt
-
 #######################
 # Python environments #
 #######################
