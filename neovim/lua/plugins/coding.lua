@@ -75,7 +75,7 @@ return {
     dir = "~/github.com/epwalsh/obsidian.nvim",
     name = "obsidian",
     lazy = true,
-    event = { "BufReadPre " .. os.getenv "HOME" .. "/notes/**.md" }, -- can't use '~/' for some reason
+    event = { "BufReadPre " .. vim.fn.expand "~" .. "/notes/**.md" },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-cmp",

@@ -147,3 +147,12 @@ Globals
 filetype
 LSP
 neovim
+BufNewFile
+BufReadPre
+html
+Homebrew
+symlinks
+tmux
+toolchain
+homebrew
+NERDFont
