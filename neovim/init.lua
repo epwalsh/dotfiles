@@ -9,32 +9,32 @@
 -- Ensure the right filetype is set for these special cases.
 local group = vim.api.nvim_create_augroup("filetype_detect", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead" }, {
-	group = group,
-	pattern = "Dockerfile.*",
-	callback = function()
-		vim.opt.filetype = "dockerkfile"
-	end,
+  group = group,
+  pattern = "Dockerfile.*",
+  callback = function()
+    vim.opt.filetype = "dockerkfile"
+  end,
 })
 vim.api.nvim_create_autocmd({ "BufRead" }, {
-	group = group,
-	pattern = "*.toml",
-	callback = function()
-		vim.opt.filetype = "conf"
-	end,
+  group = group,
+  pattern = "*.toml",
+  callback = function()
+    vim.opt.filetype = "conf"
+  end,
 })
 vim.api.nvim_create_autocmd({ "BufRead" }, {
-	group = group,
-	pattern = "*.conf",
-	callback = function()
-		vim.opt.filetype = "conf"
-	end,
+  group = group,
+  pattern = "*.conf",
+  callback = function()
+    vim.opt.filetype = "conf"
+  end,
 })
 vim.api.nvim_create_autocmd({ "BufRead" }, {
-	group = group,
-	pattern = ".luacheckrc",
-	callback = function()
-		vim.opt.filetype = "lua"
-	end,
+  group = group,
+  pattern = ".luacheckrc",
+  callback = function()
+    vim.opt.filetype = "lua"
+  end,
 })
 
 -------------
@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
 -------------
 vim.g.maplocalleader = ","
 vim.g.mapleader = ","
-vim.g.python3_host_prog = os.getenv("VIRTUAL_ENV") .. "/bin/python"
+vim.g.python3_host_prog = os.getenv "VIRTUAL_ENV" .. "/bin/python"
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -53,7 +53,7 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.hls = true
 vim.opt.wrap = false
-vim.opt.wildignore:append({ "*.pdf", "*.o", "*.egg-info/", "__pycache__", ".mypy_cache" })
+vim.opt.wildignore:append { "*.pdf", "*.o", "*.egg-info/", "__pycache__", ".mypy_cache" }
 vim.opt.mouse = "a"
 vim.opt.hidden = true
 vim.opt.shell = "sh"
@@ -69,34 +69,34 @@ vim.opt.pastetoggle = "<F3>"
 vim.opt.cursorline = true
 
 if vim.api.nvim_win_get_height(0) > 20 then
-	vim.opt.scroll = 20
+  vim.opt.scroll = 20
 else
-	vim.opt.scroll = 0
+  vim.opt.scroll = 0
 end
 
 -------------
 -- Plugins --
 -------------
 -- vim.cmd("source ~/.config/nvim/plugins.vim")
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+  vim.fn.system {
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  }
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
-	change_detection = {
-		-- automatically check for config file changes and reload the ui
-		enabled = true,
-		notify = false, -- get a notification when changes are found
-	},
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = true,
+    notify = false, -- get a notification when changes are found
+  },
 })
 
 --------------
