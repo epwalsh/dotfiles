@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
   group = group,
   pattern = "Dockerfile.*",
   callback = function()
-    vim.opt.filetype = "dockerkfile"
+    vim.opt.filetype = "dockerfile"
   end,
 })
 vim.api.nvim_create_autocmd({ "BufRead" }, {
