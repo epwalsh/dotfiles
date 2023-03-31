@@ -48,6 +48,19 @@ return {
     lazy = true,
     ft = "python",
   },
+  {
+    "jalvesaq/vimcmdline",
+    lazy = true,
+    ft = { "python" },
+    init = function()
+      vim.keymap.set("n", "<leader>s", ":call VimCmdLineStartApp()<cr>")
+      vim.g.cmdline_term_height = 20
+      vim.g.cmdline_term_width = 80
+      vim.g.cmdline_tmp_dir = "/tmp"
+      vim.g.cmdline_outhl = 1
+      vim.g.cmdline_app = { python = "ipython -i -c 'from rich import print, pretty; pretty.install()'" }
+    end,
+  },
 
   ---------
   -- Lua --

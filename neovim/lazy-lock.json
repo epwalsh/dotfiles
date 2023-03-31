@@ -42,5 +42,6 @@
   "vim-markdown": { "branch": "master", "commit": "5d3d1b6cbdc4be0b4c6105c1ab1f769d76d3c68f" },
   "vim-python-pep8-indent": { "branch": "master", "commit": "60ba5e11a61618c0344e2db190210145083c91f8" },
   "vim-rename": { "branch": "master", "commit": "ae2c535c3a932bb667d135eafc9e8930865e4c29" },
-  "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" }
+  "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
+  "vimcmdline": { "branch": "master", "commit": "d50776d8c8b87ee64a175bcdd96ace1ad608e1f6" }
 }
