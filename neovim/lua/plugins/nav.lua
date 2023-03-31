@@ -12,6 +12,11 @@ return {
       filters = {
         dotfiles = true,
       },
+      actions = {
+        change_dir = {
+          enable = true,
+        },
+      },
     },
     init = function()
       vim.keymap.set("n", "<F2>", require("nvim-tree.api").tree.toggle)

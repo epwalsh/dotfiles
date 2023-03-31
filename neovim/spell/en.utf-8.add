@@ -145,3 +145,5 @@ configs
 LayerNorm
 Globals
 filetype
+LSP
+neovim

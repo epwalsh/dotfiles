@@ -24,7 +24,7 @@ source.get_keyword_pattern = function()
   return [[\%(\k\|\.\)\+]]
 end
 
-source.complete = function(self, request, callback)
+source.complete = function(_, request, callback)
   local input = string.sub(request.context.cursor_before_line, request.offset - 1)
   local prefix = string.sub(request.context.cursor_before_line, 1, request.offset - 1)
 

@@ -1,12 +1,11 @@
 -- Core neovim settings.
 --
--- For filetype-specific settings, see after/ftplugin/*.lua
--- For plugin-specific settings, see lua/plugin/*.lua
+-- For filetype-specific settings, see after/ftplugin/*.lua.
+-- For plugin-specific settings, see lua/plugin/*.lua.
 
----------------
--- Auto cmds --
----------------
--- Ensure the right filetype is set for these special cases.
+------------------------
+-- Filetype discovery --
+------------------------
 local group = vim.api.nvim_create_augroup("filetype_detect", { clear = true })
 vim.api.nvim_create_autocmd({ "BufRead" }, {
   group = group,
@@ -77,8 +76,8 @@ end
 -------------
 -- Plugins --
 -------------
--- vim.cmd("source ~/.config/nvim/plugins.vim")
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
     "git",
@@ -89,13 +88,13 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   }
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
   change_detection = {
-    -- automatically check for config file changes and reload the ui
     enabled = true,
-    notify = false, -- get a notification when changes are found
+    notify = false,
   },
 })
 
