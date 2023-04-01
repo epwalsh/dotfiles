@@ -1,0 +1,27 @@
+*personal-tips.txt*                  my personal tips for when I forget things
+
+==============================================================================
+Table of Contents                            *personal-tips-table-of-contents*
+
+1. General                                             |personal-tips-general|
+2. Navigation                                       |personal-tips-navigation|
+  - Mappings                               |personal-tips-navigation-mappings|
+
+==============================================================================
+1. General                                             *personal-tips-general*
+
+Use `<leader>hh` to pull up this help doc.
+
+2. Navigation                                       *personal-tips-navigation*
+
+MAPPINGS                                   *personal-tips-navigation-mappings*
+
+- `<F2>` to pull up a file tree navigation pane on the left.
+- `<leader>ff` to use telescope's built-in file finder.
+- `<leader>br` to use the telescope file browser plugin. This functions a
+  little differently from the built-in file finder.
+- `<leader>fg` to use telescope's built-in live grep.
+- `<leader>fb` to use the telescope's built-in buffer browser.
+- `<leader>fh` to use the telescope's built-in help tags search.
+
+vim:tw=78:ts=8:noet:ft=help:norl:

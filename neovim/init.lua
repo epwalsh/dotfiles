@@ -102,6 +102,9 @@ require("lazy").setup("plugins", {
 --------------
 -- Mappings --
 --------------
+-- Pull up my personal tips help doc.
+vim.keymap.set("n", "<leader>hh", ":help personal-tips<cr>")
+
 -- More sensible jump mappings.
 vim.keymap.set("v", "L", "$h")
 vim.keymap.set("v", "$", "$h")
