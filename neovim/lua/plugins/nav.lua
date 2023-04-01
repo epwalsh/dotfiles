@@ -1,10 +1,14 @@
 return {
+  --------------
+  -- NvimTree --
+  --------------
   {
     "nvim-tree/nvim-tree.lua",
     lazy = true,
     cmd = { "NvimTreeToggle" },
     keys = { "<F2>" },
     opts = {
+      hijack_netrw = false, -- this interferes with telescope file browser
       sort_by = "case_sensitive",
       renderer = {
         group_empty = true,
@@ -84,18 +88,110 @@ return {
     init = function()
       vim.keymap.set("n", "<F2>", require("nvim-tree.api").tree.toggle)
 
+      -- Uncomment this to open NvimTree on directories.
+      -- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+      --   callback = function(data)
+      --     local directory = vim.fn.isdirectory(data.file) == 1
+
+      --     if not directory then
+      --       return
+      --     end
+
+      --     -- open the tree
+      --     require("nvim-tree.api").tree.open { path = data.file }
+      --   end,
+      -- })
+    end,
+  },
+
+  ---------------
+  -- Telescope --
+  ---------------
+  {
+    "nvim-telescope/telescope.nvim",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      defaults = {
+        -- Default configuration for telescope goes here:
+        -- config_key = value,
+        mappings = {
+          i = {
+            -- map actions.which_key to <C-h> (default: <C-/>)
+            -- actions.which_key shows the mappings for your picker,
+            -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+            ["<C-j>"] = "move_selection_next",
+            ["<C-k>"] = "move_selection_previous",
+          },
+        },
+      },
+      pickers = {
+        -- Default configuration for builtin pickers goes here:
+        -- picker_name = {
+        --   picker_config_key = value,
+        --   ...
+        -- }
+        -- Now the picker_config_key will be applied every time you call this
+        -- builtin picker
+      },
+      extensions = {
+        -- Your extension configuration goes here:
+        -- extension_name = {
+        --   extension_config_key = value,
+        -- }
+        -- please take a look at the readme of the extension you want to configure
+        file_browser = {},
+      },
+    },
+    config = function(_, opts)
+      local telescope = require "telescope"
+
+      -- Setup.
+      telescope.setup(opts)
+
+      -- Load extensions.
+      telescope.load_extension "file_browser"
+
+      -- Picker mappings.
+      local builtin = require "telescope.builtin"
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+      vim.keymap.set("n", "<leader>br", ":Telescope file_browser<cr>", {})
+      vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+      vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+      vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+    end,
+    init = function()
+      -- HACK: When opening a buffer through telescope the folds aren't applied.
+      -- See:
+      -- * https://github.com/nvim-telescope/telescope.nvim/issues/1277
+      -- * https://github.com/tmhedberg/SimpylFold/issues/130#issuecomment-1074049490
+      vim.api.nvim_create_autocmd("BufRead", {
+        callback = function()
+          vim.api.nvim_create_autocmd("BufWinEnter", {
+            once = true,
+            command = "normal! zx",
+          })
+        end,
+      })
+
+      -- Open file browser on directories (hijacking netrw).
       vim.api.nvim_create_autocmd({ "VimEnter" }, {
         callback = function(data)
           local directory = vim.fn.isdirectory(data.file) == 1
 
           if not directory then
             return
+          else
+            vim.cmd ":Telescope file_browser path=%:p:h select_buffer=true"
           end
-
-          -- open the tree
-          require("nvim-tree.api").tree.open { path = data.file }
         end,
       })
     end,
+  },
+
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    lazy = true,
+    dependencies = { "telescope.nvim", "nvim-lua/plenary.nvim" },
   },
 }

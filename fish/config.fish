@@ -98,3 +98,6 @@ if test -e ~/.config/fish/extra.fish
 end
 
 alias mux tmuxinator
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/petew/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/petew/Downloads/google-cloud-sdk/path.fish.inc'; end
