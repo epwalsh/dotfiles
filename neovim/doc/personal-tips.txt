@@ -10,7 +10,8 @@ Table of Contents                            *personal-tips-table-of-contents*
 ==============================================================================
 1. General                                             *personal-tips-general*
 
-Use `<leader>hh` to pull up this help doc.
+Use `<leader>hh` to pull up this help doc. After adding a new section
+run `:helptags ~/.config/nvim/doc/` to regenerate the help tags.
 
 2. Navigation                                       *personal-tips-navigation*
 
