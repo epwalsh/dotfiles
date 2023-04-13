@@ -93,7 +93,7 @@ return {
         callback = function(data)
           local directory = vim.fn.isdirectory(data.file) == 1
           if directory then
-            require("nvim-tree.api").tree.close()
+            pcall(require("nvim-tree.api").tree.close)
             require("nvim-tree.api").tree.open { path = data.file }
           end
         end,
