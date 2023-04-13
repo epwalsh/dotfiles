@@ -8,7 +8,7 @@ return {
     cmd = { "NvimTreeToggle" },
     keys = { "<F2>" },
     opts = {
-      hijack_netrw = false, -- this interferes with telescope file browser
+      hijack_netrw = true, -- this interferes with telescope file browser
       sort_by = "case_sensitive",
       renderer = {
         group_empty = true,
@@ -18,7 +18,7 @@ return {
       },
       actions = {
         change_dir = {
-          enable = true,
+          enable = false,
         },
       },
       on_attach = function(bufnr)
@@ -89,18 +89,15 @@ return {
       vim.keymap.set("n", "<F2>", require("nvim-tree.api").tree.toggle)
 
       -- Uncomment this to open NvimTree on directories.
-      -- vim.api.nvim_create_autocmd({ "VimEnter" }, {
-      --   callback = function(data)
-      --     local directory = vim.fn.isdirectory(data.file) == 1
-
-      --     if not directory then
-      --       return
-      --     end
-
-      --     -- open the tree
-      --     require("nvim-tree.api").tree.open { path = data.file }
-      --   end,
-      -- })
+      vim.api.nvim_create_autocmd({ "BufEnter" }, {
+        callback = function(data)
+          local directory = vim.fn.isdirectory(data.file) == 1
+          if directory then
+            require("nvim-tree.api").tree.close()
+            require("nvim-tree.api").tree.open { path = data.file }
+          end
+        end,
+      })
     end,
   },
 
@@ -141,7 +138,7 @@ return {
         -- }
         -- please take a look at the readme of the extension you want to configure
         file_browser = {
-          hijack_netrw = true,
+          hijack_netrw = false,
         },
       },
     },
@@ -177,17 +174,14 @@ return {
       })
 
       -- Open file browser on directories (hijacking netrw).
-      vim.api.nvim_create_autocmd({ "VimEnter" }, {
-        callback = function(data)
-          local directory = vim.fn.isdirectory(data.file) == 1
-
-          if not directory then
-            return
-          else
-            vim.cmd ":Telescope file_browser path=%:p:h select_buffer=true"
-          end
-        end,
-      })
+      -- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+      --   callback = function(data)
+      --     local directory = vim.fn.isdirectory(data.file) == 1
+      --     if directory then
+      --       vim.cmd ":Telescope file_browser path=%:p:h select_buffer=true"
+      --     end
+      --   end,
+      -- })
     end,
   },
 

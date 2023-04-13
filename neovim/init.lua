@@ -38,6 +38,7 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
 vim.g.maplocalleader = ","
 vim.g.mapleader = ","
 vim.g.python3_host_prog = os.getenv "VIRTUAL_ENV" .. "/bin/python"
+-- Recommended to disable by nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
