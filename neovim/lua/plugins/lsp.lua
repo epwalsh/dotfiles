@@ -134,6 +134,9 @@ return {
       require("lspconfig")["pyright"].setup {
         on_attach = python_on_attach,
       }
+
+      -- Markdown.
+      -- require("lspconfig").marksman.setup {}
     end,
   },
 
@@ -150,6 +153,7 @@ return {
         "pyright",
         "rust-analyzer",
         "jedi-language-server",
+        -- "marksman",
       },
     },
     config = function(_, opts)

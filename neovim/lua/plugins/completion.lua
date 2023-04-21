@@ -113,6 +113,9 @@ return {
 
       cmp.setup.filetype("markdown", {
         sources = cmp.config.sources {
+          -- { name = "nvim_lsp" },
+          -- { name = "nvim_lsp_signature_help" },
+          { name = "emoji" },
           { name = "buffer", keyword_length = 3 },
           {
             name = "path",
