@@ -171,3 +171,6 @@ CUDA
 triton
 backend
 FSDP
+nan
+autocast
+scaler
