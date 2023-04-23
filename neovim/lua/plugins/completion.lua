@@ -46,7 +46,7 @@ return {
         },
         sources = {
           { name = "nvim_lsp" },
-          { name = "nvim_lsp_signature_help" },
+          -- { name = "nvim_lsp_signature_help" },  -- Noice.nvim does this already
           { name = "nvim_lua" },
           {
             name = "path",
