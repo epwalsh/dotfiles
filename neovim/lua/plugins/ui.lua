@@ -86,17 +86,19 @@ return {
     end,
   },
 
-  {
-    "j-hui/fidget.nvim",
-    lazy = true,
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      window = {
-        relative = "editor",
-        blend = 30,
-      },
-    },
-  },
+  -- Noice.nvim handles this.
+  -- {
+  --   "j-hui/fidget.nvim",
+  --   lazy = true,
+  --   enabled = false,
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   opts = {
+  --     window = {
+  --       relative = "editor",
+  --       blend = 30,
+  --     },
+  --   },
+  -- },
 
   ---------------------------------------------
   -- UI for messages, cmdline, and popupmenu --
@@ -129,6 +131,15 @@ return {
       cmdline = {
         view = "cmdline",
       },
+    },
+  },
+
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      -- to prevent cursor flickering
+      stages = "static",
+      -- fps = 10,
     },
   },
 

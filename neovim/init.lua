@@ -65,7 +65,7 @@ vim.opt.completeopt = { "longest", "menuone" }
 vim.opt.guicursor = "i:ver25"
 vim.opt.spelllang = "en_us"
 vim.opt.spelloptions = { "camel" }
-vim.opt.updatetime = 100
+-- vim.opt.updatetime = 100
 vim.opt.pastetoggle = "<F3>"
 vim.opt.cursorline = true
 
