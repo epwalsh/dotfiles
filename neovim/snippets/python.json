@@ -1,0 +1,19 @@
+{
+    "ifnamemain": {
+        "prefix": ["ifname"],
+        "body": [
+            "if __name__ == \"__main__\":",
+            "    $1"
+        ],
+        "description": "__main__ guard block"
+    },
+    "beaker-py": {
+        "prefix": ["frombeaker"],
+        "body": [
+            "from beaker import Beaker",
+            "",
+            "beaker = Beaker.from_env()"
+        ],
+        "description": "Start a beaker-py example"
+    }
+}

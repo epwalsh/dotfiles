@@ -15,6 +15,15 @@ return {
   },
 
   {
+    "hrsh7th/vim-vsnip",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
+    init = function()
+      vim.g.vsnip_snippet_dir = vim.fn.expand "~" .. "/dotfiles/neovim/snippets"
+    end,
+  },
+
+  {
     "smjonas/inc-rename.nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile" },
