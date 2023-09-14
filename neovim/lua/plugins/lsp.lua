@@ -137,6 +137,9 @@ return {
 
       -- Markdown.
       -- require("lspconfig").marksman.setup {}
+
+      -- Bash.
+      require("lspconfig").bashls.setup {}
     end,
   },
 
@@ -153,6 +156,9 @@ return {
         "pyright",
         "rust-analyzer",
         "jedi-language-server",
+        "shellcheck",
+        "bash-language-server",
+        "stylua",
         -- "marksman",
       },
     },

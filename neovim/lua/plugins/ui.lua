@@ -13,6 +13,9 @@ return {
         -- theme = "nightfly",
         -- theme = "palenight",
       },
+      sections = {
+        lualine_c = { { "filename", path = 1 } }, -- how relative path instead of just filename.
+      },
     },
   },
 
