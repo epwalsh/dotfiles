@@ -40,7 +40,8 @@ brew install \
     go \
     git-crypt \
     mosh \
-    gnupg
+    gnupg \
+    yazi
 
 # Install nightly neovim.
 brew install --HEAD neovim
