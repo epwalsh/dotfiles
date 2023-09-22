@@ -35,7 +35,7 @@
   "supertab": { "branch": "master", "commit": "f0093ae12a9115498f887199809a6114659fc858" },
   "tabular": { "branch": "master", "commit": "339091ac4dd1f17e225fe7d57b48aff55f99b23a" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "e0fcb12702ad0d2873544a31730f9aaef04fd032" },
-  "telescope.nvim": { "branch": "master", "commit": "6258d50b09f9ae087317e392efe7c05a7323492d" },
+  "telescope.nvim": { "branch": "master", "commit": "40c8d2fc2b729dd442eda093cf8c9496d6e23732" },
   "trouble.nvim": { "branch": "main", "commit": "d56bfc0c501ced4002a57cb60433362fb2ce9c4d" },
   "vim-fish": { "branch": "master", "commit": "50b95cbbcd09c046121367d49039710e9dc9c15f" },
   "vim-fugitive": { "branch": "master", "commit": "e6651a79facf5cc2b7c554fdc19eb8a9fe89602c" },

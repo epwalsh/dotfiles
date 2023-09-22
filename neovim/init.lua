@@ -143,7 +143,7 @@ vim.keymap.set("n", "<c-h>", ":b#<cr>")
 vim.keymap.set("n", "<c-k>", vim.lsp.buf.signature_help)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
-vim.keymap.set("n", "gd", vim.lsp.buf.type_definition)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gr", vim.lsp.buf.references)
 
 -- Ignore line wrapping when navigating.

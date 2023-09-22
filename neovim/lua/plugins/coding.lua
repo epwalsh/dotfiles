@@ -121,6 +121,8 @@ return {
       dir = "~/notes",
       notes_subdir = "notes",
       finder = "telescope.nvim",
+      sort_by = "modified",
+      sort_reversed = true,
       -- disable_frontmatter = true,
       note_id_func = function(title)
         -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
