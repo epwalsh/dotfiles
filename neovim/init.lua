@@ -151,3 +151,18 @@ vim.keymap.set({ "n", "v" }, "j", "gj")
 vim.keymap.set({ "n", "v" }, "k", "gk")
 -- vim.keymap.set({ "n", "v" }, "0", "g0")
 -- vim.keymap.set({ "n", "v" }, "$", "g$")
+
+-- Open URLs.
+vim.keymap.set({ "v" }, "gx", function()
+  -- this is the best way I've found so far for getting the current visual selection
+  local a_orig = vim.fn.getreg "a"
+  vim.cmd [[silent! normal! "aygv]]
+  local url = vim.fn.getreg "a"
+  vim.fn.setreg("a", a_orig)
+
+  if string.sub(url, 1, 4) == "http" then
+    vim.fn.jobstart { "open", "--background", url }
+  else
+    vim.notify("Not sure how to open " .. url, vim.log.levels.ERROR)
+  end
+end)

@@ -138,6 +138,14 @@ return {
         end
         return tostring(os.time()) .. "-" .. suffix
       end,
+      mappings = {
+        ["gf"] = {
+          action = function()
+            return require("obsidian").util.gf_passthrough()
+          end,
+          opts = { noremap = false, expr = true, buffer = true },
+        },
+      },
       completion = {
         nvim_cmp = true,
         max_suggestions = nil,
