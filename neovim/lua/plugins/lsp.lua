@@ -122,6 +122,7 @@ return {
           --- For some reason doing rc.completion = false, doesn't work, so
           --- we disable it in a different way:
           client.server_capabilities.completionProvider = false
+          client.server_capabilities.hoverProvider = false
           -- else
           --   require("illuminate").on_attach(client)
         end
@@ -131,8 +132,17 @@ return {
         on_attach = python_on_attach,
       }
 
-      require("lspconfig")["pyright"].setup {
+      -- require("lspconfig")["pyright"].setup {
+      --   on_attach = python_on_attach,
+      -- }
+
+      require("lspconfig")["ruff_lsp"].setup {
         on_attach = python_on_attach,
+        init_options = {
+          settings = {
+            -- args = { "--config=pyproject.toml" },
+          },
+        },
       }
 
       -- Markdown.
@@ -156,6 +166,7 @@ return {
         "pyright",
         "rust-analyzer",
         "jedi-language-server",
+        "ruff-lsp",
         "shellcheck",
         "bash-language-server",
         "stylua",
