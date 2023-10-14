@@ -1,3 +1,5 @@
+local Path = require "plenary.path"
+
 vim.opt_local.foldmethod = "expr"
 vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
 
@@ -19,16 +21,25 @@ local function buf_get_full_text(bufnr)
 end
 
 local function format_buffer()
-  local isort_command = "isort --stdout --quiet - 2>/dev/null"
-  local black_command = "black --quiet - 2>/dev/null"
+  if os.getenv "NVIM_FORMAT" == "0" then
+    vim.notify("Skipping formatting since NVIM_FORMAT=0", vim.log.levels.INFO)
+    return
+  end
+
+  local tmp_dir = "/tmp/nvim/format"
+  Path.new(tmp_dir):mkdir { exists_ok = true, parents = true }
+
+  local isort_command = "isort --stdout --quiet -"
+  local black_command = "black --quiet -"
   local bufnr = vim.fn.bufnr "%"
 
   local input = buf_get_full_text(bufnr)
   local output = input
   for _, command in pairs { isort_command, black_command } do
-    output = vim.fn.system(command, output)
+    local err_file = tmp_dir .. "/log.err"
+    output = vim.fn.system(command .. " 2>" .. err_file, output)
     if vim.fn.empty(output) ~= 0 then
-      -- TODO: warn user about errors?
+      vim.notify("Error running format command '" .. command .. "'. See logs at " .. err_file, vim.log.levels.ERROR)
       return
     end
   end
