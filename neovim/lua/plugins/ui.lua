@@ -108,12 +108,11 @@ return {
   ---------------------------------------------
   {
     "folke/noice.nvim",
-    lazy = true,
+    lazy = false,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
-    event = { "VimEnter" },
     opts = {
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**

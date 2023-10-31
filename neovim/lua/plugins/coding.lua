@@ -103,6 +103,12 @@ return {
   -- Markdown --
   --------------
   {
+    dir = "~/github.com/epwalsh/frontmatter.nvim",
+    name = "frontmatter",
+    lazy = false,
+  },
+
+  {
     dir = "~/github.com/epwalsh/obsidian.nvim",
     name = "obsidian",
     lazy = true,
@@ -146,6 +152,7 @@ return {
           opts = { noremap = false, expr = true, buffer = true },
         },
       },
+      overwrite_mappings = true,
       completion = {
         nvim_cmp = true,
         max_suggestions = nil,
