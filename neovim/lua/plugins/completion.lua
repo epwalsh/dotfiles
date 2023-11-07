@@ -1,4 +1,10 @@
 return {
+  -- {
+  --   dir = "~/github.com/epwalsh/cmp-github",
+  --   name = "cmp_github",
+  --   lazy = false,
+  -- },
+
   {
     "hrsh7th/nvim-cmp",
     lazy = true,
@@ -15,14 +21,12 @@ return {
       "hrsh7th/cmp-emoji",
       "uga-rosa/cmp-dictionary",
       "hrsh7th/cmp-vsnip",
+      "petertriho/cmp-git",
     },
     opts = {},
     config = function(_, _)
       local cmp = require "cmp"
       local lspkind = require "lspkind"
-
-      -- Load custom github handles source from ./lua/cmp/github_handles.lua
-      cmp.register_source("github_handles", require("cmp.github_handles").new())
 
       -- General setup.
       cmp.setup {
@@ -61,6 +65,7 @@ return {
           { name = "buffer", keyword_length = 3 },
           { name = "calc" },
           { name = "dictionary" },
+          { name = "git" },
         },
         formatting = {
           format = lspkind.cmp_format {
@@ -71,6 +76,7 @@ return {
               nvim_lsp = "[LSP]",
               obsidian = "[Obsidian]",
               obsidian_new = "[Obsidian]",
+              git = "[Git]",
             },
           },
         },
@@ -81,35 +87,6 @@ return {
       }
 
       -- Filetype specific setup.
-      cmp.setup.filetype("gitcommit", {
-        sources = cmp.config.sources {
-          { name = "buffer", keyword_length = 3 },
-          {
-            name = "path",
-            option = {
-              get_cwd = function(_)
-                return vim.fn.getcwd()
-              end,
-            },
-          },
-          { name = "emoji" },
-          { name = "github_handles" }, -- from ./lua/cmp/github_handles.lua
-        },
-      })
-
-      cmp.setup.filetype("make", {
-        sources = cmp.config.sources {
-          { name = "buffer", keyword_length = 3 },
-          {
-            name = "path",
-            option = {
-              get_cwd = function(_)
-                return vim.fn.getcwd()
-              end,
-            },
-          },
-        },
-      })
 
       cmp.setup.filetype("markdown", {
         sources = cmp.config.sources {
@@ -148,12 +125,15 @@ return {
         },
       })
 
-      -- cmp-dictionary setup
+      -- source-specific setup
+
       require("cmp_dictionary").setup {
         dic = {
           ["markdown"] = { vim.fs.normalize "~/.config/nvim/spell/en.utf-8.add", "/usr/share/dict/words" },
         },
       }
+
+      require("cmp_git").setup()
     end,
   },
 }

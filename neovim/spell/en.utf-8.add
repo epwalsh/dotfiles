@@ -203,3 +203,6 @@ recurse
 unicode
 Decrement
 autocommands
+threadpool
+coroutines
+subclasses
