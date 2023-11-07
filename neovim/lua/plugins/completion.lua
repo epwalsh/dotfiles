@@ -1,9 +1,14 @@
 return {
-  -- {
-  --   dir = "~/github.com/epwalsh/cmp-github",
-  --   name = "cmp_github",
-  --   lazy = false,
-  -- },
+  {
+    "zbirenbaum/copilot.lua",
+    lazy = true,
+    cmd = { "Copilot" },
+    event = { "InsertEnter" },
+    opts = {
+      suggestions = { enabled = false },
+      panel = { enabled = false },
+    },
+  },
 
   {
     "hrsh7th/nvim-cmp",
@@ -22,6 +27,7 @@ return {
       "uga-rosa/cmp-dictionary",
       "hrsh7th/cmp-vsnip",
       "petertriho/cmp-git",
+      "zbirenbaum/copilot-cmp",
     },
     opts = {},
     config = function(_, _)
@@ -66,6 +72,7 @@ return {
           { name = "calc" },
           { name = "dictionary" },
           { name = "git" },
+          { name = "copilot" },
         },
         formatting = {
           format = lspkind.cmp_format {
@@ -77,6 +84,9 @@ return {
               obsidian = "[Obsidian]",
               obsidian_new = "[Obsidian]",
               git = "[Git]",
+            },
+            symbol_map = {
+              Copilot = "",
             },
           },
         },
@@ -134,6 +144,8 @@ return {
       }
 
       require("cmp_git").setup()
+
+      require("copilot_cmp").setup()
     end,
   },
 }
