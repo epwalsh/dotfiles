@@ -161,6 +161,10 @@ return {
         date_format = "%Y-%m-%d-%a",
         time_format = "%H:%M",
       },
+      daily_notes = {
+        date_format = "%Y-%m-%d",
+        -- template = "nvim-daily.md",
+      },
       follow_url_func = function(url)
         -- Open the URL in the default web browser.
         vim.fn.jobstart { "open", url } -- Mac OS
