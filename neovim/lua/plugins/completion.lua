@@ -55,9 +55,9 @@ return {
           },
         },
         sources = {
-          { name = "nvim_lsp" },
+          { name = "nvim_lsp", group_index = 1 },
           -- { name = "nvim_lsp_signature_help" },  -- Noice.nvim does this already
-          { name = "nvim_lua" },
+          { name = "nvim_lua", group_index = 2 },
           {
             name = "path",
             option = {
@@ -65,14 +65,15 @@ return {
                 return vim.fn.getcwd()
               end,
             },
+            group_index = 2,
           },
-          { name = "emoji" },
+          { name = "emoji", group_index = 2 },
           { name = "vsnip" },
-          { name = "buffer", keyword_length = 3 },
-          { name = "calc" },
-          { name = "dictionary" },
-          { name = "git" },
-          { name = "copilot" },
+          { name = "buffer", keyword_length = 3, group_index = 2 },
+          { name = "calc", group_index = 2 },
+          { name = "dictionary", group_index = 2 },
+          { name = "git", group_index = 2 },
+          { name = "copilot", group_index = 2 },
         },
         formatting = {
           format = lspkind.cmp_format {

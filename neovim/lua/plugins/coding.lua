@@ -109,6 +109,17 @@ return {
   -- },
 
   {
+    "junegunn/fzf.vim",
+    lazy = true,
+    dependencies = {
+      "junegunn/fzf",
+    },
+    build = function()
+      vim.api.nvim_call_function "fzf#install"
+    end,
+  },
+
+  {
     dir = "~/github.com/epwalsh/obsidian.nvim",
     name = "obsidian",
     lazy = true,
@@ -122,14 +133,20 @@ return {
       "telescope.nvim",
       "tabular",
       "vim-markdown",
+      -- "junegunn/fzf.vim",
     },
     opts = {
       dir = "~/notes",
       notes_subdir = "notes",
+
       finder = "telescope.nvim",
+      -- finder = "fzf.vim",
+
       sort_by = "modified",
       sort_reversed = true,
+
       -- disable_frontmatter = true,
+
       note_id_func = function(title)
         -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
         local suffix = ""
@@ -144,6 +161,7 @@ return {
         end
         return tostring(os.time()) .. "-" .. suffix
       end,
+
       mappings = {
         ["gf"] = {
           action = function()
@@ -152,24 +170,29 @@ return {
           opts = { noremap = false, expr = true, buffer = true },
         },
       },
+
       completion = {
         nvim_cmp = true,
         max_suggestions = nil,
       },
+
       templates = {
         subdir = "templates",
         date_format = "%Y-%m-%d-%a",
         time_format = "%H:%M",
       },
+
       daily_notes = {
         date_format = "%Y-%m-%d",
         -- template = "nvim-daily.md",
       },
+
       follow_url_func = function(url)
         -- Open the URL in the default web browser.
         vim.fn.jobstart { "open", url } -- Mac OS
         -- vim.fn.jobstart({"xdg-open", url})  -- linux
       end,
+
       note_frontmatter_func = function(note)
         -- note:add_tag "TODO"
         local out = { id = note.id, aliases = note.aliases, tags = note.tags }
@@ -182,6 +205,8 @@ return {
         end
         return out
       end,
+
+      yaml_parser = "native",
     },
   },
 

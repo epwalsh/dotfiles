@@ -66,7 +66,7 @@ vim.opt.guicursor = "i:ver25"
 vim.opt.spelllang = "en_us"
 vim.opt.spelloptions = { "camel" }
 -- vim.opt.updatetime = 100
-vim.opt.pastetoggle = "<F3>"
+-- vim.opt.pastetoggle = "<F3>"
 vim.opt.cursorline = true
 
 if vim.api.nvim_win_get_height(0) > 20 then
