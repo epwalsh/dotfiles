@@ -32,4 +32,13 @@ return {
     },
     opts = {},
   },
+
+  {
+    "skywind3000/asyncrun.vim",
+    lazy = true,
+    cmd = { "AsyncRun", "AsyncStop", "AsyncReset" },
+    init = function()
+      vim.g.asyncrun_mode = "term"
+    end,
+  },
 }
