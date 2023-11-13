@@ -11,6 +11,21 @@ return {
   },
 
   {
+    "saecki/crates.nvim",
+    version = "*",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("crates").setup {
+        src = {
+          cmp = {
+            enabled = true,
+          },
+        },
+      }
+    end,
+  },
+
+  {
     "hrsh7th/nvim-cmp",
     lazy = true,
     event = { "InsertEnter" },
@@ -74,6 +89,7 @@ return {
           { name = "dictionary", group_index = 2 },
           { name = "git", group_index = 2 },
           { name = "copilot", group_index = 2 },
+          { name = "crates", group_index = 2 },
         },
         formatting = {
           format = lspkind.cmp_format {
@@ -96,45 +112,6 @@ return {
           documentation = cmp.config.window.bordered(),
         },
       }
-
-      -- Filetype specific setup.
-
-      cmp.setup.filetype("markdown", {
-        sources = cmp.config.sources {
-          -- { name = "nvim_lsp" },
-          -- { name = "nvim_lsp_signature_help" },
-          { name = "emoji" },
-          { name = "buffer", keyword_length = 3 },
-          {
-            name = "path",
-            option = {
-              get_cwd = function(_)
-                return vim.fn.getcwd()
-              end,
-            },
-          },
-          { name = "vsnip" },
-          { name = "calc" },
-          { name = "dictionary", keyword_length = 3 },
-        },
-      })
-
-      cmp.setup.filetype("yaml", {
-        sources = cmp.config.sources {
-          { name = "buffer", keyword_length = 3 },
-          {
-            name = "path",
-            option = {
-              get_cwd = function(_)
-                return vim.fn.getcwd()
-              end,
-            },
-          },
-          { name = "calc" },
-          { name = "emoji", option = { insert = true } },
-          { name = "dictionary", keyword_length = 3 },
-        },
-      })
 
       -- source-specific setup
 
