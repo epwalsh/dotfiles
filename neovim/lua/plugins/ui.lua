@@ -256,8 +256,17 @@ return {
     event = { "BufEnter" },
     config = function()
       local leap = require "leap"
-      leap.add_default_mappings()
+      vim.keymap.set({ "n" }, "s", "<Plug>(leap-forward-to)")
+      vim.keymap.set({ "n" }, "S", "<Plug>(leap-backward-to)")
       leap.opts.case_sensitive = true
+    end,
+  },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    config = function()
+      require("ibl").setup {}
     end,
   },
 }
