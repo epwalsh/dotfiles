@@ -12,8 +12,10 @@ return {
 
   {
     "saecki/crates.nvim",
-    version = "*",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    -- version = "*",
+    lazy = true,
+    event = { "BufRead Cargo.toml" },
+    dependencies = { "nvim-lua/plenary.nvim", "hrsh7th/nvim-cmp" },
     config = function()
       require("crates").setup {
         src = {
@@ -22,6 +24,9 @@ return {
           },
         },
       }
+
+      local cmp = require "cmp"
+      cmp.setup.buffer { sources = { { name = "crates" }, { name = "buffer" }, { name = "path" } } }
     end,
   },
 
@@ -43,6 +48,7 @@ return {
       "hrsh7th/cmp-vsnip",
       "petertriho/cmp-git",
       "zbirenbaum/copilot-cmp",
+      -- "saecki/crates.nvim",
     },
     opts = {},
     config = function(_, _)
@@ -89,7 +95,6 @@ return {
           { name = "dictionary", group_index = 2 },
           { name = "git", group_index = 2 },
           { name = "copilot", group_index = 2 },
-          { name = "crates", group_index = 2 },
         },
         formatting = {
           format = lspkind.cmp_format {
