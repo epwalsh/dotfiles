@@ -139,6 +139,9 @@ vim.keymap.set({ "n", "v" }, ";", ":")
 -- Switch to previously edited buffer.
 vim.keymap.set("n", "<c-h>", ":b#<cr>")
 
+-- Shortcut for AsyncRun
+vim.keymap.set("n", "$", ":AsyncRun ")
+
 -- LSP code navigation shortcuts.
 vim.keymap.set("n", "<c-k>", vim.lsp.buf.signature_help)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
