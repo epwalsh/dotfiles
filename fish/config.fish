@@ -101,3 +101,5 @@ alias mux tmuxinator
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/petew/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/petew/Downloads/google-cloud-sdk/path.fish.inc'; end
+
+set -gx EXTENSION_WIKI_LINK 1

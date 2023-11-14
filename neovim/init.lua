@@ -140,7 +140,7 @@ vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set("n", "<c-h>", ":b#<cr>")
 
 -- Shortcut for AsyncRun
-vim.keymap.set("n", "$", ":AsyncRun ")
+vim.keymap.set("n", "!", ":AsyncRun ")
 
 -- LSP code navigation shortcuts.
 vim.keymap.set("n", "<c-k>", vim.lsp.buf.signature_help)
