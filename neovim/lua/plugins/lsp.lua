@@ -113,7 +113,13 @@ return {
       -- NOTE: To see which capabilities a LS has, run
       -- :lua =vim.lsp.get_active_clients()[1].server_capabilities
       -- (change the index from '1' to whatever if you have multiple)
-      require("lspconfig")["jedi_language_server"].setup {}
+      require("lspconfig")["jedi_language_server"].setup {
+        on_attach = function(client, _)
+          client.server_capabilities.renameProvider = false
+          -- Jedi works best as the hover provider.
+          client.server_capabilities.hoverProvider = false
+        end,
+      }
 
       if os.getenv "NVIM_PYRIGHT" ~= "0" then
         require("lspconfig")["pyright"].setup {
@@ -132,7 +138,7 @@ return {
 
       require("lspconfig")["ruff_lsp"].setup {
         on_attach = function(client, _)
-          client.server_capabilities.renameProvider = false
+          client.server_capabilities.renameProvider = true
           -- Jedi works best as the hover provider.
           client.server_capabilities.hoverProvider = false
         end,
