@@ -1,4 +1,6 @@
 local Path = require "plenary.path"
+local util = require "epwalsh.util"
+local log = require "epwalsh.log"
 
 vim.opt_local.foldmethod = "expr"
 vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
@@ -12,17 +14,9 @@ vim.opt_local.indentkeys:append { "=else:" }
 -- Adapted from stylua-nvim:
 -- https://github.com/ckipp01/stylua-nvim/blob/main/lua/stylua-nvim.lua
 
-local function buf_get_full_text(bufnr)
-  local text = table.concat(vim.api.nvim_buf_get_lines(bufnr, 0, -1, true), "\n")
-  if vim.api.nvim_get_option_value("eol", { buf = bufnr }) then
-    text = text .. "\n"
-  end
-  return text
-end
-
 local function format_buffer()
   if os.getenv "NVIM_FORMAT" == "0" then
-    vim.notify("Skipping formatting since NVIM_FORMAT=0", vim.log.levels.INFO)
+    log.info "Skipping formatting since NVIM_FORMAT=0"
     return
   end
 
@@ -33,13 +27,13 @@ local function format_buffer()
   local black_command = "black --quiet -"
   local bufnr = vim.fn.bufnr "%"
 
-  local input = buf_get_full_text(bufnr)
+  local input = util.buf_get_full_text(bufnr)
   local output = input
   for _, command in pairs { isort_command, black_command } do
     local err_file = tmp_dir .. "/log.err"
     output = vim.fn.system(command .. " 2>" .. err_file, output)
     if vim.fn.empty(output) ~= 0 then
-      vim.notify("Error running format command '" .. command .. "'. See logs at " .. err_file, vim.log.levels.ERROR)
+      log.error("Error running format command '" .. command .. "'. See logs at " .. err_file)
       return
     end
   end
@@ -67,6 +61,6 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = "*.py",
   callback = function()
     vim.cmd "edit"
-    pcall(vim.cmd, "loadview")
+    pcall(vim.cmd.loadview)
   end,
 })

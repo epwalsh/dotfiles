@@ -41,6 +41,7 @@ brew install \
     git-crypt \
     mosh \
     gnupg \
+    pngpaste \
     yazi
 
 # Install nightly neovim.

@@ -104,12 +104,6 @@ return {
   --------------
   -- Markdown --
   --------------
-  -- {
-  --   dir = "~/github.com/epwalsh/frontmatter.nvim",
-  --   name = "frontmatter",
-  --   lazy = false,
-  -- },
-
   {
     "junegunn/fzf.vim",
     lazy = true,
@@ -201,40 +195,6 @@ return {
 
       yaml_parser = "native",
     },
-  },
-
-  -- {
-  --   "godlygeek/tabular",
-  --   enabled = false,
-  --   lazy = true,
-  --   ft = "markdown",
-  -- },
-
-  -- {
-  --   "preservim/vim-markdown",
-  --   enabled = false,
-  --   lazy = true,
-  --   ft = "markdown",
-  --   init = function()
-  --     vim.g.vim_markdown_new_list_item_indent = 0
-  --     vim.g.vim_markdown_auto_insert_bullets = 0
-  --     vim.g.vim_markdown_folding_disabled = 1
-  --     vim.g.vim_markdown_conceal = 0
-  --     vim.g.vim_markdown_conceal_code_blocks = 0
-  --   end,
-  -- },
-
-  {
-    "TobinPalmer/pastify.nvim",
-    lazy = true,
-    cmd = { "Pastify" },
-    config = function()
-      require("pastify").setup {
-        save = "local",
-        local_path = "/assets/imgs/",
-      }
-    end,
-    build = "pip install pillow",
   },
 
   ----------
