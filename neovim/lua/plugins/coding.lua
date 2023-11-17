@@ -131,8 +131,8 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-cmp",
       "telescope.nvim",
-      "tabular",
-      "vim-markdown",
+      -- "tabular",
+      -- "vim-markdown",
       -- "junegunn/fzf.vim",
     },
     opts = {
@@ -201,26 +201,38 @@ return {
     },
   },
 
-  {
-    "godlygeek/tabular",
-    lazy = true,
-    ft = "markdown",
-  },
+  -- {
+  --   "godlygeek/tabular",
+  --   enabled = false,
+  --   lazy = true,
+  --   ft = "markdown",
+  -- },
+
+  -- {
+  --   "preservim/vim-markdown",
+  --   enabled = false,
+  --   lazy = true,
+  --   ft = "markdown",
+  --   init = function()
+  --     vim.g.vim_markdown_new_list_item_indent = 0
+  --     vim.g.vim_markdown_auto_insert_bullets = 0
+  --     vim.g.vim_markdown_folding_disabled = 1
+  --     vim.g.vim_markdown_conceal = 0
+  --     vim.g.vim_markdown_conceal_code_blocks = 0
+  --   end,
+  -- },
 
   {
-    "preservim/vim-markdown",
+    "TobinPalmer/pastify.nvim",
     lazy = true,
-    ft = "markdown",
-    init = function()
-      vim.g.vim_markdown_new_list_item_indent = 2
-      vim.g.vim_markdown_folding_disabled = 1
+    cmd = { "Pastify" },
+    config = function()
+      require("pastify").setup {
+        save = "local",
+        local_path = "/assets/imgs/",
+      }
     end,
-  },
-
-  {
-    "ferrine/md-img-paste.vim",
-    lazy = true,
-    ft = "markdown",
+    build = "pip install pillow",
   },
 
   ----------

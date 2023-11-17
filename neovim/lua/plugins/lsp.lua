@@ -117,7 +117,7 @@ return {
         on_attach = function(client, _)
           client.server_capabilities.renameProvider = false
           -- Jedi works best as the hover provider.
-          client.server_capabilities.hoverProvider = false
+          client.server_capabilities.hoverProvider = true
         end,
       }
 
