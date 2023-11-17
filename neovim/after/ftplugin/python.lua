@@ -14,7 +14,7 @@ vim.opt_local.indentkeys:append { "=else:" }
 
 local function buf_get_full_text(bufnr)
   local text = table.concat(vim.api.nvim_buf_get_lines(bufnr, 0, -1, true), "\n")
-  if vim.api.nvim_buf_get_option(bufnr, "eol") then
+  if vim.api.nvim_get_option_value("eol", { buf = bufnr }) then
     text = text .. "\n"
   end
   return text
@@ -27,7 +27,7 @@ local function format_buffer()
   end
 
   local tmp_dir = "/tmp/nvim/format"
-  Path.new(tmp_dir):mkdir { exists_ok = true, parents = true }
+  Path:new(tmp_dir):mkdir { exists_ok = true, parents = true }
 
   local isort_command = "isort --stdout --quiet -"
   local black_command = "black --quiet -"
