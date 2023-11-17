@@ -1,3 +1,5 @@
+---@diagnostic disable: inject-field
+
 return {
   -------------
   -- General --
@@ -115,7 +117,7 @@ return {
       "junegunn/fzf",
     },
     build = function()
-      vim.api.nvim_call_function "fzf#install"
+      vim.api.nvim_call_function("fzf#install", {})
     end,
   },
 

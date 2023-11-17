@@ -57,6 +57,9 @@ return {
 
       -- General setup.
       cmp.setup {
+        completion = {
+          autocomplete = false,
+        },
         snippet = {
           expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)
@@ -117,6 +120,27 @@ return {
           documentation = cmp.config.window.bordered(),
         },
       }
+
+      -- Throttle completion so it's less annoying.
+      local timer = nil
+      vim.api.nvim_create_autocmd({ "TextChangedI", "CmdlineChanged" }, {
+        pattern = "*",
+        callback = function()
+          if timer then
+            vim.loop.timer_stop(timer)
+            timer = nil
+          end
+
+          timer = assert(vim.loop.new_timer())
+          timer:start(
+            500,
+            0,
+            vim.schedule_wrap(function()
+              require("cmp").complete { reason = require("cmp").ContextReason.Auto }
+            end)
+          )
+        end,
+      })
 
       -- source-specific setup
 
