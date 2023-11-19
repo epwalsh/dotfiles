@@ -119,10 +119,11 @@ return {
     dir = "~/github.com/epwalsh/obsidian.nvim",
     name = "obsidian",
     lazy = true,
-    event = {
-      "BufReadPre " .. vim.fn.expand "~" .. "/notes/**.md",
-      "BufNewFile " .. vim.fn.expand "~" .. "/notes/**.md",
-    },
+    ft = "markdown",
+    -- event = {
+    --   "BufReadPre " .. vim.fn.expand "~" .. "/notes/**.md",
+    --   "BufNewFile " .. vim.fn.expand "~" .. "/notes/**.md",
+    -- },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-cmp",
@@ -161,6 +162,9 @@ return {
       completion = {
         nvim_cmp = true,
         max_suggestions = nil,
+        prepend_note_path = false,
+        prepend_note_id = true,
+        use_path_only = false,
       },
 
       templates = {

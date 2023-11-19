@@ -161,10 +161,11 @@ vim.keymap.set({ "v" }, "gx", function()
   local a_orig = vim.fn.getreg "a"
   vim.cmd [[silent! normal! "aygv]]
   local url = vim.fn.getreg "a"
+  assert(type(url) == "string")
   vim.fn.setreg("a", a_orig)
 
   if string.sub(url, 1, 4) == "http" then
-    vim.fn.jobstart { "open", "--background", url }
+    vim.fn.jobstart { "open", url }
   else
     vim.notify("Not sure how to open " .. url, vim.log.levels.ERROR)
   end

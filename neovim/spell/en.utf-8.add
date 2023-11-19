@@ -207,3 +207,4 @@ threadpool
 coroutines
 subclasses
 dataloader
+autocompletion

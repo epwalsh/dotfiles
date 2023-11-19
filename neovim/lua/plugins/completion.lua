@@ -133,7 +133,7 @@ return {
 
           timer = assert(vim.loop.new_timer())
           timer:start(
-            500,
+            300,
             0,
             vim.schedule_wrap(function()
               require("cmp").complete { reason = require("cmp").ContextReason.Auto }
