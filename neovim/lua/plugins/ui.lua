@@ -67,6 +67,7 @@ return {
     lazy = true,
     dependencies = {
       "telescope.nvim",
+      "nvim-web-devicons",
     },
     event = { "VimEnter" },
     opts = function()
