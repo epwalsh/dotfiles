@@ -37,7 +37,6 @@
   "nvim-treesitter": { "branch": "master", "commit": "04a9a90c2a60c86aa9451c539586326b337b03e5" },
   "nvim-web-devicons": { "branch": "master", "commit": "4ec26d67d419c12a4abaea02f1b6c57b40c08d7e" },
   "octo.nvim": { "branch": "master", "commit": "f37efab489a99b4a104e5ee18c73453d5e828b62" },
-  "pastify.nvim": { "branch": "main", "commit": "d41b7416679707c57f584a7696101fb0b8422fdb" },
   "playground": { "branch": "master", "commit": "2b81a018a49f8e476341dfcb228b7b808baba68b" },
   "plenary.nvim": { "branch": "master", "commit": "9ac3e9541bbabd9d73663d757e4fe48a675bb054" },
   "rust-tools.nvim": { "branch": "master", "commit": "71d2cf67b5ed120a0e31b2c8adb210dd2834242f" },
@@ -54,5 +53,6 @@
   "vim-rename": { "branch": "master", "commit": "ae2c535c3a932bb667d135eafc9e8930865e4c29" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-vsnip": { "branch": "master", "commit": "7753ba9c10429c29d25abfd11b4c60b76718c438" },
-  "vimcmdline": { "branch": "master", "commit": "d50776d8c8b87ee64a175bcdd96ace1ad608e1f6" }
+  "vimcmdline": { "branch": "master", "commit": "d50776d8c8b87ee64a175bcdd96ace1ad608e1f6" },
+  "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" }
 }

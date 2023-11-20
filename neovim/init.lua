@@ -1,7 +1,10 @@
+---@diagnostic disable: inject-field
 -- Core neovim settings.
 --
 -- For filetype-specific settings, see after/ftplugin/*.lua.
 -- For plugin-specific settings, see lua/plugin/*.lua.
+
+local log = require "epwalsh.log"
 
 ------------------------
 -- Filetype discovery --
@@ -80,7 +83,7 @@ end
 -------------
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
-if not vim.loop.fs_stat(lazypath) then
+if not vim.loop.fs_stat(lazypath) then ---@diagnostic disable-line: undefined-field
   vim.fn.system {
     "git",
     "clone",
@@ -91,7 +94,7 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 
-vim.opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend(lazypath) ---@diagnostic disable-line: undefined-field
 
 require("lazy").setup("plugins", {
   change_detection = {
@@ -100,9 +103,11 @@ require("lazy").setup("plugins", {
   },
 })
 
---------------
--- Mappings --
---------------
+----------------------------------
+-- Mappings for basic movements --
+----------------------------------
+-- NOTE: many other mappings are defined via 'which-key' in other Lua configuration files.
+
 -- Pull up my personal tips help doc.
 vim.keymap.set("n", "<leader>hh", ":help personal-tips<cr>")
 
@@ -142,20 +147,14 @@ vim.keymap.set("n", "<c-h>", ":b#<cr>")
 -- Shortcut for AsyncRun
 vim.keymap.set("n", "!", ":AsyncRun ")
 
--- LSP code navigation shortcuts.
-vim.keymap.set("n", "<c-k>", vim.lsp.buf.signature_help)
-vim.keymap.set("n", "K", vim.lsp.buf.hover)
-vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
-vim.keymap.set("n", "gd", vim.lsp.buf.definition)
-vim.keymap.set("n", "gr", vim.lsp.buf.references)
-
 -- Ignore line wrapping when navigating.
 vim.keymap.set({ "n", "v" }, "j", "gj")
 vim.keymap.set({ "n", "v" }, "k", "gk")
 -- vim.keymap.set({ "n", "v" }, "0", "g0")
 -- vim.keymap.set({ "n", "v" }, "$", "g$")
 
--- Open URLs.
+-- Open visually-selected links in browser.
+-- TODO: handle normal mode too?
 vim.keymap.set({ "v" }, "gx", function()
   -- this is the best way I've found so far for getting the current visual selection
   local a_orig = vim.fn.getreg "a"
@@ -167,6 +166,6 @@ vim.keymap.set({ "v" }, "gx", function()
   if string.sub(url, 1, 4) == "http" then
     vim.fn.jobstart { "open", url }
   else
-    vim.notify("Not sure how to open " .. url, vim.log.levels.ERROR)
+    log.error("'%s' does not look like a URL", url)
   end
 end)

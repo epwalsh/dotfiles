@@ -34,9 +34,21 @@ return {
       require("inc_rename").setup()
     end,
     init = function()
-      vim.keymap.set("n", "<leader>r", function()
-        return ":IncRename " .. vim.fn.expand "<cword>"
-      end, { expr = true })
+      local wk = require "which-key"
+
+      wk.register({
+        ["<leader>"] = {
+          name = "Rename",
+          r = {
+            function()
+              return ":IncRename " .. vim.fn.expand "<cword>"
+            end,
+            "Rename",
+          },
+        },
+      }, {
+        expr = true,
+      })
     end,
   },
 
@@ -73,12 +85,17 @@ return {
     lazy = true,
     ft = { "python" },
     init = function()
-      vim.keymap.set("n", "<leader>s", ":call VimCmdLineStartApp()<cr>")
+      local wk = require "which-key"
+
       vim.g.cmdline_term_height = 15
       vim.g.cmdline_term_width = 80
       vim.g.cmdline_tmp_dir = "/tmp"
       vim.g.cmdline_outhl = 1
       vim.g.cmdline_app = { python = "ipython -i -c 'from rich import print, pretty; pretty.install()'" }
+
+      wk.register {
+        ["<leader>s"] = { ":call VimCmdLineStartApp()<cr>", "Start interpreter" },
+      }
     end,
   },
 
@@ -141,6 +158,8 @@ return {
 
       sort_by = "modified",
       sort_reversed = true,
+
+      log_level = vim.log.levels.INFO,
 
       -- disable_frontmatter = true,
 

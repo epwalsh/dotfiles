@@ -144,6 +144,7 @@ return {
     },
     config = function(_, opts)
       local telescope = require "telescope"
+      local wk = require "which-key"
 
       -- Setup.
       telescope.setup(opts)
@@ -153,11 +154,16 @@ return {
 
       -- Picker mappings.
       local builtin = require "telescope.builtin"
-      vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-      vim.keymap.set("n", "<leader>br", ":Telescope file_browser<cr>", {})
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-      vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-      vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+      wk.register {
+        ["<leader>"] = {
+          name = "Find",
+          ff = { builtin.find_files, "Find files" },
+          fg = { builtin.live_grep, "Find in files" },
+          fb = { builtin.buffers, "Find buffers" },
+          fh = { builtin.help_tags, "Find help tags" },
+          br = { ":Telescope file_browser<cr>", "Browse files" },
+        },
+      }
     end,
     init = function()
       -- HACK: When opening a buffer through telescope the folds aren't applied.
