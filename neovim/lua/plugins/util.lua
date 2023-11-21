@@ -1,3 +1,5 @@
+---@diagnostic disable: inject-field
+
 return {
   -- Opens a link on GitHub to current line.
   {
@@ -39,6 +41,7 @@ return {
     cmd = { "AsyncRun", "AsyncStop", "AsyncReset" },
     init = function()
       vim.g.asyncrun_mode = "term"
+      vim.keymap.set("n", "!", ":AsyncRun ")
     end,
   },
 }

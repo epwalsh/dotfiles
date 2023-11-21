@@ -1,6 +1,6 @@
 local Path = require "plenary.path"
-local util = require "epwalsh.util"
-local log = require "epwalsh.log"
+local util = require "core.util"
+local log = require "core.log"
 
 local M = {}
 

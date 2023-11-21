@@ -1,7 +1,7 @@
 local module_lookups = {
-  util = "epwalsh.util",
-  log = "epwalsh.log",
-  img_paste = "epwalsh.img_paste",
+  util = "core.util",
+  log = "core.log",
+  img_paste = "core.img_paste",
 }
 
 local M = setmetatable({}, {

@@ -69,4 +69,20 @@ M.buf_get_full_text = function(bufnr)
   return text
 end
 
+---@return string
+M.get_visual_selection = function()
+  -- This is the best way I've found so far for getting the current visual selection,
+  -- which seems like a total hack.
+  local a_orig = vim.fn.getreg "a"
+  vim.cmd [[silent! normal! "aygv]]
+
+  local text = vim.fn.getreg "a"
+  assert(type(text) == "string")
+
+  -- Reset register.
+  vim.fn.setreg("a", a_orig)
+
+  return text
+end
+
 return M

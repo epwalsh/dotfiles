@@ -1,6 +1,6 @@
 ---@diagnostic disable: inject-field
 
-local paste_img = require("epwalsh.img_paste").paste_img
+local paste_img = require("core.img_paste").paste_img
 
 vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "rust" }
 vim.opt_local.shiftwidth = 2
