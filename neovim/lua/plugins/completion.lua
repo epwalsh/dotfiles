@@ -108,6 +108,7 @@ return {
               nvim_lsp = "[LSP]",
               obsidian = "[Obsidian]",
               obsidian_new = "[Obsidian]",
+              obsidian_tags = "[Obsidian]",
               git = "[Git]",
             },
             symbol_map = {
