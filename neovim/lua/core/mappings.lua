@@ -16,10 +16,6 @@ vim.keymap.set("n", "<ScrollWheelDown>", "<c-e>")
 vim.keymap.set("n", "<C-U>", "10<c-y>")
 vim.keymap.set("n", "<C-D>", "10<c-e>")
 
--- Insert line above/below and stay in normal mode.
-vim.keymap.set("n", "<leader>O", "O<esc>")
-vim.keymap.set("n", "<leader>o", "o<esc>")
-
 -- Escape insert/visual mode with 'jk'.
 vim.keymap.set("i", "jk", "<esc>l")
 vim.keymap.set("v", "<leader>jk", "<esc>")
