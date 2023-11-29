@@ -27,7 +27,11 @@ return {
       -- "vim-markdown",
       -- "junegunn/fzf.vim",
     },
-    init = function()
+    config = function(_, opts)
+      -- Setup obsidian.nvim
+      require("obsidian").setup(opts)
+
+      -- Create which-key mappings for common commands.
       local wk = require "which-key"
 
       wk.register {
@@ -40,6 +44,9 @@ return {
           q = { "<cmd>ObsidianQuickSwitch<cr>", "Quick switch" },
         },
       }
+
+      -- Extra custom commands.
+      vim.api.nvim_create_user_command("Weekdays", "ObsidianTemplate weekdays.md", {})
     end,
     opts = {
       dir = "~/notes",
@@ -50,6 +57,8 @@ return {
 
       sort_by = "modified",
       sort_reversed = true,
+
+      open_notes_in = "current",
 
       log_level = vim.log.levels.INFO,
 
@@ -82,6 +91,42 @@ return {
         subdir = "templates",
         date_format = "%Y-%m-%d-%a",
         time_format = "%H:%M",
+        substitutions = {
+          weekdays = function()
+            local client = assert(require("obsidian").get_client())
+
+            local day_of_week = os.date "%A"
+            assert(type(day_of_week) == "string")
+
+            ---@type integer
+            local offset_start
+            if day_of_week == "Sunday" then
+              offset_start = 1
+            elseif day_of_week == "Monday" then
+              offset_start = 0
+            elseif day_of_week == "Tuesday" then
+              offset_start = -1
+            elseif day_of_week == "Wednesday" then
+              offset_start = -2
+            elseif day_of_week == "Thursday" then
+              offset_start = -3
+            elseif day_of_week == "Friday" then
+              offset_start = -4
+            elseif day_of_week == "Saturday" then
+              offset_start = 2
+            end
+            assert(offset_start)
+
+            local lines = {}
+            for offset = offset_start, offset_start + 4 do
+              local note = client:daily(offset)
+              lines[#lines + 1] =
+                string.format("- [[%s|%s]]", note.id, os.date("%A, %B %-d", os.time() + offset * 3600 * 24))
+            end
+
+            return table.concat(lines, "\n")
+          end,
+        },
       },
 
       daily_notes = {

@@ -142,6 +142,7 @@ return {
     opts = {
       -- to prevent cursor flickering
       stages = "static",
+      level = vim.log.levels.DEBUG,
       -- fps = 10,
     },
   },
