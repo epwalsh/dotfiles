@@ -62,6 +62,7 @@ Notifier.update = function(self, text, level, timeout)
     title = title,
     timeout = timeout,
     replace = self.notification,
+    hide_from_history = true,
   })
 end
 
