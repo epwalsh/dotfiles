@@ -58,7 +58,7 @@ return {
       sort_by = "modified",
       sort_reversed = true,
 
-      open_notes_in = "current",
+      open_notes_in = "vsplit",
 
       log_level = vim.log.levels.INFO,
 
