@@ -118,6 +118,7 @@ M.start_timer = function(time_limit, name)
       else
         timer:close()
         notifier:done()
+        M._timers[timer_id] = nil
       end
     end)
   )
