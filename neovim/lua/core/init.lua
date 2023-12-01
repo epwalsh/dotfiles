@@ -2,7 +2,6 @@ local module_lookups = {
   util = "core.util",
   log = "core.log",
   img_paste = "core.img_paste",
-  pomo_timer = "core.pomo_timer",
 }
 
 local M = setmetatable({}, {

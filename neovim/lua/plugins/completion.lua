@@ -89,15 +89,15 @@ return {
                 return vim.fn.getcwd()
               end,
             },
-            group_index = 2,
+            group_index = 1,
           },
-          { name = "emoji", group_index = 2 },
+          { name = "emoji", group_index = 1 },
           { name = "vsnip" },
-          { name = "buffer", keyword_length = 3, group_index = 2 },
-          { name = "calc", group_index = 2 },
-          { name = "dictionary", group_index = 2 },
-          { name = "git", group_index = 2 },
-          { name = "copilot", group_index = 2 },
+          { name = "buffer", keyword_length = 3, group_index = 1 },
+          { name = "calc", group_index = 1 },
+          { name = "dictionary", group_index = 1 },
+          { name = "git", group_index = 1 },
+          { name = "copilot", group_index = 1 },
         },
         formatting = {
           format = lspkind.cmp_format {

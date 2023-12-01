@@ -44,4 +44,30 @@ return {
       vim.keymap.set("n", "!", ":AsyncRun ")
     end,
   },
+
+  {
+    dir = "~/github.com/epwalsh/pomo.nvim",
+    name = "pomo",
+    lazy = true,
+    cmd = { "TimerStart", "TimerStop", "TimerRepeat" },
+    dependencies = {
+      -- "rcarriga/nvim-notify",
+    },
+    opts = {
+      notifiers = {
+        { name = "Default", opts = { sticky = false } },
+        { name = "System" },
+      },
+      timers = {
+        Stretching = {
+          { name = "Default" },
+          { name = "System" },
+        },
+        Break = {
+          { name = "Default" },
+          { name = "System" },
+        },
+      },
+    },
+  },
 }
