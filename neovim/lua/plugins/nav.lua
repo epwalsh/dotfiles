@@ -16,6 +16,9 @@ return {
       filters = {
         dotfiles = true,
       },
+      view = {
+        width = 24,
+      },
       actions = {
         change_dir = {
           enable = false,
