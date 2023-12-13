@@ -11,6 +11,19 @@ return {
   },
 
   {
+    "ibhagwan/fzf-lua",
+    lazy = true,
+    -- optional for icon support
+    dependencies = {
+      "nvim-web-devicons",
+    },
+    config = function()
+      -- calling `setup` is optional for customization
+      require("fzf-lua").setup {}
+    end,
+  },
+
+  {
     dir = "~/github.com/epwalsh/obsidian.nvim",
     name = "obsidian",
     lazy = true,
@@ -26,6 +39,7 @@ return {
       -- "tabular",
       -- "vim-markdown",
       -- "junegunn/fzf.vim",
+      -- "fzf-lua",
     },
     config = function(_, opts)
       -- Setup obsidian.nvim
@@ -53,6 +67,7 @@ return {
       notes_subdir = "notes",
 
       finder = "telescope.nvim",
+      -- finder = "fzf-lua",
       -- finder = "fzf.vim",
 
       sort_by = "modified",

@@ -118,7 +118,7 @@ return {
       -- (change the index from '1' to whatever if you have multiple)
       require("lspconfig")["jedi_language_server"].setup {
         on_attach = function(client, _)
-          client.server_capabilities.renameProvider = false
+          client.server_capabilities.renameProvider = true
           -- Jedi works best as the hover provider.
           client.server_capabilities.hoverProvider = true
         end,
@@ -141,7 +141,7 @@ return {
 
       require("lspconfig")["ruff_lsp"].setup {
         on_attach = function(client, _)
-          client.server_capabilities.renameProvider = true
+          client.server_capabilities.renameProvider = false
           -- Jedi works best as the hover provider.
           client.server_capabilities.hoverProvider = false
         end,
