@@ -63,7 +63,13 @@ return {
       vim.api.nvim_create_user_command("Weekdays", "ObsidianTemplate weekdays.md", {})
     end,
     opts = {
-      dir = "~/notes",
+      workspaces = {
+        {
+          name = "notes",
+          path = "~/notes",
+        },
+      },
+
       notes_subdir = "notes",
 
       finder = "telescope.nvim",
@@ -96,10 +102,12 @@ return {
 
       completion = {
         nvim_cmp = true,
+        min_chars = 2,
         max_suggestions = nil,
         prepend_note_path = false,
         prepend_note_id = true,
         use_path_only = false,
+        new_notes_location = "notes_subdir",
       },
 
       templates = {
