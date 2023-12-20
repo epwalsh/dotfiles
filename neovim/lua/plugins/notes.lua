@@ -24,6 +24,11 @@ return {
   },
 
   {
+    "echasnovski/mini.pick",
+    lazy = true,
+  },
+
+  {
     dir = "~/github.com/epwalsh/obsidian.nvim",
     name = "obsidian",
     lazy = true,
@@ -36,6 +41,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-cmp",
       "telescope.nvim",
+      -- "mini.pick",
       -- "tabular",
       -- "vim-markdown",
       -- "junegunn/fzf.vim",
@@ -75,6 +81,7 @@ return {
       finder = "telescope.nvim",
       -- finder = "fzf-lua",
       -- finder = "fzf.vim",
+      -- finder = "mini.pick",
 
       sort_by = "modified",
       sort_reversed = true,
