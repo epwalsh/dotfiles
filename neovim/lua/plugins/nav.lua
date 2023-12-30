@@ -104,6 +104,31 @@ return {
     end,
   },
 
+  ------------
+  -- Aerial --
+  ------------
+  {
+    "stevearc/aerial.nvim",
+    lazy = true,
+    cmd = { "AerialToggle" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-web-devicons",
+    },
+    opts = {},
+    -- Optional dependencies
+    init = function()
+      local wk = require "which-key"
+
+      wk.register {
+        ["<leader>"] = {
+          name = "Aerial",
+          a = { "<cmd>AerialToggle<CR>", "Aerial" },
+        },
+      }
+    end,
+  },
+
   ---------------
   -- Telescope --
   ---------------
