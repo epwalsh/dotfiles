@@ -84,6 +84,9 @@ for filename in ~/dotfiles/tmux/.tmux*; do
     ln -sf $filename ~/
 done
 
+mkdir ~/.tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # Neovim.
 mkdir -p ~/.config/nvim
 for filename in ~/dotfiles/neovim/*; do
@@ -104,6 +107,7 @@ done
 # Alacritty.
 mkdir -p ~/.config/alacritty
 ln -sf ~/dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+#git clone https://github.com/catppuccin/alacritty.git ~/.config/alacritty/catppuccin
 
 # Starship.
 ln -sf ~/dotfiles/starship/starship.toml ~/.config/starship.toml
