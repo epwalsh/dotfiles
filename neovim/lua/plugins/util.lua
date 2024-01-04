@@ -45,6 +45,8 @@ return {
     end,
   },
 
+  { "echasnovski/mini.doc", version = "*" },
+
   {
     dir = "~/github.com/epwalsh/pomo.nvim",
     name = "pomo",
