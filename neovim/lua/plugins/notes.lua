@@ -42,8 +42,6 @@ return {
       "nvim-cmp",
       "telescope.nvim",
       -- "mini.pick",
-      -- "tabular",
-      -- "vim-markdown",
       -- "junegunn/fzf.vim",
       -- "fzf-lua",
     },
@@ -72,11 +70,7 @@ return {
       workspaces = {
         {
           name = "notes",
-          path = "~/notes",
-        },
-        {
-          name = "test",
-          path = "~/obsidian/paradigm shifted",
+          path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes",
         },
       },
 
@@ -186,6 +180,8 @@ return {
         end
         return out
       end,
+
+      -- detect_all_file_extensions = true,
 
       yaml_parser = "native",
     },
