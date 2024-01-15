@@ -80,11 +80,12 @@ return {
     lazy = true,
     ft = "python",
   },
+
   {
     "jalvesaq/vimcmdline",
     lazy = true,
     ft = { "python" },
-    init = function()
+    config = function(_)
       local wk = require "which-key"
 
       vim.g.cmdline_term_height = 15

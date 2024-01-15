@@ -17,3 +17,6 @@ vim.api.nvim_create_user_command("ImgPaste", function(data)
     return string.format("![%s](%s)", path.filename, tostring(path))
   end)
 end, { nargs = "?", complete = "file" })
+
+-- Start an ipython session
+vim.keymap.set("n", "<leader>s", ":belowright 10split<cr>:terminal ipython<cr>i", { silent = true })
