@@ -19,7 +19,6 @@ return {
   {
     "tpope/vim-fugitive",
     lazy = false,
-    -- cmd = { "Git" },
   },
 
   -- Do MORE git stuff from within neovim.
