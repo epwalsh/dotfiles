@@ -60,6 +60,7 @@ return {
           b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
           p = { "<cmd>ObsidianPasteImg<cr>", "Paste image" },
           q = { "<cmd>ObsidianQuickSwitch<cr>", "Quick switch" },
+          s = { "<cmd>ObsidianSearch<cr>", "Search" },
         },
       }
 
@@ -72,6 +73,10 @@ return {
           name = "notes",
           path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes",
         },
+        -- {
+        --   name = "repro",
+        --   path = "~/Downloads/repro",
+        -- },
       },
 
       notes_subdir = "notes",
