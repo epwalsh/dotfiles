@@ -51,14 +51,18 @@ return {
       },
     },
     init = function()
-      -- HACK: seems to be a bug at the moment
-      -- Similar issue to https://www.reddit.com/r/neovim/comments/ymtk2i/treesitter_highlighting_does_not_work/
       local group = vim.api.nvim_create_augroup("treesitter-highlight", { clear = true })
+
       vim.api.nvim_create_autocmd({ "BufEnter" }, {
         group = group,
         pattern = "*",
         callback = function()
+          -- HACK: seems to be a bug at the moment
+          -- Similar issue to https://www.reddit.com/r/neovim/comments/ymtk2i/treesitter_highlighting_does_not_work/
           vim.cmd ":TSEnable highlight"
+
+          -- Enable strikethrough for markdown.
+          vim.api.nvim_set_hl(0, "@text.strike.markdown_inline", { link = "htmlStrike" })
         end,
       })
     end,
