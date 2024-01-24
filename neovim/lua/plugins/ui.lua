@@ -62,18 +62,36 @@ return {
         -- types = { bold = true },
       },
       custom_highlights = {
-        -- These don't seem to work when set here. See below.
-        -- CursorLine = { ctermbg = 236 },
-        -- ColorColumn = { ctermbg = 236 },
+        CursorLine = {
+          bg = "#303030",
+        },
+        ColorColumn = {
+          bg = "#303030",
+        },
+        SpellBad = {
+          undercurl = true,
+        },
+      },
+      disable = {
+        background = true, -- enable transparency
       },
     },
     init = function()
       vim.opt.background = "dark"
       vim.g.material_style = "oceanic"
       vim.cmd "colorscheme material"
-      vim.cmd "highlight CursorLine ctermbg=236"
-      vim.cmd "highlight CursorLineNr cterm=None"
-      vim.cmd "highlight ColorColumn ctermbg=236"
+
+      local wk = require "which-key"
+
+      wk.register {
+        ["<leader>t"] = {
+          name = "Theme",
+          s = {
+            "<cmd>lua require('material.functions').find_style()<cr>",
+            "Switch",
+          },
+        },
+      }
     end,
   },
 
