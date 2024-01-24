@@ -77,6 +77,9 @@ return {
         SpellLocal = {
           undercurl = true,
         },
+        SpellRare = {
+          undercurl = true,
+        },
       },
       disable = {
         background = true, -- enable transparency
