@@ -71,6 +71,12 @@ return {
         SpellBad = {
           undercurl = true,
         },
+        SpellCap = {
+          undercurl = true,
+        },
+        SpellLocal = {
+          undercurl = true,
+        },
       },
       disable = {
         background = true, -- enable transparency
