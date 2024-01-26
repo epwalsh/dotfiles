@@ -8,8 +8,8 @@ M.OS = {
   Darwin = "Darwin",
 }
 
----Get the running operating system.
----Reference https://vi.stackexchange.com/a/2577/33116
+--- Get the running operating system.
+--- Reference https://vi.stackexchange.com/a/2577/33116
 ---@return OS
 M.get_os = function()
   if vim.fn.has "win32" == 1 then
@@ -23,7 +23,7 @@ M.get_os = function()
   return this_os
 end
 
----Insert text at current cursor position.
+--- Insert text at current cursor position.
 ---@param text string
 M.insert_text = function(text)
   local curpos = vim.fn.getcurpos()
@@ -60,6 +60,7 @@ M.insert_text = function(text)
 end
 
 ---@param bufnr integer
+---
 ---@return string
 M.buf_get_full_text = function(bufnr)
   local text = table.concat(vim.api.nvim_buf_get_lines(bufnr, 0, -1, true), "\n")
@@ -83,6 +84,53 @@ M.get_visual_selection = function()
   vim.fn.setreg("a", a_orig)
 
   return text
+end
+
+--- Run a system command through 'vim.fn.system'. Returns the exit code and output.
+---
+---@param cmd string|string[]
+---
+---@return integer
+---@return string|?
+M.system = function(cmd)
+  local output = vim.fn.system(cmd)
+  return vim.api.nvim_get_vvar "shell_error", output
+end
+
+--- Strip whitespace from the ends of a string.
+---@param str string
+---
+---@return string
+M.strip_whitespace = function(str)
+  return M.rstrip_whitespace(M.lstrip_whitespace(str))
+end
+
+--- Strip whitespace from the right end of a string.
+---@param str string
+---
+---@return string
+M.rstrip_whitespace = function(str)
+  str = string.gsub(str, "%s+$", "")
+  return str
+end
+
+--- Strip whitespace from the left end of a string.
+---
+---@param str string
+---@param limit integer|?
+---
+---@return string
+M.lstrip_whitespace = function(str, limit)
+  if limit ~= nil then
+    local num_found = 0
+    while num_found < limit do
+      str = string.gsub(str, "^%s", "")
+      num_found = num_found + 1
+    end
+  else
+    str = string.gsub(str, "^%s+", "")
+  end
+  return str
 end
 
 return M
