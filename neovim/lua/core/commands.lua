@@ -46,6 +46,8 @@ vim.api.nvim_create_user_command("GdeleteBranch", function()
 
   if has_upstream_remote then
     vim.cmd("Git pull --rebase upstream " .. default_branch)
+  else
+    vim.cmd "Git pull"
   end
 
   vim.cmd("Git branch -d " .. current_branch)
