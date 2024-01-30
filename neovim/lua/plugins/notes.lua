@@ -110,6 +110,18 @@ return {
         return tostring(os.time()) .. "-" .. suffix
       end,
 
+      image_name_func = function()
+        ---@type obsidian.Client
+        local client = require("obsidian").get_client()
+
+        local note = client:current_note()
+        if note then
+          return string.format("%s-", note.id)
+        else
+          return string.format("%s-", os.time())
+        end
+      end,
+
       completion = {
         nvim_cmp = true,
         min_chars = 2,
