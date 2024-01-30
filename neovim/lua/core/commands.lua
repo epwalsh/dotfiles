@@ -1,11 +1,18 @@
 local util = require "core.util"
 local log = require "core.log"
 
+---------------------
+-- Timer commands. --
+---------------------
 vim.api.nvim_create_user_command("TimerStartWork", "TimerStart 25m Work", { nargs = 0 })
 
 vim.api.nvim_create_user_command("TimerStartStretch", "TimerStart 5m Stretching", { nargs = 0 })
 
 vim.api.nvim_create_user_command("TimerStartBreak", "TimerStart 5m Break", { nargs = 0 })
+
+-------------------
+-- Git commands. --
+-------------------
 
 vim.api.nvim_create_user_command("GcreateBranch", function(data)
   local branch_name = data.args
@@ -57,3 +64,40 @@ end, { nargs = 0 })
 vim.api.nvim_create_user_command("Gbranch", function(_)
   vim.cmd "Telescope git_branches"
 end, { nargs = 0 })
+
+------------------------
+-- Obsidian commands. --
+------------------------
+
+vim.api.nvim_create_user_command("PaperMetadata", function(ev)
+  local curl = require "plenary.curl"
+
+  -- Get `obsidian.Client` instance.
+  ---@type obsidian.Client
+  local client = require("obsidian").get_client()
+
+  local corpus_id = assert(tonumber(ev.args))
+
+  local response = curl.get {
+    url = string.format("https://api.semanticscholar.org/graph/v1/paper/CorpusId:%s?fields=tldr,title", corpus_id),
+    accept = "application/json",
+  }
+  assert(response.status == 200)
+  local data = vim.json.decode(response.body)
+
+  local note = assert(client:current_note())
+
+  -- Update frontmatter metadata.
+  note:add_tag "paper"
+  note:add_alias(data.title .. " (paper)")
+  note:add_field("corpus_id", corpus_id)
+  note:add_field("url", string.format("https://api.semanticscholor.org/CorpusID:%s", corpus_id))
+  note:add_field("tldr", data.tldr.text)
+
+  -- Write frontmatter to buffer.
+  if note:save_to_buffer() then
+    log.info "Updated paper metadata"
+  else
+    log.info "Paper metadata already up-to-date"
+  end
+end, { nargs = 1 })
