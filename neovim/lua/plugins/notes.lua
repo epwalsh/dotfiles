@@ -73,11 +73,13 @@ return {
           name = "notes",
           path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes",
         },
-        -- {
-        --   name = "repro",
-        --   path = "~/Downloads/repro",
-        -- },
+        {
+          name = "demo",
+          path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/demo",
+        },
       },
+
+      detect_cwd = true,
 
       notes_subdir = "notes",
 

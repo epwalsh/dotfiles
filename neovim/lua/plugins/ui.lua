@@ -188,6 +188,7 @@ return {
       -- to prevent cursor flickering
       stages = "static",
       level = vim.log.levels.DEBUG,
+      timeout = 2000,
       -- fps = 10,
     },
   },
