@@ -56,11 +56,12 @@ return {
         ["<leader>o"] = {
           name = "Obsidian",
           o = { "<cmd>ObsidianOpen<cr>", "Open note" },
-          t = { "<cmd>ObsidianToday<cr>", "Daily Note" },
+          d = { "<cmd>ObsidianToday<cr>", "Daily Note" },
           b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
           p = { "<cmd>ObsidianPasteImg<cr>", "Paste image" },
           q = { "<cmd>ObsidianQuickSwitch<cr>", "Quick switch" },
           s = { "<cmd>ObsidianSearch<cr>", "Search" },
+          t = { "<cmd>ObsidianTags<cr>", "Tags" },
         },
       }
 

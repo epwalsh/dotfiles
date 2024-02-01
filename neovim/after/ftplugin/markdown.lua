@@ -11,6 +11,8 @@ vim.opt_local.linebreak = true
 vim.opt_local.list = false
 vim.opt_local.omnifunc = ""
 vim.opt_local.conceallevel = 2
+vim.opt_local.foldmethod = "expr"
+vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.api.nvim_create_user_command("ImgPaste", function(data)
   paste_img(data.args, "assets/imgs", function(path)
