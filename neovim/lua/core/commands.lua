@@ -71,27 +71,36 @@ end, { nargs = 0 })
 
 vim.api.nvim_create_user_command("PaperMetadata", function(ev)
   local curl = require "plenary.curl"
+  local obsidian = require "obsidian"
 
   -- Get `obsidian.Client` instance.
   ---@type obsidian.Client
-  local client = require("obsidian").get_client()
+  local client = obsidian.get_client()
+  local note = assert(client:current_note())
 
-  local corpus_id = assert(tonumber(ev.args))
+  ---@type integer|string
+  local corpus_id
+  if ev.args and string.len(ev.args) > 0 then
+    corpus_id = assert(tonumber(ev.args))
+  elseif note.metadata and note.metadata.corpus_id then
+    corpus_id = note.metadata.corpus_id
+  else
+    log.error "please provide the semantic scholar corpus ID"
+    return
+  end
 
   local response = curl.get {
-    url = string.format("https://api.semanticscholar.org/graph/v1/paper/CorpusId:%s?fields=tldr,title", corpus_id),
+    url = string.format("https://api.semanticscholar.org/graph/v1/paper/CorpusId:%s?fields=tldr,title,url", corpus_id),
     accept = "application/json",
   }
   assert(response.status == 200)
   local data = vim.json.decode(response.body)
 
-  local note = assert(client:current_note())
-
   -- Update frontmatter metadata.
   note:add_tag "paper"
   note:add_alias(data.title .. " (paper)")
   note:add_field("corpus_id", corpus_id)
-  note:add_field("url", string.format("https://api.semanticscholor.org/CorpusID:%s", corpus_id))
+  note:add_field("url", data.url)
   note:add_field("tldr", data.tldr.text)
 
   -- Write frontmatter to buffer.
@@ -100,4 +109,4 @@ vim.api.nvim_create_user_command("PaperMetadata", function(ev)
   else
     log.info "Paper metadata already up-to-date"
   end
-end, { nargs = 1 })
+end, { nargs = "?" })
