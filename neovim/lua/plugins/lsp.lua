@@ -5,6 +5,7 @@ return {
   {
     "folke/neodev.nvim",
     lazy = true,
+    version = "*",
     ft = "lua",
     opts = {
       library = {

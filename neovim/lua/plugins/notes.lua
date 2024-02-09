@@ -77,6 +77,21 @@ return {
         {
           name = "demo",
           path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/demo",
+          overrides = {
+            daily_notes = {
+              date_format = "%Y-%m-%d",
+              folder = "notes/dailies",
+            },
+            completion = {
+              nvim_cmp = true,
+              min_chars = 2,
+              max_suggestions = nil,
+              prepend_note_path = true,
+              prepend_note_id = false,
+              use_path_only = false,
+              new_notes_location = "notes_subdir",
+            },
+          },
         },
         {
           name = "no-vault",

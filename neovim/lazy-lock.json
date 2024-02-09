@@ -29,7 +29,7 @@
   "material.nvim": { "branch": "main", "commit": "22a92aae1bba52cb8d34771e41e132ed0634bef5" },
   "mini.doc": { "branch": "main", "commit": "c14e342247d213e02287c8e80a51673f313c9153" },
   "mini.pick": { "branch": "main", "commit": "95c15bb348daa810272ffa03dc216f73143aa6fb" },
-  "neodev.nvim": { "branch": "main", "commit": "b49b976cf2c28cd8283e9d74cb10885f6dd9e3d0" },
+  "neodev.nvim": { "branch": "main", "commit": "da1562e1e3df0e994ddc52cb4ba22376a5d7f2fc" },
   "nerdcommenter": { "branch": "master", "commit": "e361a44230860d616f799a337bc58f5218ab6e9c" },
   "noice.nvim": { "branch": "main", "commit": "bf67d70bd7265d075191e7812d8eb42b9791f737" },
   "nui.nvim": { "branch": "main", "commit": "35da9ca1de0fc4dda96c2e214d93d363c145f418" },
