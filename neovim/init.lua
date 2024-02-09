@@ -33,3 +33,4 @@ require("lazy").setup("plugins", {
 require "core.ft_detect"
 require "core.mappings"
 require "core.commands"
+require "core.autocommands"

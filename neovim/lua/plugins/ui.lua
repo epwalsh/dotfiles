@@ -295,6 +295,13 @@ return {
           enable = false,
         },
       }
+
+      vim.api.nvim_set_hl(0, "GitSignsAdd", { fg = "#e146aa" })
+      vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#e146aa" })
+      vim.api.nvim_set_hl(0, "GitSignsDelete", { fg = "#c1440e" })
+      vim.api.nvim_set_hl(0, "GitSignsChangedelete", { fg = "#c1440e" })
+      vim.api.nvim_set_hl(0, "GitSignsTopdelete", { fg = "#c1440e" })
+      vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "#e146aa" })
     end,
   },
 
