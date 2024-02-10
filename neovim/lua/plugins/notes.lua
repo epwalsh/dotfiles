@@ -1,16 +1,5 @@
 return {
   {
-    "junegunn/fzf.vim",
-    lazy = true,
-    dependencies = {
-      "junegunn/fzf",
-    },
-    build = function()
-      vim.api.nvim_call_function("fzf#install", {})
-    end,
-  },
-
-  {
     "ibhagwan/fzf-lua",
     lazy = true,
     -- optional for icon support
@@ -42,7 +31,6 @@ return {
       "nvim-cmp",
       "telescope.nvim",
       -- "mini.pick",
-      -- "junegunn/fzf.vim",
       -- "fzf-lua",
     },
     config = function(_, opts)
@@ -114,10 +102,11 @@ return {
 
       notes_subdir = "notes",
 
-      finder = "telescope.nvim",
-      -- finder = "fzf-lua",
-      -- finder = "fzf.vim",
-      -- finder = "mini.pick",
+      picker = {
+        name = "telescope.nvim",
+        -- name = "mini.pick",
+        -- name = "fzf-lua",
+      },
 
       sort_by = "modified",
       sort_reversed = true,
