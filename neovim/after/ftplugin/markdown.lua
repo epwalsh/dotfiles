@@ -13,6 +13,7 @@ vim.opt_local.omnifunc = ""
 vim.opt_local.conceallevel = 2
 vim.opt_local.foldmethod = "expr"
 vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt_local.foldlevel = 99
 
 vim.api.nvim_create_user_command("ImgPaste", function(data)
   paste_img(data.args, "assets/imgs", function(path)

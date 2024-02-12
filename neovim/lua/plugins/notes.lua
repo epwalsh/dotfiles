@@ -61,6 +61,7 @@ return {
         {
           name = "notes",
           path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes",
+          -- path = "~/Obsidian/notes",
         },
         {
           name = "demo",

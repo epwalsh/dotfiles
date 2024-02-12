@@ -189,7 +189,8 @@ return {
           fg = { builtin.live_grep, "Find in files" },
           fb = { builtin.buffers, "Find buffers" },
           fh = { builtin.help_tags, "Find help tags" },
-          br = { ":Telescope file_browser<cr>", "Browse files" },
+          fd = { ":Telescope file_browser<cr>", "Find directories" },
+          fc = { builtin.commands, "Find commands" },
         },
       }
     end,
