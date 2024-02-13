@@ -50,8 +50,36 @@ return {
           q = { "<cmd>ObsidianQuickSwitch<cr>", "Quick switch" },
           s = { "<cmd>ObsidianSearch<cr>", "Search" },
           t = { "<cmd>ObsidianTags<cr>", "Tags" },
+          l = { "<cmd>ObsidianLinks<cr>", "Links" },
         },
       }
+
+      wk.register({
+        ["<leader>o"] = {
+          name = "Obsidian",
+          e = {
+            function()
+              local title = vim.fn.input { prompt = "Enter title (optional): " }
+              vim.cmd("ObsidianExtractNote " .. title)
+            end,
+            "Extract text into new note",
+          },
+          l = {
+            function()
+              vim.cmd "ObsidianLink"
+            end,
+            "Link text to an existing note",
+          },
+          n = {
+            function()
+              vim.cmd "ObsidianLinkNew"
+            end,
+            "Link text to a new note",
+          },
+        },
+      }, {
+        mode = "v",
+      })
 
       -- Extra custom commands.
       vim.api.nvim_create_user_command("Weekdays", "ObsidianTemplate weekdays.md", {})
