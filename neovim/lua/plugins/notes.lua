@@ -99,12 +99,7 @@ return {
               date_format = "%Y-%m-%d",
               folder = "notes/dailies",
             },
-            completion = {
-              nvim_cmp = true,
-              min_chars = 2,
-              max_suggestions = nil,
-              new_notes_location = "notes_subdir",
-            },
+            new_notes_location = "notes_subdir",
           },
         },
         {
@@ -115,9 +110,7 @@ return {
           strict = true,
           overrides = {
             notes_subdir = vim.NIL,
-            completion = {
-              new_notes_location = "current_dir",
-            },
+            new_notes_location = "current_dir",
             templates = {
               subdir = vim.NIL,
             },
@@ -170,11 +163,12 @@ return {
         end
       end,
 
+      new_notes_location = "notes_subdir",
+
       completion = {
         nvim_cmp = true,
         min_chars = 2,
         max_suggestions = nil,
-        new_notes_location = "notes_subdir",
       },
 
       templates = {
