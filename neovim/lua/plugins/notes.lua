@@ -97,7 +97,7 @@ return {
           overrides = {
             daily_notes = {
               date_format = "%Y-%m-%d",
-              folder = "notes/dailies",
+              folder = "daily",
             },
             new_notes_location = "notes_subdir",
           },
