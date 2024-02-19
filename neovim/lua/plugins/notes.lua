@@ -1,3 +1,7 @@
+local picker = "telescope.nvim"
+-- local picker = "mini.pick"
+-- local picker = "fzf-lua"
+
 return {
   {
     "ibhagwan/fzf-lua",
@@ -29,9 +33,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-cmp",
-      "telescope.nvim",
-      -- "mini.pick",
-      -- "fzf-lua",
+      picker,
     },
     config = function(_, opts)
       -- Setup obsidian.nvim
@@ -124,9 +126,7 @@ return {
       notes_subdir = "notes",
 
       picker = {
-        name = "telescope.nvim",
-        -- name = "mini.pick",
-        -- name = "fzf-lua",
+        name = picker,
       },
 
       sort_by = "modified",
