@@ -147,4 +147,5 @@ M.find_buffer_by_name = function(name)
   end
   return nil
 end
+
 return M

@@ -45,12 +45,14 @@ return {
           name = "Obsidian",
           o = { "<cmd>ObsidianOpen<cr>", "Open note" },
           d = { "<cmd>ObsidianToday<cr>", "Daily Note" },
-          b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
           p = { "<cmd>ObsidianPasteImg<cr>", "Paste image" },
           q = { "<cmd>ObsidianQuickSwitch<cr>", "Quick switch" },
           s = { "<cmd>ObsidianSearch<cr>", "Search" },
           t = { "<cmd>ObsidianTags<cr>", "Tags" },
           l = { "<cmd>ObsidianLinks<cr>", "Links" },
+          b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
+          -- b = { "<cmd>luafile lua/backlinks.lua<cr>", "Backlinks" },
+          m = { "<cmd>ObsidianTemplate<cr>", "Template" },
         },
       }
 
@@ -215,6 +217,8 @@ return {
 
       daily_notes = {
         date_format = "%Y-%m-%d",
+        folder = "notes/daily",
+        alias_format = "%A %B %-d, %Y",
         -- template = "nvim-daily.md",
       },
 
