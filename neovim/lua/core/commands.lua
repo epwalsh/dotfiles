@@ -70,10 +70,8 @@ end, { nargs = 0 })
 ------------------------
 
 vim.api.nvim_create_user_command("PaperMetadata", function(ev)
-  local curl = require "plenary.curl"
   local obsidian = require "obsidian"
 
-  -- Get `obsidian.Client` instance.
   ---@type obsidian.Client
   local client = obsidian.get_client()
   local note = assert(client:current_note())
@@ -89,24 +87,31 @@ vim.api.nvim_create_user_command("PaperMetadata", function(ev)
     return
   end
 
-  local response = curl.get {
-    url = string.format("https://api.semanticscholar.org/graph/v1/paper/CorpusId:%s?fields=tldr,title,url", corpus_id),
-    accept = "application/json",
-  }
-  assert(response.status == 200)
-  local data = vim.json.decode(response.body)
-
-  -- Update frontmatter metadata.
-  note:add_tag "paper"
-  note:add_alias(data.title .. " (paper)")
-  note:add_field("corpus_id", corpus_id)
-  note:add_field("url", data.url)
-  note:add_field("tldr", data.tldr.text)
-
-  -- Write frontmatter to buffer.
+  local data = util.get_paper_metadata(corpus_id)
+  util.update_note_with_paper_metadata(note, data)
   if note:save_to_buffer() then
     log.info "Updated paper metadata"
   else
     log.info "Paper metadata already up-to-date"
   end
 end, { nargs = "?" })
+
+vim.api.nvim_create_user_command("NewPaper", function(ev)
+  local obsidian = require "obsidian"
+
+  ---@type obsidian.Client
+  local client = obsidian.get_client()
+  local corpus_id = assert(tonumber(ev.args))
+
+  -- Get paper metadata.
+  local data = util.get_paper_metadata(corpus_id)
+  local note_title = data.title .. " (paper)"
+
+  -- Create new note and add metadata.
+  local note = client:new_note(note_title)
+  util.update_note_with_paper_metadata(note, data)
+  note:save()
+
+  -- Insert link to the note.
+  util.insert_text(client:format_link(note, { label = note_title }))
+end, { nargs = 1 })

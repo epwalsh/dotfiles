@@ -28,7 +28,6 @@ end
 M.insert_text = function(text)
   local curpos = vim.fn.getcurpos()
   local line_num, line_col = curpos[2], curpos[3]
-  local indent = string.rep(" ", line_col)
 
   -- Convert text to lines table so we can handle multi-line strings.
   local lines = {}
@@ -36,27 +35,7 @@ M.insert_text = function(text)
     lines[#lines + 1] = line
   end
 
-  for line_index, line in pairs(lines) do
-    local current_line_num = line_num + line_index - 1
-    local current_line = vim.fn.getline(current_line_num)
-    assert(type(current_line) == "string")
-
-    -- Since there's no column 0, remove extra space when current line is blank.
-    if current_line == "" then
-      indent = indent:sub(1, -2)
-    end
-
-    local pre_txt = current_line:sub(1, line_col)
-    local post_txt = current_line:sub(line_col + 1, -1)
-    local inserted_txt = pre_txt .. line .. post_txt
-
-    vim.fn.setline(current_line_num, inserted_txt)
-
-    -- Create new line so inserted_txt doesn't replace next lines
-    if line_index ~= #lines then
-      vim.fn.append(current_line_num, indent)
-    end
-  end
+  vim.api.nvim_buf_set_text(0, line_num - 1, line_col, line_num - 1, line_col, lines)
 end
 
 ---@param bufnr integer
@@ -146,6 +125,39 @@ M.find_buffer_by_name = function(name)
     end
   end
   return nil
+end
+
+---@class PaperMetadata
+---
+---@field corpus_id string|integer
+---@field title string
+---@field url string
+---@field tldr { text: string }
+
+---@param corpus_id integer|string
+---
+---@return PaperMetadata
+M.get_paper_metadata = function(corpus_id)
+  local curl = require "plenary.curl"
+
+  local response = curl.get {
+    url = string.format("https://api.semanticscholar.org/graph/v1/paper/CorpusId:%s?fields=tldr,title,url", corpus_id),
+    accept = "application/json",
+  }
+  assert(response.status == 200)
+  local data = vim.json.decode(response.body)
+  data.corpus_id = corpus_id
+  return data
+end
+
+---@param note obsidian.Note
+---@param data PaperMetadata
+M.update_note_with_paper_metadata = function(note, data)
+  note:add_tag "paper"
+  note:add_alias(data.title .. " (paper)")
+  note:add_field("corpus_id", data.corpus_id)
+  note:add_field("url", data.url)
+  note:add_field("tldr", data.tldr.text)
 end
 
 return M

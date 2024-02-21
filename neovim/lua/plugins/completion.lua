@@ -31,6 +31,16 @@ return {
   },
 
   {
+    "Gelio/cmp-natdat",
+    config = function()
+      require("cmp_natdat").setup {
+        cmp_kind_text = "NatDat",
+        highlight_group = "Red",
+      }
+    end,
+  },
+
+  {
     "hrsh7th/nvim-cmp",
     lazy = true,
     event = { "InsertEnter" },
@@ -49,6 +59,7 @@ return {
       "petertriho/cmp-git",
       "zbirenbaum/copilot-cmp",
       -- "saecki/crates.nvim",
+      "Gelio/cmp-natdat",
     },
     opts = {},
     config = function(_, _)
@@ -98,6 +109,7 @@ return {
           { name = "dictionary", group_index = 1 },
           { name = "git", group_index = 1 },
           { name = "copilot", group_index = 1 },
+          { name = "natdat", group_index = 1 },
         },
         formatting = {
           format = lspkind.cmp_format {
@@ -113,6 +125,7 @@ return {
             },
             symbol_map = {
               Copilot = "",
+              NatDat = "📅",
             },
           },
         },
