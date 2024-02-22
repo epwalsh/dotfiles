@@ -103,3 +103,5 @@ alias mux tmuxinator
 if [ -f '/Users/petew/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/petew/Downloads/google-cloud-sdk/path.fish.inc'; end
 
 set -gx EXTENSION_WIKI_LINK 1
+
+alias nav 'nvim notes/nav.md'

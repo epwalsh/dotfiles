@@ -115,3 +115,11 @@ vim.api.nvim_create_user_command("NewPaper", function(ev)
   -- Insert link to the note.
   util.insert_text(client:format_link(note, { label = note_title }))
 end, { nargs = 1 })
+
+vim.api.nvim_create_user_command("Nav", function()
+  vim.cmd "e notes/nav.md"
+end, { nargs = 0 })
+
+vim.api.nvim_create_user_command("Hub", function()
+  vim.cmd "e notes/hub.md"
+end, { nargs = 0 })
