@@ -103,24 +103,24 @@ return {
               date_format = "%Y-%m-%d",
               folder = "daily",
             },
-            new_notes_location = "notes_subdir",
-          },
-        },
-        {
-          name = "no-vault",
-          path = function()
-            return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
-          end,
-          strict = true,
-          overrides = {
-            notes_subdir = vim.NIL,
             new_notes_location = "current_dir",
-            templates = {
-              subdir = vim.NIL,
-            },
-            disable_frontmatter = true,
           },
         },
+        -- {
+        --   name = "no-vault",
+        --   path = function()
+        --     return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
+        --   end,
+        --   strict = true,
+        --   overrides = {
+        --     notes_subdir = vim.NIL,
+        --     new_notes_location = "current_dir",
+        --     templates = {
+        --       subdir = vim.NIL,
+        --     },
+        --     disable_frontmatter = true,
+        --   },
+        -- },
       },
 
       notes_subdir = "notes",
