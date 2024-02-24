@@ -282,10 +282,6 @@ return {
           ObsidianHighlightText = { bg = "#75662e" },
         },
       },
-
-      -- detect_all_file_extensions = true,
-
-      yaml_parser = "native",
     },
   },
 }
