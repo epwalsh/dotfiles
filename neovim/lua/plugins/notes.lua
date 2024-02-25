@@ -102,6 +102,7 @@ return {
             daily_notes = {
               date_format = "%Y-%m-%d",
               folder = "daily",
+              template = "daily.md",
             },
             new_notes_location = "current_dir",
           },

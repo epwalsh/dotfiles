@@ -35,7 +35,7 @@ M.insert_text = function(text)
     lines[#lines + 1] = line
   end
 
-  vim.api.nvim_buf_set_text(0, line_num - 1, line_col, line_num - 1, line_col, lines)
+  vim.api.nvim_buf_set_text(0, line_num - 1, line_col - 1, line_num - 1, line_col - 1, lines)
 end
 
 ---@param bufnr integer
