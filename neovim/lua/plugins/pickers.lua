@@ -58,6 +58,7 @@ return {
           fh = { builtin.help_tags, "Find help tags" },
           fd = { ":Telescope file_browser<cr>", "Find directories" },
           fc = { builtin.commands, "Find commands" },
+          ft = { ":TodoTelescope keywords=TODO<cr>", "Find TODO comments" },
         },
       }
     end,

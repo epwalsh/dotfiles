@@ -91,6 +91,12 @@ return {
   },
 
   {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+
+  {
     "skywind3000/asyncrun.vim",
     lazy = true,
     cmd = { "AsyncRun", "AsyncStop", "AsyncReset" },
