@@ -1,5 +1,11 @@
 return {
   {
+    "ervandew/supertab",
+    lazy = true,
+    event = { "InsertEnter" },
+  },
+
+  {
     "zbirenbaum/copilot.lua",
     lazy = true,
     cmd = { "Copilot" },
@@ -37,6 +43,15 @@ return {
         cmp_kind_text = "NatDat",
         highlight_group = "Red",
       }
+    end,
+  },
+
+  {
+    "hrsh7th/vim-vsnip",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
+    init = function()
+      vim.g.vsnip_snippet_dir = vim.fn.expand "~" .. "/dotfiles/neovim/snippets"
     end,
   },
 

@@ -1,7 +1,4 @@
 return {
-  ---------------
-  -- lspconfig --
-  ---------------
   {
     "folke/neodev.nvim",
     lazy = true,
@@ -206,9 +203,6 @@ return {
     end,
   },
 
-  -----------
-  -- Mason --
-  -----------
   {
     "williamboman/mason.nvim",
     lazy = true,
@@ -245,9 +239,33 @@ return {
     end,
   },
 
-  -------------
-  -- Trouble --
-  -------------
+  {
+    "smjonas/inc-rename.nvim",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
+    -- cmd = "IncRename",
+    config = function(_, _)
+      require("inc_rename").setup()
+    end,
+    init = function()
+      local wk = require "which-key"
+
+      wk.register({
+        ["<leader>"] = {
+          name = "Rename",
+          r = {
+            function()
+              return ":IncRename " .. vim.fn.expand "<cword>"
+            end,
+            "Rename",
+          },
+        },
+      }, {
+        expr = true,
+      })
+    end,
+  },
+
   {
     "folke/trouble.nvim",
     lazy = true,

@@ -1,6 +1,35 @@
 ---@diagnostic disable: inject-field
 
 return {
+  -- Helper for keybindings.
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      disable = {
+        -- disable for vim ft so it's disabled for the command buffer ('q:')
+        filetypes = { "vim" },
+      },
+    },
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+  },
+
+  -- Quickly jump around the buffer.
+  {
+    "ggandor/leap.nvim",
+    lazy = true,
+    event = { "BufEnter" },
+    config = function()
+      local leap = require "leap"
+      vim.keymap.set({ "n" }, "s", "<Plug>(leap-forward-to)")
+      vim.keymap.set({ "n" }, "S", "<Plug>(leap-backward-to)")
+      leap.opts.case_sensitive = true
+    end,
+  },
+
   -- Opens a link on GitHub to current line.
   {
     "ruanyl/vim-gh-line",
@@ -32,6 +61,33 @@ return {
       "kyazdani42/nvim-web-devicons",
     },
     opts = {},
+  },
+
+  -- Toggle comments.
+  {
+    "scrooloose/nerdcommenter",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
+    init = function()
+      -- Add spaces after comment delimiters by default
+      vim.g.NERDSpaceDelims = 1
+      -- Use compact syntax for prettified multi-line comments
+      vim.g.NERDCompactSexyComs = 1
+      -- Align line-wise comment delimiters flush left instead of following code indentation
+      vim.g.NERDDefaultAlign = "left"
+    end,
+  },
+
+  {
+    "jiangmiao/auto-pairs",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
+  },
+
+  {
+    "tpope/vim-surround",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
   },
 
   {

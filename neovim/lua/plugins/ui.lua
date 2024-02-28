@@ -1,7 +1,5 @@
 return {
-  -----------------
-  -- Status line --
-  -----------------
+  -- Status line.
   {
     "nvim-lualine/lualine.nvim",
     lazy = false,
@@ -37,9 +35,7 @@ return {
     },
   },
 
-  -----------
-  -- Theme --
-  -----------
+  -- Theme.
   {
     "marko-cerovac/material.nvim",
     lazy = false,
@@ -104,9 +100,7 @@ return {
     end,
   },
 
-  -------------
-  -- Startup --
-  -------------
+  -- Startup UI.
   {
     "goolord/alpha-nvim",
     lazy = true,
@@ -135,23 +129,7 @@ return {
     end,
   },
 
-  -- Noice.nvim handles this.
-  -- {
-  --   "j-hui/fidget.nvim",
-  --   lazy = true,
-  --   enabled = false,
-  --   event = { "BufReadPre", "BufNewFile" },
-  --   opts = {
-  --     window = {
-  --       relative = "editor",
-  --       blend = 30,
-  --     },
-  --   },
-  -- },
-
-  ---------------------------------------------
-  -- UI for messages, cmdline, and popupmenu --
-  ---------------------------------------------
+  -- UI for messages, cmdline, and popupmenu.
   {
     "folke/noice.nvim",
     lazy = false,
@@ -182,6 +160,7 @@ return {
     },
   },
 
+  -- Pretty notifications.
   {
     "rcarriga/nvim-notify",
     opts = {
@@ -193,9 +172,7 @@ return {
     },
   },
 
-  -----------
-  -- Other --
-  -----------
+  -- Illuminate current word under cursor.
   {
     "RRethy/vim-illuminate",
     lazy = true,
@@ -216,6 +193,7 @@ return {
     end,
   },
 
+  -- Improves default vim.ui interfaces.
   {
     "stevearc/dressing.nvim",
     lazy = true,
@@ -242,12 +220,7 @@ return {
     end,
   },
 
-  -- {
-  --   "airblade/vim-gitgutter",
-  --   lazy = true,
-  --   event = { "BufEnter" },
-  -- },
-
+  -- Git status in the sign column as well current line blame.
   {
     "lewis6991/gitsigns.nvim",
     lazy = true,
@@ -305,18 +278,7 @@ return {
     end,
   },
 
-  {
-    "ggandor/leap.nvim",
-    lazy = true,
-    event = { "BufEnter" },
-    config = function()
-      local leap = require "leap"
-      vim.keymap.set({ "n" }, "s", "<Plug>(leap-forward-to)")
-      vim.keymap.set({ "n" }, "S", "<Plug>(leap-backward-to)")
-      leap.opts.case_sensitive = true
-    end,
-  },
-
+  -- Indent guides.
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",

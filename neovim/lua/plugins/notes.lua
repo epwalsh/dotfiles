@@ -4,24 +4,6 @@ local picker = "telescope.nvim"
 
 return {
   {
-    "ibhagwan/fzf-lua",
-    lazy = true,
-    -- optional for icon support
-    dependencies = {
-      "nvim-web-devicons",
-    },
-    config = function()
-      -- calling `setup` is optional for customization
-      require("fzf-lua").setup {}
-    end,
-  },
-
-  {
-    "echasnovski/mini.pick",
-    lazy = true,
-  },
-
-  {
     dir = "~/github.com/epwalsh/obsidian.nvim",
     name = "obsidian",
     lazy = true,
@@ -55,6 +37,7 @@ return {
           b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
           -- b = { "<cmd>luafile lua/backlinks.lua<cr>", "Backlinks" },
           m = { "<cmd>ObsidianTemplate<cr>", "Template" },
+          w = { "<cmd>ObsidianWorkspace<cr>", "Workspace" },
         },
       }
 
@@ -257,6 +240,7 @@ return {
           ["x"] = { char = "", hl_group = "ObsidianDone" },
           [">"] = { char = "", hl_group = "ObsidianRightArrow" },
           ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+          ["!"] = { char = "", hl_group = "ObsidianTilde" },
 
           -- [" "] = { char = "•", hl_group = "ObsidianTodo" },
           -- ["x"] = { char = "•", hl_group = "ObsidianDone" },
