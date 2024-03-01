@@ -108,9 +108,9 @@ vim.api.nvim_create_user_command("NewPaper", function(ev)
   local note_title = data.title .. " (paper)"
 
   -- Create new note and add metadata.
-  local note = client:new_note(note_title)
+  local note = client:create_note { title = note_title, no_write = true }
   util.update_note_with_paper_metadata(note, data)
-  note:save()
+  client:write_note(note)
 
   -- Insert link to the note.
   util.insert_text(client:format_link(note, { label = note_title }))
