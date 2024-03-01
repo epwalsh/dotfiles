@@ -230,6 +230,38 @@ return {
         return out
       end,
 
+      callbacks = {
+        -- Runs at the end of `require("obsidian").setup()`.
+        ---@param client obsidian.Client
+        ---@diagnostic disable-next-line: unused-local
+        post_setup = function(client) end,
+
+        -- Runs anytime you enter the buffer for a note.
+        ---@param client obsidian.Client
+        ---@param note obsidian.Note
+        ---@diagnostic disable-next-line: unused-local
+        enter_note = function(client, note)
+          if note.path.stem == "nav" then
+            vim.opt.wrap = false
+          end
+        end,
+
+        -- Runs right before writing the buffer for a note.
+        ---@param client obsidian.Client
+        ---@param note obsidian.Note
+        ---@diagnostic disable-next-line: unused-local
+        pre_write_note = function(client, note) end,
+
+        -- Runs anytime the workspace is set/changed.
+        ---@param client obsidian.Client
+        ---@param workspace obsidian.Workspace
+        ---@diagnostic disable-next-line: unused-local
+        post_set_workspace = function(client, workspace)
+          client.log.info("Changing directory to %s", workspace.path)
+          vim.cmd.cd(tostring(workspace.path))
+        end,
+      },
+
       ui = {
         enable = true, -- set to false to disable all additional syntax features
         update_debounce = 200, -- update delay after a text change (in milliseconds)
