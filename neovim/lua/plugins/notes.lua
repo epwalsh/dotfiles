@@ -9,8 +9,8 @@ return {
     lazy = true,
     ft = "markdown",
     -- event = {
-    --   "BufReadPre " .. vim.fn.expand "~" .. "/notes/**.md",
-    --   "BufNewFile " .. vim.fn.expand "~" .. "/notes/**.md",
+    --   "BufReadPre " .. vim.fn.resolve(vim.fn.expand "~/Obsidian/notes") .. "/*",
+    --   "BufNewFile " .. vim.fn.resolve(vim.fn.expand "~/Obsidian/notes") .. "/*",
     -- },
     dependencies = {
       "nvim-lua/plenary.nvim",
