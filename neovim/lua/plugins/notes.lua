@@ -257,8 +257,9 @@ return {
         ---@param workspace obsidian.Workspace
         ---@diagnostic disable-next-line: unused-local
         post_set_workspace = function(client, workspace)
-          client.log.info("Changing directory to %s", workspace.path)
-          vim.cmd.cd(tostring(workspace.path))
+          -- TODO: make sure this only runs when we're inside a vault.
+          -- client.log.info("Changing directory to %s", workspace.path)
+          -- vim.cmd.cd(tostring(workspace.path))
         end,
       },
 

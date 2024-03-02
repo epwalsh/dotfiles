@@ -18,6 +18,9 @@ return {
         },
       },
       pickers = {
+        -- defaults = {
+        --   theme = "dropdown",
+        -- },
         -- Default configuration for builtin pickers goes here:
         -- picker_name = {
         --   picker_config_key = value,
@@ -25,6 +28,15 @@ return {
         -- }
         -- Now the picker_config_key will be applied every time you call this
         -- builtin picker
+        find_files = {
+          theme = "dropdown",
+        },
+        grep_string = {
+          theme = "dropdown",
+        },
+        live_grep = {
+          theme = "dropdown",
+        },
       },
       extensions = {
         -- Your extension configuration goes here:
