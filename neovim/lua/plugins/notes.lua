@@ -122,6 +122,8 @@ return {
 
       -- disable_frontmatter = true,
 
+      wiki_link_func = "use_alias_only", -- works best with header anchor completion
+
       note_id_func = function(title)
         -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
         local suffix = ""
