@@ -55,7 +55,7 @@ return {
         ["<leader>o"] = {
           name = "Obsidian",
           o = { "<cmd>ObsidianOpen<cr>", "Open note" },
-          d = { "<cmd>ObsidianDailies<cr>", "Daily Notes" },
+          d = { "<cmd>ObsidianDailies<cr>", "Daily notes" },
           p = { "<cmd>ObsidianPasteImg<cr>", "Paste image" },
           q = { "<cmd>ObsidianQuickSwitch<cr>", "Quick switch" },
           s = { "<cmd>ObsidianSearch<cr>", "Search" },
@@ -65,6 +65,34 @@ return {
           -- b = { "<cmd>luafile lua/backlinks.lua<cr>", "Backlinks" },
           m = { "<cmd>ObsidianTemplate<cr>", "Template" },
           w = { "<cmd>ObsidianWorkspace<cr>", "Workspace" },
+          c = {
+            function()
+              local day_of_week = os.date "%A"
+              assert(type(day_of_week) == "string")
+
+              ---@type integer
+              local offset_start
+              if day_of_week == "Sunday" then
+                offset_start = 1
+              elseif day_of_week == "Monday" then
+                offset_start = 0
+              elseif day_of_week == "Tuesday" then
+                offset_start = -1
+              elseif day_of_week == "Wednesday" then
+                offset_start = -2
+              elseif day_of_week == "Thursday" then
+                offset_start = -3
+              elseif day_of_week == "Friday" then
+                offset_start = -4
+              elseif day_of_week == "Saturday" then
+                offset_start = 2
+              end
+              assert(offset_start)
+
+              vim.cmd(string.format("ObsidianDailies %d %d", offset_start, offset_start + 4))
+            end,
+            "Current week",
+          },
         },
       }
 
@@ -94,9 +122,6 @@ return {
       }, {
         mode = "v",
       })
-
-      -- Extra custom commands.
-      vim.api.nvim_create_user_command("Weekdays", "ObsidianTemplate weekdays.md", {})
     end,
     opts = {
       workspaces = {
@@ -189,42 +214,7 @@ return {
         subdir = "templates",
         date_format = "%Y-%m-%d-%a",
         time_format = "%H:%M",
-        substitutions = {
-          weekdays = function()
-            local client = assert(require("obsidian").get_client())
-
-            local day_of_week = os.date "%A"
-            assert(type(day_of_week) == "string")
-
-            ---@type integer
-            local offset_start
-            if day_of_week == "Sunday" then
-              offset_start = 1
-            elseif day_of_week == "Monday" then
-              offset_start = 0
-            elseif day_of_week == "Tuesday" then
-              offset_start = -1
-            elseif day_of_week == "Wednesday" then
-              offset_start = -2
-            elseif day_of_week == "Thursday" then
-              offset_start = -3
-            elseif day_of_week == "Friday" then
-              offset_start = -4
-            elseif day_of_week == "Saturday" then
-              offset_start = 2
-            end
-            assert(offset_start)
-
-            local lines = {}
-            for offset = offset_start, offset_start + 4 do
-              local note = client:daily(offset)
-              lines[#lines + 1] =
-                string.format("- [[%s|%s]]", note.id, os.date("%A, %B %-d", os.time() + offset * 3600 * 24))
-            end
-
-            return table.concat(lines, "\n")
-          end,
-        },
+        substitutions = {},
       },
 
       daily_notes = {
