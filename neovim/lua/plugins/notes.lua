@@ -4,6 +4,32 @@ local picker = "telescope.nvim"
 
 return {
   {
+    "lukas-reineke/headlines.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    lazy = true,
+    opts = {
+      markdown = {
+        headline_highlights = { "Headline1", "Headline2", "Headline3" },
+        bullet_highlights = { "Headline1", "Headline2", "Headline3" },
+        bullets = { "❯", "❯", "❯", "❯" },
+        dash_string = "⎯",
+        fat_headlines = false,
+      },
+    },
+    config = function(_, opts)
+      local bg = "#2B2B2B"
+
+      vim.api.nvim_set_hl(0, "Headline1", { fg = "#33ccff", bg = bg })
+      vim.api.nvim_set_hl(0, "Headline2", { fg = "#00bfff", bg = bg })
+      vim.api.nvim_set_hl(0, "Headline3", { fg = "#0099cc", bg = bg })
+      vim.api.nvim_set_hl(0, "CodeBlock", { bg = bg })
+      vim.api.nvim_set_hl(0, "Dash", { fg = "#D19A66", bold = true })
+
+      require("headlines").setup(opts)
+    end,
+  },
+
+  {
     dir = "~/github.com/epwalsh/obsidian.nvim",
     name = "obsidian",
     lazy = true,
@@ -15,6 +41,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-cmp",
+      "headlines.nvim",
       picker,
     },
     config = function(_, opts)
@@ -28,7 +55,7 @@ return {
         ["<leader>o"] = {
           name = "Obsidian",
           o = { "<cmd>ObsidianOpen<cr>", "Open note" },
-          d = { "<cmd>ObsidianToday<cr>", "Daily Note" },
+          d = { "<cmd>ObsidianDailies<cr>", "Daily Notes" },
           p = { "<cmd>ObsidianPasteImg<cr>", "Paste image" },
           q = { "<cmd>ObsidianQuickSwitch<cr>", "Quick switch" },
           s = { "<cmd>ObsidianSearch<cr>", "Search" },
@@ -296,6 +323,8 @@ return {
           ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
           ObsidianTilde = { bold = true, fg = "#ff5370" },
           ObsidianBullet = { bold = true, fg = "#89ddff" },
+          -- ObsidianRefText = { underline = true, fg = "#cc99ff" },
+          -- ObsidianExtLinkIcon = { fg = "#cc99ff" },
           ObsidianRefText = { underline = true, fg = "#c792ea" },
           ObsidianExtLinkIcon = { fg = "#c792ea" },
           ObsidianTag = { italic = true, fg = "#89ddff" },

@@ -1,7 +1,5 @@
 ---@diagnostic disable: inject-field
 
-local paste_img = require("core.img_paste").paste_img
-
 vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "rust" }
 vim.opt_local.shiftwidth = 2
 vim.opt_local.tabstop = 2
@@ -14,12 +12,13 @@ vim.opt_local.conceallevel = 2
 vim.opt_local.foldmethod = "expr"
 vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt_local.foldlevel = 99
+-- vim.opt_local.foldtext = "v:lua.markdown_fold_text()"
 
-vim.api.nvim_create_user_command("ImgPaste", function(data)
-  paste_img(data.args, "assets/imgs", function(path)
-    return string.format("![%s](%s)", path.filename, tostring(path))
-  end)
-end, { nargs = "?", complete = "file" })
+-- function _G.markdown_fold_text()
+--   local line = vim.fn.getline(vim.v.foldstart)
+--   local line_count = vim.v.foldend - vim.v.foldstart + 1
+--   return " ﹀ " .. line
+-- end
 
 -- Start an ipython session
 vim.keymap.set("n", "<leader>s", ":belowright 10split<cr>:terminal ipython<cr>i", { silent = true })
