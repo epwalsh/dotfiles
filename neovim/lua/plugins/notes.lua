@@ -64,6 +64,8 @@ return {
           b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
           -- b = { "<cmd>luafile lua/backlinks.lua<cr>", "Backlinks" },
           m = { "<cmd>ObsidianTemplate<cr>", "Template" },
+          n = { "<cmd>ObsidianQuickSwitch nav<cr>", "Nav" },
+          r = { "<cmd>ObsidianRename<cr>", "Rename" },
           w = { "<cmd>ObsidianWorkspace<cr>", "Workspace" },
           c = {
             function()
