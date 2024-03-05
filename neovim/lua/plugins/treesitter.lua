@@ -4,7 +4,46 @@ return {
     -- lazy = false,
     -- event = { "BufReadPre", "BufNewFile" },
     version = "*",
-    build = ":TSUpdate",
+    build = function()
+      -- Set environment variables for building treesitter markdown extensions.
+      -- TODO: tree-sitter doesn't seem to respect these.
+      vim.env.EXTENSION_WIKI_LINK = "1"
+      vim.env.EXTENSION_TAGS = "1"
+
+      vim.cmd ":TSUpdate"
+    end,
+    config = function(opts)
+      -- NOTE: currently we have to build markdown parsers locally since tree-sitter doesn't have
+      -- a good way to do conditional compiles (needed to get the wiki link and tags features).
+      -- To compile these, go to ~/github.com/tree-sitter-grammars/tree-sitter-markdown
+      -- and run `EXTENSION_WIKI_LINK=1 EXTENSION_TAGS=1 npm run build`.
+      -- Then in nvim, `TSInstall markdown markdown_inline`.
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+      parser_config.markdown = {
+        install_info = {
+          url = "~/github.com/tree-sitter-grammars/tree-sitter-markdown/tree-sitter-markdown",
+          files = { "src/scanner.c", "src/parser.c" },
+          branch = "main",
+          generate_requires_npm = false,
+          requires_generate_from_grammer = false,
+        },
+        filetype = "markdown",
+      }
+
+      parser_config.markdown_inline = {
+        install_info = {
+          url = "~/github.com/tree-sitter-grammars/tree-sitter-markdown/tree-sitter-markdown-inline",
+          files = { "src/scanner.c", "src/parser.c" },
+          branch = "main",
+          generate_requires_npm = false,
+          requires_generate_from_grammer = false,
+        },
+        filetype = "markdown",
+      }
+
+      require("nvim-treesitter").setup(opts)
+    end,
     opts = {
       -- A list of parser names, or "all"
       ensure_installed = {
