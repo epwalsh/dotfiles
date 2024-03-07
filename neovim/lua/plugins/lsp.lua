@@ -129,6 +129,29 @@ return {
             },
           },
         },
+        on_attach = function()
+          -- Hack for duplicate definitions with LuaLS.
+          -- See https://github.com/LuaLS/lua-language-server/issues/2451
+          local locations_to_items = vim.lsp.util.locations_to_items
+
+          ---@diagnostic disable-next-line: duplicate-set-field
+          vim.lsp.util.locations_to_items = function(locations, offset_encoding)
+            local lines = {}
+            local loc_i = 1
+            for _, loc in ipairs(vim.deepcopy(locations)) do
+              local uri = loc.uri or loc.targetUri
+              local range = loc.range or loc.targetSelectionRange
+              if lines[uri .. range.start.line] then -- already have a location on this line
+                table.remove(locations, loc_i) -- remove from the original list
+              else
+                loc_i = loc_i + 1
+              end
+              lines[uri .. range.start.line] = true
+            end
+
+            return locations_to_items(locations, offset_encoding)
+          end
+        end,
       }
 
       -- Automatic formatting.
@@ -136,7 +159,7 @@ return {
 
       -- Python.
       --
-      -- NOTE: We're using a different language servers here.
+      -- NOTE: We're using several language servers here.
       --
       -- Jedi has great LS capabilities, but only checks for syntax errors, so it
       -- doesn't help with linting and type-checking.
@@ -149,7 +172,7 @@ return {
       -- :lua =vim.lsp.get_active_clients()[1].server_capabilities
       -- (change the index from '1' to whatever if you have multiple)
       require("lspconfig")["jedi_language_server"].setup {
-        on_attach = function(client, _)
+        on_attach = function(client)
           client.server_capabilities.renameProvider = true
           -- Jedi works best as the hover provider.
           client.server_capabilities.hoverProvider = true
@@ -158,7 +181,7 @@ return {
 
       if os.getenv "NVIM_PYRIGHT" ~= "0" then
         require("lspconfig")["pyright"].setup {
-          on_attach = function(client, _)
+          on_attach = function(client)
             -- Renaming doesn't work properly unless we only have a single
             -- rename provider, so we disable it for pyright.
             -- See https://github.com/neovim/neovim/issues/15899
@@ -172,7 +195,7 @@ return {
       end
 
       require("lspconfig")["ruff_lsp"].setup {
-        on_attach = function(client, _)
+        on_attach = function(client)
           client.server_capabilities.renameProvider = false
           -- Jedi works best as the hover provider.
           client.server_capabilities.hoverProvider = false
