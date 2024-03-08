@@ -115,3 +115,32 @@ vim.api.nvim_create_user_command("NewPaper", function(ev)
   -- Insert link to the note.
   util.insert_text(client:format_link(note, { label = note_title }))
 end, { nargs = 1 })
+
+--------------------
+-- Tmux commands. --
+--------------------
+
+vim.api.nvim_create_user_command("TmuxWindows", "Telescope tmux windows", { nargs = 0 })
+vim.api.nvim_create_user_command("TmuxSessions", "Telescope tmux sessions", { nargs = 0 })
+
+vim.api.nvim_create_user_command("TmuxWindowsAndQuit", function()
+  vim.o.showtabline = 0
+  vim.o.winbar = ""
+  vim.o.laststatus = 0
+  require("telescope").extensions.tmux.windows {
+    quit_on_select = true,
+    initial_mode = "normal",
+    layout_config = { width = 1000000, height = 100000 },
+  }
+end, { nargs = 0 })
+
+vim.api.nvim_create_user_command("TmuxSessionsAndQuit", function()
+  vim.o.showtabline = 0
+  vim.o.winbar = ""
+  vim.o.laststatus = 0
+  require("telescope").extensions.tmux.sessions {
+    quit_on_select = true,
+    initial_mode = "normal",
+    layout_config = { width = 1000000, height = 100000 },
+  }
+end, { nargs = 0 })

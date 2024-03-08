@@ -104,9 +104,6 @@ return {
     end,
   },
 
-  ------------
-  -- Aerial --
-  ------------
   {
     "stevearc/aerial.nvim",
     lazy = true,
@@ -121,6 +118,32 @@ return {
 
       wk.register {
         ["<leader>a"] = { "<cmd>AerialToggle<CR>", "Aerial" },
+      }
+    end,
+  },
+
+  {
+    "camgraff/telescope-tmux.nvim",
+    lazy = false, -- need to load up-front to work from tmux
+    cmd = {
+      "TmuxWindows",
+      "TmuxWindowsAndQuit",
+      "TmuxSessions",
+      "TmuxSessionsAndQuit",
+    },
+    dependencies = {
+      "telescope.nvim",
+      "norcalli/nvim-terminal.lua",
+    },
+    init = function()
+      local wk = require "which-key"
+
+      wk.register {
+        ["<leader>t"] = {
+          name = "Tmux",
+          w = { "<cmd>TmuxWindows<CR>", "Windows" },
+          s = { "<cmd>TmuxSessions<CR>", "Sessions" },
+        },
       }
     end,
   },
