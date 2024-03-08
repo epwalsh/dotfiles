@@ -76,6 +76,9 @@ return {
         SpellRare = {
           undercurl = true,
         },
+        ["@text.emphasis"] = {
+          italic = true,
+        },
       },
       disable = {
         background = true, -- enable transparency

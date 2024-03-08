@@ -270,6 +270,16 @@ return {
           end
         end,
 
+        -- Runs anytime you leave the buffer for a note.
+        ---@param client obsidian.Client
+        ---@param note obsidian.Note
+        ---@diagnostic disable-next-line: unused-local
+        leave_note = function(client, note)
+          vim.api.nvim_buf_call(note.bufnr or 0, function()
+            vim.cmd "silent w"
+          end)
+        end,
+
         -- Runs right before writing the buffer for a note.
         ---@param client obsidian.Client
         ---@param note obsidian.Note
