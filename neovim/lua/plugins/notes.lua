@@ -176,7 +176,10 @@ return {
 
       -- disable_frontmatter = true,
 
-      wiki_link_func = "use_alias_only", -- works best with header anchor completion
+      wiki_link_func = "use_alias_only",
+      -- wiki_link_func = "prepend_note_id",
+      -- wiki_link_func = "prepend_note_path",
+      -- wiki_link_func = "use_path_only",
 
       note_id_func = function(title)
         -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
