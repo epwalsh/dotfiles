@@ -214,12 +214,6 @@ return {
       local wk = require "which-key"
 
       wk.register {
-        g = {
-          name = "LSP go to...",
-          i = { vim.lsp.buf.implementation, "Go to implementation" },
-          d = { vim.lsp.buf.definition, "Go to definition" },
-          r = { vim.lsp.buf.references, "Go to references" },
-        },
         K = { vim.lsp.buf.hover, "LSP hover" },
         ["<c-k>"] = { vim.lsp.buf.signature_help, "LSP signature help" },
       }
@@ -274,14 +268,11 @@ return {
       local wk = require "which-key"
 
       wk.register({
-        ["<leader>"] = {
-          name = "Rename",
-          r = {
-            function()
-              return ":IncRename " .. vim.fn.expand "<cword>"
-            end,
-            "Rename",
-          },
+        ["<leader>r"] = {
+          function()
+            return ":IncRename " .. vim.fn.expand "<cword>"
+          end,
+          "Rename",
         },
       }, {
         expr = true,

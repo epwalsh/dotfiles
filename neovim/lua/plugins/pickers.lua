@@ -61,16 +61,32 @@ return {
 
       -- Picker mappings.
       local builtin = require "telescope.builtin"
+
       wk.register {
-        ["<leader>"] = {
+        ["<leader>f"] = {
           name = "Find",
-          ff = { builtin.find_files, "Find files" },
-          fg = { builtin.live_grep, "Find in files" },
-          fb = { builtin.buffers, "Find buffers" },
-          fh = { builtin.help_tags, "Find help tags" },
-          fd = { ":Telescope file_browser<cr>", "Find directories" },
-          fc = { builtin.commands, "Find commands" },
-          ft = { ":TodoTelescope keywords=TODO<cr>", "Find TODO comments" },
+          f = { builtin.find_files, "Find files" },
+          g = { builtin.live_grep, "Find in files" },
+          b = { builtin.buffers, "Find buffers" },
+          h = { builtin.help_tags, "Find help tags" },
+          d = { ":Telescope file_browser<cr>", "Find directories" },
+          c = { builtin.commands, "Find commands" },
+          t = { ":TodoTelescope keywords=TODO<cr>", "Find TODO comments" },
+          j = { builtin.current_buffer_fuzzy_find, "Jump around buffer" },
+        },
+      }
+
+      wk.register {
+        g = {
+          name = "LSP go to...",
+          i = { builtin.lsp_implementations, "implementations" },
+          d = { builtin.lsp_definitions, "definitions" },
+          r = { builtin.lsp_references, "references" },
+        },
+        ["<leader>l"] = {
+          name = "LSP",
+          d = { builtin.diagnostics, "Show diagnostics" },
+          t = { ":Trouble<cr>", "Toggle trouble diagnostics" },
         },
       }
     end,

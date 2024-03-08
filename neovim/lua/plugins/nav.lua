@@ -116,15 +116,11 @@ return {
       "nvim-web-devicons",
     },
     opts = {},
-    -- Optional dependencies
     init = function()
       local wk = require "which-key"
 
       wk.register {
-        ["<leader>"] = {
-          name = "Aerial",
-          a = { "<cmd>AerialToggle<CR>", "Aerial" },
-        },
+        ["<leader>a"] = { "<cmd>AerialToggle<CR>", "Aerial" },
       }
     end,
   },
