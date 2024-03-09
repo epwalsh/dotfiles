@@ -4,29 +4,8 @@ return {
     lazy = true,
     event = { "BufReadPre", "BufNewFile" },
     opts = {
-      defaults = {
-        mappings = {
-          i = {
-            ["<C-j>"] = "move_selection_next",
-            ["<C-k>"] = "move_selection_previous",
-          },
-          n = {
-            ["<C-j>"] = "move_selection_next",
-            ["<C-k>"] = "move_selection_previous",
-          },
-        },
-      },
+      defaults = {},
       pickers = {
-        -- defaults = {
-        --   theme = "dropdown",
-        -- },
-        -- Default configuration for builtin pickers goes here:
-        -- picker_name = {
-        --   picker_config_key = value,
-        --   ...
-        -- }
-        -- Now the picker_config_key will be applied every time you call this
-        -- builtin picker
         -- find_files = {
         --   theme = "dropdown",
         -- },
@@ -50,7 +29,21 @@ return {
     },
     config = function(_, opts)
       local telescope = require "telescope"
+      local actions = require "telescope.actions"
       local wk = require "which-key"
+
+      opts.defaults.mappings = {
+        i = {
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+          ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+        },
+        n = {
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+          ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        },
+      }
 
       -- Setup.
       telescope.setup(opts)
@@ -86,6 +79,7 @@ return {
           name = "LSP",
           d = { builtin.diagnostics, "Show diagnostics" },
           t = { ":Trouble<cr>", "Toggle trouble diagnostics" },
+          s = { builtin.lsp_document_symbols, "Document symbols" },
         },
       }
     end,
