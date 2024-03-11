@@ -8,7 +8,7 @@ return {
     cmd = { "NvimTreeToggle" },
     keys = { "<F2>" },
     opts = {
-      hijack_netrw = true, -- this interferes with telescope file browser
+      hijack_netrw = false, -- this interferes with telescope file browser
       sort_by = "case_sensitive",
       renderer = {
         group_empty = true,
@@ -92,15 +92,15 @@ return {
       vim.keymap.set("n", "<F2>", require("nvim-tree.api").tree.toggle)
 
       -- Uncomment this to open NvimTree on directories.
-      vim.api.nvim_create_autocmd({ "BufEnter" }, {
-        callback = function(data)
-          local directory = vim.fn.isdirectory(data.file) == 1
-          if directory then
-            pcall(require("nvim-tree.api").tree.close)
-            require("nvim-tree.api").tree.open { path = data.file }
-          end
-        end,
-      })
+      -- vim.api.nvim_create_autocmd({ "BufEnter" }, {
+      --   callback = function(data)
+      --     local directory = vim.fn.isdirectory(data.file) == 1
+      --     if directory then
+      --       pcall(require("nvim-tree.api").tree.close)
+      --       require("nvim-tree.api").tree.open { path = data.file }
+      --     end
+      --   end,
+      -- })
     end,
   },
 

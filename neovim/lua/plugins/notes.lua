@@ -176,8 +176,8 @@ return {
 
       -- disable_frontmatter = true,
 
-      wiki_link_func = "use_alias_only",
-      -- wiki_link_func = "prepend_note_id",
+      wiki_link_func = "prepend_note_id",
+      -- wiki_link_func = "use_alias_only",
       -- wiki_link_func = "prepend_note_path",
       -- wiki_link_func = "use_path_only",
 

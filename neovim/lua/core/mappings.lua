@@ -1,4 +1,5 @@
 -- NOTE: don't try to use which-key for single-key mappings.
+local wk = require "which-key"
 
 -- Pull up my personal tips help doc.
 vim.keymap.set("n", "<leader>hh", ":help personal-tips<cr>")
@@ -41,11 +42,6 @@ vim.keymap.set({ "n", "v" }, "k", "gk")
 -- vim.keymap.set({ "n", "v" }, "0", "g0")
 -- vim.keymap.set({ "n", "v" }, "$", "g$")
 
--- Toggle folding.
-vim.keymap.set("n", "<F3>", function()
-  vim.opt_local.foldenable = not vim.opt_local.foldenable
-end)
-
 -- Open visually-selected links in browser.
 vim.keymap.set({ "v" }, "gx", function()
   local log = require "core.log"
@@ -65,3 +61,13 @@ vim.keymap.set("t", "<C-w>l", "<C-\\><C-n><C-w>l", { silent = true })
 vim.keymap.set("t", "<C-w>j", "<C-\\><C-n><C-w>j", { silent = true })
 vim.keymap.set("t", "<C-w>k", "<C-\\><C-n><C-w>k", { silent = true })
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { silent = true })
+
+-- Toggle buffer options.
+wk.register {
+  ["<leader>b"] = {
+    name = "Buffer options",
+    h = { "<cmd>set hlsearch!<cr>", "Toggle highlighting for search" },
+    w = { "<cmd>set wrap!<cr>", "Toggle wrap" },
+    f = { "<cmd>set foldenable!<cr>", "Toggle folding" },
+  },
+}

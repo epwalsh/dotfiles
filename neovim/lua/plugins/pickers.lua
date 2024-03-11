@@ -23,7 +23,9 @@ return {
         -- }
         -- please take a look at the readme of the extension you want to configure
         file_browser = {
-          hijack_netrw = false,
+          hijack_netrw = true,
+          no_ignore = false,
+          grouped = true,
         },
       },
     },
