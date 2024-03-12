@@ -1,0 +1,38 @@
+[colors.primary]
+background = "0x263238"
+foreground = "0xeaeaea"
+
+[cursor]
+style = "Block"
+unfocused_hollow = true
+
+[env]
+SHELL = "/opt/homebrew/bin/fish"
+
+[font]
+size = 15.5
+
+[font.normal]
+family = "DejaVuSansMono Nerd Font"
+style = "Book"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Command"
+
+[mouse]
+hide_when_typing = true
+
+[shell]
+args = ["-l", "-c", "tmux has-session && fish || tmux"]
+program = "/opt/homebrew/bin/fish"
+
+[window]
+decorations = "buttonless"
+opacity = 0.98
+startup_mode = "Maximized"
+
+[window.padding]
+x = 5
+y = 1
