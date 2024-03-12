@@ -57,6 +57,10 @@ if test -d "/home/linuxbrew"
       or set -gx INFOPATH $linuxbrew_infopath $INFOPATH
 end
 
+# Stop the fuckery of homebrew from fucking auto-updating every fucking time I want to install something.
+# JFC if I wanted that behavior I would use Windows.
+set -gx HOMEBREW_NO_AUTO_UPDATE 1
+
 # Some useful navigation helpers. 
 function ..    ; cd ..; and ls ; end
 function ...   ; cd ../..; and ls ; end
