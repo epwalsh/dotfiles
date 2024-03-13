@@ -21,7 +21,7 @@ action = "SpawnNewInstance"
 key = "N"
 mods = "Command"
 
-# NOTE: at the moment tabs will only work when window.decorations = "full"
+# NOTE: at the moment tabs will only work when window.decorations = "Full"
 # See https://github.com/alacritty/alacritty/issues/7626
 
 [[keyboard.bindings]]
@@ -52,10 +52,12 @@ args = ["-l", "-c", "tmux has-session && fish || tmux"]
 program = "/opt/homebrew/bin/fish"
 
 [window]
-decorations = "buttonless"
+decorations = "Full"
+# decorations = "Buttonless"
 opacity = 0.95
 blur = true
 startup_mode = "Maximized"
+decorations_theme_variant = "Dark"
 
 [window.padding]
 x = 5
