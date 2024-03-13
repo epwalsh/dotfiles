@@ -21,6 +21,29 @@ action = "SpawnNewInstance"
 key = "N"
 mods = "Command"
 
+# NOTE: at the moment tabs will only work when window.decorations = "full"
+# See https://github.com/alacritty/alacritty/issues/7626
+
+[[keyboard.bindings]]
+action = "CreateNewTab"
+key = "T"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "SelectTab1"
+key = "1"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "SelectTab2"
+key = "2"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "SelectTab3"
+key = "3"
+mods = "Command"
+
 [mouse]
 hide_when_typing = true
 
@@ -30,7 +53,8 @@ program = "/opt/homebrew/bin/fish"
 
 [window]
 decorations = "buttonless"
-opacity = 0.98
+opacity = 0.95
+blur = true
 startup_mode = "Maximized"
 
 [window.padding]
