@@ -225,7 +225,7 @@ return {
       daily_notes = {
         date_format = "%Y-%m-%d",
         folder = "notes/daily",
-        alias_format = "%A %B %-d, %Y",
+        alias_format = "%A %B %d, %Y",
         -- template = "nvim-daily.md",
       },
 
