@@ -80,7 +80,7 @@ return {
         ["<leader>l"] = {
           name = "LSP",
           d = { builtin.diagnostics, "Show diagnostics" },
-          t = { ":Trouble<cr>", "Toggle trouble diagnostics" },
+          t = { ":TroubleToggle<cr>", "Toggle trouble diagnostics" },
           s = { builtin.lsp_document_symbols, "Document symbols" },
         },
       }
