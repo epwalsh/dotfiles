@@ -123,7 +123,7 @@ return {
           { name = "calc", group_index = 1 },
           { name = "dictionary", group_index = 1 },
           { name = "git", group_index = 1 },
-          { name = "copilot", group_index = 1 },
+          -- { name = "copilot", group_index = 1 },
           { name = "natdat", group_index = 1 },
         },
         formatting = {
