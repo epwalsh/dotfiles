@@ -115,6 +115,7 @@ return {
     cmd = { "TimerStart", "TimerStop", "TimerRepeat" },
     dependencies = {
       -- "rcarriga/nvim-notify",
+      "telescope.nvim",
     },
     opts = {
       notifiers = {
@@ -132,5 +133,22 @@ return {
         },
       },
     },
+    config = function(_, opts)
+      require("pomo").setup(opts)
+      require("telescope").load_extension "pomodori"
+      local wk = require "which-key"
+
+      wk.register {
+        ["<leader>p"] = {
+          name = "Pomodori",
+          t = {
+            function()
+              require("telescope").extensions.pomodori.timers(require("telescope.themes").get_dropdown())
+            end,
+            "Telescope",
+          },
+        },
+      }
+    end,
   },
 }
