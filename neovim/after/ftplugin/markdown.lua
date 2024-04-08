@@ -21,4 +21,4 @@ vim.opt_local.foldlevel = 99
 -- end
 
 -- Start an ipython session
-vim.keymap.set("n", "<leader>s", ":belowright 10split<cr>:terminal ipython<cr>i", { silent = true })
+vim.keymap.set("n", "<leader>s", ":belowright 10split<cr>:terminal ipython<cr>i", { silent = true, buffer = true })
