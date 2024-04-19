@@ -118,7 +118,7 @@ return {
             group_index = 1,
           },
           { name = "emoji", group_index = 1 },
-          { name = "vsnip" },
+          { name = "vsnip", group_index = 1 },
           { name = "buffer", keyword_length = 3, group_index = 1 },
           { name = "calc", group_index = 1 },
           { name = "dictionary", group_index = 1 },

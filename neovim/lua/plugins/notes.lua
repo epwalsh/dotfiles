@@ -139,9 +139,11 @@ return {
             daily_notes = {
               date_format = "%Y-%m-%d",
               folder = "daily",
-              template = "daily.md",
+              -- template = "daily.md",
+              alias_format = vim.NIL,
             },
             new_notes_location = "current_dir",
+            notes_subdir = vim.NIL,
             -- disable_frontmatter = true,
           },
         },
