@@ -50,6 +50,60 @@ return {
     lazy = false,
   },
 
+  -- Multi-cursor support.
+  {
+    "smoka7/multicursors.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "smoka7/hydra.nvim",
+    },
+    config = function()
+      local mc = require "multicursors"
+      local config = require "multicursors.config"
+
+      local function swap_keys(keys, source, target)
+        keys[target] = keys[source]
+        keys[source] = nil
+      end
+
+      -- See https://github.com/smoka7/multicursors.nvim/blob/main/lua/multicursors/config.lua
+      swap_keys(config.normal_keys, "j", "<C-j>")
+      swap_keys(config.normal_keys, "k", "<C-k>")
+      swap_keys(config.normal_keys, "<C-n>", "<C-c>")
+
+      mc.setup(config)
+    end,
+    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+    keys = {
+      {
+        "<C-n>",
+        "<cmd>MCstart<cr>",
+        mode = { "v", "n" },
+        desc = "Multi-cursor start with word under cursor",
+      },
+      {
+        "<C-c>",
+        "<cmd>MCunderCursor<cr>",
+        mode = { "v", "n" },
+        desc = "Multi-cursor start with char under cursor",
+      },
+    },
+  },
+
+  -- Multi-cursor.
+  -- {
+  --   "mg979/vim-visual-multi",
+  --   lazy = false,
+  --   init = function()
+  --     vim.g["VM_default_mappings"] = 0
+  --     vim.g.VM_maps = {
+  --       ["Add Cursors Down"] = "<C-j>",
+  --       ["Add Cursors Up"] = "<C-k>",
+  --       ["Add Cursor At Pos"] = "<C-e>",
+  --     }
+  --   end,
+  -- },
+
   -- Do MORE git stuff from within neovim.
   {
     "pwntester/octo.nvim",
