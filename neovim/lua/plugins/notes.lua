@@ -120,6 +120,12 @@ return {
             end,
             "Link text to a new note",
           },
+          t = {
+            function()
+              vim.cmd "ObsidianTags"
+            end,
+            "Tags",
+          },
         },
       }, {
         mode = "v",
@@ -157,7 +163,7 @@ return {
         --     notes_subdir = vim.NIL,
         --     new_notes_location = "current_dir",
         --     templates = {
-        --       subdir = vim.NIL,
+        --       folder = vim.NIL,
         --     },
         --     disable_frontmatter = true,
         --   },
@@ -219,7 +225,7 @@ return {
       },
 
       templates = {
-        subdir = "templates",
+        folder = "templates",
         date_format = "%Y-%m-%d-%a",
         time_format = "%H:%M",
         substitutions = {},

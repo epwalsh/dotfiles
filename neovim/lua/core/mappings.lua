@@ -69,5 +69,18 @@ wk.register {
     h = { "<cmd>set hlsearch!<cr>", "Toggle highlighting for search" },
     w = { "<cmd>set wrap!<cr>", "Toggle wrap" },
     f = { "<cmd>set foldenable!<cr>", "Toggle folding" },
+    p = {
+      function()
+        local log = require "core.log"
+        if vim.b.autopairs_enabled == 1 then
+          vim.b.autopairs_enabled = 0
+          log.info "autopairs disabled"
+        else
+          vim.b.autopairs_enabled = 1
+          log.info "autopairs enabled"
+        end
+      end,
+      "Toggle autopairs",
+    },
   },
 }
