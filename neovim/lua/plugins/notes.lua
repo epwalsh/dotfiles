@@ -315,8 +315,8 @@ return {
           [" "] = { order = 1, char = "󰄱", hl_group = "ObsidianTodo" },
           ["x"] = { order = 2, char = "", hl_group = "ObsidianDone" },
           [">"] = { order = 3, char = "", hl_group = "ObsidianRightArrow" },
-          ["~"] = { order = 4, char = "󰰱", hl_group = "ObsidianTilde" },
-          ["!"] = { order = 5, char = "", hl_group = "ObsidianTilde" },
+          ["!"] = { order = 4, char = "", hl_group = "ObsidianTilde" },
+          ["~"] = { order = 5, char = "󰰱", hl_group = "ObsidianTilde" },
 
           -- [" "] = { char = "•", hl_group = "ObsidianTodo" },
           -- ["x"] = { char = "•", hl_group = "ObsidianDone" },
