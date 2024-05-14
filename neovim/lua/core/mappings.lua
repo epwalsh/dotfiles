@@ -66,6 +66,12 @@ vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { silent = true })
 wk.register {
   ["<leader>b"] = {
     name = "Buffer options",
+    g = {
+      function()
+        require("gitsigns").refresh()
+      end,
+      "Refresh gitsigns",
+    },
     h = { "<cmd>set hlsearch!<cr>", "Toggle highlighting for search" },
     w = { "<cmd>set wrap!<cr>", "Toggle wrap" },
     f = { "<cmd>set foldenable!<cr>", "Toggle folding" },
