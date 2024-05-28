@@ -128,6 +128,8 @@ return {
                   week_display = week_display .. " @current"
                 elseif week_offset == 1 then
                   week_display = week_display .. " @next"
+                elseif week_offset == -1 then
+                  week_display = week_display .. " @last"
                 end
 
                 if not path:is_file() then
@@ -388,11 +390,7 @@ return {
           [">"] = { order = 3, char = "", hl_group = "ObsidianRightArrow" },
           ["!"] = { order = 4, char = "", hl_group = "ObsidianTilde" },
           ["~"] = { order = 5, char = "󰰱", hl_group = "ObsidianTilde" },
-
-          -- [" "] = { char = "•", hl_group = "ObsidianTodo" },
-          -- ["x"] = { char = "•", hl_group = "ObsidianDone" },
-          -- [">"] = { char = "•", hl_group = "ObsidianRightArrow" },
-          -- ["~"] = { char = "•", hl_group = "ObsidianTilde" },
+          ["?"] = { order = 6, char = "", hl_group = "ObsidianTilde" },
         },
         bullets = { char = "•", hl_group = "ObsidianBullet" },
         external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
