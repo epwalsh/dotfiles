@@ -1,6 +1,6 @@
-local picker = "telescope.nvim"
--- local picker = "mini.pick"
--- local picker = "fzf-lua"
+local picker_name = "telescope.nvim"
+-- local picker_name = "mini.pick"
+-- local picker_name = "fzf-lua"
 
 return {
   {
@@ -42,7 +42,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-cmp",
       "headlines.nvim",
-      picker,
+      picker_name,
     },
     config = function(_, opts)
       -- Setup obsidian.nvim
@@ -66,9 +66,33 @@ return {
           m = { "<cmd>ObsidianTemplate<cr>", "Template" },
           n = { "<cmd>ObsidianQuickSwitch nav<cr>", "Nav" },
           r = { "<cmd>ObsidianRename<cr>", "Rename" },
-          w = { "<cmd>ObsidianWorkspace<cr>", "Workspace" },
-          c = {
+          w = {
             function()
+              local Note = require "obsidian.note"
+              ---@type obsidian.Client
+              local client = require("obsidian").get_client()
+              assert(client)
+
+              local picker = client:picker()
+              if not picker then
+                client.log.err "No picker configured"
+                return
+              end
+
+              ---@param dt number
+              ---@return obsidian.Path
+              local function weekly_note_path(dt)
+                return client.dir / os.date("notes/weekly/week-of-%Y-%m-%d.md", dt)
+              end
+
+              ---@param dt number
+              ---@return string
+              local function weekly_alias(dt)
+                local alias = os.date("Week of %A %B %d, %Y", dt)
+                assert(type(alias) == "string")
+                return alias
+              end
+
               local day_of_week = os.date "%A"
               assert(type(day_of_week) == "string")
 
@@ -91,9 +115,54 @@ return {
               end
               assert(offset_start)
 
-              vim.cmd(string.format("ObsidianDailies %d %d", offset_start, offset_start + 4))
+              local current_week_dt = os.time() + (offset_start * 3600 * 24)
+              ---@type obsidian.PickerEntry
+              local weeklies = {}
+              for week_offset = 1, -2, -1 do
+                local week_dt = current_week_dt + (week_offset * 3600 * 24 * 7)
+                local week_alias = weekly_alias(week_dt)
+                local week_display = week_alias
+                local path = weekly_note_path(week_dt)
+
+                if week_offset == 0 then
+                  week_display = week_display .. " @current"
+                elseif week_offset == 1 then
+                  week_display = week_display .. " @next"
+                end
+
+                if not path:is_file() then
+                  week_display = week_display .. " ➡️ create"
+                end
+
+                weeklies[#weeklies + 1] = {
+                  value = week_dt,
+                  display = week_display,
+                  ordinal = week_display,
+                  filename = tostring(path),
+                }
+              end
+
+              picker:pick(weeklies, {
+                prompt_title = "Weeklies",
+                callback = function(dt)
+                  local path = weekly_note_path(dt)
+                  ---@type obsidian.Note
+                  local note
+                  if path:is_file() then
+                    note = Note.from_file(path)
+                  else
+                    note = client:create_note {
+                      id = path.name,
+                      dir = path:parent(),
+                      title = weekly_alias(dt),
+                      tags = { "weekly-notes" },
+                    }
+                  end
+                  client:open_note(note)
+                end,
+              })
             end,
-            "Current week",
+            "Weeklies",
           },
         },
       }
@@ -145,7 +214,7 @@ return {
             daily_notes = {
               date_format = "%Y-%m-%d",
               folder = "daily",
-              -- template = "daily.md",
+              template = "daily.md",
               alias_format = vim.NIL,
             },
             new_notes_location = "current_dir",
@@ -173,7 +242,7 @@ return {
       notes_subdir = "notes",
 
       picker = {
-        name = picker,
+        name = picker_name,
       },
 
       sort_by = "modified",
@@ -293,7 +362,9 @@ return {
         ---@param client obsidian.Client
         ---@param note obsidian.Note
         ---@diagnostic disable-next-line: unused-local
-        pre_write_note = function(client, note) end,
+        pre_write_note = function(client, note)
+          -- note:add_field("modified", os.date())
+        end,
 
         -- Runs anytime the workspace is set/changed.
         ---@param client obsidian.Client
