@@ -306,7 +306,7 @@ return {
         date_format = "%Y-%m-%d",
         folder = "notes/daily",
         alias_format = "%A %B %d, %Y",
-        -- template = "nvim-daily.md",
+        template = "daily.md",
       },
 
       follow_url_func = function(url)
