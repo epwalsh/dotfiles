@@ -278,6 +278,13 @@ return {
       vim.api.nvim_set_hl(0, "GitSignsChangedelete", { fg = "#c1440e" })
       vim.api.nvim_set_hl(0, "GitSignsTopdelete", { fg = "#c1440e" })
       vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "#e146aa" })
+
+      vim.api.nvim_create_autocmd({ "QuitPre" }, {
+        pattern = "fugitive:/*",
+        callback = function()
+          require("gitsigns").refresh()
+        end,
+      })
     end,
   },
 
