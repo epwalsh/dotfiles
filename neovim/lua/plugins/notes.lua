@@ -218,6 +218,7 @@ return {
               folder = "daily",
               template = "daily.md",
               alias_format = vim.NIL,
+              default_tags = vim.NIL,
             },
             new_notes_location = "current_dir",
             notes_subdir = vim.NIL,
