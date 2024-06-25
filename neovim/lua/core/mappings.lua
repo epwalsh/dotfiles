@@ -77,14 +77,7 @@ wk.register {
     f = { "<cmd>set foldenable!<cr>", "Toggle folding" },
     p = {
       function()
-        local log = require "core.log"
-        if vim.b.autopairs_enabled == 1 then
-          vim.b.autopairs_enabled = 0
-          log.info "autopairs disabled"
-        else
-          vim.b.autopairs_enabled = 1
-          log.info "autopairs enabled"
-        end
+        require("core.util").toggle_autopairs()
       end,
       "Toggle autopairs",
     },

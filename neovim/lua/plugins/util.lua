@@ -53,13 +53,15 @@ return {
   -- Multi-cursor support.
   {
     "smoka7/multicursors.nvim",
+    version = "v2.0",
     event = "VeryLazy",
     dependencies = {
-      "smoka7/hydra.nvim",
+      "nvimtools/hydra.nvim",
     },
     config = function()
       local mc = require "multicursors"
       local config = require "multicursors.config"
+      local utils = require "multicursors.utils"
 
       local function swap_keys(keys, source, target)
         keys[target] = keys[source]
@@ -71,19 +73,50 @@ return {
       swap_keys(config.normal_keys, "k", "<C-k>")
       swap_keys(config.normal_keys, "<C-n>", "<C-c>")
 
+      config.create_commands = false
+
       mc.setup(config)
+
+      -- Monkey-patch the exit function to re-enable autopairs.
+      local exit_func = utils.exit
+      utils.exit = function()
+        if vim.b.autopair_auto_disabled then
+          require("core.util").enable_autopairs()
+          vim.b.autopair_auto_disabled = false
+        end
+        exit_func()
+      end
     end,
-    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
     keys = {
       {
         "<C-n>",
-        "<cmd>MCstart<cr>",
+        function()
+          local mc = require "multicursors"
+          local util = require "core.util"
+
+          if util.autopair_enabled() then
+            vim.b.autopair_auto_disabled = true
+            util.disable_autopairs()
+          end
+
+          mc.start()
+        end,
         mode = { "v", "n" },
         desc = "Multi-cursor start with word under cursor",
       },
       {
         "<C-c>",
-        "<cmd>MCunderCursor<cr>",
+        function()
+          local mc = require "multicursors"
+          local util = require "core.util"
+
+          if util.autopair_enabled() then
+            vim.b.autopair_auto_disabled = true
+            util.disable_autopairs()
+          end
+
+          mc.new_under_cursor()
+        end,
         mode = { "v", "n" },
         desc = "Multi-cursor start with char under cursor",
       },
@@ -132,10 +165,18 @@ return {
     end,
   },
 
+  -- {
+  --   "jiangmiao/auto-pairs",
+  --   lazy = true,
+  --   event = { "BufReadPre", "BufNewFile" },
+  -- },
   {
-    "jiangmiao/auto-pairs",
-    lazy = true,
-    event = { "BufReadPre", "BufNewFile" },
+    "altermo/ultimate-autopair.nvim",
+    event = { "InsertEnter", "CmdlineEnter" },
+    branch = "v0.6", --recommended as each new version will have breaking changes
+    opts = {
+      --Config goes here
+    },
   },
 
   {

@@ -160,4 +160,43 @@ M.update_note_with_paper_metadata = function(note, data)
   note:add_field("tldr", data.tldr.text)
 end
 
+M.autopair_enabled = function()
+  local ok, autopair = pcall(require, "ultimate-autopair")
+  if ok then
+    return autopair.isenabled()
+  else
+    return false
+  end
+end
+
+M.disable_autopairs = function()
+  if M.autopair_enabled() then
+    local autopair = require "ultimate-autopair"
+
+    autopair.clear()
+    autopair.disable()
+  end
+end
+
+M.enable_autopairs = function()
+  if not M.autopair_enabled() then
+    local autopair = require "ultimate-autopair"
+
+    autopair.setup()
+    autopair.enable()
+  end
+end
+
+M.toggle_autopairs = function()
+  local log = require "core.log"
+
+  if M.autopair_enabled() then
+    M.disable_autopairs()
+    log.info "autopairs disabled"
+  else
+    M.enable_autopairs()
+    log.info "autopairs enabled"
+  end
+end
+
 return M
