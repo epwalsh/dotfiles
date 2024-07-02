@@ -35,6 +35,9 @@ return {
     "ruanyl/vim-gh-line",
     lazy = true,
     event = { "BufEnter" },
+    init = function()
+      vim.g.gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
+    end,
   },
 
   -- Gives us the Rename command.
