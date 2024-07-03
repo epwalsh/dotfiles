@@ -143,7 +143,7 @@ M.get_paper_metadata = function(corpus_id)
   local response = curl.get {
     url = string.format("https://api.semanticscholar.org/graph/v1/paper/CorpusId:%s?fields=tldr,title,url", corpus_id),
     accept = "application/json",
-    ["x-api-key"] = os.getenv "S2_API_KEY",
+    ["x-api-key"] = assert(os.getenv "S2_API_KEY"),
   }
   assert(response.status == 200, string.format("Received status code %s", response.status))
   local data = vim.json.decode(response.body)
