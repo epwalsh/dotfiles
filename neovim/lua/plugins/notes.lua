@@ -66,6 +66,7 @@ return {
           m = { "<cmd>ObsidianTemplate<cr>", "Template" },
           n = { "<cmd>ObsidianQuickSwitch nav<cr>", "Nav" },
           r = { "<cmd>ObsidianRename<cr>", "Rename" },
+          c = { "<cmd>ObsidianTOC<cr>", "Contents (TOC)" },
           w = {
             function()
               local Note = require "obsidian.note"
@@ -221,7 +222,7 @@ return {
               default_tags = vim.NIL,
             },
             new_notes_location = "current_dir",
-            notes_subdir = vim.NIL,
+            -- notes_subdir = vim.NIL,
             -- disable_frontmatter = true,
           },
         },
