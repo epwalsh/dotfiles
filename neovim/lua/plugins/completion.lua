@@ -105,6 +105,7 @@ return {
           },
         },
         sources = {
+          { name = "lazydev", group_index = 1 },
           { name = "nvim_lsp", group_index = 1 },
           -- { name = "nvim_lsp_signature_help" },  -- Noice.nvim does this already
           { name = "nvim_lua", group_index = 1 },

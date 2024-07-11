@@ -1,6 +1,21 @@
 return {
   {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+
+  { "Bilal2453/luvit-meta", lazy = true },
+
+  {
     "folke/neodev.nvim",
+    enabled = false,
     lazy = true,
     version = "*",
     ft = "lua",
@@ -109,7 +124,7 @@ return {
             },
             diagnostics = {
               -- Get the language server to recognize the `vim` global
-              globals = { "vim" },
+              globals = { "vim", "describe", "it" },
             },
             -- workspace = {
             --   -- Make the server aware of Neovim runtime files
