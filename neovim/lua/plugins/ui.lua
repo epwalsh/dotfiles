@@ -79,6 +79,10 @@ return {
         ["@text.emphasis"] = {
           italic = true,
         },
+        Comment = {
+          italic = true,
+          fg = "#546e7a",
+        },
       },
       disable = {
         background = true, -- enable transparency
