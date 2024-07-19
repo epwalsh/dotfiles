@@ -152,7 +152,7 @@ end, { nargs = 0 })
 vim.api.nvim_create_user_command("OScp", function(data)
   local source_path = vim.api.nvim_buf_get_name(0)
 
-  ---@type string
+  ---@type string|?
   local target_path
   if data.args and string.len(data.args) > 0 then
     target_path = data.args
@@ -165,10 +165,14 @@ vim.api.nvim_create_user_command("OScp", function(data)
     return
   end
 
+  vim.cmd "w"
+
   local out = vim.fn.system { "cp", source_path, target_path }
   if out and string.len(out) > 0 then
     log.error(out)
   else
     log.info("Copied '%s' to '%s'", source_path, target_path)
   end
+
+  vim.cmd("e " .. target_path)
 end, { nargs = "?", desc = "Copy the current file", complete = "file" })
