@@ -247,6 +247,9 @@ return {
 
       picker = {
         name = picker_name,
+        note_mappings = {
+          new = "<C-n>",
+        },
       },
 
       sort_by = "modified",

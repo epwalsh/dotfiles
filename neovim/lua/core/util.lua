@@ -204,4 +204,30 @@ M.toggle_autopairs = function()
   end
 end
 
+local INPUT_CANCELLED = "~~~INPUT-CANCELLED~~~"
+
+--- Prompt user for an input. Returns nil if canceled, otherwise a string (possibly empty).
+---
+---@param prompt string
+---@param opts { completion: string|?, default: string|? }|?
+---
+---@return string|?
+M.input = function(prompt, opts)
+  opts = opts or {}
+
+  if not vim.endswith(prompt, " ") then
+    prompt = prompt .. " "
+  end
+
+  local input = M.strip_whitespace(
+    vim.fn.input { prompt = prompt, completion = opts.completion, default = opts.default, cancelreturn = INPUT_CANCELLED }
+  )
+
+  if input ~= INPUT_CANCELLED then
+    return input
+  else
+    return nil
+  end
+end
+
 return M

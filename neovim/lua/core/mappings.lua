@@ -83,3 +83,11 @@ wk.register {
     },
   },
 }
+
+-- OS command shortcuts.
+wk.register {
+  ["<leader>o"] = {
+    name = "OS commands",
+    c = { "<cmd>OScp<cr>", "Copy the current file" },
+  },
+}

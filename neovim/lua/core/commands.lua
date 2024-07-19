@@ -144,3 +144,31 @@ vim.api.nvim_create_user_command("TmuxSessionsAndQuit", function()
     layout_config = { width = 1000000, height = 100000 },
   }
 end, { nargs = 0 })
+
+-----------------------
+-- OS util commands. --
+-----------------------
+
+vim.api.nvim_create_user_command("OScp", function(data)
+  local source_path = vim.api.nvim_buf_get_name(0)
+
+  ---@type string
+  local target_path
+  if data.args and string.len(data.args) > 0 then
+    target_path = data.args
+  else
+    target_path = util.input("Enter target path: ", { default = source_path, completion = "file" })
+  end
+
+  if not target_path or string.len(target_path) == 0 then
+    log.warn "canceled"
+    return
+  end
+
+  local out = vim.fn.system { "cp", source_path, target_path }
+  if out and string.len(out) > 0 then
+    log.error(out)
+  else
+    log.info("Copied '%s' to '%s'", source_path, target_path)
+  end
+end, { nargs = "?", desc = "Copy the current file", complete = "file" })
