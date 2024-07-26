@@ -281,18 +281,6 @@ return {
         return tostring(os.time()) .. "-" .. suffix
       end,
 
-      image_name_func = function()
-        ---@type obsidian.Client
-        local client = require("obsidian").get_client()
-
-        local note = client:current_note()
-        if note then
-          return string.format("%s-", note.id)
-        else
-          return string.format("%s-", os.time())
-        end
-      end,
-
       new_notes_location = "notes_subdir",
 
       completion = {
@@ -320,6 +308,12 @@ return {
         -- vim.fn.jobstart({"xdg-open", url})  -- linux
       end,
 
+      follow_img_func = function(img)
+        -- Open the image in the default web browser.
+        vim.fn.jobstart { "qlmanage", "-p", img }
+        -- vim.fn.jobstart({"xdg-open", url})  -- linux
+      end,
+
       ---@param note obsidian.Note
       note_frontmatter_func = function(note)
         -- Add the title of the note as an alias.
@@ -338,6 +332,20 @@ return {
         end
         return out
       end,
+
+      attachments = {
+        img_name_func = function()
+          ---@type obsidian.Client
+          local client = require("obsidian").get_client()
+
+          local note = client:current_note()
+          if note then
+            return string.format("%s-", note.id)
+          else
+            return string.format("%s-", os.time())
+          end
+        end,
+      },
 
       callbacks = {
         -- Runs at the end of `require("obsidian").setup()`.
@@ -388,6 +396,97 @@ return {
         enable = true, -- set to false to disable all additional syntax features
         update_debounce = 800, -- update delay after a text change (in milliseconds)
         max_file_length = 5000,
+
+        callouts = {
+          -- This is how the Callout will be rendered after the char
+          -- ex: <char>Note
+          ["Note"] = {
+            aliases = {},
+            char = "",
+            hl_group = "ObsidianCalloutNote",
+          },
+          ["Abstract"] = {
+            aliases = {
+              "Summary",
+              "Tldr",
+            },
+            char = "",
+            hl_group = "ObsidianCalloutAbstract",
+          },
+          ["Info"] = {
+            aliases = {},
+            char = "",
+            hl_group = "ObsidianCalloutInfo",
+          },
+          ["Todo"] = {
+            aliases = {},
+            char = "",
+            hl_group = "ObsidianCalloutTodo",
+          },
+          ["Tip"] = {
+            aliases = {
+              "Hint",
+              "Important",
+            },
+            char = "󰈸",
+            hl_group = "ObsidianCalloutTip",
+          },
+          ["Success"] = {
+            aliases = {
+              "Check",
+              "Done",
+            },
+            char = "󰄬",
+            hl_group = "ObsidianCalloutSuccess",
+          },
+          ["Question"] = {
+            aliases = {
+              "Help",
+              "FAQ",
+            },
+            char = "",
+            hl_group = "ObsidianCalloutQuestion",
+          },
+          ["Warning"] = {
+            aliases = {
+              "Caution",
+              "Attentition",
+            },
+            char = "",
+            hl_group = "ObsidianCalloutWarning",
+          },
+          ["Failure"] = {
+            aliases = {
+              "Fail",
+              "Missing",
+            },
+            char = "",
+            hl_group = "ObsidianCalloutFailure",
+          },
+          ["Danger"] = {
+            aliases = {
+              "Error",
+            },
+            char = "",
+            hl_group = "ObsidianCalloutDanger",
+          },
+          ["Bug"] = {
+            aliases = {},
+            char = "",
+            hl_group = "ObsidianCalloutBug",
+          },
+          ["Example"] = {
+            aliases = {},
+            char = "",
+            hl_group = "ObsidianCalloutExample",
+          },
+          ["Quote"] = {
+            aliases = {},
+            char = "󱆨",
+            hl_group = "ObsidianCalloutQuote",
+          },
+        },
+
         -- Define how various check-boxes are displayed
         checkboxes = {
           -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
@@ -398,14 +497,14 @@ return {
           ["~"] = { order = 5, char = "󰰱", hl_group = "ObsidianTilde" },
           ["?"] = { order = 6, char = "", hl_group = "ObsidianTilde" },
         },
+
         bullets = { char = "•", hl_group = "ObsidianBullet" },
         external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
-        -- Replace the above with this if you don't have a patched font:
-        -- external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
         reference_text = { hl_group = "ObsidianRefText" },
         highlight_text = { hl_group = "ObsidianHighlightText" },
         tags = { hl_group = "ObsidianTag" },
         block_ids = { hl_group = "ObsidianBlockID" },
+
         hl_groups = {
           -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
           ObsidianTodo = { bold = true, fg = "#f78c6c" },
@@ -420,6 +519,20 @@ return {
           ObsidianTag = { italic = true, fg = "#89ddff" },
           ObsidianBlockID = { italic = true, fg = "#89ddff" },
           ObsidianHighlightText = { bg = "#75662e" },
+          -- Callout highlights
+          ObsidianCalloutNote = { bg = "#1072b8" },
+          ObsidianCalloutAbstract = { bg = "#d7e6fa" },
+          ObsidianCalloutInfo = { bg = "#6a93e5" },
+          ObsidianCalloutTodo = { bg = "#6a93e5" },
+          ObsidianCalloutTip = { bg = "#d7e6fa" },
+          ObsidianCalloutSuccess = { bg = "#9fc360" },
+          ObsidianCalloutQuestion = { bg = "#faebd7" },
+          ObsidianCalloutWarning = { bg = "#faebd7" },
+          ObsidianCalloutFailure = { bg = "#ee5d5c" },
+          ObsidianCalloutDanger = { bg = "#ee5d5c" },
+          ObsidianCalloutBug = { bg = "#ee5d5c" },
+          ObsidianCalloutExample = { bg = "#c792ea" },
+          ObsidianCalloutQuote = { bg = "#E9F0FD" },
         },
       },
     },
