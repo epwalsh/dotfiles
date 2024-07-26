@@ -86,7 +86,7 @@ wk.register {
 
 -- OS command shortcuts.
 wk.register {
-  ["<leader>o"] = {
+  ["<leader>z"] = {
     name = "OS commands",
     c = { "<cmd>OScp<cr>", "Copy the current file" },
   },

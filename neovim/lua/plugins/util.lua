@@ -210,7 +210,7 @@ return {
     dir = "~/github.com/epwalsh/pomo.nvim",
     name = "pomo",
     lazy = true,
-    cmd = { "TimerStart", "TimerStop", "TimerRepeat" },
+    cmd = { "TimerStart", "TimerStop", "TimerRepeat", "TimerSession" },
     dependencies = {
       -- "rcarriga/nvim-notify",
       "telescope.nvim",
@@ -228,6 +228,18 @@ return {
         Break = {
           { name = "Default" },
           { name = "System" },
+        },
+        ["Short Break"] = {
+          { name = "Default", opts = { sticky = true } },
+          { name = "System" },
+        },
+      },
+      sessions = {
+        Pomodoro = {
+          { name = "Work", duration = "25m" },
+          { name = "Short Break", duration = "5m" },
+          { name = "Work", duration = "25m" },
+          { name = "Short Break", duration = "5m" },
         },
       },
     },
