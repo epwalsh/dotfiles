@@ -5,18 +5,9 @@ local picker_name = "telescope.nvim"
 return {
   {
     "lukas-reineke/headlines.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     lazy = true,
-    opts = {
-      markdown = {
-        headline_highlights = { "Headline1", "Headline2", "Headline3" },
-        bullet_highlights = { "Headline1", "Headline2", "Headline3" },
-        bullets = { "❯", "❯", "❯", "❯" },
-        dash_string = "⎯",
-        fat_headlines = false,
-      },
-    },
-    config = function(_, opts)
+    config = function()
       local bg = "#2B2B2B"
 
       vim.api.nvim_set_hl(0, "Headline1", { fg = "#33ccff", bg = bg })
@@ -25,7 +16,32 @@ return {
       vim.api.nvim_set_hl(0, "CodeBlock", { bg = bg })
       vim.api.nvim_set_hl(0, "Dash", { fg = "#D19A66", bold = true })
 
-      require("headlines").setup(opts)
+      require("headlines").setup {
+        markdown = {
+          headline_highlights = { "Headline1", "Headline2", "Headline3" },
+          bullet_highlights = { "Headline1", "Headline2", "Headline3" },
+          bullets = { "❯", "❯", "❯", "❯" },
+          dash_string = "⎯",
+          fat_headlines = false,
+          query = vim.treesitter.query.parse(
+            "markdown",
+            [[
+                (atx_heading [
+                    (atx_h1_marker)
+                    (atx_h2_marker)
+                    (atx_h3_marker)
+                    (atx_h4_marker)
+                    (atx_h5_marker)
+                    (atx_h6_marker)
+                ] @headline)
+
+                (thematic_break) @dash
+
+                (fenced_code_block) @codeblock
+            ]]
+          ),
+        },
+      }
     end,
   },
 

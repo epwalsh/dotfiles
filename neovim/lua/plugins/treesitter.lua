@@ -18,29 +18,29 @@ return {
       -- To compile these, go to ~/github.com/tree-sitter-grammars/tree-sitter-markdown
       -- and run `EXTENSION_WIKI_LINK=1 EXTENSION_TAGS=1 npm run build`.
       -- Then in nvim, `TSInstall markdown markdown_inline`.
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
-      parser_config.markdown = {
-        install_info = {
-          url = "~/github.com/tree-sitter-grammars/tree-sitter-markdown/tree-sitter-markdown",
-          files = { "src/scanner.c", "src/parser.c" },
-          branch = "main",
-          generate_requires_npm = false,
-          requires_generate_from_grammer = false,
-        },
-        filetype = "markdown",
-      }
+      -- parser_config.markdown = {
+      --   install_info = {
+      --     url = "~/github.com/tree-sitter-grammars/tree-sitter-markdown/tree-sitter-markdown",
+      --     files = { "src/scanner.c", "src/parser.c" },
+      --     branch = "main",
+      --     generate_requires_npm = false,
+      --     requires_generate_from_grammer = false,
+      --   },
+      --   filetype = "markdown",
+      -- }
 
-      parser_config.markdown_inline = {
-        install_info = {
-          url = "~/github.com/tree-sitter-grammars/tree-sitter-markdown/tree-sitter-markdown-inline",
-          files = { "src/scanner.c", "src/parser.c" },
-          branch = "main",
-          generate_requires_npm = false,
-          requires_generate_from_grammer = false,
-        },
-        filetype = "markdown",
-      }
+      -- parser_config.markdown_inline = {
+      --   install_info = {
+      --     url = "~/github.com/tree-sitter-grammars/tree-sitter-markdown/tree-sitter-markdown-inline",
+      --     files = { "src/scanner.c", "src/parser.c" },
+      --     branch = "main",
+      --     generate_requires_npm = false,
+      --     requires_generate_from_grammer = false,
+      --   },
+      --   filetype = "markdown",
+      -- }
 
       require("nvim-treesitter").setup(opts)
     end,
