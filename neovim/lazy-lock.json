@@ -1,5 +1,5 @@
 {
-  "aerial.nvim": { "branch": "master", "commit": "3748e87a316a68754341cdffcef44fee61dee51c" },
+  "aerial.nvim": { "branch": "master", "commit": "b59e01e4380932b375ecff165b48a9400c4af929" },
   "alpha-nvim": { "branch": "main", "commit": "1356b9ef31b985d541d94314f2cf73c61124bf1d" },
   "asyncrun.vim": { "branch": "master", "commit": "61cc3081963a12048e00e89f8cedc8bd1cb83b8c" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
@@ -53,7 +53,7 @@
   "telescope.nvim": { "branch": "master", "commit": "bfcc7d5c6f12209139f175e6123a7b7de6d9c18a" },
   "todo-comments.nvim": { "branch": "main", "commit": "833d8dd8b07eeda37a09e99460f72a02616935cb" },
   "trouble.nvim": { "branch": "main", "commit": "f1168feada93c0154ede4d1fe9183bf69bac54ea" },
-  "ultimate-autopair.nvim": { "branch": "v0.6", "commit": "035d92eab05ac1390afef7204e3fcad9a50fa443" },
+  "ultimate-autopair.nvim": { "branch": "v0.6", "commit": "53ed7c65e466963c916251f9ce6df7dd3685dc36" },
   "vim-fish": { "branch": "master", "commit": "50b95cbbcd09c046121367d49039710e9dc9c15f" },
   "vim-fugitive": { "branch": "master", "commit": "fab00f7c0f3a08e860e39c7adeb8fbe849921a98" },
   "vim-gh-line": { "branch": "master", "commit": "fbf368bdfad7e5478009a6dc62559e6b2c72d603" },

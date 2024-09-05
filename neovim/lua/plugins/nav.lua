@@ -112,7 +112,9 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "nvim-web-devicons",
     },
-    opts = {},
+    opts = {
+      post_jump_cmd = "normal! zo",
+    },
     init = function()
       local wk = require "which-key"
 
