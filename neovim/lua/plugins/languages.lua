@@ -32,8 +32,9 @@ return {
         lua = "lua",
       }
 
-      wk.register {
-        ["<leader>s"] = {
+      wk.add {
+        {
+          "<leader>s",
           function()
             vim.cmd "call cmdline#StartApp()"
             ---@diagnostic disable-next-line: undefined-field
@@ -45,7 +46,7 @@ return {
               vim.opt_local.filetype = termbuf_ft
             end)
           end,
-          "Start interpreter",
+          desc = "Start interpreter",
         },
       }
     end,

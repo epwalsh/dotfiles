@@ -15,6 +15,15 @@ return {
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show { global = false }
+        end,
+        desc = "Buffer local keymaps (which-key)",
+      },
+    },
   },
 
   -- Quickly jump around the buffer.
@@ -83,10 +92,7 @@ return {
       -- Monkey-patch the exit function to re-enable autopairs.
       local exit_func = utils.exit
       utils.exit = function()
-        if vim.b.autopair_auto_disabled then
-          require("core.util").enable_autopairs()
-          vim.b.autopair_auto_disabled = false
-        end
+        require("core.util").enable_autopairs()
         exit_func()
       end
     end,
@@ -97,11 +103,7 @@ return {
           local mc = require "multicursors"
           local util = require "core.util"
 
-          if util.autopair_enabled() then
-            vim.b.autopair_auto_disabled = true
-            util.disable_autopairs()
-          end
-
+          util.disable_autopairs()
           mc.start()
         end,
         mode = { "v", "n" },
@@ -113,11 +115,7 @@ return {
           local mc = require "multicursors"
           local util = require "core.util"
 
-          if util.autopair_enabled() then
-            vim.b.autopair_auto_disabled = true
-            util.disable_autopairs()
-          end
-
+          util.disable_autopairs()
           mc.new_under_cursor()
         end,
         mode = { "v", "n" },
@@ -173,13 +171,20 @@ return {
   --   lazy = true,
   --   event = { "BufReadPre", "BufNewFile" },
   -- },
+  -- {
+  --   "altermo/ultimate-autopair.nvim",
+  --   event = { "InsertEnter", "CmdlineEnter" },
+  --   -- branch = "v0.6", --recommended as each new version will have breaking changes
+  --   opts = {
+  --     --Config goes here
+  --   },
+  -- },
   {
-    "altermo/ultimate-autopair.nvim",
-    event = { "InsertEnter", "CmdlineEnter" },
-    branch = "v0.6", --recommended as each new version will have breaking changes
-    opts = {
-      --Config goes here
-    },
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+    -- use opts = {} for passing setup options
+    -- this is equivalent to setup({}) function
   },
 
   {
@@ -248,15 +253,14 @@ return {
       require("telescope").load_extension "pomodori"
       local wk = require "which-key"
 
-      wk.register {
-        ["<leader>p"] = {
-          name = "Pomodori",
-          t = {
-            function()
-              require("telescope").extensions.pomodori.timers(require("telescope.themes").get_dropdown())
-            end,
-            "Telescope",
-          },
+      wk.add {
+        { "<leader>p", group = "Pomodori" },
+        {
+          "<leader>pt",
+          function()
+            require("telescope").extensions.pomodori.timers(require("telescope.themes").get_dropdown())
+          end,
+          desc = "Telescope",
         },
       }
     end,

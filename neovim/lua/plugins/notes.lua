@@ -67,157 +67,155 @@ return {
       -- Create which-key mappings for common commands.
       local wk = require "which-key"
 
-      wk.register {
-        ["<leader>o"] = {
-          name = "Obsidian",
-          o = { "<cmd>ObsidianOpen<cr>", "Open note" },
-          d = { "<cmd>ObsidianDailies -10 0<cr>", "Daily notes" },
-          p = { "<cmd>ObsidianPasteImg<cr>", "Paste image" },
-          q = { "<cmd>ObsidianQuickSwitch<cr>", "Quick switch" },
-          s = { "<cmd>ObsidianSearch<cr>", "Search" },
-          t = { "<cmd>ObsidianTags<cr>", "Tags" },
-          l = { "<cmd>ObsidianLinks<cr>", "Links" },
-          b = { "<cmd>ObsidianBacklinks<cr>", "Backlinks" },
-          -- b = { "<cmd>luafile lua/backlinks.lua<cr>", "Backlinks" },
-          m = { "<cmd>ObsidianTemplate<cr>", "Template" },
-          n = { "<cmd>ObsidianQuickSwitch nav<cr>", "Nav" },
-          r = { "<cmd>ObsidianRename<cr>", "Rename" },
-          c = { "<cmd>ObsidianTOC<cr>", "Contents (TOC)" },
-          w = {
-            function()
-              local Note = require "obsidian.note"
-              ---@type obsidian.Client
-              local client = require("obsidian").get_client()
-              assert(client)
+      wk.add {
+        { "<leader>o", group = "Obsidian" },
+        { "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open note" },
+        { "<leader>od", "<cmd>ObsidianDailies -10 0<cr>", desc = "Daily notes" },
+        { "<leader>op", "<cmd>ObsidianPasteImg<cr>", desc = "Paste image" },
+        { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick switch" },
+        { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search" },
+        { "<leader>ot", "<cmd>ObsidianTags<cr>", desc = "Tags" },
+        { "<leader>ol", "<cmd>ObsidianLinks<cr>", desc = "Links" },
+        { "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
+        { "<leader>om", "<cmd>ObsidianTemplate<cr>", desc = "Template" },
+        { "<leader>on", "<cmd>ObsidianQuickSwitch nav<cr>", desc = "Nav" },
+        { "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Rename" },
+        { "<leader>oc", "<cmd>ObsidianTOC<cr>", desc = "Contents (TOC)" },
+        {
+          "<leader>ow",
+          function()
+            local Note = require "obsidian.note"
+            ---@type obsidian.Client
+            local client = require("obsidian").get_client()
+            assert(client)
 
-              local picker = client:picker()
-              if not picker then
-                client.log.err "No picker configured"
-                return
+            local picker = client:picker()
+            if not picker then
+              client.log.err "No picker configured"
+              return
+            end
+
+            ---@param dt number
+            ---@return obsidian.Path
+            local function weekly_note_path(dt)
+              return client.dir / os.date("notes/weekly/week-of-%Y-%m-%d.md", dt)
+            end
+
+            ---@param dt number
+            ---@return string
+            local function weekly_alias(dt)
+              local alias = os.date("Week of %A %B %d, %Y", dt)
+              assert(type(alias) == "string")
+              return alias
+            end
+
+            local day_of_week = os.date "%A"
+            assert(type(day_of_week) == "string")
+
+            ---@type integer
+            local offset_start
+            if day_of_week == "Sunday" then
+              offset_start = 1
+            elseif day_of_week == "Monday" then
+              offset_start = 0
+            elseif day_of_week == "Tuesday" then
+              offset_start = -1
+            elseif day_of_week == "Wednesday" then
+              offset_start = -2
+            elseif day_of_week == "Thursday" then
+              offset_start = -3
+            elseif day_of_week == "Friday" then
+              offset_start = -4
+            elseif day_of_week == "Saturday" then
+              offset_start = 2
+            end
+            assert(offset_start)
+
+            local current_week_dt = os.time() + (offset_start * 3600 * 24)
+            ---@type obsidian.PickerEntry
+            local weeklies = {}
+            for week_offset = 1, -2, -1 do
+              local week_dt = current_week_dt + (week_offset * 3600 * 24 * 7)
+              local week_alias = weekly_alias(week_dt)
+              local week_display = week_alias
+              local path = weekly_note_path(week_dt)
+
+              if week_offset == 0 then
+                week_display = week_display .. " @current"
+              elseif week_offset == 1 then
+                week_display = week_display .. " @next"
+              elseif week_offset == -1 then
+                week_display = week_display .. " @last"
               end
 
-              ---@param dt number
-              ---@return obsidian.Path
-              local function weekly_note_path(dt)
-                return client.dir / os.date("notes/weekly/week-of-%Y-%m-%d.md", dt)
+              if not path:is_file() then
+                week_display = week_display .. " ➡️ create"
               end
 
-              ---@param dt number
-              ---@return string
-              local function weekly_alias(dt)
-                local alias = os.date("Week of %A %B %d, %Y", dt)
-                assert(type(alias) == "string")
-                return alias
-              end
+              weeklies[#weeklies + 1] = {
+                value = week_dt,
+                display = week_display,
+                ordinal = week_display,
+                filename = tostring(path),
+              }
+            end
 
-              local day_of_week = os.date "%A"
-              assert(type(day_of_week) == "string")
-
-              ---@type integer
-              local offset_start
-              if day_of_week == "Sunday" then
-                offset_start = 1
-              elseif day_of_week == "Monday" then
-                offset_start = 0
-              elseif day_of_week == "Tuesday" then
-                offset_start = -1
-              elseif day_of_week == "Wednesday" then
-                offset_start = -2
-              elseif day_of_week == "Thursday" then
-                offset_start = -3
-              elseif day_of_week == "Friday" then
-                offset_start = -4
-              elseif day_of_week == "Saturday" then
-                offset_start = 2
-              end
-              assert(offset_start)
-
-              local current_week_dt = os.time() + (offset_start * 3600 * 24)
-              ---@type obsidian.PickerEntry
-              local weeklies = {}
-              for week_offset = 1, -2, -1 do
-                local week_dt = current_week_dt + (week_offset * 3600 * 24 * 7)
-                local week_alias = weekly_alias(week_dt)
-                local week_display = week_alias
-                local path = weekly_note_path(week_dt)
-
-                if week_offset == 0 then
-                  week_display = week_display .. " @current"
-                elseif week_offset == 1 then
-                  week_display = week_display .. " @next"
-                elseif week_offset == -1 then
-                  week_display = week_display .. " @last"
+            picker:pick(weeklies, {
+              prompt_title = "Weeklies",
+              callback = function(dt)
+                local path = weekly_note_path(dt)
+                ---@type obsidian.Note
+                local note
+                if path:is_file() then
+                  note = Note.from_file(path)
+                else
+                  note = client:create_note {
+                    id = path.name,
+                    dir = path:parent(),
+                    title = weekly_alias(dt),
+                    tags = { "weekly-notes" },
+                  }
                 end
-
-                if not path:is_file() then
-                  week_display = week_display .. " ➡️ create"
-                end
-
-                weeklies[#weeklies + 1] = {
-                  value = week_dt,
-                  display = week_display,
-                  ordinal = week_display,
-                  filename = tostring(path),
-                }
-              end
-
-              picker:pick(weeklies, {
-                prompt_title = "Weeklies",
-                callback = function(dt)
-                  local path = weekly_note_path(dt)
-                  ---@type obsidian.Note
-                  local note
-                  if path:is_file() then
-                    note = Note.from_file(path)
-                  else
-                    note = client:create_note {
-                      id = path.name,
-                      dir = path:parent(),
-                      title = weekly_alias(dt),
-                      tags = { "weekly-notes" },
-                    }
-                  end
-                  client:open_note(note)
-                end,
-              })
-            end,
-            "Weeklies",
-          },
+                client:open_note(note)
+              end,
+            })
+          end,
+          desc = "Weeklies",
         },
-      }
-
-      wk.register({
-        ["<leader>o"] = {
-          name = "Obsidian",
-          e = {
+        {
+          mode = { "v" },
+          -- { "<leader>o", group = "Obsidian" },
+          {
+            "<leader>oe",
             function()
               local title = vim.fn.input { prompt = "Enter title (optional): " }
               vim.cmd("ObsidianExtractNote " .. title)
             end,
-            "Extract text into new note",
+            desc = "Extract text into new note",
           },
-          l = {
+          {
+            "<leader>ol",
             function()
               vim.cmd "ObsidianLink"
             end,
-            "Link text to an existing note",
+            desc = "Link text to an existing note",
           },
-          n = {
+          {
+            "<leader>on",
             function()
               vim.cmd "ObsidianLinkNew"
             end,
-            "Link text to a new note",
+            desc = "Link text to a new note",
           },
-          t = {
+          {
+            "<leader>ot",
             function()
               vim.cmd "ObsidianTags"
             end,
-            "Tags",
+            desc = "Tags",
           },
         },
-      }, {
-        mode = "v",
-      })
+      }
     end,
     opts = {
       workspaces = {

@@ -118,8 +118,8 @@ return {
     init = function()
       local wk = require "which-key"
 
-      wk.register {
-        ["<leader>a"] = { "<cmd>AerialToggle<CR>", "Aerial" },
+      wk.add {
+        { "<leader>a", "<cmd>AerialToggle<CR>", desc = "Aerial" },
       }
     end,
   },
@@ -140,12 +140,10 @@ return {
     init = function()
       local wk = require "which-key"
 
-      wk.register {
-        ["<leader>t"] = {
-          name = "Tmux",
-          w = { "<cmd>TmuxWindows<CR>", "Windows" },
-          s = { "<cmd>TmuxSessions<CR>", "Sessions" },
-        },
+      wk.add {
+        { "<leader>t", group = "Tmux" },
+        { "<leader>ts", "<cmd>TmuxSessions<CR>", desc = "Sessions" },
+        { "<leader>tw", "<cmd>TmuxWindows<CR>", desc = "Windows" },
       }
     end,
   },

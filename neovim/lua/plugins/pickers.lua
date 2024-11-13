@@ -56,33 +56,28 @@ return {
       -- Picker mappings.
       local builtin = require "telescope.builtin"
 
-      wk.register {
-        ["<leader>f"] = {
-          name = "Find",
-          f = { builtin.find_files, "Find files" },
-          g = { builtin.live_grep, "Find in files" },
-          b = { builtin.buffers, "Find buffers" },
-          h = { builtin.help_tags, "Find help tags" },
-          d = { ":Telescope file_browser<cr>", "Find directories" },
-          c = { builtin.commands, "Find commands" },
-          t = { ":TodoTelescope keywords=TODO<cr>", "Find TODO comments" },
-          j = { builtin.current_buffer_fuzzy_find, "Jump around buffer" },
-        },
+      wk.add {
+        { "<leader>f", group = "Find" },
+        { "<leader>ff", builtin.find_files, desc = "Find files" },
+        { "<leader>fg", builtin.live_grep, desc = "Find in files" },
+        { "<leader>fb", builtin.find_buffers, desc = "Find buffers" },
+        { "<leader>fh", builtin.help_tags, desc = "Find help tags" },
+        { "<leader>fd", ":Telescope file_browser<cr>", desc = "Find directories" },
+        { "<leader>fc", builtin.commands, desc = "Find commands" },
+        { "<leader>ft", ":TodoTelescope keywords=TODO<cr>", desc = "Find TODO comments" },
+        { "<leader>fj", builtin.current_buffer_fuzzy_find, desc = "Jump around buffer" },
       }
 
-      wk.register {
-        g = {
-          name = "LSP go to...",
-          i = { builtin.lsp_implementations, "implementations" },
-          d = { builtin.lsp_definitions, "definitions" },
-          r = { builtin.lsp_references, "references" },
-        },
-        ["<leader>l"] = {
-          name = "LSP",
-          d = { builtin.diagnostics, "Show diagnostics" },
-          t = { ":TroubleToggle<cr>", "Toggle trouble diagnostics" },
-          s = { builtin.lsp_document_symbols, "Document symbols" },
-        },
+      wk.add {
+        { "g", group = "LSP go to..." },
+        { "gi", builtin.lsp_implementations, desc = "implementations" },
+        { "gd", builtin.lsp_definitions, desc = "definitions" },
+        { "gr", builtin.lsp_references, desc = "references" },
+        { "<leader>l", group = "LSP" },
+        { "<leader>ld", builtin.diagnostics, desc = "Show diagnostics" },
+        { "<leader>ls", builtin.lsp_document_symbols, desc = "Document symbols" },
+        { "<leader>lt", ":Trouble diagnostics toggle<cr>", desc = "Toggle trouble diagnostics" },
+        { "<leader>lb", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "Toggle trouble bugger diagnostics" },
       }
     end,
     init = function()

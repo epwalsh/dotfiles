@@ -63,31 +63,31 @@ vim.keymap.set("t", "<C-w>k", "<C-\\><C-n><C-w>k", { silent = true })
 vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { silent = true })
 
 -- Toggle buffer options.
-wk.register {
-  ["<leader>b"] = {
-    name = "Buffer options",
-    g = {
-      function()
-        require("gitsigns").refresh()
-      end,
-      "Refresh gitsigns",
-    },
-    h = { "<cmd>set hlsearch!<cr>", "Toggle highlighting for search" },
-    w = { "<cmd>set wrap!<cr>", "Toggle wrap" },
-    f = { "<cmd>set foldenable!<cr>", "Toggle folding" },
-    p = {
-      function()
-        require("core.util").toggle_autopairs()
-      end,
-      "Toggle autopairs",
-    },
+wk.add {
+  { "<leader>b", group = "Buffer options" },
+  { "<leader>bf", "<cmd>set foldenable!<cr>", desc = "Toggle folding" },
+  {
+    "<leader>bg",
+    function()
+      require("gitsigns").refresh()
+    end,
+    desc = "Refresh gitsigns",
   },
+  { "<leader>bh", "<cmd>set hlsearch!<cr>", desc = "Toggle highlighting for search" },
+  {
+    "<leader>bp",
+    function()
+      require("core.util").toggle_autopairs()
+    end,
+    desc = "Toggle autopairs",
+  },
+  { "<leader>bw", "<cmd>set wrap!<cr>", desc = "Toggle wrap" },
 }
 
 -- OS command shortcuts.
-wk.register {
-  ["<leader>z"] = {
-    name = "OS commands",
-    c = { "<cmd>OScp<cr>", "Copy the current file" },
+wk.add {
+  {
+    { "<leader>z", group = "OS commands" },
+    { "<leader>zc", "<cmd>OScp<cr>", desc = "Copy the current file" },
   },
 }

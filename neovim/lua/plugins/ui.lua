@@ -95,14 +95,9 @@ return {
 
       local wk = require "which-key"
 
-      wk.register {
-        ["<leader>u"] = {
-          name = "UI",
-          s = {
-            "<cmd>lua require('material.functions').find_style()<cr>",
-            "Switch theme",
-          },
-        },
+      wk.add {
+        { "<leader>u", group = "UI" },
+        { "<leader>us", "<cmd>lua require('material.functions').find_style()<cr>", desc = "Switch theme" },
       }
     end,
   },

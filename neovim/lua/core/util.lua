@@ -1,6 +1,6 @@
 local M = {}
 
----@enum OS
+---@enum core.OS
 M.OS = {
   Linux = "Linux",
   Wsl = "Wsl",
@@ -10,7 +10,7 @@ M.OS = {
 
 --- Get the running operating system.
 --- Reference https://vi.stackexchange.com/a/2577/33116
----@return OS
+---@return core.OS
 M.get_os = function()
   if vim.fn.has "win32" == 1 then
     return M.OS.Windows
@@ -127,7 +127,7 @@ M.find_buffer_by_name = function(name)
   return nil
 end
 
----@class PaperMetadata
+---@class core.PaperMetadata
 ---
 ---@field corpus_id string|integer
 ---@field title string
@@ -136,7 +136,7 @@ end
 
 ---@param corpus_id integer|string
 ---
----@return PaperMetadata
+---@return core.PaperMetadata
 M.get_paper_metadata = function(corpus_id)
   local curl = require "plenary.curl"
 
@@ -156,7 +156,7 @@ M.get_paper_metadata = function(corpus_id)
 end
 
 ---@param note obsidian.Note
----@param data PaperMetadata
+---@param data core.PaperMetadata
 M.update_note_with_paper_metadata = function(note, data)
   note:add_tag "paper"
   note:add_alias(data.title .. " (paper)")
@@ -165,43 +165,16 @@ M.update_note_with_paper_metadata = function(note, data)
   note:add_field("tldr", data.tldr.text)
 end
 
-M.autopair_enabled = function()
-  local ok, autopair = pcall(require, "ultimate-autopair")
-  if ok then
-    return autopair.isenabled()
-  else
-    return false
-  end
-end
-
 M.disable_autopairs = function()
-  if M.autopair_enabled() then
-    local autopair = require "ultimate-autopair"
-
-    autopair.clear()
-    autopair.disable()
-  end
+  require("nvim-autopairs").disable()
 end
 
 M.enable_autopairs = function()
-  if not M.autopair_enabled() then
-    local autopair = require "ultimate-autopair"
-
-    autopair.setup()
-    autopair.enable()
-  end
+  require("nvim-autopairs").enable()
 end
 
 M.toggle_autopairs = function()
-  local log = require "core.log"
-
-  if M.autopair_enabled() then
-    M.disable_autopairs()
-    log.info "autopairs disabled"
-  else
-    M.enable_autopairs()
-    log.info "autopairs enabled"
-  end
+  require("nvim-autopairs").toggle()
 end
 
 local INPUT_CANCELLED = "~~~INPUT-CANCELLED~~~"

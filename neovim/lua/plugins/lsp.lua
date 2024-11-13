@@ -4,7 +4,7 @@ return {
     ft = "lua", -- only load on lua files
     opts = {
       library = {
-        -- See the configuration section for more details
+        "~/github.com/epwalsh/obsidian.nvim",
         -- Load luvit types when the `vim.uv` word is found
         { path = "luvit-meta/library", words = { "vim%.uv" } },
       },
@@ -106,9 +106,6 @@ return {
 
       -- Lua.
       require("lspconfig").lua_ls.setup {
-        -- on_attach = function(client)
-        --   require("illuminate").on_attach(client)
-        -- end,
         commands = {
           Format = {
             function()
@@ -205,6 +202,7 @@ return {
             -- Jedi works best as the hover provider.
             client.server_capabilities.hoverProvider = false
             client.server_capabilities.signatureHelpProvider = false
+            client.server_capabilities.definitionProvider = false
           end,
         }
       end
@@ -228,9 +226,9 @@ return {
       --------------
       local wk = require "which-key"
 
-      wk.register {
-        K = { vim.lsp.buf.hover, "LSP hover" },
-        ["<c-k>"] = { vim.lsp.buf.signature_help, "LSP signature help" },
+      wk.add {
+        { "K", vim.lsp.buf.hover, desc = "LSP hover" },
+        { "<c-k>", vim.lsp.buf.signature_help, desc = "LSP signature help" },
       }
     end,
   },
@@ -277,28 +275,29 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     -- cmd = "IncRename",
     config = function(_, _)
-      require("inc_rename").setup()
+      require("inc_rename").setup {}
     end,
     init = function()
       local wk = require "which-key"
 
-      wk.register({
-        ["<leader>r"] = {
+      wk.add {
+        {
+          "<leader>r",
           function()
             return ":IncRename " .. vim.fn.expand "<cword>"
           end,
-          "Rename",
+          desc = "Rename",
+          expr = true,
+          -- replace_keycodes = false,
         },
-      }, {
-        expr = true,
-      })
+      }
     end,
   },
 
   {
     "folke/trouble.nvim",
     lazy = true,
-    cmd = "Trouble",
+    cmd = { "Trouble", "TroubleToggle" },
     dependencies = {
       "kyazdani42/nvim-web-devicons",
     },
