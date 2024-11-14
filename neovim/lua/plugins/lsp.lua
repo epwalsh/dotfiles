@@ -185,8 +185,8 @@ return {
       -- (change the index from '1' to whatever if you have multiple)
       require("lspconfig")["jedi_language_server"].setup {
         on_attach = function(client)
+          -- Jedi works best as the provider for these.
           client.server_capabilities.renameProvider = true
-          -- Jedi works best as the hover provider.
           client.server_capabilities.hoverProvider = true
         end,
       }
@@ -194,23 +194,21 @@ return {
       if os.getenv "NVIM_PYRIGHT" ~= "0" then
         require("lspconfig")["pyright"].setup {
           on_attach = function(client)
-            -- Renaming doesn't work properly unless we only have a single
-            -- rename provider, so we disable it for pyright.
-            -- See https://github.com/neovim/neovim/issues/15899
+            -- Jedi works best as the provider for these.
             client.server_capabilities.renameProvider = false
             client.server_capabilities.completionProvider = false
-            -- Jedi works best as the hover provider.
             client.server_capabilities.hoverProvider = false
             client.server_capabilities.signatureHelpProvider = false
             client.server_capabilities.definitionProvider = false
+            client.server_capabilities.referencesProvider = false
           end,
         }
       end
 
       require("lspconfig")["ruff_lsp"].setup {
         on_attach = function(client)
+          -- Jedi works best as the provider for these.
           client.server_capabilities.renameProvider = false
-          -- Jedi works best as the hover provider.
           client.server_capabilities.hoverProvider = false
         end,
       }
