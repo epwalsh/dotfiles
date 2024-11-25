@@ -205,7 +205,7 @@ return {
         }
       end
 
-      require("lspconfig")["ruff_lsp"].setup {
+      require("lspconfig")["ruff"].setup {
         on_attach = function(client)
           -- Jedi works best as the provider for these.
           client.server_capabilities.renameProvider = false

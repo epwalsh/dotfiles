@@ -13,8 +13,8 @@ SHELL = "/opt/homebrew/bin/fish"
 size = 15.5
 
 [font.normal]
-family = "DejaVuSansMono Nerd Font"
-style = "Book"
+family = "DejaVuSansM Nerd Font"
+style = "Regular"
 
 [[keyboard.bindings]]
 action = "SpawnNewInstance"

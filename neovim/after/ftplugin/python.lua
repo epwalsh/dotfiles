@@ -20,6 +20,8 @@ local function format_buffer()
     return
   end
 
+  log.info "Auto-formatting with isort + black..."
+
   local tmp_dir = "/tmp/nvim/format"
   Path:new(tmp_dir):mkdir { exists_ok = true, parents = true }
 
@@ -62,5 +64,16 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
     vim.cmd "edit"
     pcall(vim.cmd.loadview)
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  group = group,
+  pattern = "*_test.py",
+  callback = function()
+    vim.api.nvim_buf_create_user_command(0, "Pytest", function()
+      local bufname = vim.api.nvim_buf_get_name(0)
+      vim.cmd("AsyncRun pytest -v " .. bufname)
+    end, { nargs = 0 })
   end,
 })
