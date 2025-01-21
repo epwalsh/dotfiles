@@ -142,12 +142,13 @@ M.get_paper_metadata = function(corpus_id)
 
   local response = curl.get {
     url = string.format("https://api.semanticscholar.org/graph/v1/paper/CorpusId:%s?fields=tldr,title,url", corpus_id),
-    -- accept = "application/json",
-    -- x_api_key = assert(os.getenv "S2_API_KEY"),
-    headers = {
-      accept = "application/json",
-      x_api_key = assert(os.getenv "S2_API_KEY"),
-    },
+    -- NOTE: the curl wrapper from plenary mangles the header keys, but the S2 API expects the
+    -- exact key 'x_api_key'.
+    raw = { "-H", "Accept: application/json", "-H", string.format("x_api_key: %s", assert(os.getenv "S2_API_KEY")) },
+    -- headers = {
+    --   accept = "application/json",
+    --   x_api_key = assert(os.getenv "S2_API_KEY"),
+    -- },
   }
   assert(response.status == 200, string.format("Received status code %s", response.status))
   local data = vim.json.decode(response.body)
