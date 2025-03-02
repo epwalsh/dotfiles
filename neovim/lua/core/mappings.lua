@@ -82,6 +82,15 @@ wk.add {
     desc = "Toggle autopairs",
   },
   { "<leader>bw", "<cmd>set wrap!<cr>", desc = "Toggle wrap" },
+  {
+    "<leader>bd",
+    function()
+      local bufname = vim.api.nvim_buf_get_name(0)
+      local dirname = vim.fs.dirname(bufname)
+      vim.cmd(string.format("e %s", dirname))
+    end,
+    desc = "Open buffer's directory",
+  },
 }
 
 -- OS command shortcuts.

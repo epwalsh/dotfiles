@@ -66,6 +66,15 @@ return {
         { "<leader>fc", builtin.commands, desc = "Find commands" },
         { "<leader>ft", ":TodoTelescope keywords=TODO<cr>", desc = "Find TODO comments" },
         { "<leader>fj", builtin.current_buffer_fuzzy_find, desc = "Jump around buffer" },
+        {
+          "<leader>fp",
+          function()
+            local bufname = vim.api.nvim_buf_get_name(0)
+            local dirname = vim.fs.dirname(bufname)
+            vim.cmd(string.format("e %s", dirname))
+          end,
+          desc = "Browse files in the buffer's parent directory",
+        },
       }
 
       wk.add {
