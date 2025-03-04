@@ -71,7 +71,7 @@ return {
           function()
             local bufname = vim.api.nvim_buf_get_name(0)
             local dirname = vim.fs.dirname(bufname)
-            vim.cmd(string.format("e %s", dirname))
+            builtin.find_files { cwd = dirname }
           end,
           desc = "Browse files in the buffer's parent directory",
         },
