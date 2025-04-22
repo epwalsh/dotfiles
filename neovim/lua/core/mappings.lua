@@ -73,7 +73,7 @@ wk.add {
     end,
     desc = "Refresh gitsigns",
   },
-  { "<leader>bh", "<cmd>set hlsearch!<cr>", desc = "Toggle highlighting for search" },
+  { "<leader>bh", "<cmd>noh<cr>", desc = "Turn of highlighting for search" },
   {
     "<leader>bp",
     function()

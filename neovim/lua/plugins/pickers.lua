@@ -53,9 +53,9 @@ return {
       -- Load extensions.
       telescope.load_extension "file_browser"
 
-      -- Picker mappings.
       local builtin = require "telescope.builtin"
 
+      -- Picker mappings.
       wk.add {
         { "<leader>f", group = "Find" },
         { "<leader>ff", builtin.find_files, desc = "Find files" },
@@ -71,7 +71,8 @@ return {
           function()
             local bufname = vim.api.nvim_buf_get_name(0)
             local dirname = vim.fs.dirname(bufname)
-            builtin.find_files { cwd = dirname }
+            telescope.extensions.file_browser.file_browser { path = dirname }
+            -- builtin.find_files { cwd = dirname }
           end,
           desc = "Browse files in the buffer's parent directory",
         },
