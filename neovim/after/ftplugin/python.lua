@@ -5,6 +5,8 @@ local log = require "core.log"
 vim.opt_local.foldmethod = "expr"
 -- vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- Customize which queries are used for folding.
+-- See https://github.com/nvim-treesitter/nvim-treesitter/discussions/1513#discussioncomment-971396
 if require("nvim-treesitter.parsers").has_parser "python" then
   local folds_query = [[
   [
