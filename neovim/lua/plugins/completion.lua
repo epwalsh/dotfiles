@@ -1,6 +1,7 @@
 return {
   {
     "ervandew/supertab",
+    enabled = false,
     lazy = true,
     event = { "InsertEnter" },
   },

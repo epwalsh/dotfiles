@@ -3,7 +3,19 @@ local util = require "core.util"
 local log = require "core.log"
 
 vim.opt_local.foldmethod = "expr"
-vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+if require("nvim-treesitter.parsers").has_parser "python" then
+  local folds_query = [[
+  [
+    (function_definition)
+    (class_definition)
+
+    (string)
+  ] @fold
+  ]]
+  require("vim.treesitter.query").set("python", "folds", folds_query)
+end
 
 -- Don't automatically adjust indentation when typing ':'
 -- Need to do this in an autocmd. See https://stackoverflow.com/a/37889460/4151392
