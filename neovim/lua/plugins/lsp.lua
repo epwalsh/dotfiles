@@ -62,6 +62,11 @@ return {
       -- General LSP settings
       vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
       vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+      vim.lsp.set_log_level("error")  -- change if you need to debug
+      -- delay update diagnostics
+      -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      --   update_in_insert = false,
+      -- })
 
       -- Mappings.
       local wk = require "which-key"
@@ -83,7 +88,7 @@ return {
       vim.cmd [[autocmd BufWritePre *.rs lua vim.lsp.buf.format()]]
 
       -- Go.
-      vim.lsp.enable "gopls"
+      -- vim.lsp.enable "gopls"
 
       -- Lua.
       vim.lsp.enable "lua_ls"
@@ -167,6 +172,7 @@ return {
       vim.lsp.config("jedi_language_server", {
         settings = {
           cmd = { "jedi-language-server" },
+          update_in_insert = false,
         },
         on_attach = function(client)
           client.server_capabilities.renameProvider = true
