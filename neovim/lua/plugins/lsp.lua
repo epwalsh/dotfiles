@@ -184,6 +184,9 @@ return {
       -- :lua =vim.lsp.get_active_clients()[1].server_capabilities
       -- (change the index from '1' to whatever if you have multiple)
       require("lspconfig")["jedi_language_server"].setup {
+        settings = {
+          cmd = { "jedi-language-server" },
+        },
         on_attach = function(client)
           -- Jedi works best as the provider for these.
           client.server_capabilities.renameProvider = true
