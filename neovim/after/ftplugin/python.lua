@@ -14,6 +14,8 @@ if require("nvim-treesitter.parsers").has_parser "python" then
     (class_definition)
 
     (string)
+
+    (import_from_statement)
   ] @fold
   ]]
   require("vim.treesitter.query").set("python", "folds", folds_query)
