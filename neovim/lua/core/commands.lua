@@ -68,8 +68,8 @@ end, { nargs = 0 })
 
 vim.api.nvim_create_user_command("Gcommit", function(data)
   local commit_msg = data.args
-  vim.cmd "Git! add -A"
-  vim.cmd(string.format('Git! commit -m "%s"', commit_msg))
+  vim.cmd "Git add -A"
+  vim.cmd(string.format('Git commit -m "%s"', commit_msg))
   vim.cmd "Git! push"
   require("gitsigns").refresh()
 end, { nargs = 1 })
