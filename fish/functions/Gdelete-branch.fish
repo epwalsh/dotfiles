@@ -12,5 +12,5 @@ function Gdelete-branch
     and set remote $_flag_remote[-1]
 
     git push -d $remote $argv[-1]
-    git branch -d $argv[-1]
+    git branch -D $argv[-1]
 end
