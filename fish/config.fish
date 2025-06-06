@@ -111,3 +111,5 @@ set -gx EXTENSION_WIKI_LINK 1
 alias nav 'nvim notes/nav.md'
 
 alias s3-ls 'aws s3 ls --summarize --human-readable'
+
+alias beaker-remote-session 'beaker session create --remote --bare --cluster ai2/phobos-cirrascale --mount "src=weka,ref=oe-training-default,dst=/weka/oe-training-default"'

@@ -74,6 +74,10 @@ vim.api.nvim_create_user_command("Gcommit", function(data)
   require("gitsigns").refresh()
 end, { nargs = 1 })
 
+vim.api.nvim_create_user_command("Gopen", function(_)
+  vim.cmd "AsyncRun -close gh repo view --web"
+end, { nargs = 0, desc = "Open the repository in your browser"})
+
 ------------------------
 -- Obsidian commands. --
 ------------------------
