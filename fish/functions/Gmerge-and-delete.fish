@@ -9,6 +9,7 @@ function Gmerge-and-delete
     else
         git pull
     end
+    git merge $current_branch
     git push -d origin $current_branch
     git branch -d $current_branch
     git remote prune origin
