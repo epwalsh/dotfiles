@@ -56,32 +56,34 @@ local function format_buffer()
     end
   end
 
-  vim.cmd "mkview"
   if output ~= input then
+    -- vim.cmd.mkview()
+    log.info "Applying formatting changes from isort + black..."
     -- Save current view. We restore this on `BufWritePost` (see below).
     -- Idea taken from https://github.com/nvim-treesitter/nvim-treesitter/issues/1424#issuecomment-909181939
     local new_lines = vim.fn.split(output, "\n")
     vim.api.nvim_buf_set_lines(0, 0, -1, false, new_lines)
-    vim.opt.foldmethod = vim.opt.foldmethod
+    -- vim.opt.foldmethod = vim.opt.foldmethod
+    -- vim.cmd.loadview()
   end
 end
 
-local group = vim.api.nvim_create_augroup("python_format", { clear = true })
+local group = vim.api.nvim_create_augroup("python", { clear = true })
 
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = group,
-  pattern = "*.py",
-  callback = format_buffer,
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--   group = group,
+--   pattern = "*.py",
+--   callback = format_buffer,
+-- })
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  group = group,
-  pattern = "*.py",
-  callback = function()
-    vim.cmd "edit"
-    pcall(vim.cmd.loadview)
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+--   group = group,
+--   pattern = "*.py",
+--   callback = function()
+--     -- vim.cmd "edit"
+--     pcall(vim.cmd.loadview)
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = group,
