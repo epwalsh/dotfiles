@@ -5,6 +5,12 @@ if test -d $bin_path
     or set -gx PATH $bin_path $PATH
 end
 
+set -l local_bin_path $HOME/.local/bin
+if test -d $local_bin_path
+    contains -- $local_bin_path $PATH
+    or set -gx PATH $local_bin_path $PATH
+end
+
 # Add cargo bin to PATH
 set -l cargo_bin_path $HOME/.cargo/bin
 contains -- $cargo_bin_path $PATH
