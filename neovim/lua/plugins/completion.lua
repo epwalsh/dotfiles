@@ -125,7 +125,7 @@ return {
           { name = "calc", group_index = 1 },
           { name = "dictionary", group_index = 1 },
           { name = "git", group_index = 1 },
-          -- { name = "copilot", group_index = 1 },
+          { name = "copilot", group_index = 1 },
           { name = "natdat", group_index = 1 },
         },
         formatting = {
@@ -153,18 +153,19 @@ return {
       }
 
       -- Throttle completion so it's less annoying.
+      local pause_ms = 200
       local timer = nil
       vim.api.nvim_create_autocmd({ "TextChangedI", "CmdlineChanged" }, {
         pattern = "*",
         callback = function()
           if timer then
-            vim.loop.timer_stop(timer)
+            vim.uv.timer_stop(timer)
             timer = nil
           end
 
-          timer = assert(vim.loop.new_timer())
+          timer = assert(vim.uv.new_timer())
           timer:start(
-            300,
+            pause_ms,
             0,
             vim.schedule_wrap(function()
               require("cmp").complete { reason = require("cmp").ContextReason.Auto }
@@ -181,7 +182,7 @@ return {
         },
       }
 
-      require("cmp_git").setup()
+      require("cmp_git").setup {}
 
       require("copilot_cmp").setup()
     end,
