@@ -12,7 +12,6 @@ return {
     cmd = { "Copilot" },
     event = { "InsertEnter" },
     opts = {
-      suggestions = { enabled = false },
       panel = { enabled = false },
     },
   },
