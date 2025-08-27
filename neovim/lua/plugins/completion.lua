@@ -104,6 +104,23 @@ return {
             behavior = cmp.ConfirmBehavior.Insert,
           },
         },
+        sorting = {
+          priority_weight = 2,
+          comparators = {
+            -- Below is the default comparitor list and order for nvim-cmp
+            cmp.config.compare.offset,
+            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+            cmp.config.compare.exact,
+            require("copilot_cmp.comparators").prioritize,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+           },
+        },
         sources = {
           { name = "lazydev", group_index = 1 },
           { name = "nvim_lsp", group_index = 1 },
@@ -120,12 +137,12 @@ return {
           },
           { name = "emoji", group_index = 1 },
           { name = "vsnip", group_index = 1 },
-          { name = "buffer", keyword_length = 3, group_index = 1 },
           { name = "calc", group_index = 1 },
           { name = "dictionary", group_index = 1 },
           { name = "git", group_index = 1 },
-          { name = "copilot", group_index = 1 },
           { name = "natdat", group_index = 1 },
+          { name = "copilot", group_index = 2 },
+          { name = "buffer", keyword_length = 2, group_index = 2 },
         },
         formatting = {
           format = lspkind.cmp_format {
@@ -152,7 +169,7 @@ return {
       }
 
       -- Throttle completion so it's less annoying.
-      local pause_ms = 200
+      local pause_ms = 250
       local timer = nil
       vim.api.nvim_create_autocmd({ "TextChangedI", "CmdlineChanged" }, {
         pattern = "*",

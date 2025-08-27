@@ -24,7 +24,7 @@ return {
         lsp_format = "fallback",
       },
       -- Set up format-on-save
-      format_on_save = { timeout_ms = 500 },
+      -- format_on_save = { timeout_ms = 800 },
       -- Customize formatters
       -- formatters = {
       --   shfmt = {
@@ -35,6 +35,14 @@ return {
     init = function()
       -- If you want the formatexpr, here is the place to set it
       -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*",
+        callback = function(args)
+          if os.getenv "NVIM_FORMAT" ~= "0" then
+            require("conform").format({ bufnr = args.buf, timeout_ms = 800 })
+          end
+        end,
+      })
     end,
   },
 
