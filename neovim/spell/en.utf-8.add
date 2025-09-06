@@ -276,3 +276,5 @@ yml
 submodules
 HBM
 wildcards
+enum
+saveable
