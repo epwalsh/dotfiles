@@ -141,8 +141,8 @@ return {
           { name = "dictionary", group_index = 1 },
           { name = "git", group_index = 1 },
           { name = "natdat", group_index = 1 },
-          { name = "copilot", group_index = 2 },
-          { name = "buffer", keyword_length = 2, group_index = 2 },
+          { name = "copilot", group_index = 1 },
+          { name = "buffer", keyword_length = 2, group_index = 1 },
         },
         formatting = {
           format = lspkind.cmp_format {
