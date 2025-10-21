@@ -59,11 +59,19 @@ return {
       wk.add {
         { "<leader>f", group = "Find" },
         { "<leader>ff", builtin.find_files, desc = "Find files" },
-        { "<leader>fg", builtin.live_grep, desc = "Find in files" },
+        { "<leader>fg", builtin.live_grep, desc = "Find/grep in files" },
         { "<leader>fg", builtin.grep_string, desc = "Find selection in files", mode = "v" },
+        {
+          "<leader>fd",
+          function()
+            local bufname = vim.api.nvim_buf_get_name(0)
+            local dirname = vim.fs.dirname(bufname)
+            builtin.live_grep { cwd = dirname }
+          end,
+          desc = "Find/grep in files of buffer's parent directory",
+        },
         { "<leader>fb", builtin.buffers, desc = "Find buffers" },
         { "<leader>fh", builtin.help_tags, desc = "Find help tags" },
-        { "<leader>fd", ":Telescope file_browser<cr>", desc = "Find directories" },
         { "<leader>fc", builtin.commands, desc = "Find commands" },
         { "<leader>ft", ":TodoTelescope keywords=TODO<cr>", desc = "Find TODO comments" },
         { "<leader>fj", builtin.current_buffer_fuzzy_find, desc = "Jump around buffer" },
