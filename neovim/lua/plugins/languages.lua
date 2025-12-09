@@ -57,6 +57,12 @@ return {
     ft = "python",
   },
 
+  -- {
+  --   "tmhedberg/SimpylFold",
+  --   lazy = true,
+  --   ft = "python",
+  -- },
+
   {
     "Vigemus/iron.nvim",
     lazy = true,

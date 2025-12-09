@@ -1,8 +1,8 @@
 local wk = require "which-key"
 
 vim.opt_local.foldmethod = "expr"
--- vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
 -- Customize which queries are used for folding.
 -- See https://github.com/nvim-treesitter/nvim-treesitter/discussions/1513#discussioncomment-971396
 if require("nvim-treesitter.parsers").has_parser "python" then
@@ -34,10 +34,10 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
       local bufname = vim.api.nvim_buf_get_name(0)
       vim.cmd("AsyncRun pytest -vv " .. bufname)
     end, { nargs = 0 })
+
+    wk.add {
+      { "<leader>p", group = "Python" },
+      { "<leader>pt", "<cmd>PyTest<cr>", desc = "Run pytest on the current file" },
+    }
   end,
 })
-
-wk.add {
-  { "<leader>p", group = "Python" },
-  { "<leader>pt", "<cmd>PyTest<cr>", desc = "Run pytest on the current file" },
-}

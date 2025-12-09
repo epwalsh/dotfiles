@@ -119,7 +119,7 @@ return {
             cmp.config.compare.sort_text,
             cmp.config.compare.length,
             cmp.config.compare.order,
-           },
+          },
         },
         sources = {
           { name = "lazydev", group_index = 1 },
@@ -169,7 +169,7 @@ return {
       }
 
       -- Throttle completion so it's less annoying.
-      local pause_ms = 250
+      local pause_ms = 150
       local timer = nil
       vim.api.nvim_create_autocmd({ "TextChangedI", "CmdlineChanged" }, {
         pattern = "*",

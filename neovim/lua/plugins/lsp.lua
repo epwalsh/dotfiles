@@ -62,7 +62,7 @@ return {
       -- General LSP settings
       vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
       vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
-      vim.lsp.set_log_level("error")  -- change if you need to debug
+      vim.lsp.set_log_level "error" -- change if you need to debug
       -- delay update diagnostics
       -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
       --   update_in_insert = false,
@@ -216,7 +216,7 @@ return {
         "pyright",
         "rust-analyzer",
         "jedi-language-server",
-        "ruff-lsp",
+        "ruff",
         "shellcheck",
         "bash-language-server",
         "stylua",
