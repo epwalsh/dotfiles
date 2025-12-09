@@ -1,8 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    -- lazy = false,
     -- event = { "BufReadPre", "BufNewFile" },
+    lazy = false,
     version = "*",
     build = function()
       -- Set environment variables for building treesitter markdown extensions.
