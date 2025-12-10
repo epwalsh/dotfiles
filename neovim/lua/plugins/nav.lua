@@ -107,19 +107,37 @@ return {
   {
     "stevearc/aerial.nvim",
     lazy = true,
-    cmd = { "AerialToggle" },
+    cmd = { "AerialToggle", "AerialNavToggle" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-web-devicons",
     },
     opts = {
-      post_jump_cmd = "normal! zo",
+      autojump = false, -- unfolds everything
+      close_on_select = true,
+      show_guides = true,
+      manage_folds = true,
+      link_folds_to_tree = true,
+      post_jump_cmd = {
+        "normal! 2zo", -- open folds recursively (increase the number if fold level is higher)
+        "normal! zz", -- center cursor vertically
+      },
+      float = { -- settings for 'AerialToggle float'
+        border = "rounded",
+      },
+      nav = { -- settings for 'AerialNavToggle'
+        preview = true,
+        win_opts = {
+          cursorline = true,
+          winblend = 10,
+        },
+      },
     },
     init = function()
       local wk = require "which-key"
 
       wk.add {
-        { "<leader>a", "<cmd>AerialToggle<CR>", desc = "Aerial" },
+        { "<leader>a", "<cmd>AerialToggle float<CR>", desc = "Aerial" },
       }
     end,
   },
