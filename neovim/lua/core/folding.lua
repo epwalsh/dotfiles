@@ -22,21 +22,31 @@ M.python_syntax_foldexpr = function()
   -- Start of class definition (e.g. 'class ...') starts a new fold at level 1.
   if line:match "^class [_a-zA-Z].*" then
     return ">1"
-  -- Start of function definition (e.g. 'def ...') starts a new fold at level 1.
-  elseif line:match "^def [_a-zA-Z].*" then
-    return ">1"
-  -- Start of method definition (e.g. 'def ...') starts a new fold at level 2.
-  elseif line:match "^    def [_a-zA-Z].*" then
-    return ">2"
-  -- Two blank lines in a row will always end a fold.
-  elseif line:len() == 0 and lnum > 1 and (vim.api.nvim_buf_get_lines(0, lnum - 2, lnum - 1, false)[1]):len() == 0 then
-    return 0
-  elseif line:len() == 0 and (vim.api.nvim_buf_get_lines(0, lnum, lnum + 1, false)[1]):len() == 0 then
-    return 0
-  -- Otherwise keep the current fold level.
-  else
-    return "="
   end
+
+  -- Start of function definition (e.g. 'def ...') starts a new fold at level 1.
+  if line:match "^def [_a-zA-Z].*" then
+    return ">1"
+  end
+
+  -- Start of method definition (e.g. 'def ...') starts a new fold at level 2.
+  if line:match "^    def [_a-zA-Z].*" then
+    return ">2"
+  end
+
+  -- TODO: Make blank line before class/function/method also end a fold.
+
+  -- Two blank lines in a row will always end a fold.
+  if line:len() == 0 and lnum > 1 and (vim.api.nvim_buf_get_lines(0, lnum - 2, lnum - 1, false)[1]):len() == 0 then
+    return 0
+  end
+
+  if line:len() == 0 and (vim.api.nvim_buf_get_lines(0, lnum, lnum + 1, false)[1]):len() == 0 then
+    return 0
+  end
+
+  -- Otherwise keep the current fold level.
+  return "="
 end
 
 return M
