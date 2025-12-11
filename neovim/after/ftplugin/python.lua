@@ -7,7 +7,6 @@ local wk = require "which-key"
 -- vim.opt_local.foldexpr = 'v:lua.require("core.folding").python_syntax_foldexpr()'
 vim.opt_local.foldtext = ""
 vim.opt_local.foldlevelstart = 1
-vim.opt_local.foldlevelstart = 1
 
 -- Customize which queries are used for folding with treesitter.
 -- See https://github.com/nvim-treesitter/nvim-treesitter/discussions/1513#discussioncomment-971396
