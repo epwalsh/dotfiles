@@ -90,7 +90,13 @@ return {
       wk.add {
         { "g", group = "LSP go to..." },
         { "gi", builtin.lsp_implementations, desc = "implementations" },
-        { "gd", builtin.lsp_definitions, desc = "definitions" },
+        {
+          "gd",
+          function()
+            builtin.lsp_definitions { reuse_win = true }
+          end,
+          desc = "definitions",
+        },
         { "gr", builtin.lsp_references, desc = "references" },
         { "<leader>l", group = "LSP" },
         { "<leader>ld", builtin.diagnostics, desc = "Show diagnostics" },
@@ -104,14 +110,14 @@ return {
       -- See:
       -- * https://github.com/nvim-telescope/telescope.nvim/issues/1277
       -- * https://github.com/tmhedberg/SimpylFold/issues/130#issuecomment-1074049490
-      vim.api.nvim_create_autocmd("BufRead", {
-        callback = function()
-          vim.api.nvim_create_autocmd("BufWinEnter", {
-            once = true,
-            command = "normal! zx",
-          })
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("BufRead", {
+      --   callback = function()
+      --     vim.api.nvim_create_autocmd("BufWinEnter", {
+      --       once = true,
+      --       command = "normal! zx",
+      --     })
+      --   end,
+      -- })
 
       -- Open file browser on directories (hijacking netrw).
       -- vim.api.nvim_create_autocmd({ "VimEnter" }, {

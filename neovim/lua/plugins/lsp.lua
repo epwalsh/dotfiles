@@ -152,7 +152,7 @@ return {
           end
         end,
       })
-      vim.cmd [[autocmd BufWritePre *.lua :Format]]
+      -- vim.cmd [[autocmd BufWritePre *.lua :Format]]
 
       -- Python.
       --

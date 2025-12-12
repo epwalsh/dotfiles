@@ -1,3 +1,7 @@
+-- local log = require "core.log"
+local aerial_managed_folds = { python = true, rust = true, yaml = true, lua = true }
+local folding = require "core.folding"
+
 return {
   --------------
   -- NvimTree --
@@ -116,14 +120,44 @@ return {
       autojump = false, -- unfolds everything
       close_on_select = true,
       show_guides = true,
-      manage_folds = { python = true, rust = true, yaml = true },
+      manage_folds = aerial_managed_folds,
       link_folds_to_tree = true,
       link_tree_to_folds = true,
       on_attach = function(bufnr)
-        -- Open aerial automatically so folds are enabled and start closed.
-        local aerial = require "aerial"
-        if vim.api.nvim_buf_line_count(bufnr) >= 10 and aerial.num_symbols(bufnr) >= 2 then
-          aerial.open { direction = "float" }
+        local filetype = vim.bo.filetype
+
+        if aerial_managed_folds[filetype] then
+          local aerial = require "aerial"
+
+          vim.schedule(function()
+            -- Sync folds when attached and start with folds closed.
+            aerial.tree_close_all(bufnr)
+            aerial.sync_folds(bufnr)
+            -- NOTE: sometimes we need this as well to ensure folds start closed, like when jumping
+            -- to a new buffer with 'gd' (lsp go to definition).
+            vim.cmd "normal zM"
+
+            -- But open folds under cursor for context.
+            -- This helps keep the behavior consistent between the various ways of opening buffers,
+            -- like via telescope, lsp, or just directly switching buffers.
+            folding.open_folds_under_cursor()
+          end)
+
+          vim.api.nvim_create_autocmd("BufEnter", {
+            buffer = bufnr,
+            callback = function()
+              if aerial_managed_folds[filetype] then
+                vim.schedule(function()
+                  aerial.sync_folds(bufnr)
+                end)
+              end
+            end,
+          })
+
+          -- Optionally open the aerial float if there are enough symbols.
+          -- if vim.api.nvim_buf_line_count(bufnr) >= 10 and aerial.num_symbols(bufnr) >= 2 then
+          --   aerial.open { direction = "float" }
+          -- end
         end
       end,
       post_jump_cmd = {
@@ -140,6 +174,19 @@ return {
       wk.add {
         { "<leader>a", "<cmd>AerialToggle float<CR>", desc = "Aerial" },
       }
+
+      -- vim.api.nvim_create_autocmd("BufEnter", {
+      --   callback = function()
+      --     local filetype = vim.bo.filetype
+      --     if aerial_managed_folds[filetype] then
+      --       vim.schedule(function()
+      --         local bufnr = vim.api.nvim_get_current_buf()
+      --         local aerial = require "aerial"
+      --         aerial.sync_folds(bufnr)
+      --       end)
+      --     end
+      --   end,
+      -- })
     end,
   },
 
