@@ -1,4 +1,28 @@
-local log = require "core.log"
+-- Remove 'search' from 'foldopen' triggers as this circumvents aerial fold management leading to
+-- inconsistent fold states.
+-- Instead remap 'n'/'N' to open folds through aerial's mapping when navigating to search results.
+-- local log = require "core.log"
+-- vim.opt.foldopen:remove "search"
+-- vim.keymap.set("n", "n", function()
+--   local ok, _ = pcall(vim.cmd, "normal! n")
+--   if ok then
+--     M.open_folds_under_cursor()
+--   else
+--     local search_pattern = vim.fn.getreg "/"
+--     log.error("Pattern not found: %s", search_pattern)
+--   end
+-- end)
+-- vim.keymap.set("n", "N", function()
+--   local ok, _ = pcall(vim.cmd, "normal! N")
+--   if ok then
+--     M.open_folds_under_cursor()
+--   else
+--     local search_pattern = vim.fn.getreg "/"
+--     log.error("Pattern not found: %s", search_pattern)
+--   end
+-- end)
+
+vim.opt.foldtext = ""
 
 local M = {}
 
@@ -8,31 +32,6 @@ M.open_folds_under_cursor = function()
     vim.cmd(string.format("normal %dzo", foldlevel))
   end
 end
-
--- Remove 'search' from 'foldopen' triggers as this circumvents aerial fold management leading to
--- inconsistent fold states.
-vim.opt.foldopen:remove "search"
--- Instead remap 'n'/'N' to open folds through aerial's mapping when navigating to search results.
-vim.keymap.set("n", "n", function()
-  local ok, _ = pcall(vim.cmd, "normal! n")
-  if ok then
-    M.open_folds_under_cursor()
-  else
-    local search_pattern = vim.fn.getreg "/"
-    log.error("Pattern not found: %s", search_pattern)
-  end
-end)
-vim.keymap.set("n", "N", function()
-  local ok, _ = pcall(vim.cmd, "normal! N")
-  if ok then
-    M.open_folds_under_cursor()
-  else
-    local search_pattern = vim.fn.getreg "/"
-    log.error("Pattern not found: %s", search_pattern)
-  end
-end)
-
-vim.opt.foldtext = ""
 
 M.treesitter_foldexpr = function()
   local lnum = vim.v.lnum

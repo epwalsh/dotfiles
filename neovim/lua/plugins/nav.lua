@@ -121,7 +121,7 @@ return {
       close_on_select = true,
       show_guides = true,
       manage_folds = aerial_managed_folds,
-      link_folds_to_tree = true,
+      link_folds_to_tree = false,
       link_tree_to_folds = true,
       on_attach = function(bufnr)
         local filetype = vim.bo.filetype
@@ -143,16 +143,16 @@ return {
             folding.open_folds_under_cursor()
           end)
 
-          vim.api.nvim_create_autocmd("BufEnter", {
-            buffer = bufnr,
-            callback = function()
-              if aerial_managed_folds[filetype] then
-                vim.schedule(function()
-                  aerial.sync_folds(bufnr)
-                end)
-              end
-            end,
-          })
+          -- vim.api.nvim_create_autocmd("BufEnter", {
+          --   buffer = bufnr,
+          --   callback = function()
+          --     if aerial_managed_folds[filetype] then
+          --       vim.schedule(function()
+          --         aerial.sync_folds(bufnr)
+          --       end)
+          --     end
+          --   end,
+          -- })
 
           -- Optionally open the aerial float if there are enough symbols.
           -- if vim.api.nvim_buf_line_count(bufnr) >= 10 and aerial.num_symbols(bufnr) >= 2 then
