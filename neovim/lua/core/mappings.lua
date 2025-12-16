@@ -66,6 +66,7 @@ vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { silent = true })
 -- Toggle buffer options.
 wk.add {
   { "<leader>b", group = "Buffer options" },
+  { "<leader>bc", "<cmd>call setreg('*', expand('%'))<cr>", desc = "Copy the buffer's path" },
   { "<leader>bf", "<cmd>set foldenable!<cr>", desc = "Toggle folding" },
   {
     "<leader>bg",
