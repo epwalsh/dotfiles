@@ -87,9 +87,16 @@ return {
         },
       }
 
+      -- These conflict or are redundant with some lsp mappings set below.
+      vim.cmd "unmap gra"
+      vim.cmd "unmap gri"
+      vim.cmd "unmap grn"
+      vim.cmd "unmap grt"
+      vim.cmd "unmap grr"
+
       wk.add {
         { "g", group = "LSP go to..." },
-        { "gi", builtin.lsp_implementations, desc = "implementations" },
+        { "gi", builtin.lsp_implementations, desc = "Implementations" },
         {
           "gd",
           function()
@@ -97,7 +104,13 @@ return {
           end,
           desc = "definitions",
         },
-        { "gr", builtin.lsp_references, desc = "references" },
+        {
+          "gr",
+          function()
+            builtin.lsp_references()
+          end,
+          desc = "References",
+        },
         { "<leader>l", group = "LSP" },
         { "<leader>ld", builtin.diagnostics, desc = "Show diagnostics" },
         { "<leader>ls", builtin.lsp_document_symbols, desc = "Document symbols" },
