@@ -100,7 +100,7 @@ return {
         {
           "gd",
           function()
-            builtin.lsp_definitions { reuse_win = true }
+            builtin.lsp_definitions { reuse_win = true, jump_type = "vsplit" }
           end,
           desc = "definitions",
         },

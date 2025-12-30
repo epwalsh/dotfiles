@@ -1,3 +1,5 @@
+local log = require "core.log"
+
 return {
   {
     "folke/lazydev.nvim",
@@ -58,6 +60,30 @@ return {
       "neodev.nvim",
     },
     opts = {},
+    init = function()
+      -- Remove duplicate definitions from a single provider.
+      -- See https://github.com/LuaLS/lua-language-server/issues/2451
+      local locations_to_items = vim.lsp.util.locations_to_items
+
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.lsp.util.locations_to_items = function(locations, offset_encoding)
+        log.info "Custom locations_to_items called"
+        local lines = {}
+        local loc_i = 1
+        for _, loc in ipairs(vim.deepcopy(locations)) do
+          local uri = loc.uri or loc.targetUri
+          local range = loc.range or loc.targetSelectionRange
+          if lines[uri .. range.start.line] then -- already have a location on this line
+            table.remove(locations, loc_i) -- remove from the original list
+          else
+            loc_i = loc_i + 1
+          end
+          lines[uri .. range.start.line] = true
+        end
+
+        return locations_to_items(locations, offset_encoding)
+      end
+    end,
     config = function()
       -- General LSP settings
       vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
@@ -128,29 +154,6 @@ return {
             },
           },
         },
-        on_attach = function()
-          -- Hack for duplicate definitions with LuaLS.
-          -- See https://github.com/LuaLS/lua-language-server/issues/2451
-          local locations_to_items = vim.lsp.util.locations_to_items
-
-          ---@diagnostic disable-next-line: duplicate-set-field
-          vim.lsp.util.locations_to_items = function(locations, offset_encoding)
-            local lines = {}
-            local loc_i = 1
-            for _, loc in ipairs(vim.deepcopy(locations)) do
-              local uri = loc.uri or loc.targetUri
-              local range = loc.range or loc.targetSelectionRange
-              if lines[uri .. range.start.line] then -- already have a location on this line
-                table.remove(locations, loc_i) -- remove from the original list
-              else
-                loc_i = loc_i + 1
-              end
-              lines[uri .. range.start.line] = true
-            end
-
-            return locations_to_items(locations, offset_encoding)
-          end
-        end,
       })
       -- vim.cmd [[autocmd BufWritePre *.lua :Format]]
 
@@ -168,7 +171,7 @@ return {
       -- NOTE: To see which capabilities a LS has, run
       -- :lua =vim.lsp.get_active_clients()[1].server_capabilities
       -- (change the index from '1' to whatever if you have multiple)
-      vim.lsp.enable { "jedi_language_server", "ruff" }
+      vim.lsp.enable { "jedi_language_server", "ruff", "ty" }
       vim.lsp.config("jedi_language_server", {
         settings = {
           cmd = { "jedi-language-server" },
@@ -181,9 +184,15 @@ return {
       })
       vim.lsp.config("ruff", {
         on_attach = function(client)
-          -- Jedi works best as the provider for these.
           client.server_capabilities.renameProvider = false
           client.server_capabilities.hoverProvider = false
+        end,
+      })
+      vim.lsp.config("ty", {
+        on_attach = function(client)
+          client.server_capabilities.renameProvider = false
+          client.server_capabilities.hoverProvider = false
+          client.server_capabilities.definitionProvider = false
         end,
       })
       if os.getenv "NVIM_PYRIGHT" ~= "0" then
@@ -217,6 +226,7 @@ return {
         "rust-analyzer",
         "jedi-language-server",
         "ruff",
+        "ty",
         "shellcheck",
         "bash-language-server",
         "stylua",
