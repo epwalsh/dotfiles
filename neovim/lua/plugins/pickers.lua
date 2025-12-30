@@ -57,33 +57,44 @@ return {
 
       -- Picker mappings.
       wk.add {
-        { "<leader>f", group = "Find" },
-        { "<leader>ff", builtin.find_files, desc = "Find files" },
-        { "<leader>fg", builtin.live_grep, desc = "Find/grep in files" },
-        { "<leader>fg", builtin.grep_string, desc = "Find selection in files", mode = "v" },
+        { "<leader>f", group = "[f]ind..." },
+        { "<leader>ff", builtin.find_files, desc = "[f]iles" },
+        { "<leader>fg", builtin.live_grep, desc = "[g]rep" },
+        { "<leader>fg", builtin.grep_string, desc = "[g]rep", mode = "v" },
+        { "<leader>fb", builtin.buffers, desc = "[b]uffers" },
+        { "<leader>fh", builtin.help_tags, desc = "[h]elp tags" },
+        { "<leader>fc", builtin.commands, desc = "[c]ommands" },
+        { "<leader>ft", ":TodoTelescope keywords=TODO<cr>", desc = "[t]odo comments" },
+        { "<leader>fj", builtin.current_buffer_fuzzy_find, desc = "[j]ump in buffer" },
+        { "<leader>fd", group = "in current [d]irectory..." },
         {
-          "<leader>fd",
+          "<leader>fdg",
           function()
             local bufname = vim.api.nvim_buf_get_name(0)
             local dirname = vim.fs.dirname(bufname)
             builtin.live_grep { cwd = dirname }
           end,
-          desc = "Find/grep in files of buffer's parent directory",
+          desc = "[g]rep",
         },
-        { "<leader>fb", builtin.buffers, desc = "Find buffers" },
-        { "<leader>fh", builtin.help_tags, desc = "Find help tags" },
-        { "<leader>fc", builtin.commands, desc = "Find commands" },
-        { "<leader>ft", ":TodoTelescope keywords=TODO<cr>", desc = "Find TODO comments" },
-        { "<leader>fj", builtin.current_buffer_fuzzy_find, desc = "Jump around buffer" },
         {
-          "<leader>fp",
+          "<leader>fdg",
+          function()
+            local bufname = vim.api.nvim_buf_get_name(0)
+            local dirname = vim.fs.dirname(bufname)
+            builtin.grep_string { cwd = dirname }
+          end,
+          desc = "[g]rep",
+          mode = "v",
+        },
+        {
+          "<leader>fdf",
           function()
             local bufname = vim.api.nvim_buf_get_name(0)
             local dirname = vim.fs.dirname(bufname)
             telescope.extensions.file_browser.file_browser { path = dirname }
             -- builtin.find_files { cwd = dirname }
           end,
-          desc = "Browse files in the buffer's parent directory",
+          desc = "[f]iles",
         },
       }
 
@@ -95,27 +106,35 @@ return {
       vim.cmd "unmap grr"
 
       wk.add {
-        { "g", group = "LSP go to..." },
-        { "gi", builtin.lsp_implementations, desc = "Implementations" },
-        {
-          "gd",
-          function()
-            builtin.lsp_definitions { reuse_win = true, jump_type = "vsplit" }
-          end,
-          desc = "definitions",
-        },
+        { "g", group = "[g]o to..." },
+        { "gi", builtin.lsp_implementations, desc = "[i]mplementations" },
         {
           "gr",
           function()
             builtin.lsp_references()
           end,
-          desc = "References",
+          desc = "[r]eferences",
         },
-        { "<leader>l", group = "LSP" },
-        { "<leader>ld", builtin.diagnostics, desc = "Show diagnostics" },
-        { "<leader>ls", builtin.lsp_document_symbols, desc = "Document symbols" },
-        { "<leader>lt", ":Trouble diagnostics toggle<cr>", desc = "Toggle trouble diagnostics" },
-        { "<leader>lb", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "Toggle trouble bugger diagnostics" },
+        { "gd", group = "[d]efinitions..." },
+        {
+          "gde",
+          function()
+            builtin.lsp_definitions { reuse_win = true }
+          end,
+          desc = "open with [e]dit",
+        },
+        {
+          "gdv",
+          function()
+            builtin.lsp_definitions { reuse_win = true, jump_type = "vsplit" }
+          end,
+          desc = "open with [v]split",
+        },
+        { "<leader>l", group = "[l]sp..." },
+        { "<leader>ld", builtin.diagnostics, desc = "[d]iagnostics" },
+        { "<leader>ls", builtin.lsp_document_symbols, desc = "document [s]ymbols" },
+        { "<leader>lt", ":Trouble diagnostics toggle<cr>", desc = "[t]rouble diagnostics" },
+        { "<leader>lb", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer diagnostics" },
       }
     end,
     init = function()
