@@ -130,6 +130,13 @@ return {
           end,
           desc = "open with [v]split",
         },
+        {
+          "gds",
+          function()
+            builtin.lsp_definitions { reuse_win = true, jump_type = "split" }
+          end,
+          desc = "open with [s]plit",
+        },
         { "<leader>l", group = "[l]sp..." },
         { "<leader>ld", builtin.diagnostics, desc = "[d]iagnostics" },
         { "<leader>ls", builtin.lsp_document_symbols, desc = "document [s]ymbols" },
