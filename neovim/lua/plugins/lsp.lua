@@ -1,4 +1,4 @@
-local log = require "core.log"
+-- local log = require "core.log"
 
 return {
   {
@@ -67,7 +67,6 @@ return {
 
       ---@diagnostic disable-next-line: duplicate-set-field
       vim.lsp.util.locations_to_items = function(locations, offset_encoding)
-        log.info "Custom locations_to_items called"
         local lines = {}
         local loc_i = 1
         for _, loc in ipairs(vim.deepcopy(locations)) do
