@@ -33,6 +33,25 @@ local group = vim.api.nvim_create_augroup("python", { clear = true })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = group,
+  pattern = "*.py",
+  callback = function()
+    wk.add({
+      {
+        "<CR>",
+        function()
+          local builtin = require "telescope.builtin"
+          builtin.lsp_definitions { reuse_win = true }
+        end,
+        desc = "Go to definition",
+      },
+    }, { buffer = true })
+  end,
+})
+
+local test_group = vim.api.nvim_create_augroup("python_test", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  group = test_group,
   pattern = "*_test.py",
   callback = function()
     vim.api.nvim_buf_create_user_command(0, "PyTest", function()
@@ -40,9 +59,17 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
       vim.cmd("AsyncRun pytest -vv " .. bufname)
     end, { nargs = 0 })
 
-    wk.add {
+    wk.add({
       { "<leader>p", group = "Python" },
       { "<leader>pt", "<cmd>PyTest<cr>", desc = "Run pytest on the current file" },
-    }
+      {
+        "<CR>",
+        function()
+          local builtin = require "telescope.builtin"
+          builtin.lsp_definitions { reuse_win = true }
+        end,
+        desc = "Go to definition",
+      },
+    }, { buffer = true })
   end,
 })

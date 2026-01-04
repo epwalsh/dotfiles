@@ -124,13 +124,6 @@ return {
           desc = "open with [e]dit",
         },
         {
-          "<CR>",
-          function()
-            builtin.lsp_definitions { reuse_win = true }
-          end,
-          desc = "Go to definition",
-        },
-        {
           "gdv",
           function()
             builtin.lsp_definitions { reuse_win = true, jump_type = "vsplit" }
