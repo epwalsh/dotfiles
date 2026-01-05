@@ -62,14 +62,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     wk.add({
       { "<leader>p", group = "Python" },
       { "<leader>pt", "<cmd>PyTest<cr>", desc = "Run pytest on the current file" },
-      {
-        "<CR>",
-        function()
-          local builtin = require "telescope.builtin"
-          builtin.lsp_definitions { reuse_win = true }
-        end,
-        desc = "Go to definition",
-      },
     }, { buffer = true })
   end,
 })
