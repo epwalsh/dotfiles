@@ -32,18 +32,32 @@ return {
     config = function(_, opts)
       local telescope = require "telescope"
       local actions = require "telescope.actions"
+      local action_state = require "telescope.actions.state"
       local wk = require "which-key"
+
+      local custom_qflist_action = function(prompt_bufnr)
+        local picker = action_state.get_current_picker(prompt_bufnr)
+        local num_selections = table.getn(picker:get_multi_selection())
+        if num_selections > 0 then
+          actions.send_selected_to_qflist(prompt_bufnr)
+        else
+          actions.send_to_qflist(prompt_bufnr)
+        end
+        actions.open_qflist(prompt_bufnr)
+      end
 
       opts.defaults.mappings = {
         i = {
+          ["<C-h>"] = "which_key",
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+          ["<C-q>"] = custom_qflist_action,
         },
         n = {
+          ["<C-h>"] = "which_key",
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+          ["<C-q>"] = custom_qflist_action,
         },
       }
 
