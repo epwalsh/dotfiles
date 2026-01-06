@@ -1,8 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    -- lazy = false,
     -- event = { "BufReadPre", "BufNewFile" },
+    lazy = false,
     version = "*",
     build = function()
       -- Set environment variables for building treesitter markdown extensions.
@@ -42,7 +42,7 @@ return {
       --   filetype = "markdown",
       -- }
 
-      require("nvim-treesitter").setup(opts)
+      require("nvim-treesitter.configs").setup(opts)
     end,
     opts = {
       -- A list of parser names, or "all"

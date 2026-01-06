@@ -18,7 +18,7 @@ vim.api.nvim_create_user_command("TimerStartBreak", "TimerStart 5m Break", { nar
 vim.api.nvim_create_user_command("GcreateBranch", function(data)
   local branch_name = data.args
   vim.cmd("Git checkout -b " .. branch_name)
-  vim.cmd("Git push --set-upstream origin " .. branch_name)
+  vim.cmd("Git! push --set-upstream origin " .. branch_name)
 end, { nargs = 1 })
 
 vim.api.nvim_create_user_command("GdeleteBranch", function()
@@ -70,9 +70,13 @@ vim.api.nvim_create_user_command("Gcommit", function(data)
   local commit_msg = data.args
   vim.cmd "Git add -A"
   vim.cmd(string.format('Git commit -m "%s"', commit_msg))
-  vim.cmd "Git push"
+  vim.cmd "Git! push"
   require("gitsigns").refresh()
 end, { nargs = 1 })
+
+vim.api.nvim_create_user_command("Gopen", function(_)
+  vim.cmd "AsyncRun -close gh repo view --web"
+end, { nargs = 0, desc = "Open the repository in your browser"})
 
 ------------------------
 -- Obsidian commands. --

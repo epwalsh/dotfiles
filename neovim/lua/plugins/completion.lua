@@ -1,6 +1,7 @@
 return {
   {
     "ervandew/supertab",
+    enabled = false,
     lazy = true,
     event = { "InsertEnter" },
   },
@@ -11,7 +12,6 @@ return {
     cmd = { "Copilot" },
     event = { "InsertEnter" },
     opts = {
-      suggestions = { enabled = false },
       panel = { enabled = false },
     },
   },
@@ -104,6 +104,23 @@ return {
             behavior = cmp.ConfirmBehavior.Insert,
           },
         },
+        sorting = {
+          priority_weight = 2,
+          comparators = {
+            -- Below is the default comparitor list and order for nvim-cmp
+            cmp.config.compare.offset,
+            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+            cmp.config.compare.exact,
+            require("copilot_cmp.comparators").prioritize,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+          },
+        },
         sources = {
           { name = "lazydev", group_index = 1 },
           { name = "nvim_lsp", group_index = 1 },
@@ -120,12 +137,12 @@ return {
           },
           { name = "emoji", group_index = 1 },
           { name = "vsnip", group_index = 1 },
-          { name = "buffer", keyword_length = 3, group_index = 1 },
           { name = "calc", group_index = 1 },
           { name = "dictionary", group_index = 1 },
           { name = "git", group_index = 1 },
-          -- { name = "copilot", group_index = 1 },
           { name = "natdat", group_index = 1 },
+          { name = "copilot", group_index = 1 },
+          { name = "buffer", keyword_length = 2, group_index = 1 },
         },
         formatting = {
           format = lspkind.cmp_format {
@@ -152,18 +169,19 @@ return {
       }
 
       -- Throttle completion so it's less annoying.
+      local pause_ms = 150
       local timer = nil
       vim.api.nvim_create_autocmd({ "TextChangedI", "CmdlineChanged" }, {
         pattern = "*",
         callback = function()
           if timer then
-            vim.loop.timer_stop(timer)
+            vim.uv.timer_stop(timer)
             timer = nil
           end
 
-          timer = assert(vim.loop.new_timer())
+          timer = assert(vim.uv.new_timer())
           timer:start(
-            300,
+            pause_ms,
             0,
             vim.schedule_wrap(function()
               require("cmp").complete { reason = require("cmp").ContextReason.Auto }
@@ -180,7 +198,7 @@ return {
         },
       }
 
-      require("cmp_git").setup()
+      require("cmp_git").setup {}
 
       require("copilot_cmp").setup()
     end,

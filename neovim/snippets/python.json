@@ -7,13 +7,32 @@
         ],
         "description": "__main__ guard block"
     },
-    "beaker-py": {
-        "prefix": ["frombeaker"],
+    "equinox": {
+        "prefix": ["import equinox as eqx"],
         "body": [
-            "from beaker import Beaker",
-            "",
-            "beaker = Beaker.from_env()"
+            "import equinox as eqx"
         ],
-        "description": "Start a beaker-py example"
+        "description": "import equinox"
+    },
+    "jnp": {
+        "prefix": ["import jax.numpy as jnp"],
+        "body": [
+            "import jax.numpy as jnp"
+        ],
+        "description": "import jax.numpy"
+    },
+    "functools": {
+        "prefix": ["import functools as ft"],
+        "body": [
+            "import functools as ft"
+        ],
+        "description": "import functools"
+    },
+    "beaker-py": {
+        "prefix": ["from beaker import Beaker"],
+        "body": [
+            "from beaker import Beaker"
+        ],
+        "description": "import beaker-py"
     }
 }

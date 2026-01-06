@@ -1,3 +1,5 @@
+# See https://alacritty.org/config-alacritty.html
+
 [colors.primary]
 background = "0x263238"
 foreground = "0xeaeaea"
@@ -56,7 +58,7 @@ decorations = "Full"
 # decorations = "Buttonless"
 opacity = 0.95
 blur = true
-startup_mode = "Maximized"
+startup_mode = "Windowed"
 decorations_theme_variant = "Dark"
 
 [window.padding]

@@ -1,9 +1,10 @@
+-- # NOTE: folds managed by aerial.nvim.
+-- vim.opt_local.foldmethod = "expr"
+-- vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt_local.foldnestmax = 1
 vim.opt_local.shiftwidth = 2
 vim.opt_local.tabstop = 2
 vim.opt_local.expandtab = true
-vim.opt_local.foldmethod = "expr"
-vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt_local.foldnestmax = 1
 
 -- Save current view before formatting, restore after.
 -- Idea taken from https://github.com/nvim-treesitter/nvim-treesitter/issues/1424#issuecomment-909181939

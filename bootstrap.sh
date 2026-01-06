@@ -42,7 +42,7 @@ brew install \
     mosh \
     gnupg \
     pngpaste \
-    yazi
+    codex
 
 # Install nightly neovim.
 brew install --HEAD neovim

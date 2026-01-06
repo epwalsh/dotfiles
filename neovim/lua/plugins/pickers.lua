@@ -32,18 +32,32 @@ return {
     config = function(_, opts)
       local telescope = require "telescope"
       local actions = require "telescope.actions"
+      local action_state = require "telescope.actions.state"
       local wk = require "which-key"
+
+      local custom_qflist_action = function(prompt_bufnr)
+        local picker = action_state.get_current_picker(prompt_bufnr)
+        local num_selections = table.getn(picker:get_multi_selection())
+        if num_selections > 0 then
+          actions.send_selected_to_qflist(prompt_bufnr)
+        else
+          actions.send_to_qflist(prompt_bufnr)
+        end
+        actions.open_qflist(prompt_bufnr)
+      end
 
       opts.defaults.mappings = {
         i = {
+          ["<C-h>"] = "which_key",
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+          ["<C-q>"] = custom_qflist_action,
         },
         n = {
+          ["<C-h>"] = "which_key",
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+          ["<C-q>"] = custom_qflist_action,
         },
       }
 
@@ -57,37 +71,101 @@ return {
 
       -- Picker mappings.
       wk.add {
-        { "<leader>f", group = "Find" },
-        { "<leader>ff", builtin.find_files, desc = "Find files" },
-        { "<leader>fg", builtin.live_grep, desc = "Find in files" },
-        { "<leader>fb", builtin.buffers, desc = "Find buffers" },
-        { "<leader>fh", builtin.help_tags, desc = "Find help tags" },
-        { "<leader>fd", ":Telescope file_browser<cr>", desc = "Find directories" },
-        { "<leader>fc", builtin.commands, desc = "Find commands" },
-        { "<leader>ft", ":TodoTelescope keywords=TODO<cr>", desc = "Find TODO comments" },
-        { "<leader>fj", builtin.current_buffer_fuzzy_find, desc = "Jump around buffer" },
+        { "<leader>f", group = "[f]ind..." },
+        { "<leader>ff", builtin.find_files, desc = "[f]iles" },
+        { "<leader>fg", builtin.live_grep, desc = "[g]rep" },
+        { "<leader>fg", builtin.grep_string, desc = "[g]rep", mode = "v" },
+        { "<leader>fb", builtin.buffers, desc = "[b]uffers" },
+        { "<leader>fh", builtin.help_tags, desc = "[h]elp tags" },
+        { "<leader>fc", builtin.commands, desc = "[c]ommands" },
+        { "<leader>ft", ":TodoTelescope keywords=TODO<cr>", desc = "[t]odo comments" },
+        { "<leader>fj", builtin.current_buffer_fuzzy_find, desc = "[j]ump in buffer" },
+        { "<leader>fd", group = "in current [d]irectory..." },
         {
-          "<leader>fp",
+          "<leader>fdg",
+          function()
+            local bufname = vim.api.nvim_buf_get_name(0)
+            local dirname = vim.fs.dirname(bufname)
+            builtin.live_grep { cwd = dirname }
+          end,
+          desc = "[g]rep",
+        },
+        {
+          "<leader>fdg",
+          function()
+            local bufname = vim.api.nvim_buf_get_name(0)
+            local dirname = vim.fs.dirname(bufname)
+            builtin.grep_string { cwd = dirname }
+          end,
+          desc = "[g]rep",
+          mode = "v",
+        },
+        {
+          "<leader>fdf",
           function()
             local bufname = vim.api.nvim_buf_get_name(0)
             local dirname = vim.fs.dirname(bufname)
             telescope.extensions.file_browser.file_browser { path = dirname }
             -- builtin.find_files { cwd = dirname }
           end,
-          desc = "Browse files in the buffer's parent directory",
+          desc = "[f]iles",
         },
       }
 
+      -- These conflict or are redundant with some lsp mappings set below.
+      vim.cmd "unmap gra"
+      vim.cmd "unmap gri"
+      vim.cmd "unmap grn"
+      vim.cmd "unmap grt"
+      vim.cmd "unmap grr"
+
       wk.add {
-        { "g", group = "LSP go to..." },
-        { "gi", builtin.lsp_implementations, desc = "implementations" },
-        { "gd", builtin.lsp_definitions, desc = "definitions" },
-        { "gr", builtin.lsp_references, desc = "references" },
-        { "<leader>l", group = "LSP" },
-        { "<leader>ld", builtin.diagnostics, desc = "Show diagnostics" },
-        { "<leader>ls", builtin.lsp_document_symbols, desc = "Document symbols" },
-        { "<leader>lt", ":Trouble diagnostics toggle<cr>", desc = "Toggle trouble diagnostics" },
-        { "<leader>lb", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "Toggle trouble bugger diagnostics" },
+        { "g", group = "[g]o to..." },
+        { "gi", builtin.lsp_implementations, desc = "[i]mplementations" },
+        {
+          "gr",
+          function()
+            builtin.lsp_references()
+          end,
+          desc = "[r]eferences",
+        },
+        {
+          "<CR>",
+          function()
+            if vim.bo.filetype == "qf" then
+              vim.cmd ".cc"
+            else
+              builtin.lsp_definitions { reuse_win = true }
+            end
+          end,
+        },
+        { "gd", group = "[d]efinitions..." },
+        {
+          "gde",
+          function()
+            builtin.lsp_definitions { reuse_win = true }
+          end,
+          desc = "open with [e]dit",
+        },
+        {
+          "gdv",
+          function()
+            builtin.lsp_definitions { reuse_win = true, jump_type = "vsplit" }
+          end,
+          desc = "open with [v]split",
+        },
+        {
+          "gds",
+          function()
+            builtin.lsp_definitions { reuse_win = true, jump_type = "split" }
+          end,
+          desc = "open with [s]plit",
+        },
+        { "<leader>l", group = "[l]sp..." },
+        { "<leader>ld", builtin.diagnostics, desc = "[d]iagnostics" },
+        { "<leader>ls", builtin.lsp_document_symbols, desc = "document [s]ymbols" },
+        { "<leader>lt", ":Trouble diagnostics toggle<cr>", desc = "[t]rouble diagnostics" },
+        { "<leader>lb", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer diagnostics" },
       }
     end,
     init = function()
@@ -95,14 +173,14 @@ return {
       -- See:
       -- * https://github.com/nvim-telescope/telescope.nvim/issues/1277
       -- * https://github.com/tmhedberg/SimpylFold/issues/130#issuecomment-1074049490
-      vim.api.nvim_create_autocmd("BufRead", {
-        callback = function()
-          vim.api.nvim_create_autocmd("BufWinEnter", {
-            once = true,
-            command = "normal! zx",
-          })
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("BufRead", {
+      --   callback = function()
+      --     vim.api.nvim_create_autocmd("BufWinEnter", {
+      --       once = true,
+      --       command = "normal! zx",
+      --     })
+      --   end,
+      -- })
 
       -- Open file browser on directories (hijacking netrw).
       -- vim.api.nvim_create_autocmd({ "VimEnter" }, {

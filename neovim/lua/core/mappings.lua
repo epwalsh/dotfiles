@@ -1,5 +1,6 @@
 -- NOTE: don't try to use which-key for single-key mappings.
 local wk = require "which-key"
+local log = require "core.log"
 
 -- Pull up my personal tips help doc.
 vim.keymap.set("n", "<leader>hh", ":help personal-tips<cr>")
@@ -65,6 +66,7 @@ vim.keymap.set("t", "<esc>", "<C-\\><C-n>", { silent = true })
 -- Toggle buffer options.
 wk.add {
   { "<leader>b", group = "Buffer options" },
+  { "<leader>bc", "<cmd>call setreg('*', expand('%'))<cr>", desc = "Copy the buffer's path" },
   { "<leader>bf", "<cmd>set foldenable!<cr>", desc = "Toggle folding" },
   {
     "<leader>bg",
@@ -98,5 +100,19 @@ wk.add {
   {
     { "<leader>z", group = "OS commands" },
     { "<leader>zc", "<cmd>OScp<cr>", desc = "Copy the current file" },
+    {
+      "<leader>ze",
+      function()
+        local bufname = vim.api.nvim_buf_get_name(0)
+        if vim.endswith(bufname, ".py") then
+          vim.cmd(string.format("AsyncRun python %s", bufname))
+        elseif vim.endswith(bufname, ".sh") then
+          vim.cmd(string.format("AsyncRun bash %s", bufname))
+        else
+          return log.error "Not sure how to execute this filetype"
+        end
+      end,
+      desc = "Execute the current file",
+    },
   },
 }

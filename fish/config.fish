@@ -5,6 +5,12 @@ if test -d $bin_path
     or set -gx PATH $bin_path $PATH
 end
 
+set -l local_bin_path $HOME/.local/bin
+if test -d $local_bin_path
+    contains -- $local_bin_path $PATH
+    or set -gx PATH $local_bin_path $PATH
+end
+
 # Add cargo bin to PATH
 set -l cargo_bin_path $HOME/.cargo/bin
 contains -- $cargo_bin_path $PATH
@@ -111,3 +117,5 @@ set -gx EXTENSION_WIKI_LINK 1
 alias nav 'nvim notes/nav.md'
 
 alias s3-ls 'aws s3 ls --summarize --human-readable'
+
+alias beaker-remote-session 'beaker session create --remote --bare --cluster ai2/phobos-cirrascale --mount "src=weka,ref=oe-training-default,dst=/weka/oe-training-default"'
