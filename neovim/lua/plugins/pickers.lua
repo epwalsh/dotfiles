@@ -129,6 +129,16 @@ return {
           end,
           desc = "[r]eferences",
         },
+        {
+          "<CR>",
+          function()
+            if vim.bo.filetype == "qf" then
+              vim.cmd ".cc"
+            else
+              builtin.lsp_definitions { reuse_win = true }
+            end
+          end,
+        },
         { "gd", group = "[d]efinitions..." },
         {
           "gde",
