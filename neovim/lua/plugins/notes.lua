@@ -134,7 +134,7 @@ return {
             local current_week_dt = os.time() + (offset_start * 3600 * 24)
             ---@type obsidian.PickerEntry
             local weeklies = {}
-            for week_offset = 1, -2, -1 do
+            for week_offset = 0, -2, -1 do
               local week_dt = current_week_dt + (week_offset * 3600 * 24 * 7)
               local week_alias = weekly_alias(week_dt)
               local week_display = week_alias
