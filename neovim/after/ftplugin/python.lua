@@ -31,6 +31,16 @@ vim.opt_local.indentkeys:append { "=else:" }
 
 local group = vim.api.nvim_create_augroup("python", { clear = true })
 
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = group,
+  pattern = ".py",
+  callback = function()
+    -- Update folds on save.
+    vim.cmd "normal! zx"
+    vim.cmd "normal! zx" -- note: sometimes need to call a 2nd time.
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = group,
   pattern = "*_test.py",
