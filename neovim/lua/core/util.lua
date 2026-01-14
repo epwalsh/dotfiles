@@ -23,6 +23,12 @@ M.get_os = function()
   return this_os
 end
 
+M.get_python_version = function()
+  local output = vim.fn.system { "python", "--version" }
+  local version = M.strip_whitespace(vim.split(output, "Python ")[2])
+  return vim.split(version, "%.") -- major, minor, patch
+end
+
 --- Insert text at current cursor position.
 ---@param text string
 M.insert_text = function(text)

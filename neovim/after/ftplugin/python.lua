@@ -1,4 +1,6 @@
 local wk = require "which-key"
+local util = require "core.util"
+local log = require "core.log"
 
 -- # NOTE: folds managed by aerial.nvim.
 -- vim.opt_local.foldmethod = "expr"
@@ -33,7 +35,7 @@ local group = vim.api.nvim_create_augroup("python", { clear = true })
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   group = group,
-  pattern = ".py",
+  pattern = "*.py",
   callback = function()
     -- Update folds on save.
     vim.cmd "normal! zx"
@@ -43,16 +45,37 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = group,
-  pattern = "*_test.py",
-  callback = function(data)
-    vim.api.nvim_buf_create_user_command(0, "PyTest", function()
-      local bufname = vim.api.nvim_buf_get_name(0)
-      vim.cmd("AsyncRun pytest -vv " .. bufname)
-    end, { nargs = 0 })
-
-    wk.add({
+  pattern = "*.py",
+  callback = function()
+    wk.add {
       { "<leader>p", group = "Python" },
-      { "<leader>pt", "<cmd>PyTest<cr>", desc = "Run pytest on the current file" },
-    }, { buffer = data.buf })
+      {
+        "<leader>pd",
+        function()
+          local python_version = util.get_python_version()
+          local text = vim.fn.expand "<cword>"
+          if text and text ~= "" then
+            local url = string.format(
+              "https://docs.python.org/%s.%s/search.html?q=%s",
+              python_version[1],
+              python_version[2],
+              text
+            )
+            vim.ui.open(url)
+          else
+            log.warn "No name under cursor"
+          end
+        end,
+        desc = "Look up name on docs.python.org",
+      },
+      {
+        "<leader>pt",
+        function()
+          local bufname = vim.api.nvim_buf_get_name(0)
+          vim.cmd("AsyncRun pytest -vv " .. bufname)
+        end,
+        desc = "Run pytest on the current file",
+      },
+    }
   end,
 })
