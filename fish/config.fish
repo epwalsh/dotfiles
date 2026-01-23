@@ -114,7 +114,6 @@ end
 # Aliases.
 alias mux tmuxinator
 alias s3-ls 'aws s3 ls --summarize --human-readable'
-alias beaker-remote-session 'beaker session create --remote --bare --cluster ai2/phobos-cirrascale --mount "src=weka,ref=oe-training-default,dst=/weka/oe-training-default"'
 
 # Source local extras.
 if test -e ~/.config/fish/extra.fish
