@@ -72,9 +72,30 @@ return {
       -- Picker mappings.
       wk.add {
         { "<leader>f", group = "[f]ind..." },
-        { "<leader>ff", builtin.find_files, desc = "[f]iles" },
-        { "<leader>fg", builtin.live_grep, desc = "[g]rep" },
-        { "<leader>fg", builtin.grep_string, desc = "[g]rep", mode = "v" },
+        {
+          "<leader>ff",
+          function()
+            builtin.find_files {
+              find_command = { "fd", "--type", "f", "--color", "never", "--hidden", "--exclude", ".git/*" },
+            }
+          end,
+          desc = "[f]iles",
+        },
+        {
+          "<leader>fg",
+          function()
+            builtin.live_grep { additional_args = { "--hidden" } }
+          end,
+          desc = "[g]rep",
+        },
+        {
+          "<leader>fg",
+          function()
+            builtin.grep_string { additional_args = { "--hidden" } }
+          end,
+          desc = "[g]rep",
+          mode = "v",
+        },
         { "<leader>fb", builtin.buffers, desc = "[b]uffers" },
         { "<leader>fh", builtin.help_tags, desc = "[h]elp tags" },
         { "<leader>fc", builtin.commands, desc = "[c]ommands" },
@@ -86,7 +107,7 @@ return {
           function()
             local bufname = vim.api.nvim_buf_get_name(0)
             local dirname = vim.fs.dirname(bufname)
-            builtin.live_grep { cwd = dirname }
+            builtin.live_grep { cwd = dirname, additional_args = { "--hidden" } }
           end,
           desc = "[g]rep",
         },
@@ -95,7 +116,7 @@ return {
           function()
             local bufname = vim.api.nvim_buf_get_name(0)
             local dirname = vim.fs.dirname(bufname)
-            builtin.grep_string { cwd = dirname }
+            builtin.grep_string { cwd = dirname, additional_args = { "--hidden" } }
           end,
           desc = "[g]rep",
           mode = "v",
