@@ -1,3 +1,3 @@
 function log_info
-    echo (set_color --bold green)"[INFO]"(set_color normal) "$argv"
+    echo (set_color --bold green)"[INFO]"(set_color normal) "$argv" 1>&2
 end
