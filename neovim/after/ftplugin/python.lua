@@ -38,9 +38,23 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = "*.py",
   callback = function()
     -- Update folds on save.
+    -- log.info "updating folds"
+    -- vim.cmd "normal zx"
+    -- vim.schedule(function()
+    --   vim.cmd "normal zx"
+    --   vim.cmd "normal zx" -- note: sometimes need to call a 2nd time.
+    --   log.info "folds updated"
+    -- end)
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+  group = group,
+  pattern = "*.py",
+  desc = "Apply code folds after reading Python file into buffer (https://stackoverflow.com/a/79716151)",
+  callback = function()
     vim.schedule(function()
       vim.cmd "normal! zx"
-      vim.cmd "normal! zx" -- note: sometimes need to call a 2nd time.
     end)
   end,
 })

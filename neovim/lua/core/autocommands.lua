@@ -8,19 +8,6 @@
 --   end,
 -- })
 
-local group = vim.api.nvim_create_augroup("core_python", { clear = true })
-
-vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-  group = group,
-  pattern = "*.py",
-  desc = "Apply code folds after reading Python file into buffer (https://stackoverflow.com/a/79716151)",
-  callback = function()
-    vim.schedule(function()
-      vim.cmd "normal! zx"
-    end)
-  end,
-})
-
 -- vim.cmd [[
 -- augroup folds
 -- " Don't screw up folds when inserting text that might affect them, until
