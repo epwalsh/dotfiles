@@ -38,8 +38,10 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = "*.py",
   callback = function()
     -- Update folds on save.
-    vim.cmd "normal! zx"
-    vim.cmd "normal! zx" -- note: sometimes need to call a 2nd time.
+    vim.schedule(function()
+      vim.cmd "normal! zx"
+      vim.cmd "normal! zx" -- note: sometimes need to call a 2nd time.
+    end)
   end,
 })
 
