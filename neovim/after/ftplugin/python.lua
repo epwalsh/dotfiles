@@ -59,6 +59,13 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   end,
 })
 
+local pydoc_lookup = function(text)
+  local python_version = util.get_python_version()
+  local url =
+    string.format("https://docs.python.org/%s.%s/search.html?q=%s", python_version[1], python_version[2], text)
+  vim.ui.open(url)
+end
+
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = group,
   pattern = "*.py",
@@ -68,16 +75,9 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
       {
         "<leader>pd",
         function()
-          local python_version = util.get_python_version()
           local text = vim.fn.expand "<cword>"
           if text and text ~= "" then
-            local url = string.format(
-              "https://docs.python.org/%s.%s/search.html?q=%s",
-              python_version[1],
-              python_version[2],
-              text
-            )
-            vim.ui.open(url)
+            pydoc_lookup(text)
           else
             log.warn "No name under cursor"
           end
@@ -91,6 +91,20 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
           vim.cmd("AsyncRun pytest -vv " .. bufname)
         end,
         desc = "Run pytest on the current file",
+      },
+      { "<leader>p", group = "Python", mode = "v" },
+      {
+        "<leader>pd",
+        function()
+          local text = util.get_visual_selection()
+          if text and text ~= "" then
+            pydoc_lookup(text)
+          else
+            log.warn "No name selected"
+          end
+        end,
+        desc = "Look up name on docs.python.org",
+        mode = "v",
       },
     }
   end,
