@@ -46,6 +46,11 @@ action = "SelectTab3"
 key = "3"
 mods = "Command"
 
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\n"
+
 [mouse]
 hide_when_typing = true
 
