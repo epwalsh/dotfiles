@@ -187,6 +187,7 @@ return {
         { "<leader>ls", builtin.lsp_document_symbols, desc = "document [s]ymbols" },
         { "<leader>lt", ":Trouble diagnostics toggle<cr>", desc = "[t]rouble diagnostics" },
         { "<leader>lb", ":Trouble diagnostics toggle filter.buf=0<cr>", desc = "[b]uffer diagnostics" },
+        { "<leader>lr", ":LspRestart<cr>", desc = "[r]estart servers" },
       }
     end,
     init = function()
