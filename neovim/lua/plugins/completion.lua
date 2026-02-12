@@ -111,7 +111,7 @@ return {
             cmp.config.compare.offset,
             -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
             cmp.config.compare.exact,
-            require("copilot_cmp.comparators").prioritize,
+            -- require("copilot_cmp.comparators").prioritize,
             cmp.config.compare.score,
             cmp.config.compare.recently_used,
             cmp.config.compare.locality,
@@ -141,7 +141,7 @@ return {
           { name = "dictionary", group_index = 1 },
           { name = "git", group_index = 1 },
           { name = "natdat", group_index = 1 },
-          { name = "copilot", group_index = 1 },
+          -- { name = "copilot", group_index = 1 },
           { name = "buffer", keyword_length = 2, group_index = 1 },
         },
         formatting = {
@@ -200,7 +200,7 @@ return {
 
       require("cmp_git").setup {}
 
-      require("copilot_cmp").setup()
+      -- require("copilot_cmp").setup()
     end,
   },
 }
