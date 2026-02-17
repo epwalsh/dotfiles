@@ -13,6 +13,22 @@ return {
     event = { "InsertEnter" },
     opts = {
       panel = { enabled = false },
+      suggestion = {
+        enabled = true,
+        auto_trigger = false,
+        hide_during_completion = true,
+        debounce = 15,
+        trigger_on_accept = true,
+        keymap = {
+          accept = "<C-l>",
+          accept_word = false,
+          accept_line = false,
+          next = "<C-j>",
+          prev = "<C-k>",
+          dismiss = "<C-]>",
+          toggle_auto_trigger = false,
+        },
+      },
     },
   },
 
