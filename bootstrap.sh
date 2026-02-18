@@ -33,16 +33,15 @@ brew install \
     gnu-sed \
     fish \
     wget \
-    python3 \
+    gh \
+    jq \
     tmux \
     reattach-to-user-namespace \
     fzf \
     go \
-    git-crypt \
     mosh \
     gnupg \
-    pngpaste \
-    codex
+    pngpaste
 
 # Install nightly neovim.
 brew install --HEAD neovim
@@ -50,9 +49,6 @@ brew install --HEAD neovim
 # Install NERDFont
 brew tap homebrew/cask-fonts
 brew install --cask font-dejavu-sans-mono-nerd-font
-
-# Use homebrew-installed Python by default.
-brew link python
 
 ##################
 # Rust toolchain #
@@ -94,7 +90,7 @@ mkdir -p ~/.virtualenvs
 
 # tmux.
 for filename in ~/dotfiles/tmux/.tmux*; do
-    ln -sf $filename ~/
+    ln -sf "$filename" ~/
 done
 
 mkdir ~/.tmux
@@ -103,18 +99,20 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Neovim.
 mkdir -p ~/.config/nvim
 for filename in ~/dotfiles/neovim/*; do
-    ln -sf $filename ~/.config/nvim/$(basename $filename)
+    target=$(basename "$filename")
+    ln -sf "$filename" ~/.config/nvim/"$target"
 done
 
 # Fish.
 mkdir -p ~/.config/fish
 for filename in ~/dotfiles/fish/*; do
-    ln -sf $filename ~/.config/fish/$(basename $filename)
+    target=$(basename "$filename")
+    ln -sf "$filename" ~/.config/fish/"$target"
 done
 
 # Go.
 for filename in ~/dotfiles/go/.*; do
-    ln -sf $filename ~/
+    ln -sf "$filename" ~/
 done
 
 # Alacritty.
@@ -134,12 +132,19 @@ git config --global user.email "petew@allenai.org"
 ln -sf ~/dotfiles/global_gitignore ~/.gitignore
 git config --global core.excludesFile "$HOME/.gitignore"
 
+# Claude.
+mkdir ~/.claude
+for filename in ~/dotfiles/claude/*; do
+    target=$(basename "$filename")
+    ln -sf "$filename" ~/.claude/"$target"
+done
+
 ########################
 # Change shell to Fish #
 ########################
 
-echo $(which fish) | sudo tee -a /etc/shells
-chsh -s $(which fish)
+which fish | sudo tee -a /etc/shells
+chsh -s "$(which fish)"
 
 #######################
 # Python environments #

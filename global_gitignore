@@ -6,4 +6,5 @@ tmp_*
 pyrightconfig.json
 scratch
 *.pyc
-.claude
+CLAUDE.local.md
+.claude/settings.local.json
