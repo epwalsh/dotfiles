@@ -72,6 +72,19 @@ cargo install sccache \
     starship \
     exa
 
+######################
+# Other dependencies #
+######################
+
+# uv.
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Claude Code.
+curl -fsSL https://claude.ai/install.sh | bash
+
+# Cursor CLI.
+curl https://cursor.com/install -fsS | bash
+
 ##############################################
 # Install configuration files (as symlinks). #
 ##############################################
@@ -118,7 +131,7 @@ ln -sf ~/dotfiles/requirements.txt ~/.virtualenvs/global_requirements.txt
 # Git.
 git config --global user.name "epwalsh"
 git config --global user.email "petew@allenai.org"
-echo ".venv" >> ~/.gitignore
+ln -sf ~/dotfiles/global_gitignore ~/.gitignore
 git config --global core.excludesFile "$HOME/.gitignore"
 
 ########################

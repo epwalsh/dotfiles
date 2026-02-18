@@ -1,0 +1,9 @@
+.venv
+tmp.*
+tmp_*
+.ruff.toml
+.env
+pyrightconfig.json
+scratch
+*.pyc
+.claude
