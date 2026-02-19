@@ -64,73 +64,73 @@ usage_weekly=$(npx ccusage@latest weekly --json)
 ### Components ###
 ##################
 
-BAR_WIDTH=20
-CONTEXT_PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+bar_width=20
+context_pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 
 # Pick bar color based on context usage
-if [ "$CONTEXT_PCT" -ge 90 ]; then
-    BAR_COLOR="$RED"
-    BAR_COLOR_BG="$BG_RED"
-elif [ "$CONTEXT_PCT" -ge 70 ]; then
-    BAR_COLOR="$YELLOW"
-    BAR_COLOR_BG="$BG_YELLOW"
+if [ "$context_pct" -ge 90 ]; then
+    bar_color="$RED"
+    bar_color_bg="$BG_RED"
+elif [ "$context_pct" -ge 70 ]; then
+    bar_color="$YELLOW"
+    bar_color_bg="$BG_YELLOW"
 else
-    BAR_COLOR="$GREEN"
-    BAR_COLOR_BG="$BG_GREEN"
+    bar_color="$GREEN"
+    bar_color_bg="$BG_GREEN"
 fi
 
-FILLED=$((CONTEXT_PCT * BAR_WIDTH / 100))
-EMPTY=$((BAR_WIDTH - FILLED))
-BAR=""
-if [ "$FILLED" -eq "$BAR_WIDTH" ]; then
-    FILLED=$((FILLED-2))
-    BAR="${BAR_COLOR}${RESET}${BAR_COLOR_BG}$(printf "%${FILLED}s")${RESET}${BAR_COLOR}${RESET}"
-elif [ "$EMPTY" -eq "$BAR_WIDTH" ]; then
-    EMPTY=$((EMPTY-2))
-    BAR="${DARK_GREY}${RESET}${BG_DARK_GREY}$(printf "%${EMPTY}s")${RESET}${DARK_GREY}${RESET}"
+filled=$((context_pct * bar_width / 100))
+empty=$((bar_width - filled))
+bar=""
+if [ "$filled" -eq "$bar_width" ]; then
+    filled=$((filled-2))
+    bar="${bar_color}${RESET}${bar_color_bg}$(printf "%${filled}s")${RESET}${bar_color}${RESET}"
+elif [ "$empty" -eq "$bar_width" ]; then
+    empty=$((empty-2))
+    bar="${DARK_GREY}${RESET}${BG_DARK_GREY}$(printf "%${empty}s")${RESET}${DARK_GREY}${RESET}"
 else
-    FILLED=$((FILLED-1))
-    BAR="${BAR_COLOR}${RESET}${BAR_COLOR_BG}$(printf "%${FILLED}s")${BG_DARK_GREY}$(printf "%${EMPTY}s")${RESET}${DARK_GREY}${RESET}"
+    filled=$((filled-1))
+    bar="${bar_color}${RESET}${bar_color_bg}$(printf "%${filled}s")${BG_DARK_GREY}$(printf "%${empty}s")${RESET}${DARK_GREY}${RESET}"
 fi
 
-SESSION_COST=$(echo "$usage_session" | jq -r '.session[-1].totalCost // 0')
-DAILY_COST=$(echo "$usage_daily" | jq -r '.daily[-1].totalCost // 0')
-WEEKLY_COST=$(echo "$usage_weekly" | jq -r '.weekly[-1].totalCost // 0')
+session_cost=$(echo "$usage_session" | jq -r '.session[-1].totalCost // 0')
+daily_cost=$(echo "$usage_daily" | jq -r '.daily[-1].totalCost // 0')
+weekly_cost=$(echo "$usage_weekly" | jq -r '.weekly[-1].totalCost // 0')
 
-MODEL=$(echo "$input" | jq -r '.model.display_name')
-DIR=$(echo "$input" | jq -r '.workspace.current_dir')
+model=$(echo "$input" | jq -r '.model.display_name')
+dir=$(echo "$input" | jq -r '.workspace.current_dir')
 
-COMPONENTS_LINE1=(
-    "${BOLD}[${MODEL}]${RESET}"
-    "${CYAN}  ${DIR##*/}${RESET}"
+components_line1=(
+    "${BOLD}[${model}]${RESET}"
+    "${CYAN}  ${dir##*/}${RESET}"
 )
 
-COMPONENTS_LINE2=(
-    "Ctx: ${BAR_COLOR}${BAR}${RESET} $CONTEXT_PCT%"
-    "| ${YELLOW}  $(fmt_cost "$SESSION_COST") session / $(fmt_cost "$DAILY_COST") daily / $(fmt_cost "$WEEKLY_COST") weekly${RESET}"
+components_line2=(
+    "Ctx: ${bar_color}${bar}${RESET} $context_pct%"
+    "| ${YELLOW}  $(fmt_cost "$session_cost") session / $(fmt_cost "$daily_cost") daily / $(fmt_cost "$weekly_cost") weekly${RESET}"
 )
 
 # Git components.
 if git rev-parse --git-dir > /dev/null 2>&1; then
-    BRANCH=$(git branch --show-current 2>/dev/null)
-    STAGED=$(git diff --cached --numstat 2>/dev/null | wc -l | tr -d ' ')
-    MODIFIED=$(git diff --numstat 2>/dev/null | wc -l | tr -d ' ')
+    branch=$(git branch --show-current 2>/dev/null)
+    staged=$(git diff --cached --numstat 2>/dev/null | wc -l | tr -d ' ')
+    modified=$(git diff --numstat 2>/dev/null | wc -l | tr -d ' ')
 
-    GIT_STATUS=""
-    [ "$STAGED" -gt 0 ] && GIT_STATUS="${GREEN}+${STAGED}${RESET}"
-    [ "$MODIFIED" -gt 0 ] && GIT_STATUS="${GIT_STATUS}${YELLOW}~${MODIFIED}${RESET}"
+    git_status=""
+    [ "$staged" -gt 0 ] && git_status="${GREEN}+${staged}${RESET}"
+    [ "$modified" -gt 0 ] && git_status="${git_status}${YELLOW}~${modified}${RESET}"
 
     # Convert git SSH URL to HTTPS
-    REMOTE=$(git remote get-url origin 2>/dev/null | sed 's/git@github.com:/https:\/\/github.com\//' | sed 's/\.git$//')
+    remote=$(git remote get-url origin 2>/dev/null | sed 's/git@github.com:/https:\/\/github.com\//' | sed 's/\.git$//')
 
-    if [ -n "$REMOTE" ]; then
-        COMPONENTS_LINE1+=(
-            "| ${BLUE} ${REMOTE}${RESET}"
+    if [ -n "$remote" ]; then
+        components_line1+=(
+            "| ${BLUE} ${remote}${RESET}"
         )
     fi
 
-    COMPONENTS_LINE1+=("| ${MEGENTA} $BRANCH $GIT_STATUS${RESET}")
+    components_line1+=("| ${MEGENTA} $branch $git_status${RESET}")
 fi
 
-echo -e "${COMPONENTS_LINE1[@]}"
-echo -e "${COMPONENTS_LINE2[@]}"
+echo -e "${components_line1[@]}"
+echo -e "${components_line2[@]}"
