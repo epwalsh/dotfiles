@@ -64,8 +64,6 @@ usage_weekly=$(npx ccusage@latest weekly --json)
 ### Components ###
 ##################
 
-
-# Build progress bar: printf creates spaces, tr replaces with blocks
 BAR_WIDTH=20
 CONTEXT_PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
 
