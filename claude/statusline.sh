@@ -60,6 +60,27 @@ function fmt_cost {
     printf '$%.2f' "$1"
 }
 
+function fmt_int {
+    x="$1"
+    if [ "$x" -lt 1000 ]; then
+        out="$x"
+    elif [ "$x" -lt 1000000 ]; then
+        x=$((x / 1000))
+        out=$(printf '%.1fK' "$x")
+    elif [ "$x" -lt 1000000000 ]; then
+        x=$((x / 1000000))
+        out=$(printf '%.1fM' "$x")
+    elif [ "$x" -lt 1000000000000 ]; then
+        x=$((x / 1000000000))
+        out=$(printf '%.1fB' "$x")
+    else
+        x=$((x / 1000000000000))
+        out=$(printf '%.1fT' "$x")
+    fi
+    out="${out/.0/}"
+    echo "$out"
+}
+
 ##########################
 ### Component builders ###
 ##########################
@@ -76,6 +97,12 @@ function get_dir_component {
 
 function get_context_bar_component {
     bar_width=20
+
+    input_tokens=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // 0')
+    cache_creation_input_tokens=$(echo "$input" | jq -r '.context_window.current_usage.cache_creation_input_tokens // 0')
+    cache_read_input_tokens=$(echo "$input" | jq -r '.context_window.current_usage.cache_read_input_tokens // 0')
+    context_used=$((input_tokens + cache_creation_input_tokens + cache_read_input_tokens))
+    context_total=$(echo "$input" | jq -r '.context_window.context_window_size // 0')
     context_pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
     
     # Pick bar color based on context usage
@@ -104,14 +131,14 @@ function get_context_bar_component {
         bar="${bar_color}${RESET}${bar_color_bg}$(printf "%${filled}s")${BG_DARK_GREY}$(printf "%${empty}s")${RESET}${DARK_GREY}${RESET}"
     fi
 
-    echo "Ctx: ${bar_color}${bar}${RESET} $context_pct%"
+    echo "Ctx: ${bar_color}${bar}${RESET} $context_pct%, $(fmt_int "$context_used")/$(fmt_int "$context_total")"
 }
 
 function get_cost_component {
     session_cost=$(echo "$usage_session" | jq -r '.session[-1].totalCost // 0')
     daily_cost=$(echo "$usage_daily" | jq -r '.daily[-1].totalCost // 0')
     weekly_cost=$(echo "$usage_weekly" | jq -r '.weekly[-1].totalCost // 0')
-    echo "${YELLOW}  $(fmt_cost "$session_cost") session / $(fmt_cost "$daily_cost") daily / $(fmt_cost "$weekly_cost") weekly${RESET}"
+    echo "${YELLOW}  $(fmt_cost "$session_cost") session / $(fmt_cost "$daily_cost") day / $(fmt_cost "$weekly_cost") week${RESET}"
 }
 
 function get_git_status_component {
