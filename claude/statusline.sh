@@ -1,9 +1,18 @@
 #!/bin/bash
 
-# NOTE: test this script by running:
+# Test this script by running:
 #
-# echo '{"session_id":"00000000-0000-0000-0000-000000000000","transcript_path":"/Users/petew/.claude/projects/-Users-petew-dotfiles/00000000-0000-0000-0000-000000000000.jsonl","cwd":"/Users/petew/dotfiles","model":{"id":"claude-sonnet-4-5-20250929","display_name":"Haiku 4.5"},"workspace":{"current_dir":"/Users/petew/dotfiles","project_dir":"/Users/petew/dotfiles"},"version":"2.0.76","output_style":{"name":"default"},"cost":{"total_cost_usd":0.70837435,"total_duration_ms":47655179,"total_api_duration_ms":198183,"total_lines_added":141,"total_lines_removed":1},"context_window":{"total_input_tokens":8429,"total_output_tokens":9054,"context_window_size":200000,"current_usage":{"input_tokens":8,"output_tokens":127,"cache_creation_input_tokens":31373,"cache_read_input_tokens":0}},"exceeds_200k_tokens":false}' | claude/statusline.sh
+#   claude/statusline.sh < claude/test_input.json
 #
+
+##############
+### Inputs ###
+##############
+
+input=$(cat)
+usage_session=$(npx ccusage@latest session --json)
+usage_daily=$(npx ccusage@latest daily --json)
+usage_weekly=$(npx ccusage@latest weekly --json)
 
 #########################
 ### Colors and styles ###
@@ -51,67 +60,61 @@ function fmt_cost {
     printf '$%.2f' "$1"
 }
 
-##############
-### Inputs ###
-##############
+##########################
+### Component builders ###
+##########################
 
-input=$(cat)
-usage_session=$(npx ccusage@latest session --json)
-usage_daily=$(npx ccusage@latest daily --json)
-usage_weekly=$(npx ccusage@latest weekly --json)
+function get_model_component {
+    model=$(echo "$input" | jq -r '.model.display_name')
+    echo "${BOLD}[${model}]${RESET}"
+}
 
-##################
-### Components ###
-##################
+function get_dir_component {
+    dir=$(echo "$input" | jq -r '.workspace.current_dir')
+    echo "${CYAN}  ${dir##*/}${RESET}"
+}
 
-bar_width=20
-context_pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+function get_context_bar_component {
+    bar_width=20
+    context_pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+    
+    # Pick bar color based on context usage
+    if [ "$context_pct" -ge 90 ]; then
+        bar_color="$RED"
+        bar_color_bg="$BG_RED"
+    elif [ "$context_pct" -ge 70 ]; then
+        bar_color="$YELLOW"
+        bar_color_bg="$BG_YELLOW"
+    else
+        bar_color="$GREEN"
+        bar_color_bg="$BG_GREEN"
+    fi
+    
+    filled=$((context_pct * bar_width / 100))
+    empty=$((bar_width - filled))
+    bar=""
+    if [ "$filled" -eq "$bar_width" ]; then
+        filled=$((filled-2))
+        bar="${bar_color}${RESET}${bar_color_bg}$(printf "%${filled}s")${RESET}${bar_color}${RESET}"
+    elif [ "$empty" -eq "$bar_width" ]; then
+        empty=$((empty-2))
+        bar="${DARK_GREY}${RESET}${BG_DARK_GREY}$(printf "%${empty}s")${RESET}${DARK_GREY}${RESET}"
+    else
+        filled=$((filled-1))
+        bar="${bar_color}${RESET}${bar_color_bg}$(printf "%${filled}s")${BG_DARK_GREY}$(printf "%${empty}s")${RESET}${DARK_GREY}${RESET}"
+    fi
 
-# Pick bar color based on context usage
-if [ "$context_pct" -ge 90 ]; then
-    bar_color="$RED"
-    bar_color_bg="$BG_RED"
-elif [ "$context_pct" -ge 70 ]; then
-    bar_color="$YELLOW"
-    bar_color_bg="$BG_YELLOW"
-else
-    bar_color="$GREEN"
-    bar_color_bg="$BG_GREEN"
-fi
+    echo "Ctx: ${bar_color}${bar}${RESET} $context_pct%"
+}
 
-filled=$((context_pct * bar_width / 100))
-empty=$((bar_width - filled))
-bar=""
-if [ "$filled" -eq "$bar_width" ]; then
-    filled=$((filled-2))
-    bar="${bar_color}${RESET}${bar_color_bg}$(printf "%${filled}s")${RESET}${bar_color}${RESET}"
-elif [ "$empty" -eq "$bar_width" ]; then
-    empty=$((empty-2))
-    bar="${DARK_GREY}${RESET}${BG_DARK_GREY}$(printf "%${empty}s")${RESET}${DARK_GREY}${RESET}"
-else
-    filled=$((filled-1))
-    bar="${bar_color}${RESET}${bar_color_bg}$(printf "%${filled}s")${BG_DARK_GREY}$(printf "%${empty}s")${RESET}${DARK_GREY}${RESET}"
-fi
+function get_cost_component {
+    session_cost=$(echo "$usage_session" | jq -r '.session[-1].totalCost // 0')
+    daily_cost=$(echo "$usage_daily" | jq -r '.daily[-1].totalCost // 0')
+    weekly_cost=$(echo "$usage_weekly" | jq -r '.weekly[-1].totalCost // 0')
+    echo "${YELLOW}  $(fmt_cost "$session_cost") session / $(fmt_cost "$daily_cost") daily / $(fmt_cost "$weekly_cost") weekly${RESET}"
+}
 
-session_cost=$(echo "$usage_session" | jq -r '.session[-1].totalCost // 0')
-daily_cost=$(echo "$usage_daily" | jq -r '.daily[-1].totalCost // 0')
-weekly_cost=$(echo "$usage_weekly" | jq -r '.weekly[-1].totalCost // 0')
-
-model=$(echo "$input" | jq -r '.model.display_name')
-dir=$(echo "$input" | jq -r '.workspace.current_dir')
-
-components_line1=(
-    "${BOLD}[${model}]${RESET}"
-    "${CYAN}  ${dir##*/}${RESET}"
-)
-
-components_line2=(
-    "Ctx: ${bar_color}${bar}${RESET} $context_pct%"
-    "| ${YELLOW}  $(fmt_cost "$session_cost") session / $(fmt_cost "$daily_cost") daily / $(fmt_cost "$weekly_cost") weekly${RESET}"
-)
-
-# Git components.
-if git rev-parse --git-dir > /dev/null 2>&1; then
+function get_git_status_component {
     branch=$(git branch --show-current 2>/dev/null)
     staged=$(git diff --cached --numstat 2>/dev/null | wc -l | tr -d ' ')
     modified=$(git diff --numstat 2>/dev/null | wc -l | tr -d ' ')
@@ -120,16 +123,37 @@ if git rev-parse --git-dir > /dev/null 2>&1; then
     [ "$staged" -gt 0 ] && git_status="${GREEN}+${staged}${RESET}"
     [ "$modified" -gt 0 ] && git_status="${git_status}${YELLOW}~${modified}${RESET}"
 
+    echo "${MEGENTA} $branch $git_status${RESET}"
+}
+
+function get_git_remote_status {
     # Convert git SSH URL to HTTPS
     remote=$(git remote get-url origin 2>/dev/null | sed 's/git@github.com:/https:\/\/github.com\//' | sed 's/\.git$//')
-
     if [ -n "$remote" ]; then
-        components_line1+=(
-            "| ${BLUE} ${remote}${RESET}"
-        )
+        echo "${BLUE} ${remote}${RESET}"
     fi
+}
 
-    components_line1+=("| ${MEGENTA} $branch $git_status${RESET}")
+############################
+### Build status line(s) ###
+############################
+
+components_line1=(
+    "$(get_model_component)"
+    "$(get_dir_component)"
+)
+
+components_line2=(
+    "$(get_context_bar_component)"
+    "| $(get_cost_component)"
+)
+
+if git rev-parse --git-dir > /dev/null 2>&1; then
+    remote_component=$(get_git_remote_status)
+    if [ -n "$remote_component" ]; then
+        components_line1+=("| $remote_component")
+    fi
+    components_line1+=("| $(get_git_status_component)")
 fi
 
 echo -e "${components_line1[@]}"
