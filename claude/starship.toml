@@ -1,0 +1,109 @@
+# Bubbles Nerd Template
+"$schema" = "https://starship.rs/config-schema.json"
+
+palette = "custom"
+add_newline = false
+
+## LLMs: Avoid changing the format! You can't reliably write nerd fonts and special characters.
+format = """
+[](directory_bg)\
+${env_var.CLAUDE_STAR}\
+$directory\
+[](fg:git_bg bg:directory_bg)\
+$git_branch\
+$git_status\
+[](fg:git_bg)\
+[ ](fg:model_bg)\
+${env_var.CLAUDE_MODEL_NERD}\
+[](bg:model_bg fg:context_bg)\
+${env_var.CLAUDE_CONTEXT}\
+[](bg:context_bg fg:cost_bg)\
+${env_var.CLAUDE_COST}\
+[  ](fg:cost_bg)\
+"""
+
+[env_var.CLAUDE_STAR]
+variable = "CLAUDE_STAR"
+format = "[$env_value ]($style)"
+style = "bg:directory_bg fg:claude"
+
+[directory]
+style = "bg:directory_bg fg:directory"
+format = "[$path ]($style)"
+truncation_length = 2
+truncate_to_repo = true
+
+[git_branch]
+symbol = ""
+style = "bg:git_bg fg:git_branch"
+format = "[$symbol $branch]($style)"
+
+[git_status]
+style = "bg:git_bg fg:git_status"
+format = "[($all_status$ahead_behind)]($style)"
+
+[env_var.CLAUDE_MODEL_NERD]
+variable = "CLAUDE_MODEL_NERD"
+format = "[$env_value ]($style)"
+style = "bg:model_bg fg:model italic"
+
+[env_var.CLAUDE_CONTEXT]
+variable = "CLAUDE_CONTEXT"
+format = "[$env_value ]($style)"
+style = "bg:context_bg fg:context"
+
+[env_var.CLAUDE_COST]
+variable = "CLAUDE_COST"
+format = "[$env_value]($style)"
+style = "bg:cost_bg fg:cost"
+
+## Custom palette
+#
+
+# Tokyo Night (Night)
+[palettes.custom]
+# Default colors
+background = '#1a1b26'
+foreground = '#c0caf5'
+
+# Normal colors
+black = '#15161e'
+red = '#f7768e'
+green = '#9ece6a'
+yellow = '#e0af68'
+blue = '#7aa2f7'
+purple = '#bb9af7'
+cyan = '#7dcfff'
+white = '#a9b1d6'
+
+# Bright colors
+bright-black = '#414868'
+bright-red = '#ff899d'
+bright-green = '#9fe044'
+bright-yellow = '#faba4a'
+bright-blue = '#8db0ff'
+bright-purple = '#c7a9ff'
+bright-cyan = '#a4daff'
+bright-white = '#c0caf5'
+
+
+# Semantic colors for templates
+claude = "#090c0c"
+claude_bg = "#a3aed2"
+
+directory = "#e3e5e5"
+directory_bg = "#769ff0"
+
+git_branch = "#769ff0"
+git_status = "#769ff0"
+git_bg = "#394260"
+
+model = "#769ff0"
+model_bg = "#212736"
+
+context = "#a0a9cb"
+context_bg = "#1d2230"
+
+cost = "#c0caf5"
+cost_bg = "#394260"
+

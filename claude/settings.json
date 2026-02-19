@@ -25,7 +25,8 @@
     "padding": 0
   },
   "enabledPlugins": {
-    "pyright-lsp@claude-plugins-official": true
+    "pyright-lsp@claude-plugins-official": true,
+    "starship-claude@starship-claude": false
   },
   "permissions": {
     "allow": [
