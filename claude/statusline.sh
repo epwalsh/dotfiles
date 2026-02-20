@@ -10,7 +10,8 @@
 ##############
 
 input=$(cat)
-usage_session=$(npx ccusage@latest session --json)
+session_id=$(echo "$input" | jq -r '.session_id')
+usage_session=$(npx ccusage@latest session --id="$session_id" --json)
 usage_daily=$(npx ccusage@latest daily --json)
 usage_weekly=$(npx ccusage@latest weekly --json)
 
@@ -135,7 +136,7 @@ function get_context_bar_component {
 }
 
 function get_cost_component {
-    session_cost=$(echo "$usage_session" | jq -r '.session[-1].totalCost // 0')
+    session_cost=$(echo "$usage_session" | jq -r '.totalCost // 0')
     daily_cost=$(echo "$usage_daily" | jq -r '.daily[-1].totalCost // 0')
     weekly_cost=$(echo "$usage_weekly" | jq -r '.weekly[-1].totalCost // 0')
     echo "${YELLOW}  $(fmt_cost "$session_cost") session / $(fmt_cost "$daily_cost") day / $(fmt_cost "$weekly_cost") week${RESET}"
