@@ -12,7 +12,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/.claude/hooks/protect-files.sh"
+            "command": "~/dotfiles/claude/hooks/protect-files.sh"
           }
         ]
       }
@@ -21,12 +21,11 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline.sh",
+    "command": "~/dotfiles/claude/statusline.sh",
     "padding": 0
   },
   "enabledPlugins": {
-    "pyright-lsp@claude-plugins-official": true,
-    "starship-claude@starship-claude": false
+    "pyright-lsp@claude-plugins-official": true
   },
   "permissions": {
     "allow": [
@@ -77,7 +76,8 @@
       "Bash(gh repo view:*)",
       "Bash(gh release list:*)",
       "Bash(gh release view:*)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Read(~/dotfiles/claude/**)"
     ],
     "deny": [
       "Bash(rm -rf *)",
