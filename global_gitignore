@@ -8,3 +8,4 @@ scratch
 *.pyc
 CLAUDE.local.md
 .claude/settings.local.json
+git-worktrees

@@ -5,28 +5,6 @@
     "DISABLE_ERROR_REPORTING": "1",
     "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1"
   },
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/dotfiles/claude/hooks/protect-files.sh"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": []
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "~/dotfiles/claude/statusline.sh",
-    "padding": 0
-  },
-  "enabledPlugins": {
-    "pyright-lsp@claude-plugins-official": true
-  },
   "permissions": {
     "allow": [
       "Bash(ls:*)",
@@ -108,5 +86,28 @@
       "Read(~/.gem/credentials)",
       "Read(~/Library/Keychains/**)"
     ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dotfiles/claude/hooks/protect-files.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": []
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/dotfiles/claude/statusline.sh",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true,
+    "playground@claude-plugins-official": true
   }
 }
