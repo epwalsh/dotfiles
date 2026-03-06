@@ -76,7 +76,7 @@ end, { nargs = 1 })
 
 vim.api.nvim_create_user_command("Gopen", function(_)
   vim.cmd "AsyncRun -close gh repo view --web"
-end, { nargs = 0, desc = "Open the repository in your browser"})
+end, { nargs = 0, desc = "Open the repository in your browser" })
 
 ------------------------
 -- Obsidian commands. --
@@ -180,9 +180,17 @@ vim.api.nvim_create_user_command("OScp", function(data)
 
   vim.cmd "w"
 
-  local out = vim.fn.system { "cp", source_path, target_path }
+  local parent = vim.fs.dirname(target_path)
+  local out = vim.fn.system { "mkdir", "-p", parent }
   if out and string.len(out) > 0 then
     log.error(out)
+    return
+  end
+
+  out = vim.fn.system { "cp", source_path, target_path }
+  if out and string.len(out) > 0 then
+    log.error(out)
+    return
   else
     log.info("Copied '%s' to '%s'", source_path, target_path)
   end
