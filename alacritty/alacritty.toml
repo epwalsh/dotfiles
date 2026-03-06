@@ -55,15 +55,15 @@ chars = "\n"
 hide_when_typing = true
 
 [shell]
-args = ["-l", "-c", "tmux has-session && fish || tmux"]
 program = "/opt/homebrew/bin/fish"
+args = ["-l", "-c", "~/dotfiles/tmux/main_session.sh"]
 
 [window]
 decorations = "Full"
 # decorations = "Buttonless"
 opacity = 0.95
 blur = true
-startup_mode = "Windowed"
+startup_mode = "Maximized"
 decorations_theme_variant = "Dark"
 
 [window.padding]
