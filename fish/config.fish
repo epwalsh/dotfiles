@@ -101,6 +101,10 @@ end
 # starship prompt.
 starship init fish | source
 
+# bat theme
+set -gx BAT_THEME_LIGHT gruvbox-dark
+set -gx BAT_THEME_DARK gruvbox-dark
+
 # Git shortcuts
 alias g git
 alias gc 'git add -A; git commit -m'
