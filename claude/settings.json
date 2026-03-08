@@ -38,6 +38,7 @@
       "Bash(printenv:*)",
       "Bash(uname:*)",
       "Bash(sw_vers:*)",
+      "Bash(black:*)",
       "Bash(git log:*)",
       "Bash(git diff:*)",
       "Bash(git status:*)",
