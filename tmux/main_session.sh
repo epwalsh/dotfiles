@@ -11,5 +11,9 @@ if ! tmux has-session -t $session_name 2>/dev/null; then
 
     # Second window in ~/github.com/
     tmux new-window -t $session_name:2 -c ~/github.com
+
+    # Attach session
+    tmux attach-session -t $session_name
+else
+    exit 1
 fi
-tmux attach-session -t $session_name

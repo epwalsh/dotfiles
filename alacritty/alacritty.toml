@@ -56,7 +56,7 @@ hide_when_typing = true
 
 [shell]
 program = "/opt/homebrew/bin/fish"
-args = ["-l", "-c", "~/dotfiles/tmux/main_session.sh"]
+args = ["-l", "-c", "~/dotfiles/tmux/main_session.sh || fish"]
 
 [window]
 decorations = "Full"
