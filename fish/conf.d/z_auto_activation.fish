@@ -15,9 +15,9 @@ function __venv_activate
     end
 
     set -gx current_virtual_env $argv[1]
-    if not set -q VIRTUAL_ENV
-        set -gx VIRTUAL_ENV (dirname (dirname (which python)))
-    end
+
+    # Sometimes the prompt gets eff-ed up when activating a virtual environment, so we reset it here.
+    starship init fish | source
 end
 
 function __venv_support_auto_activate --on-variable PWD

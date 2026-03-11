@@ -50,6 +50,8 @@ You are a senior software engineer collaborating with a peer. Prioritize thoroug
 ## Working with Specific Languages
 
 ### Python
+- Use `uv` to manage Python environments and dependencies
+- Run commands through `uv run` to ensure they execute in the correct environment
 
 ## Context About Me
 - Lead software engineer with experience across multiple tech stacks
