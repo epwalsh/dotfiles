@@ -23,4 +23,7 @@ function venv_new
     end
 
     venv_activate .venv
+
+    # Install global requirements
+    uv pip install -r ~/dotfiles/requirements.txt
 end

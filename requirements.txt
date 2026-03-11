@@ -5,7 +5,7 @@ mypy
 black
 isort
 ruff
+ty
 requests
 ipython
 rich
-beaker-py
