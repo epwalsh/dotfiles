@@ -132,12 +132,13 @@ git config --global user.email "petew@allenai.org"
 ln -sf ~/dotfiles/global_gitignore ~/.gitignore
 git config --global core.excludesFile "$HOME/.gitignore"
 
-# Claude.
+# Claude code.
 mkdir ~/.claude
 for filename in ~/dotfiles/claude/*; do
     target=$(basename "$filename")
     ln -sf "$filename" ~/.claude/"$target"
 done
+claude mcp add obsidian --scope user npx @mauricio.wolff/mcp-obsidian ~/Obsidian/notes/
 
 ########################
 # Change shell to Fish #
