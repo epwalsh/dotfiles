@@ -5,9 +5,6 @@ mypy
 black
 isort
 ruff
-virtualenv
-virtualenvwrapper
-virtualfish
 requests
 ipython
 rich

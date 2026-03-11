@@ -41,7 +41,7 @@ return {
         pattern = "*",
         callback = function(args)
           if os.getenv "NVIM_FORMAT" ~= "0" then
-            require("conform").format { bufnr = args.buf, timeout_ms = 1000 }
+            require("conform").format { bufnr = args.buf, timeout_ms = 5000 }
           end
         end,
       })

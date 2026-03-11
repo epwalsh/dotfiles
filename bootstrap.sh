@@ -74,6 +74,9 @@ cargo install sccache \
 
 # uv.
 curl -LsSf https://astral.sh/uv/install.sh | sh
+uv venv --python 3.12 --prompt dotfiles .venv 
+source .venv/bin/activate
+uv pip install -r requirements.txt
 
 # Claude Code.
 curl -fsSL https://claude.ai/install.sh | bash
@@ -86,7 +89,6 @@ curl https://cursor.com/install -fsS | bash
 ##############################################
 
 mkdir -p ~/.config
-mkdir -p ~/.virtualenvs
 
 # tmux.
 for filename in ~/dotfiles/tmux/.tmux*; do
@@ -146,13 +148,3 @@ claude mcp add obsidian --scope user npx @mauricio.wolff/mcp-obsidian ~/Obsidian
 
 which fish | sudo tee -a /etc/shells
 chsh -s "$(which fish)"
-
-#######################
-# Python environments #
-#######################
-
-# Set up virtualfish.
-pip3 install virtualfish
-vf install global_requirements auto_activation
-ln -sf ~/dotfiles/requirements.txt ~/.virtualenvs/global_requirements.txt
-vf new base

@@ -1,70 +1,20 @@
 # Add function subdirs to fish_function_path.
 set fish_function_path (path resolve $__fish_config_dir/functions/*/) $fish_function_path
 
-# Add ~/bin to PATH
-set -l bin_path $HOME/bin
-if test -d $bin_path
-    contains -- $bin_path $PATH
-    or set -gx PATH $bin_path $PATH
-end
-
-set -l local_bin_path $HOME/.local/bin
-if test -d $local_bin_path
-    contains -- $local_bin_path $PATH
-    or set -gx PATH $local_bin_path $PATH
-end
-
-# Add cargo bin to PATH
-set -l cargo_bin_path $HOME/.cargo/bin
-contains -- $cargo_bin_path $PATH
-  or set -gx PATH $cargo_bin_path $PATH
-
-# go bin to PATH
-set -l go_bin_path /usr/local/go/bin
-if test -d $go_bin_path
-    contains -- $go_bin_path $PATH
-    or set -gx PATH $go_bin_path $PATH
-    set -l go_user_bin_path $HOME/go/bin
-    contains -- $go_user_bin_path $PATH
-    or set -gx PATH $go_user_bin_path $PATH
-end
+# Update path.
+fish_add_path --path $HOME/bin
+fish_add_path --path $HOME/.local/bin
+fish_add_path --path $HOME/.cargo/bin
+fish_add_path --path /usr/local/go/bin
+fish_add_path --path $HOME/go/bin
+fish_add_path --path /opt/homebrew/bin
+fish_add_path --path /opt/homebrew/sbin
 
 # Set default editor
 set -gx EDITOR nvim
 
 # Vi bindings
 fish_vi_key_bindings
-
-# Homebrew.
-if test -d "/opt/homebrew"
-    set -l homebrew_bin_path "/opt/homebrew/bin"
-    set -l homebrew_sbin_path "/opt/homebrew/sbin"
-
-    contains -- $homebrew_bin_path $PATH
-      or set -gx PATH $homebrew_bin_path $PATH
-    contains -- $homebrew_sbin_path $PATH
-      or set -gx PATH $homebrew_sbin_path $PATH
-end
-
-# Linux brew.
-if test -d "/home/linuxbrew"
-    set -l linuxbrew_bin_path "/home/linuxbrew/.linuxbrew/bin"
-    set -l linuxbrew_sbin_path "/home/linuxbrew/.linuxbrew/sbin"
-    set -l linuxbrew_manpath "/home/linuxbrew/.linuxbrew/share/man"
-    set -l linuxbrew_infopath "/home/linuxbrew/.linuxbrew/share/info"
-    
-    contains -- $linuxbrew_bin_path $PATH
-      or set -gx PATH $linuxbrew_bin_path $PATH
-    
-    contains -- $linuxbrew_sbin_path $PATH
-      or set -gx PATH $linuxbrew_sbin_path $PATH
-    
-    contains -- $linuxbrew_manpath $MANPATH
-      or set -gx MANPATH $linuxbrew_manpath $MANPATH
-    
-    contains -- $linuxbrew_infopath $INFOPATH
-      or set -gx INFOPATH $linuxbrew_infopath $INFOPATH
-end
 
 # Stop the fuckery of homebrew from fucking auto-updating every fucking time I want to install something.
 # JFC if I wanted that behavior I would use Windows.
@@ -82,8 +32,8 @@ function ..... ; cd ../../../..; and ls ; end
 function root ; cd ./(git rev-parse --show-cdup) ; end
 
 # Python virtual env setup
-set -gx PIPENV_IGNORE_VIRTUALENVS 1
-set -gx WORKON_HOME $HOME/.virtualenvs
+# set -gx PIPENV_IGNORE_VIRTUALENVS 1
+# set -gx WORKON_HOME $HOME/.virtualenvs
 
 # Google cloud.
 if test -e ~/google-cloud-sdk/path.fish.inc

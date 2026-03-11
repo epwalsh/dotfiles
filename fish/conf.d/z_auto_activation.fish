@@ -2,11 +2,7 @@
 # Automatic Python virtual environment activation.
 ################################################################
 
-# set -gx DEFAULT_VIRTUAL_ENV base
-
-if not set -q VENV_ACTIVATION_FILE
-    set -g VENV_ACTIVATION_FILE .venv
-end
+set -gx DEFAULT_VIRTUAL_ENV "$HOME/dotfiles/.venv"
 
 function __venv_activate
     if test -d $argv[1]
@@ -14,9 +10,8 @@ function __venv_activate
         source $argv[1]/bin/activate.fish &> /dev/null || return 1
         echo "Activated virtual environment at $argv[1]"
     else
-        # Otherwise assume it's managed by virtualfish.
-        vf activate $argv[1] &> /dev/null || return 1
-        echo "Activated virtualfish environment $argv[1]"
+        log_error "Virtual environment $argv[1] not found."
+        return 1
     end
 
     set -gx current_virtual_env $argv[1]
@@ -34,10 +29,7 @@ function __venv_support_auto_activate --on-variable PWD
     set -l activation_root $PWD
     set -l new_virtualenv_name ""
     while test $activation_root != ""
-        if test -f "$activation_root/$VENV_ACTIVATION_FILE"
-            set new_virtualenv_name (command cat "$activation_root/$VENV_ACTIVATION_FILE")
-            break
-        else if test -d "$activation_root/.venv"
+        if test -d "$activation_root/.venv"
             set new_virtualenv_name "$activation_root/.venv"
             break
         end
@@ -52,17 +44,14 @@ function __venv_support_auto_activate --on-variable PWD
                 if test -f $current_virtual_env/bin/deactivate.fish
                     source $current_virtual_env/bin/deactivate.fish &> /dev/null
                     and echo "Deactivated virtual environment $current_virtual_env"
-                else
-                    vf deactivate &> /dev/null
-                    and echo "Deactivated virtualfish environment $current_virtual_env"
                 end
             end
 
             # Activate the new one
             __venv_activate $new_virtualenv_name
         end
-    # else if begin; not set -q current_virtual_env; and set -q DEFAULT_VIRTUAL_ENV; end
-    #     __venv_activate $DEFAULT_VIRTUAL_ENV
+    else if begin; not set -q current_virtual_env; and set -q DEFAULT_VIRTUAL_ENV; end
+        __venv_activate $DEFAULT_VIRTUAL_ENV
     end
 end
 
