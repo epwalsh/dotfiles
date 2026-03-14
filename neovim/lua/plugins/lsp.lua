@@ -108,6 +108,12 @@ return {
           format = {
             enable = true,
           },
+          -- See https://rust-analyzer.github.io/book/configuration.html
+          ["rust-analyzer"] = {
+            cargo = {
+              allFeatures = true,
+            },
+          },
         },
       })
       vim.cmd [[autocmd BufWritePre *.rs lua vim.lsp.buf.format()]]
