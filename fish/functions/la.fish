@@ -1,4 +1,4 @@
-function l
+function la
     if set -q argv
         set dir $argv[-1]
     else
@@ -6,8 +6,6 @@ function l
     end
     exa --long \
         --all \
-        --git-ignore \
-        --ignore-glob '**/.git|**/.mypy_cache|**/__pycache__|**/*.egg-info|**/.pytest_cache|**/.ruff_cache' \
         --icons \
         --color always \
         --group-directories-first $dir | less -RFX
