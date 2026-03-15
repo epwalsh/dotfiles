@@ -203,6 +203,11 @@ return {
       if os.getenv "NVIM_PYRIGHT" ~= "0" then
         vim.lsp.enable "pyright"
         vim.lsp.config("pyright", {
+          settings = {
+            python = {
+              pythonPath = vim.fn.system({ "which", "python" }):gsub("\n", ""),
+            },
+          },
           on_attach = function(client)
             -- Jedi works best as the provider for these.
             client.server_capabilities.renameProvider = false
